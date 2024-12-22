@@ -1,7 +1,7 @@
 +++
 title = "关于我及我的博客"
 description = "知识分享与微小叙事。"
-date = 2021-05-01
+date = 2024-12-22
 noLicense = true
 
 +++
@@ -14,15 +14,17 @@ noLicense = true
 
 自诩热爱历史与文学，对 IT 也颇有兴趣，可惜数学不好。
 
-利用业余时间参与制作[《东亚观察局》](https://podcasts.apple.com/us/podcast/%E4%B8%9C%E4%BA%9A%E8%A7%82%E5%AF%9F%E5%B1%80/id1508293790)，以选出令人惊艳的片尾曲为乐。
+利用业余时间参与制作[《东亚观察局》](https://podcasts.apple.com/us/podcast/%E4%B8%9C%E4%BA%9A%E8%A7%82%E5%AF%9F%E5%B1%80/id1508293790)，以选出令人惊艳的片尾曲为乐，已于2021年9月退出该项目。
 
-最近开通了自己的 [YouTube 频道](https://www.youtube.com/channel/UC_373CGdvnXBeUoeNXK3vJA)，名称暂定为 Bright Chan。
+最近开通了自己的 [YouTube 频道](https://www.youtube.com/channel/UC_373CGdvnXBeUoeNXK3vJA)，名称暂定为 Mason Trip。
 
 ![](https://ibrights.github.io/images/BrightChan.png)
 
 # 关于本博客
 
-本博客用于记录一些零碎的新知识，以及偶有的牢骚和絮叨。
+本博客原地址为：[Bright's Blog - 知识分享与微小叙事。](https://ibrights.github.io/)，因本人丢失原 Github 账号，无法继续在原地址更新文章，故重开博客至此，并更名为 [Mason | 知识分享与微小叙事](https://masonblog.github.io/)，希望老读者还能找到我。
+
+用于记录一些零碎的新知识，以及偶有的牢骚和絮叨。
 
 它不具备任何传播学上的价值，只是一个用于存放个人经历的树洞。
 
