@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Posts on Mason&#39;s Blog</title>
+    <link>https://masonblog.github.io/post/</link>
+    <description>Recent content in Posts on Mason&#39;s Blog</description>
+    <image>
+      <title>Mason&#39;s Blog</title>
+      <url>https://masonblog.github.io/images/logo.png</url>
+      <link>https://masonblog.github.io/images/logo.png</link>
+    </image>
+    <generator>Hugo -- 0.140.0</generator>
+    <language>zh-hans</language>
+    <lastBuildDate>Thu, 15 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://masonblog.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>保持谦逊，对抗虚无</title>
+      <link>https://masonblog.github.io/post/blog20240215/</link>
+      <pubDate>Thu, 15 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20240215/</guid>
+      <description>偶尔记录生活</description>
+    </item>
+    <item>
+      <title>我讨厌双休</title>
+      <link>https://masonblog.github.io/post/blog20230211/</link>
+      <pubDate>Sat, 11 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20230211/</guid>
+      <description>偶尔记录生活</description>
+    </item>
+    <item>
+      <title>自由、荒诞与虚无</title>
+      <link>https://masonblog.github.io/post/blog20230121/</link>
+      <pubDate>Sat, 21 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20230121/</guid>
+      <description>2022年终总结</description>
+    </item>
+    <item>
+      <title>如何配置路由器的 DHCP ?</title>
+      <link>https://masonblog.github.io/post/blog20220518/</link>
+      <pubDate>Wed, 18 May 2022 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20220518/</guid>
+      <description>日常技术记录</description>
+    </item>
+    <item>
+      <title>通过 Home Assistant 搭建智能家居中枢</title>
+      <link>https://masonblog.github.io/post/blog20220409/</link>
+      <pubDate>Sat, 09 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20220409/</guid>
+      <description>日常技术记录</description>
+    </item>
+    <item>
+      <title>与苦难共存，与希望共生</title>
+      <link>https://masonblog.github.io/post/blog20220201/</link>
+      <pubDate>Tue, 01 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20220201/</guid>
+      <description>2021年终总结</description>
+    </item>
+    <item>
+      <title>利用 Portainer 实现 Docker 端 Jellyfin 硬件解码</title>
+      <link>https://masonblog.github.io/post/blog20210909/</link>
+      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20210909/</guid>
+      <description>日常技术记录</description>
+    </item>
+    <item>
+      <title>实测苹果专用转接代理可用于翻墙，但中国大陆地区无法使用</title>
+      <link>https://masonblog.github.io/post/blog20210608/</link>
+      <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20210608/</guid>
+      <description>日常技术记录</description>
+    </item>
+    <item>
+      <title>利用 Favicon 为 Hugo 静态站点添加图标</title>
+      <link>https://masonblog.github.io/post/blog20210527/</link>
+      <pubDate>Thu, 27 May 2021 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20210527/</guid>
+      <description>日常技术记录</description>
+    </item>
+    <item>
+      <title>桥接模式下 Openwrt 软路由直接访问光猫后台</title>
+      <link>https://masonblog.github.io/post/blog20210505/</link>
+      <pubDate>Wed, 05 May 2021 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20210505/</guid>
+      <description>日常技术记录</description>
+    </item>
+    <item>
+      <title>利用 Parsec 实现远程游戏串流</title>
+      <link>https://masonblog.github.io/post/blog20210502/</link>
+      <pubDate>Sun, 02 May 2021 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20210502/</guid>
+      <description>日常技术记录</description>
+    </item>
+    <item>
+      <title>解决蜗牛星际B双安装黑群晖失败“文件已损毁（13）”</title>
+      <link>https://masonblog.github.io/post/blog20210423/</link>
+      <pubDate>Fri, 23 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20210423/</guid>
+      <description>日常技术记录</description>
+    </item>
+    <item>
+      <title>告别，为了新的开始：记一次迂回的返乡行</title>
+      <link>https://masonblog.github.io/post/blog20210416/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20210416/</guid>
+      <description>逃离深圳</description>
+    </item>
+    <item>
+      <title>Openwrt Luci Openvpn 服务器多设备同时接入</title>
+      <link>https://masonblog.github.io/post/blog20210413/</link>
+      <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20210413/</guid>
+      <description>日常技术记录</description>
+    </item>
+    <item>
+      <title>利用 Docker 搭建 Trilium Notes 服务器</title>
+      <link>https://masonblog.github.io/post/blog20210320/</link>
+      <pubDate>Sat, 20 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20210320/</guid>
+      <description>日常技术记录</description>
+    </item>
+    <item>
+      <title>身后，岸边，安徽全椒县</title>
+      <link>https://masonblog.github.io/post/blog20201231/</link>
+      <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20201231/</guid>
+      <description>2020年终总结</description>
+    </item>
+    <item>
+      <title>通过群晖与 Openwrt 软路由实现自动端口映射</title>
+      <link>https://masonblog.github.io/post/blog20200914/</link>
+      <pubDate>Mon, 14 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200914/</guid>
+      <description>日常技术记录</description>
+    </item>
+    <item>
+      <title>开学计</title>
+      <link>https://masonblog.github.io/post/blog20200913/</link>
+      <pubDate>Sun, 13 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200913/</guid>
+      <description>偶尔记录生活</description>
+    </item>
+    <item>
+      <title>华为“南泥湾”项目与中国社会的内卷化</title>
+      <link>https://masonblog.github.io/post/blog20200804/</link>
+      <pubDate>Tue, 04 Aug 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200804/</guid>
+      <description>谷月杂谈第十六期逐字稿</description>
+    </item>
+    <item>
+      <title>天灾与民生，孟子的社会福利观</title>
+      <link>https://masonblog.github.io/post/blog20200728/</link>
+      <pubDate>Tue, 28 Jul 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200728/</guid>
+      <description>格物志第五期逐字稿</description>
+    </item>
+    <item>
+      <title>游戏的流媒体化趋势于中国的版权拉锯战</title>
+      <link>https://masonblog.github.io/post/blog20200628/</link>
+      <pubDate>Sun, 28 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200628/</guid>
+      <description>格物志第四期逐字稿</description>
+    </item>
+    <item>
+      <title>饱受批评的《最后生还者2》：自我表达与大众需求间的矛盾</title>
+      <link>https://masonblog.github.io/post/blog20200622/</link>
+      <pubDate>Mon, 22 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200622/</guid>
+      <description>格物志第三期逐字稿</description>
+    </item>
+    <item>
+      <title>缪可馨的悲剧是我们共同的悲剧</title>
+      <link>https://masonblog.github.io/post/blog20200617/</link>
+      <pubDate>Wed, 17 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200617/</guid>
+      <description>谷月杂谈第二期逐字稿</description>
+    </item>
+    <item>
+      <title>十分钟读懂政治光谱</title>
+      <link>https://masonblog.github.io/post/blog20200616/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200616/</guid>
+      <description>格物志第二期逐字稿</description>
+    </item>
+    <item>
+      <title>弗洛伊德事件与美国的种族歧视传统</title>
+      <link>https://masonblog.github.io/post/blog20200613/</link>
+      <pubDate>Sat, 13 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200613/</guid>
+      <description>格物志第一期节目逐字稿</description>
+    </item>
+    <item>
+      <title>利用 NAS、Docker 和 Calibre Web 搭建个人线上书库</title>
+      <link>https://masonblog.github.io/post/blog20200512/</link>
+      <pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200512/</guid>
+      <description>日常技术记录</description>
+    </item>
+    <item>
+      <title>可能是最好用的记忆辅助工具 Anki</title>
+      <link>https://masonblog.github.io/post/blog20200326/</link>
+      <pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200326/</guid>
+      <description>日常科技见闻</description>
+    </item>
+    <item>
+      <title>MacOS 10.15.4 更新 iCloud 文件分享功能</title>
+      <link>https://masonblog.github.io/post/blog20200325/</link>
+      <pubDate>Wed, 25 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200325/</guid>
+      <description>日常科技见闻</description>
+    </item>
+    <item>
+      <title>当我们反对“感恩教育”时，我们究竟在反对什么？</title>
+      <link>https://masonblog.github.io/post/blog20200311/</link>
+      <pubDate>Wed, 11 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200311/</guid>
+      <description>新冠疫情时事评论</description>
+    </item>
+    <item>
+      <title>利用 Hugo 和 Github Pages 搭建自己的个人博客</title>
+      <link>https://masonblog.github.io/post/blog20200310/</link>
+      <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200310/</guid>
+      <description>此页面记录了我利用 Hugo 和 Github Pages 搭建本站的全过程</description>
+    </item>
+    <item>
+      <title>这个世界不需要英雄</title>
+      <link>https://masonblog.github.io/post/blog20200121/</link>
+      <pubDate>Tue, 21 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200121/</guid>
+      <description>2019年末总结</description>
+    </item>
+    <item>
+      <title>雪花的“正义性”与“屋子里的大象”</title>
+      <link>https://masonblog.github.io/post/blog20191209/</link>
+      <pubDate>Mon, 09 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20191209/</guid>
+      <description>《韬奋芳华》杂志命题投稿</description>
+    </item>
+    <item>
+      <title>革命与改革：李侃如对中国的洞见与误读</title>
+      <link>https://masonblog.github.io/post/blog20191202/</link>
+      <pubDate>Mon, 02 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20191202/</guid>
+      <description>《治理中国》读书笔记</description>
+    </item>
+    <item>
+      <title>专制与革命：历史周期律中的奥威尔精神</title>
+      <link>https://masonblog.github.io/post/blog20191023/</link>
+      <pubDate>Wed, 23 Oct 2019 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20191023/</guid>
+      <description>《动物庄园》读书笔记</description>
+    </item>
+  </channel>
+</rss>

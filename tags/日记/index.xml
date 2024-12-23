@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>日记 on Mason&#39;s Blog</title>
+    <link>https://masonblog.github.io/tags/%E6%97%A5%E8%AE%B0/</link>
+    <description>Recent content in 日记 on Mason&#39;s Blog</description>
+    <image>
+      <title>Mason&#39;s Blog</title>
+      <url>https://masonblog.github.io/images/logo.png</url>
+      <link>https://masonblog.github.io/images/logo.png</link>
+    </image>
+    <generator>Hugo -- 0.140.0</generator>
+    <language>zh-hans</language>
+    <lastBuildDate>Thu, 15 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://masonblog.github.io/tags/%E6%97%A5%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>保持谦逊，对抗虚无</title>
+      <link>https://masonblog.github.io/post/blog20240215/</link>
+      <pubDate>Thu, 15 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20240215/</guid>
+      <description>偶尔记录生活</description>
+    </item>
+    <item>
+      <title>我讨厌双休</title>
+      <link>https://masonblog.github.io/post/blog20230211/</link>
+      <pubDate>Sat, 11 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20230211/</guid>
+      <description>偶尔记录生活</description>
+    </item>
+    <item>
+      <title>自由、荒诞与虚无</title>
+      <link>https://masonblog.github.io/post/blog20230121/</link>
+      <pubDate>Sat, 21 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20230121/</guid>
+      <description>2022年终总结</description>
+    </item>
+    <item>
+      <title>与苦难共存，与希望共生</title>
+      <link>https://masonblog.github.io/post/blog20220201/</link>
+      <pubDate>Tue, 01 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20220201/</guid>
+      <description>2021年终总结</description>
+    </item>
+    <item>
+      <title>告别，为了新的开始：记一次迂回的返乡行</title>
+      <link>https://masonblog.github.io/post/blog20210416/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20210416/</guid>
+      <description>逃离深圳</description>
+    </item>
+    <item>
+      <title>身后，岸边，安徽全椒县</title>
+      <link>https://masonblog.github.io/post/blog20201231/</link>
+      <pubDate>Thu, 31 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20201231/</guid>
+      <description>2020年终总结</description>
+    </item>
+    <item>
+      <title>开学计</title>
+      <link>https://masonblog.github.io/post/blog20200913/</link>
+      <pubDate>Sun, 13 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20200913/</guid>
+      <description>偶尔记录生活</description>
+    </item>
+  </channel>
+</rss>
