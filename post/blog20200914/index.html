@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-hans" dir="auto">
+<html lang="en" dir="auto">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>通过群晖与 Openwrt 软路由实现自动端口映射 | Mason&#39;s Blog</title>
+<title>通过群晖与 Openwrt 软路由实现自动端口映射 | Mason&#39;s blog</title>
 <meta name="keywords" content="群晖, Openwrt, 端口映射, UPnP">
 <meta name="description" content="日常技术记录">
-<meta name="author" content="Mason">
+<meta name="author" content="">
 <link rel="canonical" href="https://masonblog.github.io/post/blog20200914/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://masonblog.github.io/favicon.ico">
@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="https://masonblog.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh-hans" href="https://masonblog.github.io/post/blog20200914/">
+<link rel="alternate" hreflang="en" href="https://masonblog.github.io/post/blog20200914/">
 <noscript>
     <style>
         #theme-toggle,
@@ -56,18 +56,16 @@
 
     </style>
 </noscript><meta property="og:url" content="https://masonblog.github.io/post/blog20200914/">
-  <meta property="og:site_name" content="Mason&#39;s Blog">
+  <meta property="og:site_name" content="Mason&#39;s blog">
   <meta property="og:title" content="通过群晖与 Openwrt 软路由实现自动端口映射">
   <meta property="og:description" content="日常技术记录">
-  <meta property="og:locale" content="zh-hans">
+  <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
     <meta property="article:published_time" content="2020-09-14T00:00:00+00:00">
     <meta property="article:modified_time" content="2020-09-14T00:00:00+00:00">
     <meta property="article:tag" content="科技分享">
-      <meta property="og:image" content="https://masonblog.github.io/images/logo.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://masonblog.github.io/images/logo.png">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过群晖与 Openwrt 软路由实现自动端口映射">
 <meta name="twitter:description" content="日常技术记录">
 
@@ -103,21 +101,17 @@
     "群晖", "Openwrt", "端口映射", "UPnP"
   ],
   "articleBody": "\n要在家庭或公司的局域网以外（俗称外网）访问家中或公司内网的设备（例如 NAS），通常有两种方式。第一种方式是在局域网的路由器上架设一个 VPN 服务器，再将外网的终端设备作为 VPN 客户端接入内网。在这种情况下，VPN（虚拟专有网络）充当了网线的角色，即接入 VPN 的外网设备，就相当于拉了一根通往内网的网线。因此在 VPN 网络中，即使这根网线是虚拟的，也能实现如同身处局域网内一般的访问体验。\n第二种方法则更为简单直接，即通过动态 DNS 服务将一个域名绑定到局域网服务器的外网 ip，再议端口映射的方式将内网设备暴露在公网中，以供外网设备连接。由于众所周知的原因，我国境内的 VPN 连接并不稳定，因此大多数人都会选择第二种方式进行内网穿透。\n在路由器上进行端口映射的操作非常简单。这里以 Openwrt 系统为例，仅需在网络 - 防火墙 - 端口转发中新建转发规则，将相应内网设备的端口映射为外网端口即可。\n然而，由于内网设备的内部 ip 地址会随着 DHCP 租约的更新而不断变化，尽管我们可以通过 IP/MAC 绑定的方式人为地固定内网设备的 ip 地址，但实践证明这种方式并不稳定。因此，我们经常需要手动修改端口映射规则，这就使得相关的维护工作变得非常繁琐。如果我们长期在外，无法接入内网环境，上述规则修改的工作就很难进行。这时，我们就需要用到 UPnP（通用即插即用）服务。顾名思义，它是一种自动配置端口映射的工具。只要服务器和内网其他设备同时开启 UPnP 服务并稍加简单的配置，即可一劳永逸地解决端口映射的问题。\n以群晖和 Openwrt 系统为例，我们首先需要在 Openwrt 路由器上安装并开启 UPnP 服务。\n然后，登陆群晖的管理后台，在控制面板 - 外部访问 - 路由器配置选项卡中，选择“设置路由器”。此时系统会自动检测网络环境以及路由器型号与配置，不出意外的话，整个过程能够由系统自动完成，无须人工配置。之后，点击“新增”按钮，并根据自己的需求选择要转发的应用和端口，再点击“保存”即可。\n最后，我们可以回到路由器后台的 UPnP 页面，查看已经被系统自动添加好的端口映射规则。值得注意的是，国内的网络运营商一般会禁用个人和家庭宽带的 443 和 445 端口（前者是 https 的默认端口，后者是 smb 服务的默认端口），因此，即使我们在 UPnP 服务中添加了上述两个端口的自动映射，也无法实现 443 和 445 端口的外网访问。此时，就需要我们在防火墙的端口映射中手动进行端口映射，即将 443 和 445 两个内网端口映射到外网的非 443 或 445 端口（如 444 和 446，全凭个人喜好）。这样，我们才能绕过运营商的封锁，成功进行上述两个端口的外部访问。\n",
-  "wordCount" : "1009",
-  "inLanguage": "zh-hans",
-  "image": "https://masonblog.github.io/images/logo.png","datePublished": "2020-09-14T00:00:00Z",
+  "wordCount" : "75",
+  "inLanguage": "en",
+  "datePublished": "2020-09-14T00:00:00Z",
   "dateModified": "2020-09-14T00:00:00Z",
-  "author":{
-    "@type": "Person",
-    "name": "Mason"
-  },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://masonblog.github.io/post/blog20200914/"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "Mason's Blog",
+    "name": "Mason's blog",
     "logo": {
       "@type": "ImageObject",
       "url": "https://masonblog.github.io/favicon.ico"
@@ -142,7 +136,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="https://masonblog.github.io/" accesskey="h" title="Mason&#39;s Blog (Alt + H)">Mason&#39;s Blog</a>
+            <a href="https://masonblog.github.io/" accesskey="h" title="Mason&#39;s blog (Alt + H)">Mason&#39;s blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -181,7 +175,7 @@
     <div class="post-description">
       日常技术记录
     </div>
-    <div class="post-meta"><span title='2020-09-14 00:00:00 +0000 UTC'>九月 14, 2020</span>&nbsp;·&nbsp;Mason
+    <div class="post-meta"><span title='2020-09-14 00:00:00 +0000 UTC'>September 14, 2020</span>
 
 </div>
   </header> 
@@ -208,7 +202,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2024 <a href="https://masonblog.github.io/">Mason&#39;s Blog</a></span> · 
+        <span>&copy; 2024 <a href="https://masonblog.github.io/">Mason&#39;s blog</a></span> · 
 
     <span>
         Powered by
