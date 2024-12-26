@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>日记 on Mason&#39;s Blog</title>
+    <title>日记 on Mason&#39;s blog</title>
     <link>https://masonblog.github.io/tags/%E6%97%A5%E8%AE%B0/</link>
-    <description>Recent content in 日记 on Mason&#39;s Blog</description>
-    <image>
-      <title>Mason&#39;s Blog</title>
-      <url>https://masonblog.github.io/images/logo.png</url>
-      <link>https://masonblog.github.io/images/logo.png</link>
-    </image>
+    <description>Recent content in 日记 on Mason&#39;s blog</description>
     <generator>Hugo -- 0.140.0</generator>
-    <language>zh-hans</language>
+    <language>en</language>
     <lastBuildDate>Thu, 15 Feb 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://masonblog.github.io/tags/%E6%97%A5%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
