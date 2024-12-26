@@ -65,9 +65,9 @@
     <meta property="article:published_time" content="2021-09-09T00:00:00+00:00">
     <meta property="article:modified_time" content="2021-09-09T00:00:00+00:00">
     <meta property="article:tag" content="科技分享">
-    <meta property="og:image" content="https://masonblog.github.io/images/blog20220409/HA.png">
+    <meta property="og:image" content="https://masonblog.github.io/images/blog20210909/jellyfin.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://masonblog.github.io/images/blog20220409/HA.png">
+<meta name="twitter:image" content="https://masonblog.github.io/images/blog20210909/jellyfin.png">
 <meta name="twitter:title" content="利用 Portainer 实现 Docker 端 Jellyfin 硬件解码">
 <meta name="twitter:description" content="日常技术记录">
 
@@ -105,7 +105,7 @@
   "articleBody": "原理及环境检测 随着版本的不断迭代，Jellyfin 已经逐渐超过 Plex 和自家兄弟 Emby，成为用户数量最所的个人媒体管理方案，这不仅因为它的所有功能均为免费，更是因为它的源代码完全开源，具有极高的维护与拓展空间。\n不论用于运行 Jellyfin 的具体是哪款操作系统，只要该系统是基于 Linux，我们就可以通过 Docker 容器来实现极为简单且方式一致的部署。但相比于原生套件，Docker 有一个显而易见的缺点，即无法直接调用各类系统资源，核显驱动就是其中之一。\n要让 Jellyfin 的 Docker 容器实时调用核显驱动（也就是人们常说的开启硬解），要满足两个条件：\n拥有支持视频解码的核心显卡，且核心显卡的驱动程序运行正常； 将核显驱动直通给 Docker 容器，并赋予 Docker 容器调用该驱动的权限。 对于系统是否满足上述第一个条件，可以通过以下方式进行检验：首先用 ssh 工具连接到服务器，确保登陆 ssh 的账户拥有系统管理权限，再输入以下命令：\nls /dev/dri 如果返回的结果为 card0 renderD128 ，那么恭喜，核显驱动运行正常，硬件系统满足视频解码的基本条件。接下来便是将 renderD128 这个核显驱动直通给 Docker 容器的方法。\n为什么必须用 Portainer? 无论是群辉、威联通还是 Unraid，市场上绝大多数 NAS 系统都提供了图形化的 Docker 容器管理工具。但无论上述哪一个，都不支持核显驱动的直通功能。群辉的 Docker 套件无法编辑容器的系统资源参数，威联通的 Container Station 干脆无法编辑已经创建好的容器。\n这里所说的“直通”，其实是将 /dev/dri/renderD128 这个驱动文件映射到 Docker 容器的相同位置。这一点利用命令行可以非常轻松地实现，即在 Jellyfin 容器的拉取命令中加入下列参数：\n--device=/dev/dri/renderD128 \\ 因此，要快速拉取并创建一个开启硬件解码的 Jellyfin 容器，只要在 NAS 的命令行界面输入以下命令即可：\nsudo docker run -d --name jellyfin \\ -v /share/Container/Jellyfin/config:/config \\ #冒号左边为存放配置文件的目录 -v /share/Container/Jellyfin/cache:/cache \\ #冒号左边为存放媒体缓存的目录 -v /share/Media/:/media \\ #冒号左边为存放电影文件的目录 -p 8096:8096 \\ #web界面访问端口（http） -p 8920:8920 \\ #web界面访问端口（https） --device=/dev/dri/renderD128 \\ #映射核显驱动 --restart=always \\ #重启策略 jellyfin/jellyfin 但对许多轻度用户来说，命令行不仅不便理解，也断绝了后续对容器进行修改和自定义的空间。因此对于绝大多数日常用户来说，我个人强烈推荐使用 Portainer。它本身也是一个运行在 Docker 容器里的程序，但它拥有强大的 Docker 管理功能，是目前市面上功能最完善的网页端 Docker 容器管理界面。\n因此，对于那些既不想用命令行，又希望对 Docker 有较为全面管控的用户来说，Portainer 几乎是唯一的选择。通过 Portainer，即使是初学者也能轻松为 Jellyfin 开启硬件解码。\nPortainer 的安装与使用 由于 Portainer 需要调用 /var/run/docker.sock 这个文件以实现对 Docker 的直接管理，因此 Portainer 也无法通过群辉或威联通自带的 Docker 管理界面进行安装，因为上述管理界面均不支持针对单个文件的映射。但由于 Portainer 需要配置的参数较少，且容器创建完成后不需要频繁修改，因此普通用户可以直接复制一以下命令进行安装。\nsudo docker run -d --name prtainer \\ -v /var/run/docker.sock:/var/run/docker.sock \\ #关键 -p 9000:9000 \\ #web界面访问端口 --restart=always \\ #重启策略 portainer/portainer 容器创建完成后，即可通过 IP:端口的方式访问 Portainer 的管理界面，Portainer 的默认访问端口是 9000。初次登陆需要设置管理员账号和密码。\n因为是单机使用，所以连接模式选择“local”，然后点击“Connect”即可连接到服务器上的docker。\n配置完成后，再次点击 local，选择左侧的 Container 便可使用 Portainer 对系统上现有的所有 Docker 容器进行管理了。\n安装 Jellyfin 并直通核显驱动（开启硬解） 后续的安装及配置过程都将在 Portainer 界面上完成。首先点击“Containers”选项卡上的“Add container”按钮添加新容器，进入容器创建界面。\n“Name”随便写，“Image”填写 Jellyfin 官方的 Docker Hub 映像路径 jellyfin/jellyfin，“Always pull the image”可以打开，这样当我们配置完成创建容器时，Portainer 会自动从 Docker Hub 拉取最新的官方映像。\n“Network ports configuration”处选择“Manual network port publishing”，点击“publish a new network port”创建两个端口映射，分别是 8096 和 8920，作为 Jellyfin 网页界面的访问端口。\n接着点击“volumes”选项卡，进行容器内目录的映射。Jellyfin 默认需要映射的目录分别是 /media、/cache 和 /config，点击“bind”按钮选择服务器上对应的目录进行映射。\n“Network”选择“host”，“Restart policy”选择“always”。最重要的是，“Runtime \u0026 Resources”处一定要点击“add device”，两边分别输入 /dev/dri/renderD128，这是开启硬解的关键步骤。\n以上配置完成后，即可点击“Deploy the container”按钮创建容器。如果网络环境较好，等待半分钟左右即可完成容器的创建。至此，我们不仅手动配置完成了 jellyfin 的 Docker 容器，还将核心显卡的驱动文件直通给了该容器。最后，只要进入 Jellyfin 的控制台，在“播放”选项卡中，将“硬件加速”类型选为“Video Acceleration API (VAAPI)”，并在“VA API 设备”处填写 /dev/dri/renderD128，即可调用服务器的核显驱动进行硬件解码了。\n",
   "wordCount" : "226",
   "inLanguage": "en",
-  "image":"https://masonblog.github.io/images/blog20220409/HA.png","datePublished": "2021-09-09T00:00:00Z",
+  "image":"https://masonblog.github.io/images/blog20210909/jellyfin.png","datePublished": "2021-09-09T00:00:00Z",
   "dateModified": "2021-09-09T00:00:00Z",
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -181,11 +181,10 @@
 
 </div>
   </header> 
-<figure class="entry-cover"><img loading="eager" src="https://masonblog.github.io/images/blog20220409/HA.png" alt="">
+<figure class="entry-cover"><img loading="eager" src="https://masonblog.github.io/images/blog20210909/jellyfin.png" alt="">
         
 </figure>
   <div class="post-content"><h2 id="原理及环境检测">原理及环境检测<a hidden class="anchor" aria-hidden="true" href="#原理及环境检测">#</a></h2>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210909/jellyfin.png"></p>
 <p>随着版本的不断迭代，<a href="https://jellyfin.org">Jellyfin</a> 已经逐渐超过 <a href="https://www.plex.tv">Plex</a>  和自家兄弟 <a href="https://emby.media">Emby</a>，成为用户数量最所的个人媒体管理方案，这不仅因为它的所有功能均为免费，更是因为它的源代码完全开源，具有极高的维护与拓展空间。</p>
 <p>不论用于运行 Jellyfin 的具体是哪款操作系统，只要该系统是基于 Linux，我们就可以通过 Docker 容器来实现极为简单且方式一致的部署。<strong>但相比于原生套件，Docker 有一个显而易见的缺点，即无法直接调用各类系统资源</strong>，核显驱动就是其中之一。</p>
 <p>要让 Jellyfin 的 Docker 容器实时调用核显驱动（也就是人们常说的开启硬解），要满足两个条件：</p>
