@@ -111,8 +111,7 @@
       <link>https://masonblog.github.io/post/blog20210413/</link>
       <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20210413/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://masonblog.github.io/images/blog20210413/openvpn.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;我们日常使用的 Openwrt 软路由系统几乎都集成了 &lt;a href=&#34;https://openwrt.org/docs/guide-user/luci/start&#34;&gt;Luci 界面&lt;/a&gt;，它不仅可以为用户提供便利的可视化后台管理界面，还在各路大神的贡献下，适配了众多简单易用的图形化 App。&lt;a href=&#34;https://github.com/DavBfr/luci-app-openvpn-server&#34;&gt;Luci-app-openvpn-server&lt;/a&gt; 就是众多 Luci 应用中最常用的 VPN 服务器之一。&lt;/p&gt;</description>
+      <description>日常技术记录</description>
     </item>
     <item>
       <title>利用 Docker 搭建 Trilium Notes 服务器</title>
