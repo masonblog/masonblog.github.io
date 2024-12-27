@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Mason&#39;s blog</description>
     <generator>Hugo -- 0.140.0</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 26 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Dec 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://masonblog.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HomeAssistant 米家官方集成的安装与使用</title>
+      <link>https://masonblog.github.io/post/blog20241227/</link>
+      <pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20241227/</guid>
+      <description>日常技术记录</description>
+    </item>
     <item>
       <title>关于个人博客迁移的絮叨</title>
       <link>https://masonblog.github.io/post/blog20241226/</link>
