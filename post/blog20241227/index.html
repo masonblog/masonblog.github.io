@@ -1,10 +1,130 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>HomeAssistant 米家官方集成的安装与使用 | Mason&#39;s blog</title>
+<meta name="keywords" content="Docker, Home, Assistant, 智能家居, 米家, homekit">
+<meta name="description" content="日常技术记录">
+<meta name="author" content="Mason">
+<link rel="canonical" href="https://masonblog.github.io/post/blog20241227/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.d6fcd20a4fb86efa4dfac8ec95da60244cc8871042183da1ef28e3a762ad79c8.css" integrity="sha256-1vzSCk&#43;4bvpN&#43;sjsldpgJEzIhxBCGD2h7yjjp2Ktecg=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://masonblog.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://masonblog.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://masonblog.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://masonblog.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://masonblog.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://masonblog.github.io/post/blog20241227/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://masonblog.github.io/post/blog20241227/">
+  <meta property="og:site_name" content="Mason&#39;s blog">
+  <meta property="og:title" content="HomeAssistant 米家官方集成的安装与使用">
+  <meta property="og:description" content="日常技术记录">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-12-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-12-27T00:00:00+00:00">
+    <meta property="article:tag" content="科技分享">
+    <meta property="og:image" content="https://masonblog.github.io/images/blog20241227/mijia-ha.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://masonblog.github.io/images/blog20241227/mijia-ha.png">
+<meta name="twitter:title" content="HomeAssistant 米家官方集成的安装与使用">
+<meta name="twitter:description" content="日常技术记录">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://masonblog.github.io/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "HomeAssistant 米家官方集成的安装与使用",
+      "item": "https://masonblog.github.io/post/blog20241227/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "HomeAssistant 米家官方集成的安装与使用",
+  "name": "HomeAssistant 米家官方集成的安装与使用",
+  "description": "日常技术记录",
+  "keywords": [
+    "Docker", "Home", "Assistant", "智能家居", "米家", "homekit"
+  ],
+  "articleBody": "背景 我在2022年4月的一篇文章中介绍了 Home Assistant 的安装与配置方法。彼时，要将小米的众多智能家居接入 HA，我们必须安装一个第三方 HA 集成，即 Hass-Xiaomi-Miot。它由个人开发者 al-one 在 Github 上发布，一直以来都是我们将米家接入 HA 的唯一选择。直到最近，小米在 Github 上发布了官方的 HA 集成：HA_Xiaomi_Home，填补了米家接入 HA 的空白。\n虽然这又是一个“官方逼死同人”的故事，但小米的开源精神仍然值得称赞。与第三方集成相比，小米官方的集成对自家产品支持更好， 能够帮助我们更加轻松地将米家接入 HA，进而实现米家与 Homekit 生态的互联互通。今天，我们将跟随 HA_Xiaomi_Home 的官方文档，详细介绍一下这个集成的安装及使用方法。\n通过 HASC 安装米家官方集成 米家官方集成有多种安装方式，其中最简单，也是最新手友好的方式，就是通过 HACS 进行安装。HASC 的安装方法详见我的这篇文章，此处不再赘述。由于米家官方集成暂未加入 HASC 的官方库，我们需要通过添加自定义库链接的方式，将米家官方集成的库链接添加到 HASC 目录。登入 HA 后台，点击左侧的HASC，再点右上角的三个点，选择Custom Repositories，新建一个自定义库链接，如下图所示。\n库类型（Catagory）选择Integration；库链接填写下面的链接：\nhttps://github.com/XiaoMi/ha_xiaomi_home.git 最后点击ADD按钮，如果网络没有问题的话，米家官方集成的安装链接就会被添加到 HASC 的自定目录中。再依次点击设置—设备与集成—添加集成，在搜索框中输入Xiaomi，在弹出的结果中选择XIaomi Home。接下来，按照提示登录米家账号即可。\n注意⚠️：如果你和我一样，使用 Docker 作为 HA 的安装环境，那么大概率会在米家账号验证时遇到无法跳转的问题。无法跳转的核心原因在于，米家官方集成默认使用 homeassistant.local:8123这个本地域名来跳转回 HA 页面，而 Docker 容器中的 HA 无法在本地局域网中广播.local本地域名。因此，在验证米家账号并跳转回 HA 页面时，我们需要手动将浏览器地址栏中的homeassistant.local:8123改为IP:8123。这样就能完成米家账号的验证工作。以上方法参考自米家集成仓库的 Issue#8。\n停用多余的米家实体 当我们安装好米家官方集成并完成账号验证后，HA 就会自动搜索并添加米家的各种设备。同时，我们的家庭中会出现一堆乱七八糟的实体。所谓实体（Unit）是 HA 用来定义设备最小子功能单元的概念。通常一个设备会对应多个实体。例如，一台『热水器』设备，可以同时拥有『当前水温』、『目标水温』、『预热开关』、『增压开关』等多个实体。\n然而在日常使用过程中，我们并不需要将每一个设备都拆分成诸多零碎的子功能单元，这样不仅使人迷惑，还会让我们的家庭界面变得极其繁琐。因此，在将 HA 链接到 Homekit 之前，我们需要对米家集成添加进来的众多实体进行筛选，仅保留我们日常使用过程中最需要的开关和数值即可。\n依次点击设置—设备与集成—实体，在列表中点击我们不需要的实体，在弹出的对话框中关闭该实体，最后点击保存。这样，我们便停用了一个不需要的实体。\n将 HA 桥接到 Homekit 筛选掉不需要的米家实体后，我们就可以将 HA 桥接到 Homekit 了。对于大多数人而言，将米家接入 HA 的唯一目的，便是实现米家与 Homekit 的联通。Homekit 是苹果原生的智能家居协议，能够让用户在 iOS、Mac 和 Apple Watch 等苹果设备上直接操控家中的电器，而无需借助第三方 APP。众所周知，Homekit 家居生态远不如米家繁荣，且支持 Homekit 协议的产品价格大多高昂。因此，如果将米家生态接入 Homekit，便能实现便利性与性价比的两全。而 HA 正是联通米家与 Homekit 的最佳桥梁。\n将 HA 实体桥接到 Homekit，我们需要安装另一个集成：Homekit Bridge。依次点击设置—设备与集成—添加集成，在搜索框中输入Homekit Bridge，再按提示安装即可。安装完成后，HA 通知栏会弹出一个二维码。打开苹果设备的 Home APP，点击右上角加号——添加配件，扫描通知中的这个二维码，就能将 HA 上现有的实体全部桥接到 Home APP中了。\n",
+  "wordCount" : "115",
+  "inLanguage": "en",
+  "image":"https://masonblog.github.io/images/blog20241227/mijia-ha.png","datePublished": "2024-12-27T00:00:00Z",
+  "dateModified": "2024-12-27T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Mason"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://masonblog.github.io/post/blog20241227/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Mason's blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://masonblog.github.io/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
