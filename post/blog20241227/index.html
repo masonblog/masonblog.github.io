@@ -102,8 +102,8 @@
   "keywords": [
     "Docker", "Home", "Assistant", "智能家居", "米家", "homekit"
   ],
-  "articleBody": "背景 我在2022年4月的一篇文章中介绍了 Home Assistant 的安装与配置方法。彼时，要将小米的众多智能家居接入 HA，我们必须安装一个第三方 HA 集成，即 Hass-Xiaomi-Miot。它由个人开发者 [al-one](al-one (Alone)) 在 Github 上发布，一直以来都是我们将米家接入 HA 的唯一选择。直到最近，小米在 Github 上发布了官方的 HA 集成：HA_Xiaomi_Home，填补了米家接入 HA 的空白。\n虽然这又是一个“官方逼死同人”的故事，但小米的开源精神仍然值得称赞。与第三方集成相比，小米官方的集成对自家产品支持更好， 能够帮助我们更加轻松地将米家接入 HA，进而实现米家与 Homekit 生态的互联互通。今天，我们将跟随 HA_Xiaomi_Home 的官方文档，详细介绍一下这个集成的安装及使用方法。\n通过 HASC 安装米家官方集成 米家官方集成有多种安装方式，其中最简单，也是最新手友好的方式，就是通过 HACS 进行安装。HASC 的安装方法详见我的这篇文章，此处不再赘述。由于米家官方集成暂未加入 HASC 的官方库，我们需要通过添加自定义库链接的方式，将米家官方集成的库链接添加到 HASC 目录。登入 HA 后台，点击左侧的HASC，再点右上角的三个点，选择Custom Repositories，新建一个自定义库链接，如下图所示。\n库类型（Catagory）选择Integration；库链接填写下面的链接：\nhttps://github.com/XiaoMi/ha_xiaomi_home.git 最后点击ADD按钮，如果网络没有问题的话，米家官方集成的安装链接就会被添加到 HASC 的自定目录中。再依次点击设置—设备与集成—添加集成，在搜索框中输入Xiaomi，在弹出的结果中选择XIaomi Home。接下来，按照提示登录米家账号即可。\n注意⚠️：如果你和我一样，使用 Docker 作为 HA 的安装环境，那么大概率会在米家账号验证时遇到无法跳转的问题。无法跳转的核心原因在于，米家官方集成默认使用 homeassistant.local:8123这个本地域名来跳转回 HA 页面，而 Docker 容器中的 HA 无法在本地局域网中广播.local本地域名。因此，在验证米家账号并跳转回 HA 页面时，我们需要手动将浏览器地址栏中的homeassistant.local:8123改为IP:8123。这样就能成功完成米家账号的验证工作。以上方法参考自米家集成仓库的 Issue#8。\n",
-  "wordCount" : "64",
+  "articleBody": "背景 我在2022年4月的一篇文章中介绍了 Home Assistant 的安装与配置方法。彼时，要将小米的众多智能家居接入 HA，我们必须安装一个第三方 HA 集成，即 Hass-Xiaomi-Miot。它由个人开发者 [al-one](al-one (Alone)) 在 Github 上发布，一直以来都是我们将米家接入 HA 的唯一选择。直到最近，小米在 Github 上发布了官方的 HA 集成：HA_Xiaomi_Home，填补了米家接入 HA 的空白。\n虽然这又是一个“官方逼死同人”的故事，但小米的开源精神仍然值得称赞。与第三方集成相比，小米官方的集成对自家产品支持更好， 能够帮助我们更加轻松地将米家接入 HA，进而实现米家与 Homekit 生态的互联互通。今天，我们将跟随 HA_Xiaomi_Home 的官方文档，详细介绍一下这个集成的安装及使用方法。\n通过 HASC 安装米家官方集成 米家官方集成有多种安装方式，其中最简单，也是最新手友好的方式，就是通过 HACS 进行安装。HASC 的安装方法详见我的这篇文章，此处不再赘述。由于米家官方集成暂未加入 HASC 的官方库，我们需要通过添加自定义库链接的方式，将米家官方集成的库链接添加到 HASC 目录。登入 HA 后台，点击左侧的HASC，再点右上角的三个点，选择Custom Repositories，新建一个自定义库链接，如下图所示。\n库类型（Catagory）选择Integration；库链接填写下面的链接：\nhttps://github.com/XiaoMi/ha_xiaomi_home.git 最后点击ADD按钮，如果网络没有问题的话，米家官方集成的安装链接就会被添加到 HASC 的自定目录中。再依次点击设置—设备与集成—添加集成，在搜索框中输入Xiaomi，在弹出的结果中选择XIaomi Home。接下来，按照提示登录米家账号即可。\n注意⚠️：如果你和我一样，使用 Docker 作为 HA 的安装环境，那么大概率会在米家账号验证时遇到无法跳转的问题。无法跳转的核心原因在于，米家官方集成默认使用 homeassistant.local:8123这个本地域名来跳转回 HA 页面，而 Docker 容器中的 HA 无法在本地局域网中广播.local本地域名。因此，在验证米家账号并跳转回 HA 页面时，我们需要手动将浏览器地址栏中的homeassistant.local:8123改为IP:8123。这样就能完成米家账号的验证工作。以上方法参考自米家集成仓库的 Issue#8。\n停用多余的米家实体 当我们安装好米家官方集成并完成账号验证后，HA 就会自动搜索并添加米家的各种设备。同时，我们的家庭中会出现一堆乱七八糟的实体。所谓实体（Unit）是 HA 用来定义设备最小子功能单元的概念。通常一个设备会对应多个实体。例如，一台『热水器』设备，可以同时拥有『当前水温』、『目标水温』、『预热开关』、『增压开关』等多个实体。\n然而在日常使用过程中，我们并不需要将每一个设备都拆分成诸多零碎的子功能单元，这样不仅使人迷惑，还会让我们的家庭界面变得极其繁琐。因此，在将 HA 链接到 Homekit 之前，我们需要对米家集成添加进来的众多实体进行筛选，仅保留我们日常使用过程中最需要的开关和数值即可。\n依次点击设置—设备与集成—实体，在列表中点击我们不需要的实体，在弹出的对话框中关闭该实体，最后点击保存。这样，我们便停用了一个不需要的实体。\n将 HA 桥接到 Homekit 筛选掉不需要的米家实体后，我们就可以将 HA 桥接到 Homekit 了。对于大多数人而言，将米家接入 HA 的唯一目的，便是实现米家与 Homekit 的联通。Homekit 是苹果原生的智能家居协议，能够让用户在 iOS、Mac 和 Apple Watch 等苹果设备上直接操控家中的电器，而无需借助第三方 APP。众所周知，Homekit 家居生态远不如米家繁荣，且支持 Homekit 协议的产品价格大多高昂。因此，如果将米家生态接入 Homekit，便能实现便利性与性价比的两全。而 HA 正是联通米家与 Homekit 的最佳桥梁。\n将 HA 实体桥接到 Homekit，我们需要安装另一个集成：Homekit Bridge。依次点击设置—设备与集成—添加集成，在搜索框中输入Homekit Bridge，再按提示安装即可。安装完成后，HA 通知栏会弹出一个二维码。打开苹果设备的 Home APP，点击右上角加号——添加配件，扫描通知中的这个二维码，就能将 HA 上现有的实体全部桥接到 Home APP中了。\n",
+  "wordCount" : "116",
   "inLanguage": "en",
   "image":"https://masonblog.github.io/images/blog20241227/mijia-ha.png","datePublished": "2024-12-27T00:00:00Z",
   "dateModified": "2024-12-27T00:00:00Z",
@@ -213,11 +213,16 @@
             <span class="details">Table of Contents</span>
         </summary>
 
-        <div class="inner"><ul>
+        <div class="inner"><ul><ul>
                 <li>
                     <a href="#%e8%83%8c%e6%99%af" aria-label="背景">背景</a></li>
                 <li>
-                    <a href="#%e9%80%9a%e8%bf%87-hasc-%e5%ae%89%e8%a3%85%e7%b1%b3%e5%ae%b6%e5%ae%98%e6%96%b9%e9%9b%86%e6%88%90" aria-label="通过 HASC 安装米家官方集成">通过 HASC 安装米家官方集成</a>
+                    <a href="#%e9%80%9a%e8%bf%87-hasc-%e5%ae%89%e8%a3%85%e7%b1%b3%e5%ae%b6%e5%ae%98%e6%96%b9%e9%9b%86%e6%88%90" aria-label="通过 HASC 安装米家官方集成">通过 HASC 安装米家官方集成</a></li></ul>
+                    
+                <li>
+                    <a href="#%e5%81%9c%e7%94%a8%e5%a4%9a%e4%bd%99%e7%9a%84%e7%b1%b3%e5%ae%b6%e5%ae%9e%e4%bd%93" aria-label="停用多余的米家实体">停用多余的米家实体</a></li>
+                <li>
+                    <a href="#%e5%b0%86-ha-%e6%a1%a5%e6%8e%a5%e5%88%b0-homekit" aria-label="将 HA 桥接到 Homekit">将 HA 桥接到 Homekit</a>
                 </li>
             </ul>
         </div>
@@ -232,9 +237,18 @@
 <p><img alt="image" loading="lazy" src="/images/blog20241227/hacs1.png"></p>
 <p>库类型（Catagory）选择<code>Integration</code>；库链接填写下面的链接：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>https://github.com/XiaoMi/ha_xiaomi_home.git
-</span></span></code></pre></div><p>最后点击ADD按钮，如果网络没有问题的话，米家官方集成的安装链接就会被添加到 HASC 的自定目录中。再依次点击设置—设备与集成—添加集成，在搜索框中输入Xiaomi，在弹出的结果中选择<code>XIaomi Home</code>。接下来，按照提示登录米家账号即可。</p>
+</span></span></code></pre></div><p>最后点击ADD按钮，如果网络没有问题的话，米家官方集成的安装链接就会被添加到 HASC 的自定目录中。再依次点击设置—设备与集成—添加集成，在搜索框中输入<code>Xiaomi</code>，在弹出的结果中选择<code>XIaomi Home</code>。接下来，按照提示登录米家账号即可。</p>
 <p><img alt="image" loading="lazy" src="/images/blog20241227/hacs2.png"></p>
-<p>注意&#x26a0;&#xfe0f;：<strong>如果你和我一样，使用 Docker 作为 HA 的安装环境，那么大概率会在米家账号验证时遇到无法跳转的问题</strong>。无法跳转的核心原因在于，米家官方集成默认使用 <code>homeassistant.local:8123</code>这个本地域名来跳转回 HA 页面，而 Docker 容器中的 HA 无法在本地局域网中广播<code>.local</code>本地域名。因此，在验证米家账号并跳转回 HA 页面时，我们需要手动将浏览器地址栏中的<code>homeassistant.local:8123</code>改为<code>IP:8123</code>。这样就能成功完成米家账号的验证工作。以上方法参考自米家集成仓库的 <a href="https://github.com/XiaoMi/ha_xiaomi_home/issues/8">Issue#8</a>。</p>
+<p>注意&#x26a0;&#xfe0f;：<strong>如果你和我一样，使用 Docker 作为 HA 的安装环境，那么大概率会在米家账号验证时遇到无法跳转的问题</strong>。无法跳转的核心原因在于，米家官方集成默认使用 <code>homeassistant.local:8123</code>这个本地域名来跳转回 HA 页面，而 Docker 容器中的 HA 无法在本地局域网中广播<code>.local</code>本地域名。因此，在验证米家账号并跳转回 HA 页面时，我们需要手动将浏览器地址栏中的<code>homeassistant.local:8123</code>改为<code>IP:8123</code>。这样就能完成米家账号的验证工作。以上方法参考自米家集成仓库的 <a href="https://github.com/XiaoMi/ha_xiaomi_home/issues/8">Issue#8</a>。</p>
+<p><img loading="lazy" src="/images/blog20241227/xiaomi-home-auth.png"></p>
+<h1 id="停用多余的米家实体">停用多余的米家实体<a hidden class="anchor" aria-hidden="true" href="#停用多余的米家实体">#</a></h1>
+<p>当我们安装好米家官方集成并完成账号验证后，HA 就会自动搜索并添加米家的各种设备。同时，我们的家庭中会出现一堆乱七八糟的实体。<strong>所谓实体（Unit）是 HA 用来定义设备最小子功能单元的概念</strong>。通常一个设备会对应多个实体。例如，一台『热水器』设备，可以同时拥有『当前水温』、『目标水温』、『预热开关』、『增压开关』等多个实体。</p>
+<p>然而在日常使用过程中，我们并不需要将每一个设备都拆分成诸多零碎的子功能单元，这样不仅使人迷惑，还会让我们的家庭界面变得极其繁琐。因此，在将 HA 链接到 Homekit 之前，我们需要对米家集成添加进来的众多实体进行筛选，仅保留我们日常使用过程中最需要的开关和数值即可。</p>
+<p>依次点击设置—设备与集成—实体，在列表中点击我们不需要的实体，在弹出的对话框中关闭该实体，最后点击保存。这样，我们便停用了一个不需要的实体。</p>
+<p><img loading="lazy" src="/images/blog20241227/ha-unit.png"></p>
+<h1 id="将-ha-桥接到-homekit">将 HA 桥接到 Homekit<a hidden class="anchor" aria-hidden="true" href="#将-ha-桥接到-homekit">#</a></h1>
+<p>筛选掉不需要的米家实体后，我们就可以将 HA 桥接到 Homekit 了。对于大多数人而言，将米家接入 HA 的唯一目的，便是实现米家与 Homekit 的联通。Homekit 是苹果原生的智能家居协议，能够让用户在 iOS、Mac 和 Apple Watch 等苹果设备上直接操控家中的电器，而无需借助第三方 APP。众所周知，Homekit 家居生态远不如米家繁荣，且支持 Homekit 协议的产品价格大多高昂。因此，如果将米家生态接入 Homekit，便能实现便利性与性价比的两全。而 HA 正是联通米家与 Homekit 的最佳桥梁。</p>
+<p>将 HA 实体桥接到 Homekit，我们需要安装另一个集成：<a href="https://www.home-assistant.io/integrations/homekit/">Homekit Bridge</a>。依次点击设置—设备与集成—添加集成，在搜索框中输入<code>Homekit Bridge</code>，再按提示安装即可。安装完成后，HA 通知栏会弹出一个二维码。打开苹果设备的 Home APP，点击右上角加号——添加配件，扫描通知中的这个二维码，就能将 HA 上现有的实体全部桥接到 Home APP中了。</p>
 
 
   </div>
