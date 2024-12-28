@@ -239,6 +239,7 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>https://github.com/XiaoMi/ha_xiaomi_home.git
 </span></span></code></pre></div><p>最后点击ADD按钮，如果网络没有问题的话，米家官方集成的安装链接就会被添加到 HASC 的自定目录中。再依次点击设置—设备与集成—添加集成，在搜索框中输入<code>Xiaomi</code>，在弹出的结果中选择<code>XIaomi Home</code>。接下来，按照提示登录米家账号即可。</p>
 <p><img alt="image" loading="lazy" src="/images/blog20241227/hacs2.png"></p>
+<p><img loading="lazy" src="/images/blog20241227/xiaomi-home-auth1.png"></p>
 <p>注意&#x26a0;&#xfe0f;：<strong>如果你和我一样，使用 Docker 作为 HA 的安装环境，那么大概率会在米家账号验证时遇到无法跳转的问题</strong>。无法跳转的核心原因在于，米家官方集成默认使用 <code>homeassistant.local:8123</code>这个本地域名来跳转回 HA 页面，而 Docker 容器中的 HA 无法在本地局域网中广播<code>.local</code>本地域名。因此，在验证米家账号并跳转回 HA 页面时，我们需要手动将浏览器地址栏中的<code>homeassistant.local:8123</code>改为<code>IP:8123</code>。这样就能完成米家账号的验证工作。以上方法参考自米家集成仓库的 <a href="https://github.com/XiaoMi/ha_xiaomi_home/issues/8">Issue#8</a>。</p>
 <p><img loading="lazy" src="/images/blog20241227/xiaomi-home-auth.png"></p>
 <h1 id="停用多余的米家实体">停用多余的米家实体<a hidden class="anchor" aria-hidden="true" href="#停用多余的米家实体">#</a></h1>
