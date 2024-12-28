@@ -2,16 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://masonblog.github.io/post/blog20241227/</loc>
-    <lastmod>2024-12-27T00:00:00+00:00</lastmod>
+    <loc>https://masonblog.github.io/post/blog20241228/</loc>
+    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://masonblog.github.io/</loc>
-    <lastmod>2024-12-27T00:00:00+00:00</lastmod>
+    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://masonblog.github.io/post/</loc>
-    <lastmod>2024-12-27T00:00:00+00:00</lastmod>
+    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://masonblog.github.io/tags/</loc>
+    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://masonblog.github.io/tags/%E6%97%B6%E4%BA%8B%E8%AF%84%E8%AE%BA/</loc>
+    <lastmod>2024-12-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://masonblog.github.io/post/blog20241227/</loc>
     <lastmod>2024-12-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://masonblog.github.io/tags/%E7%A7%91%E6%8A%80%E5%88%86%E4%BA%AB/</loc>
@@ -77,13 +83,7 @@
     <loc>https://masonblog.github.io/post/blog20200913/</loc>
     <lastmod>2020-09-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://masonblog.github.io/post/blog20241228/</loc>
-    <lastmod>2020-08-04T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://masonblog.github.io/post/blog20200804/</loc>
-    <lastmod>2020-08-04T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://masonblog.github.io/tags/%E6%97%B6%E4%BA%8B%E8%AF%84%E8%AE%BA/</loc>
     <lastmod>2020-08-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://masonblog.github.io/post/blog20200728/</loc>
