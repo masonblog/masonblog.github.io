@@ -1,457 +1,131 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>科技分享 on Mason&#39;s blog</title>
     <link>https://masonblog.github.io/tags/%E7%A7%91%E6%8A%80%E5%88%86%E4%BA%AB/</link>
     <description>Recent content in 科技分享 on Mason&#39;s blog</description>
-    <generator>Hugo -- 0.140.0</generator>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 27 Dec 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 30 Dec 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://masonblog.github.io/tags/%E7%A7%91%E6%8A%80%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo &amp; PaperMod 建站技术记录</title>
+      <link>https://masonblog.github.io/post/blog20241230/</link>
+      <pubDate>Mon, 30 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20241230/</guid>
+      <description>&lt;p&gt;早在4年前刚开始搭建本博客时，我曾写过一篇简短的&lt;a href=&#34;https://masonblog.github.io/post/blog20200310/&#34;&gt;文章&lt;/a&gt;，介绍了我建站时使用的一些工具。如今，那篇文章中提到的很多工具都已过时。加之本次博客整体迁移，又使用了全新的 &lt;a href=&#34;https://github.com/adityatelange/hugo-PaperMod&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;PaperMod &lt;/a&gt;主题，很多功能的配置方式都发生了变化。于是我决定重新写一篇文章，记录一下我在折腾这个新主题过程中的一些技术细节。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>HomeAssistant 米家官方集成的安装与使用</title>
       <link>https://masonblog.github.io/post/blog20241227/</link>
       <pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20241227/</guid>
-      <description>日常技术记录</description>
-      <content:encoded><![CDATA[<h2 id="背景">背景</h2>
-<p>我在2022年4月的一篇<a href="/post/blog20220409/">文章</a>中介绍了 <a href="https://www.home-assistant.io/" target="_blank" rel="noopener">Home Assistant</a> 的安装与配置方法。彼时，要将小米的众多智能家居接入 HA，我们必须安装一个第三方 HA 集成，即 <a href="https://github.com/al-one/hass-xiaomi-miot" target="_blank" rel="noopener">Hass-Xiaomi-Miot</a>。它由个人开发者 <a href="https://github.com/al-one" target="_blank" rel="noopener">al-one</a> 在 Github 上发布，一直以来都是我们将米家接入 HA 的唯一选择。直到最近，<a href="https://github.com/XiaoMi" target="_blank" rel="noopener">小米</a>在 Github 上发布了官方的 HA 集成：<a href="https://github.com/XiaoMi/ha_xiaomi_home" target="_blank" rel="noopener">HA_Xiaomi_Home</a>，填补了米家接入 HA 的空白。</p>
-<p>虽然这又是一个“官方逼死同人”的故事，但小米的开源精神仍然值得称赞。与第三方集成相比，小米官方的集成对自家产品支持更好， 能够帮助我们更加轻松地将米家接入 HA，进而实现米家与 Homekit 生态的互联互通。今天，我们将跟随 HA_Xiaomi_Home 的<a href="https://github.com/XiaoMi/ha_xiaomi_home/blob/main/doc/README_zh.md" target="_blank" rel="noopener">官方文档</a>，详细介绍一下这个集成的安装及使用方法。</p>
-<h2 id="通过-hasc-安装米家官方集成">通过 HASC 安装米家官方集成</h2>
-<p>米家官方集成有多种安装方式，其中最简单，也是最新手友好的方式，就是通过 <a href="https://www.hacs.xyz/" target="_blank" rel="noopener">HACS</a> 进行安装。HASC 的安装方法详见我的这篇文章，此处不再赘述。<strong>由于米家官方集成暂未加入 HASC 的官方库，我们需要通过添加自定义库链接的方式，将米家官方集成的库链接添加到 HASC 目录</strong>。登入 HA 后台，点击左侧的<code>HASC</code>，再点右上角的三个点，选择<code>Custom Repositories</code>，新建一个自定义库链接，如下图所示。</p>
-<p><img alt="image" loading="lazy" src="/images/blog20241227/hacs1.png"></p>
-<p>库类型（Catagory）选择<code>Integration</code>；库链接填写下面的链接：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>https://github.com/XiaoMi/ha_xiaomi_home.git
-</span></span></code></pre></div><p>最后点击ADD按钮，如果网络没有问题的话，米家官方集成的安装链接就会被添加到 HASC 的自定目录中。再依次点击设置—设备与集成—添加集成，在搜索框中输入<code>Xiaomi</code>，在弹出的结果中选择<code>XIaomi Home</code>。接下来，按照提示登录米家账号即可。</p>
-<p><img alt="image" loading="lazy" src="/images/blog20241227/hacs2.png"></p>
-<p><img loading="lazy" src="/images/blog20241227/xiaomi-home-auth1.png"></p>
-<p>注意&#x26a0;&#xfe0f;：<strong>如果你和我一样，使用 Docker 作为 HA 的安装环境，那么大概率会在米家账号验证时遇到无法跳转的问题</strong>。无法跳转的核心原因在于，米家官方集成默认使用 <code>homeassistant.local:8123</code>这个本地域名来跳转回 HA 页面，而 Docker 容器中的 HA 无法在本地局域网中广播<code>.local</code>本地域名。因此，在验证米家账号并跳转回 HA 页面时，我们需要手动将浏览器地址栏中的<code>homeassistant.local:8123</code>改为<code>IP:8123</code>。这样就能完成米家账号的验证工作。以上方法参考自米家集成仓库的 <a href="https://github.com/XiaoMi/ha_xiaomi_home/issues/8" target="_blank" rel="noopener">Issue#8</a>。</p>
-<p><img loading="lazy" src="/images/blog20241227/xiaomi-home-auth.png"></p>
-<h1 id="停用多余的米家实体">停用多余的米家实体</h1>
-<p>当我们安装好米家官方集成并完成账号验证后，HA 就会自动搜索并添加米家的各种设备。同时，我们的家庭中会出现一堆乱七八糟的实体。<strong>所谓实体（Unit）是 HA 用来定义设备最小子功能单元的概念</strong>。通常一个设备会对应多个实体。例如，一台『热水器』设备，可以同时拥有『当前水温』、『目标水温』、『预热开关』、『增压开关』等多个实体。</p>
-<p>然而在日常使用过程中，我们并不需要将每一个设备都拆分成诸多零碎的子功能单元，这样不仅使人迷惑，还会让我们的家庭界面变得极其繁琐。因此，在将 HA 链接到 Homekit 之前，我们需要对米家集成添加进来的众多实体进行筛选，仅保留我们日常使用过程中最需要的开关和数值即可。</p>
-<p>依次点击设置—设备与集成—实体，在列表中点击我们不需要的实体，在弹出的对话框中关闭该实体，最后点击保存。这样，我们便停用了一个不需要的实体。</p>
-<p><img loading="lazy" src="/images/blog20241227/ha-unit.png"></p>
-<h1 id="将-ha-桥接到-homekit">将 HA 桥接到 Homekit</h1>
-<p>筛选掉不需要的米家实体后，我们就可以将 HA 桥接到 Homekit 了。对于大多数人而言，将米家接入 HA 的唯一目的，便是实现米家与 Homekit 的联通。Homekit 是苹果原生的智能家居协议，能够让用户在 iOS、Mac 和 Apple Watch 等苹果设备上直接操控家中的电器，而无需借助第三方 APP。众所周知，Homekit 家居生态远不如米家繁荣，且支持 Homekit 协议的产品价格大多高昂。因此，如果将米家生态接入 Homekit，便能实现便利性与性价比的两全。而 HA 正是联通米家与 Homekit 的最佳桥梁。</p>
-<p>将 HA 实体桥接到 Homekit，我们需要安装另一个集成：<a href="https://www.home-assistant.io/integrations/homekit/" target="_blank" rel="noopener">Homekit Bridge</a>。依次点击设置—设备与集成—添加集成，在搜索框中输入<code>Homekit Bridge</code>，再按提示安装即可。安装完成后，HA 通知栏会弹出一个二维码。打开苹果设备的 Home APP，点击右上角加号——添加配件，扫描通知中的这个二维码，就能将 HA 上现有的实体全部桥接到 Home APP中了。</p>
-]]></content:encoded>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;&#xA;&lt;p&gt;我在2022年4月的一篇&lt;a href=&#34;https://masonblog.github.io/post/blog20220409/&#34;&gt;文章&lt;/a&gt;中介绍了 &lt;a href=&#34;https://www.home-assistant.io/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Home Assistant&lt;/a&gt; 的安装与配置方法。彼时，要将小米的众多智能家居接入 HA，我们必须安装一个第三方 HA 集成，即 &lt;a href=&#34;https://github.com/al-one/hass-xiaomi-miot&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hass-Xiaomi-Miot&lt;/a&gt;。它由个人开发者 &lt;a href=&#34;https://github.com/al-one&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;al-one&lt;/a&gt; 在 Github 上发布，一直以来都是我们将米家接入 HA 的唯一选择。直到最近，&lt;a href=&#34;https://github.com/XiaoMi&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;小米&lt;/a&gt;在 Github 上发布了官方的 HA 集成：&lt;a href=&#34;https://github.com/XiaoMi/ha_xiaomi_home&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;HA_Xiaomi_Home&lt;/a&gt;，填补了米家接入 HA 的空白。&lt;/p&gt;&#xA;&lt;p&gt;虽然这又是一个“官方逼死同人”的故事，但小米的开源精神仍然值得称赞。与第三方集成相比，小米官方的集成对自家产品支持更好， 能够帮助我们更加轻松地将米家接入 HA，进而实现米家与 Homekit 生态的互联互通。今天，我们将跟随 HA_Xiaomi_Home 的&lt;a href=&#34;https://github.com/XiaoMi/ha_xiaomi_home/blob/main/doc/README_zh.md&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;官方文档&lt;/a&gt;，详细介绍一下这个集成的安装及使用方法。&lt;/p&gt;&#xA;&lt;h2 id=&#34;通过-hasc-安装米家官方集成&#34;&gt;通过 HASC 安装米家官方集成&lt;/h2&gt;&#xA;&lt;p&gt;米家官方集成有多种安装方式，其中最简单，也是最新手友好的方式，就是通过 &lt;a href=&#34;https://www.hacs.xyz/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;HACS&lt;/a&gt; 进行安装。HASC 的安装方法详见我的这篇文章，此处不再赘述。&lt;strong&gt;由于米家官方集成暂未加入 HASC 的官方库，我们需要通过添加自定义库链接的方式，将米家官方集成的库链接添加到 HASC 目录&lt;/strong&gt;。登入 HA 后台，点击左侧的&lt;code&gt;HASC&lt;/code&gt;，再点右上角的三个点，选择&lt;code&gt;Custom Repositories&lt;/code&gt;，新建一个自定义库链接，如下图所示。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img alt=&#34;image&#34; loading=&#34;lazy&#34; src=&#34;https://masonblog.github.io/images/blog20241227/hacs1.png&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;库类型（Catagory）选择&lt;code&gt;Integration&lt;/code&gt;；库链接填写下面的链接：&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;https://github.com/XiaoMi/ha_xiaomi_home.git&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;最后点击ADD按钮，如果网络没有问题的话，米家官方集成的安装链接就会被添加到 HASC 的自定目录中。再依次点击设置—设备与集成—添加集成，在搜索框中输入&lt;code&gt;Xiaomi&lt;/code&gt;，在弹出的结果中选择&lt;code&gt;XIaomi Home&lt;/code&gt;。接下来，按照提示登录米家账号即可。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img alt=&#34;image&#34; loading=&#34;lazy&#34; src=&#34;https://masonblog.github.io/images/blog20241227/hacs2.png&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://masonblog.github.io/images/blog20241227/xiaomi-home-auth1.png&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;注意&amp;#x26a0;&amp;#xfe0f;：&lt;strong&gt;如果你和我一样，使用 Docker 作为 HA 的安装环境，那么大概率会在米家账号验证时遇到无法跳转的问题&lt;/strong&gt;。无法跳转的核心原因在于，米家官方集成默认使用 &lt;code&gt;homeassistant.local:8123&lt;/code&gt;这个本地域名来跳转回 HA 页面，而 Docker 容器中的 HA 无法在本地局域网中广播&lt;code&gt;.local&lt;/code&gt;本地域名。因此，在验证米家账号并跳转回 HA 页面时，我们需要手动将浏览器地址栏中的&lt;code&gt;homeassistant.local:8123&lt;/code&gt;改为&lt;code&gt;IP:8123&lt;/code&gt;。这样就能完成米家账号的验证工作。以上方法参考自米家集成仓库的 &lt;a href=&#34;https://github.com/XiaoMi/ha_xiaomi_home/issues/8&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Issue#8&lt;/a&gt;。&lt;/p&gt;&#xA;&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://masonblog.github.io/images/blog20241227/xiaomi-home-auth.png&#34;&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;停用多余的米家实体&#34;&gt;停用多余的米家实体&lt;/h1&gt;&#xA;&lt;p&gt;当我们安装好米家官方集成并完成账号验证后，HA 就会自动搜索并添加米家的各种设备。同时，我们的家庭中会出现一堆乱七八糟的实体。&lt;strong&gt;所谓实体（Unit）是 HA 用来定义设备最小子功能单元的概念&lt;/strong&gt;。通常一个设备会对应多个实体。例如，一台『热水器』设备，可以同时拥有『当前水温』、『目标水温』、『预热开关』、『增压开关』等多个实体。&lt;/p&gt;&#xA;&lt;p&gt;然而在日常使用过程中，我们并不需要将每一个设备都拆分成诸多零碎的子功能单元，这样不仅使人迷惑，还会让我们的家庭界面变得极其繁琐。因此，在将 HA 链接到 Homekit 之前，我们需要对米家集成添加进来的众多实体进行筛选，仅保留我们日常使用过程中最需要的开关和数值即可。&lt;/p&gt;</description>
     </item>
     <item>
       <title>如何配置路由器的 DHCP ?</title>
       <link>https://masonblog.github.io/post/blog20220518/</link>
       <pubDate>Wed, 18 May 2022 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20220518/</guid>
-      <description>日常技术记录</description>
-      <content:encoded><![CDATA[<h2 id="开场">开场</h2>
-<hr>
-<p>经常折腾家里网络的你，一定经常遇到这些问题：</p>
-<ol>
-<li>为什么明明插上了网线，却<strong>打不开</strong>路由器的后台？</li>
-<li>为什么 NAS 的 IP 地址经常<strong>变化</strong>？</li>
-<li>为什么用上了高价的软路由，打开网页的速度反而<strong>变慢</strong>？</li>
-<li>为什么跟着大佬的视频一通配置，却还是玩不转<strong>旁路由</strong>？</li>
-</ol>
-<p>以上这些问题其实都和 DHCP 有关。</p>
-<h2 id="什么是-dhcp">什么是 DHCP？</h2>
-<hr>
-<p>DHCP 是 Dynamic Host Configuration Protocol 的缩写，意思是<strong>动态主机配置协议</strong>。它的作用，是为每一个接入局域网的设备自动分配一个 IP 地址，并为这些设备自动配置默认网关和 DNS 服务器。</p>
-<h3 id="名词解释">名词解释</h3>
-<p>如果你不理解网关和 DNS 是什么意思，也不要紧。你可以把<strong>网关</strong>理解成一个中转站，局域网内的所有设备都要通过这个中转站来与外界联系，而家用网络的网关通常只有一个，那就是路由器。<strong>DNS</strong> 则要更加复杂一点，我后面会单独制作一期视频来讲解。这里你只要把它理解成一个“电话簿”就可以了。</p>
-<h2 id="dhcp-的工作原理">DHCP 的工作原理</h2>
-<hr>
-<p>DHCP 协议由一个服务端，和多个客户端组成。<strong>服务端</strong>一般就是你的路由器，而<strong>客户端</strong>就是你用来上网的设备。</p>
-<h3 id="discoer">Discoer</h3>
-<p>每当一个<strong>新设备</strong>初次连入局域网，它就会向整个网络广播自己的 MAC 地址。所谓的 <strong>MAC 地址</strong>，是每个设备的硬件地址，它被写在设备的网卡上，一般情况下无法更改，相当于设备的“身份证号码”。当新设备初次连入，它会向局域网广播自己的 MAC 地址，相当于新员工的自我介绍。这段自我介绍有一个很洋气的名字，叫做 <strong>Discover</strong>。</p>
-<h3 id="offer">Offer</h3>
-<p>当路由器接收到新设备的广播，就会在现有的 IP 地址中，挑选一个还没有被其他设备占用的空缺地址，并将这个地址和其他配置信息（比如默认网关和 DNS）打包发给这个设备，相当于领导给新员工安排工位。这段安排也有一个非常洋气的名字，叫做 <strong>Offer</strong>。</p>
-<h3 id="request">Request</h3>
-<p>接下来的事情就非常简单了，当设备收到路由器发出的配置信息，并且决定套用这些配置，会再次答复路由器，相当于接受领导的安排。这段答复同样有一个很洋气的名字，叫做 <strong>Request</strong>。</p>
-<p>这里要注意一点，如果局域网内有两个以上路由器，并且这些路由都开启了 DHCP 服务，那么它们在收到新设备的广播后，会同时给这个设备发送配置信息。当设备同时收到多个配置信息，会优先回复最先收到的那个。因此，为了避免网络混乱，即使你家里有多个路由器，也最好只开启一个 DHCP 服务。</p>
-<h3 id="ack">ACK</h3>
-<p>回到正题，当路由器收到设备的肯定答复后，就会再给设备回个话，表示占位成功。这时，设备会根据路由器下发的 IP 地址、默认网关和 DNS 服务器，自动配置自己的网络，实现成功联网。路由器的这个回话，叫做 <strong>ACK</strong>。</p>
-<h4 id="解答问题一">解答问题一</h4>
-<p>说到这里，我们就解决了视频开头提到的第一个问题：</p>
-<ul>
-<li>为什么明明插上了网线，却<strong>打不开</strong>路由器的后台？</li>
-</ul>
-<p>这里有两种可能：
-1. 你的路由器没有开启 DHCP 服务，你的电脑没有收到路由器下发的 IP 地址。
-2. 你的路由器开启了 DHCP 服务，但你的电脑之前设置了静态 IP 地址，而这个静态地址和路由器的地址，不在同一个网段。</p>
-<p>要解决”打不开后台“的问题，方法也很简单：
-1. 如果是第一种情况，那么我们就要先在电脑上手动配置一个静态 IP 地址，并且这个地址要和路由器在同一个网段。比如路由器的 IP 地址是 192.168.31.1，那么电脑的静态地址就要设置成 192.168.31.x，这里的 x 可以是 2~255中的任何一个数字，但要注意不能和其他设备重合。
-2. 如果是第二种情况，那么我们就要清除电脑的静态 IP 地址，并将 IP 地址的获取方式改为”自动获得 IP 地址“。这样，我们的电脑就会重新接受 DHCP 服务的分配。</p>
-<h3 id="nak-报文">NAK 报文</h3>
-<p>再次回到正题，上面提到的这一整个流程，都是新设备<strong>初次</strong>连入局域网的流程。如果不是初次连入的新设备，而是之前连过的老设备，断开后重新连入，就会跳过前两个步骤，直接从 Request 切入，相当于老员工离职后又重新回归，直接省略客套的过程，让领导给个工位。</p>
-<p>这时，路由器会检查之前的 <strong>DHCP 租约表</strong>。如果设备之前对应的 IP 地址仍然空缺，则照旧返回一个 ACK。租约继续有效，设备继续沿用之前的 IP 地址。如果设备之前对应的 IP 地址已被其他设备占用，则只能拒绝设备的这次请求。那么这个拒绝的动作，叫做 <strong>NAK</strong>。</p>
-<h4 id="解答问题二">解答问题二</h4>
-<p>说到这里，我们又解决了视频开头提到的第二个问题：</p>
-<ul>
-<li>为什么 NAS 的 IP 地址经常<strong>发生变化</strong>？</li>
-</ul>
-<p>原因就是，NAS 关机下线期间，原本占用的 IP 地址空缺出来，并被其他设备占用，当 NAS 重新开机上线时，路由器只能为它重新分配一个新的 IP 地址。这时候我们就会找不到 NAS 的后台，而要借用 Synology finder 这类软件才能重新搜索到 NAS 的新地址。</p>
-<p>要解决这个问题也很简单，那就是开启路由器的 <strong>IP/MAC 绑定</strong>，将某个固定的 IP 地址分配给特定的 MAC 地址，做到”一个萝卜一个坑“，这样就不会发生混乱了。</p>
-<h2 id="dhcp-的应用">DHCP 的应用</h2>
-<hr>
-<p>知道了 DHCP 的工作原理，我们就可以解决上网过程中的很多问题。</p>
-<h3 id="解答问题三">解答问题三</h3>
-<ul>
-<li>为什么用上了高价的软路由，打开网页的速度反而<strong>变慢</strong>？</li>
-</ul>
-<p>打开网页的速度很慢，或者明明 QQ 可以联网，但网页却死活打不开，多半是因为 DNS 服务器出了问题。我们家用网络的 DNS 服务器，一般是通过光猫从运营商处获得，再经过路由器的 DHCP 服务层层下发。如果我们在路由器的 DHCP 服务里没有指定 DNS 服务器，那么路由器就会默认适用运营商的 DNS，众所周知，运营商的 DNS 经常被劫持，用起来既不安全也不稳定。</p>
-<p>所以，要解决”浏览网页慢“的问题，我们可以在路由器的 DHCP 服务里，手动指定一个稳定的 DNS 服务器地址，让局域网里的所有设备，都套用路由器 DHCP 下发的 DNS。至于有哪些好用的公共 DNS 服务器，网上一搜一大堆，比较常见的，国外的有著名的谷歌 8.8.8.8，国内的有阿里 223.5.5.5 等。</p>]]></content:encoded>
+      <description>&lt;h2 id=&#34;开场&#34;&gt;开场&lt;/h2&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;经常折腾家里网络的你，一定经常遇到这些问题：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;为什么明明插上了网线，却&lt;strong&gt;打不开&lt;/strong&gt;路由器的后台？&lt;/li&gt;&#xA;&lt;li&gt;为什么 NAS 的 IP 地址经常&lt;strong&gt;变化&lt;/strong&gt;？&lt;/li&gt;&#xA;&lt;li&gt;为什么用上了高价的软路由，打开网页的速度反而&lt;strong&gt;变慢&lt;/strong&gt;？&lt;/li&gt;&#xA;&lt;li&gt;为什么跟着大佬的视频一通配置，却还是玩不转&lt;strong&gt;旁路由&lt;/strong&gt;？&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;以上这些问题其实都和 DHCP 有关。&lt;/p&gt;</description>
     </item>
     <item>
       <title>利用 Home Assistant 搭建智能家居中枢</title>
       <link>https://masonblog.github.io/post/blog20220409/</link>
       <pubDate>Sat, 09 Apr 2022 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20220409/</guid>
-      <description>日常技术记录</description>
-      <content:encoded><![CDATA[<h2 id="背景">背景</h2>
-<p>随着智能家居的日益普及，各大互联网巨头纷纷进场，导致智能家居的平台和品牌越来越多，且各个平台和品牌间的产品无法互通。例如，你无法用米家的智能开关来控制 homekit 的智能灯，除非你的产品支持双平台，但目前同时支持两个以上平台的智能家居少之又少。</p>
-<p><a href="https://www.home-assistant.io/" target="_blank" rel="noopener">Home Assistant</a>（以下简称 HA）很好地解决了智能家居平台不互通的问题，它是一个开源的智能家居集成平台，可将各个常见平台的产品接入，并通过网页、<a href="https://apps.apple.com/us/app/home-assistant/id1099568401" target="_blank" rel="noopener">手机app</a>等多种客户端统一操控，实现真正的「万物互联」。并且最重要的是，这么好用的工具不仅支持 Windows、MacOS、Linux 等多种操作系统，其本身也是开源免费的，并且其极高的扩展性也为爱折腾的数码爱好者提供了全新的研究对象。</p>
-<h2 id="通过-docker-部署-ha-容器">通过 Docker 部署 HA 容器</h2>
-<p>正如前文所述，HA 支持多种操作系统，但如果我们打算将其作为 7x24 小时待机的智能家庭中枢，那么最好的选择就是 Linux 系统，因为它可以运行在诸如<a href="https://www.raspberrypi.org/" target="_blank" rel="noopener">树莓派</a>这类低功耗的设备上，随时准备着为我们提供服务。</p>
-<p>提到 Linux，我们就不得不提 Docker，它是一种兼容性极高的容器系统，可以适应几乎所有 Linux 环境，做到即装即用。今天，我们将着重介绍通过 Docker 容器部署 HA 的方法。</p>
-<p>我的<a href="/post/blog20210909/">这篇文章</a>详细介绍了 <a href="https://hub.docker.com/r/portainer/portainer-ce" target="_blank" rel="noopener">Portainer</a> 这个非常好用的 Docker 管理容器，<strong>由于每位读者的系统环境不尽相同，因此本博客往后介绍的所有 Docker 容器安装，不再拘泥于群晖、威联通或者 Unraid，而是统一通过 Portainer 进行</strong>。</p>
-<p>Portainer 本身的安装可以参考上面提到的文章，本文不再赘述。要安装 HA，我们首先需要登录 Portainer 后台，然后进入本地终端界面，也就是 Local，接着点击左侧的 Containers，进入本地容器管理界面。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20220409/portainer01.png"></p>
-<p>点击 Add container，创建一个新容器，Name 随便填，Image 写 HA 官方提供的映像索引 <code>homeassistant/home-assistant:latest</code>，Always pull the image 可以打开，这样以后每次修改容器配置，都会从服务器重新拉取最新的映像。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20220409/portainer02.png"></p>
-<p>接着点击下方 Advanced container settings 中的 Volumes，进入目录映射选项卡，点击 map additional volume 按钮新增一个目录映射，右侧的映射方式选 bind，container 里的目录只能写 <code>/config</code>，这是 HA 配置文件的所在目录，host 上的目录可以根据自己需要填写。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20220409/portainer03.png"></p>
-<p>继续点击 Advanced container settings 中的 Env，进入环境变量选项卡，点击 add environment variable 按钮新增一条环境变量，左侧的 name 填写 <code>TZ</code>，右侧的 value 填写 <code>Asia/Shanghai</code>，这是将 HA 的默认时区（Time Zone）设置为亚洲/上海。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20220409/portainer04.png"></p>
-<p>剩下的高级设置就比较简单了，Network 设置成 host，Restart policy 设置成 Always 即可。最后点击 Deploy the container，等待一段时间，如果网络连接通畅的话，即可完成 HA 容器的部署。</p>
-<p>HA 的后台默认端口是 8123，因此只要我们在局域网中访问 HA 运行设备的 <code>ip地址:8123</code> 即可登录 HA 的网页端。初次打开 HA 网页端需要进行一些基本的初始化配置，例如用户名、密码这些，此处不再赘述。需要注意的是，<strong>HA 管理员账户的密码无法找回，如果我们忘记此处设置的密码，后面只能通过重装容器的方式解决</strong>。</p>
-<h2 id="安装-hacs-集成">安装 HACS 集成</h2>
-<p><a href="https://hacs.xyz" target="_blank" rel="noopener">HACS</a> 的全称是 Home Assistant Community Store，是一个 HA 社区商店，里面提供了各种外观主题，以及第三方集成的下载，使用起来非常方面，建议所有 HA 用户安装。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20220409/hacs.png"></p>
-<p>要安装 HACS，首先需要将它的安装包放入 HA 容器。在 HA 映射的 /config 目录中创建两个新目录，名称分别为 <code>www</code> 和 <code>custom components</code>，点击<a href="/resources/blog20220409/hacs.zip">这里</a>下载 HACS 安装包，将压缩包内的 hacs 目录解压到刚刚创建的 <code>personal components</code> 目录，然后重启 HA 容器。登录 HA 网页端，依次点击左下角配置—设备与服务—集成，进入集成选项卡。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20220409/ha01.png"></p>
-<p>点击右下角的添加集成按钮，搜索 HACS，点击安装 HACS 集成，接着按照提示走流程就能顺利安装。安装过程中需要跳转登录一次 Github，如果没有账号需要注册一个。此外就是安装过程需要科学的网络环境，这个只能靠各位自行解决。安装完成后再次重启 HA 容器。不出意外的话，网页端的左侧会多出一个 HACS 按钮，点击它就能进入 HACS 的商店界面了。</p>
-<h1 id="将米家接入-ha">将米家接入 HA</h1>
-<p>以往，要将小米的众多智能家居接入 HA，我们必须安装一个第三方 HA 集成，即 <a href="https://github.com/al-one/hass-xiaomi-miot" target="_blank" rel="noopener">Hass-Xiaomi-Miot</a>。它由个人开发者 <a href="https://github.com/al-one" target="_blank" rel="noopener">al-one</a> 在 Github 上发布，一直以来都是我们将米家接入 HA 的唯一选择。直到2024年12月，<a href="https://github.com/XiaoMi" target="_blank" rel="noopener">小米</a>在 Github 上发布了官方的 HA 集成：<a href="https://github.com/XiaoMi/ha_xiaomi_home" target="_blank" rel="noopener">HA_Xiaomi_Home</a>，填补了米家接入 HA 的空白。</p>
-<p>虽然这又是一个“官方逼死同人”的故事，但小米的开源精神仍然值得称赞。与第三方集成相比，小米官方的集成对自家产品支持更好， 能够帮助我们更加轻松地将米家接入 HA，进而实现米家与 Homekit 生态的互联互通。小米官方集成的安装与使用方法详见我的<a href="/post/blog20241227/">最新文章</a>，此处不再更新。</p>]]></content:encoded>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;&#xA;&lt;p&gt;随着智能家居的日益普及，各大互联网巨头纷纷进场，导致智能家居的平台和品牌越来越多，且各个平台和品牌间的产品无法互通。例如，你无法用米家的智能开关来控制 homekit 的智能灯，除非你的产品支持双平台，但目前同时支持两个以上平台的智能家居少之又少。&lt;/p&gt;</description>
     </item>
     <item>
       <title>利用 Portainer 实现 Docker 端 Jellyfin 硬件解码</title>
       <link>https://masonblog.github.io/post/blog20210909/</link>
       <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20210909/</guid>
-      <description>日常技术记录</description>
-      <content:encoded><![CDATA[<h2 id="原理及环境检测">原理及环境检测</h2>
-<p>随着版本的不断迭代，<a href="https://jellyfin.org" target="_blank" rel="noopener">Jellyfin</a> 已经逐渐超过 <a href="https://www.plex.tv" target="_blank" rel="noopener">Plex</a>  和自家兄弟 <a href="https://emby.media" target="_blank" rel="noopener">Emby</a>，成为用户数量最所的个人媒体管理方案，这不仅因为它的所有功能均为免费，更是因为它的源代码完全开源，具有极高的维护与拓展空间。</p>
-<p>不论用于运行 Jellyfin 的具体是哪款操作系统，只要该系统是基于 Linux，我们就可以通过 Docker 容器来实现极为简单且方式一致的部署。<strong>但相比于原生套件，Docker 有一个显而易见的缺点，即无法直接调用各类系统资源</strong>，核显驱动就是其中之一。</p>
-<p>要让 Jellyfin 的 Docker 容器实时调用核显驱动（也就是人们常说的开启硬解），要满足两个条件：</p>
-<ol>
-<li>拥有支持视频解码的核心显卡，且核心显卡的<strong>驱动程序</strong>运行正常；</li>
-<li>将核显驱动<strong>直通</strong>给 Docker 容器，并赋予 Docker 容器调用该驱动的权限。</li>
-</ol>
-<p>对于系统是否满足上述第一个条件，可以通过以下方式进行检验：首先用 ssh 工具连接到服务器，确保登陆 ssh 的账户拥有系统管理权限，再输入以下命令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ls /dev/dri
-</span></span></code></pre></div><p>如果返回的结果为 <code>card0 renderD128</code> ，那么恭喜，核显驱动运行正常，硬件系统满足视频解码的基本条件。接下来便是将 renderD128 这个核显驱动直通给 Docker 容器的方法。</p>
-<h2 id="为什么必须用-portainer">为什么必须用 Portainer?</h2>
-<p>无论是群辉、威联通还是 <a href="https://www.unraid.net" target="_blank" rel="noopener">Unraid</a>，市场上绝大多数 NAS 系统都提供了图形化的 Docker 容器管理工具。但无论上述哪一个，都不支持核显驱动的直通功能。群辉的 Docker 套件无法编辑容器的系统资源参数，威联通的 Container Station 干脆无法编辑已经创建好的容器。</p>
-<p><strong>这里所说的“直通”，其实是将 <code>/dev/dri/renderD128</code> 这个驱动文件映射到 Docker 容器的相同位置</strong>。这一点利用命令行可以非常轻松地实现，即在 Jellyfin 容器的拉取命令中加入下列参数：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>--device<span style="color:#f92672">=</span>/dev/dri/renderD128 <span style="color:#ae81ff">\
-</span></span></span></code></pre></div><p>因此，要快速拉取并创建一个开启硬件解码的 Jellyfin 容器，只要在 NAS 的命令行界面输入以下命令即可：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name jellyfin <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /share/Container/Jellyfin/config:/config <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放配置文件的目录</span>
-</span></span><span style="display:flex;"><span>-v /share/Container/Jellyfin/cache:/cache <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放媒体缓存的目录</span>
-</span></span><span style="display:flex;"><span>-v /share/Media/:/media <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放电影文件的目录</span>
-</span></span><span style="display:flex;"><span>-p 8096:8096 <span style="color:#ae81ff">\ </span><span style="color:#75715e">#web界面访问端口（http）</span>
-</span></span><span style="display:flex;"><span>-p 8920:8920 <span style="color:#ae81ff">\ </span><span style="color:#75715e">#web界面访问端口（https）</span>
-</span></span><span style="display:flex;"><span>--device<span style="color:#f92672">=</span>/dev/dri/renderD128 <span style="color:#ae81ff">\ </span><span style="color:#75715e">#映射核显驱动</span>
-</span></span><span style="display:flex;"><span>--restart<span style="color:#f92672">=</span>always <span style="color:#ae81ff">\ </span><span style="color:#75715e">#重启策略</span>
-</span></span><span style="display:flex;"><span>jellyfin/jellyfin
-</span></span></code></pre></div><p>但对许多轻度用户来说，命令行不仅不便理解，也断绝了后续对容器进行修改和自定义的空间。因此对于绝大多数日常用户来说，我个人强烈推荐使用 <a href="https://hub.docker.com/r/portainer/portainer-ce" target="_blank" rel="noopener">Portainer</a>。它本身也是一个运行在 Docker 容器里的程序，但它拥有强大的 Docker 管理功能，是目前市面上功能最完善的网页端 Docker 容器管理界面。</p>
-<p>因此，对于那些既不想用命令行，又希望对 Docker 有较为全面管控的用户来说，Portainer 几乎是唯一的选择。通过 Portainer，即使是初学者也能轻松为 Jellyfin 开启硬件解码。</p>
-<h2 id="portainer-的安装与使用">Portainer 的安装与使用</h2>
-<p>由于 Portainer 需要调用 <code>/var/run/docker.sock</code> 这个文件以实现对 Docker 的直接管理，因此 Portainer 也无法通过群辉或威联通自带的 Docker 管理界面进行安装，因为上述管理界面均不支持针对单个文件的映射。但由于 Portainer 需要配置的参数较少，且容器创建完成后不需要频繁修改，因此普通用户可以直接复制一以下命令进行安装。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name prtainer <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /var/run/docker.sock:/var/run/docker.sock <span style="color:#ae81ff">\ </span><span style="color:#75715e">#关键</span>
-</span></span><span style="display:flex;"><span>-p 9000:9000 <span style="color:#ae81ff">\ </span><span style="color:#75715e">#web界面访问端口</span>
-</span></span><span style="display:flex;"><span>--restart<span style="color:#f92672">=</span>always <span style="color:#ae81ff">\ </span><span style="color:#75715e">#重启策略</span>
-</span></span><span style="display:flex;"><span>portainer/portainer
-</span></span></code></pre></div><p>容器创建完成后，即可通过 IP:端口的方式访问 Portainer 的管理界面，Portainer 的默认访问端口是 9000。初次登陆需要设置管理员账号和密码。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-1.png"></p>
-<p>因为是单机使用，所以连接模式选择“local”，然后点击“Connect”即可连接到服务器上的docker。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-2.png"></p>
-<p>配置完成后，再次点击 local，选择左侧的 Container 便可使用 Portainer 对系统上现有的所有 Docker 容器进行管理了。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-3.png"></p>
-<h2 id="安装-jellyfin-并直通核显驱动开启硬解">安装 Jellyfin 并直通核显驱动（开启硬解）</h2>
-<p>后续的安装及配置过程都将在 Portainer 界面上完成。首先点击“Containers”选项卡上的“Add container”按钮添加新容器，进入容器创建界面。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-4.png"></p>
-<p>“Name”随便写，“Image”填写 Jellyfin 官方的 Docker Hub 映像路径 <code>jellyfin/jellyfin</code>，“Always pull the image”可以打开，这样当我们配置完成创建容器时，Portainer 会自动从 Docker Hub 拉取最新的官方映像。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-5.png"></p>
-<p>“Network ports configuration”处选择“Manual network port publishing”，点击“publish a new network port”创建两个端口映射，分别是 8096 和 8920，作为 Jellyfin 网页界面的访问端口。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-6.png"></p>
-<p>接着点击“volumes”选项卡，进行容器内目录的映射。Jellyfin 默认需要映射的目录分别是 <code>/media</code>、<code>/cache</code> 和 <code>/config</code>，点击“bind”按钮选择服务器上对应的目录进行映射。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-7.png"></p>
-<p>“Network”选择“host”，“Restart policy”选择“always”。最重要的是，“Runtime &amp; Resources”处一定要点击“add device”，两边分别输入 <code>/dev/dri/renderD128</code>，这是开启硬解的关键步骤。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-8.png"></p>
-<p>以上配置完成后，即可点击“Deploy the container”按钮创建容器。如果网络环境较好，等待半分钟左右即可完成容器的创建。至此，我们不仅手动配置完成了 jellyfin 的 Docker 容器，还将核心显卡的驱动文件直通给了该容器。最后，只要进入 Jellyfin 的控制台，在“播放”选项卡中，将“硬件加速”类型选为“Video Acceleration API (VAAPI)”，并在“VA API 设备”处填写 <code>/dev/dri/renderD128</code>，即可调用服务器的核显驱动进行硬件解码了。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210909/jellyfin-config.png"></p>]]></content:encoded>
+      <description>&lt;h2 id=&#34;原理及环境检测&#34;&gt;原理及环境检测&lt;/h2&gt;&#xA;&lt;p&gt;随着版本的不断迭代，&lt;a href=&#34;https://jellyfin.org&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Jellyfin&lt;/a&gt; 已经逐渐超过 &lt;a href=&#34;https://www.plex.tv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Plex&lt;/a&gt;  和自家兄弟 &lt;a href=&#34;https://emby.media&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Emby&lt;/a&gt;，成为用户数量最所的个人媒体管理方案，这不仅因为它的所有功能均为免费，更是因为它的源代码完全开源，具有极高的维护与拓展空间。&lt;/p&gt;</description>
     </item>
     <item>
       <title>实测苹果专用转接代理可用于翻墙，但中国大陆地区无法使用</title>
       <link>https://masonblog.github.io/post/blog20210608/</link>
       <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20210608/</guid>
-      <description>日常技术记录</description>
-      <content:encoded><![CDATA[<p>昨晚熬夜看了今年的 Apple <a href="https://developer.apple.com/wwdc21/" target="_blank" rel="noopener">WWDC</a> 直播。虽然今年没有发布任何硬件设备，但 iOS 15 和 macOS Monterey 的一些新的功能特性确实解决了我的好几个痛点。</p>
-<p>一直以来，<strong>隐私保护都是苹果公司的宣传重点之一，以致于其越发严苛的隐私政策已经十足地损害了像 Facebook 和 Google 这种以收集用户数据为主要盈利方式的互联网巨头的利益</strong>。iOS 14.5 版本新增的“允许 App 请求跟踪”功能，就曾<a href="https://cn.wsj.com/articles/%e6%97%a0%e8%a7%86facebook%e5%8f%8d%e5%af%b9%ef%bc%8c%e8%8b%b9%e6%9e%9c%e5%85%ac%e5%8f%b8%e5%b0%86%e6%8e%a8%e5%87%ba%e6%96%b0%e7%9a%84%e9%9a%90%e7%a7%81%e4%bf%9d%e6%8a%a4%e6%8e%aa%e6%96%bd-11611818710" target="_blank" rel="noopener">遭到 Facebook 的强烈反对</a>。</p>
-<p>针对用户隐私保护，苹果在今年的 WWDC 上公布了全新的 iCloud+ 服务。在订阅价格保持不变的前提下，iCloud 加入了“Homekit 安全摄像头”、“邮件隐私保护”和“专用转接代理（Privacy Relay）”等功能。前两项功能的字面意思都很好理解，那这最后一个“专用转接代理”又是什么东西呢？</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210608/iCloud+.jpg"></p>
-<p>其实，看到“代理“两个字时应该就不难猜到，所谓的”专用转接代理“，就是一个类似于 VPN 的服务。当这个功能被开启时， Safari 浏览器的所有流量都将由苹果的服务器进行“转接”，从而达到隐藏用户真实 ip 地址的目的。</p>
-<p>既然 Safari 浏览器的流量都由苹果的服务器转接，那么我们是否可以通过开启“专用转接代理”的方式来访问被 GFW 封锁的网站呢？单从理论上来说，答案是肯定的。但是，根据<a href="https://www.bbc.com/zhongwen/simp/world-57410275" target="_blank" rel="noopener">各大外媒的报道</a>，苹果已经主动表示，依据相关国家的政策，专用转接代理功能不对包括<strong>白俄罗斯、哥伦比亚、埃及、哈萨克斯坦、沙特阿拉伯、南非、土库曼斯坦、乌干达、菲律宾，以及中国</strong>在内的国家和地区开放。</p>
-<p>经本人实测，<strong>美国 ip ➕ 美区 iCloud 账号可以正常开启专用转接代理，且当 ip 地址变为中国时，代理功能仍会在几分钟内正常运行</strong>，此时通过 Safari 浏览器，是可以正常访问 Google 等国外网站的。然而几分钟后，一旦 iCloud 服务器检测到中国大陆的 ip 地址，代理功能就会自动关闭。<strong>也就是说，iCloud 服务器对用户实际 ip 地址的检测并非实时进行，而是每隔几分钟进行一次</strong>。</p>
-<p>这是可能有人会问，能不能通过某种手段，瞒过 iCloud 服务器的检测，以达到长期使用专用转接代理的目的？答案是肯定的，但你必须首先在路由器上套一层外国代理（直接在手机上开启代理软件是行不通的，全局代理也不行），再通过苹果的服务器访问互联网。<strong>归根结底，专用转接代理只是一个隐私保护工具，它不能、也不应被用于翻墙</strong>，想薅苹果羊毛，用上一个月一美元的翻墙代理的朋友们可能要失望了。</p>]]></content:encoded>
+      <description>&lt;p&gt;昨晚熬夜看了今年的 Apple &lt;a href=&#34;https://developer.apple.com/wwdc21/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;WWDC&lt;/a&gt; 直播。虽然今年没有发布任何硬件设备，但 iOS 15 和 macOS Monterey 的一些新的功能特性确实解决了我的好几个痛点。&lt;/p&gt;</description>
     </item>
     <item>
       <title>利用 Favicon 为 Hugo 静态站点添加图标</title>
       <link>https://masonblog.github.io/post/blog20210527/</link>
       <pubDate>Thu, 27 May 2021 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20210527/</guid>
-      <description>日常技术记录</description>
-      <content:encoded><![CDATA[<p>我们在使用 <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a> 生成静态站点时，经常会遇到一些虽不致命，但很不爽的小问题，例如没有自定义站点图标的问题。假如我们跟随了所用主题的默认配置，通常情况下生成的站点要么没有图标，要么直接套用主题自带的图标，这显然无法满足我那强烈的 DIY 欲望。</p>
-<p>经常访问本博客的读者可能会注意到，我所使用的 Hugo 主题是一个支持自动切换明暗模式的第三方主题——<a href="https://github.com/dsrkafuu/hugo-theme-fuji" target="_blank" rel="noopener">AutoFuji</a>. 今天在阅读这个主题的说明文档时，我发现原来它是支持 <a href="https://baike.baidu.com/item/favicon" target="_blank" rel="noopener">Favicon</a> 图标代码的。于是经过一通简单的操作，我的博客终于有了自己的图标。</p>
-<p>为 Hugo 站点添加 Favicon 代码的方法非常简单。首先访问<a href="https://realfavicongenerator.net" target="_blank" rel="noopener">这个网站</a>上传一张图片作为网站图标的母本。其实类似的 Favicon 生成器还有很多，大家可以根据自己的习惯或喜好自由选择，基本功能都是一样的。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210527/favicon-generator.png"></p>
-<p>图片上传完成后，会自动跳转到参数配置页面。如无特殊需求，保持默认配置即可。点击页面下方的生成按钮生成我们的图标和代码。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210527/favicon-generator2.png"></p>
-<p>生成完成后，点击如图所示按钮下载各类格式的图标包，再将自动生成的 HTML 代码复制到剪贴板。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210527/favicon-generator3.png"></p>
-<p>之后，来到 Hugo 站点的根目录，将刚刚下载的压缩包里的所有文件解压到 <code>/static/</code> 文件夹下。</p>
-<p>用文本编辑器打开 <code>/layouts/partials/favicon.html</code> 文件，清空原有代码，将刚刚复制到代码粘贴进去，保存并退出。</p>
-<p>最后，打开 <code>/themes/正在使用的主题名/layouts/partials/head.html</code> 文件（不同主题需要编辑的文件可能不同，例如我所使用的 Fuji 主题就是直接编辑同一目录下的 favicon.html 文件），找到下列代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;shortcut icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;xxx&#34;</span> /&gt;
-</span></span></code></pre></div><p>将 xxx 替换成 <code>favicon.ico</code> ，保存并退出即可。</p>
-<p>此时，我们的 favicon 图标安装工作就宣告完成了。使用 <code>hugo</code> 命令重新生成站点，不出意外的话，就能看到我们刚才上传的站点图标了。</p>]]></content:encoded>
+      <description>&lt;p&gt;我们在使用 &lt;a href=&#34;https://gohugo.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Hugo&lt;/a&gt; 生成静态站点时，经常会遇到一些虽不致命，但很不爽的小问题，例如没有自定义站点图标的问题。假如我们跟随了所用主题的默认配置，通常情况下生成的站点要么没有图标，要么直接套用主题自带的图标，这显然无法满足我那强烈的 DIY 欲望。&lt;/p&gt;</description>
     </item>
     <item>
       <title>桥接模式下 Openwrt 软路由直接访问光猫后台</title>
       <link>https://masonblog.github.io/post/blog20210505/</link>
       <pubDate>Wed, 05 May 2021 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20210505/</guid>
-      <description>日常技术记录</description>
-      <content:encoded><![CDATA[<p>光猫开启桥接模式后，软路由作为默认网关进行拨号与 NAT，导致客户端设备无法获取与光猫相同网段的 IP 地址，进而也就无法登陆光猫的后台管理界面。虽然在日常使用的过程中，光猫的配置几乎是一次性的，其后台管理界面的使用频率很低，但是每次登陆光猫后台都要通过有线或无线（若有）的方式将设备直接与光猫相连也着实麻烦。因此需要通过一些简单的配置，实现桥接模式下，连接软路由的同时可以随时访问光猫后台。</p>
-<p>实现原理其实很简单，只要<strong>在现有 DHCP 服务端正常工作的前提下，为软路由的 WAN 口再行分配一个与光猫网段相同的 IP 地址</strong>即可，前提是你的软路由支持多 WAN。</p>
-<p>以 Openwrt 系统为例，在“网络—接口”界面点击“添加新接口”，进入新接口创建页面。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210505/wan-config-1.png"></p>
-<p>接口名称随意填写，接口协议选择“静态地址”，包括的接口选择当前 WAN 口绑定的物理接口。<strong>注意，接口协议尽量不要选择 DHCP，因为桥接模式下的光猫基本都会关闭自身的 DHCP 功能，不会给新接口自动分配 IP 地址，所以此时需要通过“静态地址”协议来手动指定新接口的 IP 地址</strong>。完成上述配置后，点击“提交”按钮进入新接口的详细配置页面。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210505/wan-config-2.png"></p>
-<p><strong>IPv4 地址一定要设置成与光猫位于相同网段的地址</strong>。例如光猫连接软路由的 LAN 口的地址（即光猫后台地址）为 192.168.1.1，那么这里新接口的静态 IP 地址就要设置为 192.168.1.x。子网掩码设为 255.255.255.0，默认网关就是光猫 LAN 口的 IP 地址。有关 IP 网段和子网掩码的相关知识，可以参考<a href="https://www.zhihu.com/question/56895036" target="_blank" rel="noopener">这篇文章</a>。完成上述设置后，点击“保存&amp;应用”按钮即可完成配置。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210505/wan-config-3.png"></p>
-<p>新接口配置完成后，DNS 缓存会有一定延迟，导致无法正常浏览网页，此时重启一下软路由即可解决问题。如果软路由之前配置了端口映射，则<strong>新接口创建完成后，所有的端口映射都将失效，此时仍需经过一番针对防火墙的额外设置才能恢复正常</strong>。</p>
-<p>重新进入新接口的详细设置页面，在“防火墙设置”中，将原先 WAN 口的防火墙区域绑定到新接口。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210505/wan-config-4.png"></p>
-<p>然后进入“网络—防火墙—端口转发”页面，将原有的端口映射配置重新“保存&amp;应用”一下即可。</p>
-<p>至此，如果不出意外的话，我们便可在桥接模式下随时随地访问光猫的后台管理界面了。</p>]]></content:encoded>
+      <description>&lt;p&gt;光猫开启桥接模式后，软路由作为默认网关进行拨号与 NAT，导致客户端设备无法获取与光猫相同网段的 IP 地址，进而也就无法登陆光猫的后台管理界面。虽然在日常使用的过程中，光猫的配置几乎是一次性的，其后台管理界面的使用频率很低，但是每次登陆光猫后台都要通过有线或无线（若有）的方式将设备直接与光猫相连也着实麻烦。因此需要通过一些简单的配置，实现桥接模式下，连接软路由的同时可以随时访问光猫后台。&lt;/p&gt;</description>
     </item>
     <item>
       <title>利用 Parsec 实现远程游戏串流</title>
       <link>https://masonblog.github.io/post/blog20210502/</link>
       <pubDate>Sun, 02 May 2021 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20210502/</guid>
-      <description>日常技术记录</description>
-      <content:encoded><![CDATA[<p>最近，我终于放弃了 Steam 或 Epic Games 等平台的买断制游戏模式，转而投靠了 <a href="https://www.xbox.com/zh-HK/xbox-game-pass" target="_blank" rel="noopener">Xbox Game Pass (XGP)</a> 这样的订阅制模式。尽管买断制可以极大地满足“喜加一”式的收集欲，但自从开始实习之后，我已经很难抽出整块的时间来通关各类单机游戏，以致于我的游戏库中屯了大量已购买的但未通关的游戏，这不仅降低了我购买和尝试最新游戏的欲望，也在资金上造成了很大的浪费。不知从什么时候起，玩游戏竟也成了一种待完成的“任务”，失去了工作之余放松心情的初衷。</p>
-<p>因此，我纠结许久，终于决定以后不再购买任何单机游戏。如果某段时间我不是那么忙了（例如辞职在家的现在），就去订阅一个月的 XGP，体验一下最新的单机游戏。事实上，Xbox 账户是可以随时切换区域的。因此我们可以简单地通过将 Win10 的系统区域切换成香港的方式来享受港区 XGP 79 港元每月（首月10港币）的优惠价格。在一个单机游戏动辄就要三百块以上的当下，XGP 确实是一种非常合算方案。毕竟，一个月的时间，完全够我通关一个中型单机游戏，而买断这款游戏的价格远远不止 79 港币。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210502/xgp-price.png"></p>
-<p>开通了 XGP 之后，我又开始琢磨如何在出差的时候利用“零碎的时间”玩游戏。例如驻场期间每天下班以后，住在酒店里的我只有一台性能羸弱的 MacBook，如何利用现有设备在酒店里玩上 XGP 上的单机游戏呢？其实解决方案只有一个：远程桌面。只要在家里的 PC 上<a href="https://zhuanlan.zhihu.com/p/302835122" target="_blank" rel="noopener">开启网络唤醒功能</a>，在将某款远程桌面软件设置成开机自动启动，我就可以在任何地方，通过网络唤醒 + 远程操控的方式随时随地游玩家里电脑上的游戏。</p>
-<p>思路虽然很简单，但找到合适的远程桌面软件着实费了我一番工夫。经过仔细的搜索，我发现了一款叫做 <a href="https://parsec.app/" target="_blank" rel="noopener">Parsec</a> 的远程桌面软件。它不仅同时支持 Windows 和 macOS 双平台，还专门针对远程游戏进行了优化。不仅如此，Parsec 还支持 <a href="https://baike.baidu.com/item/HEVC" target="_blank" rel="noopener">Hevc 编码</a>。只要客户端设备支持 Hevc 解码，就能大大降低串流数据体积，减少网络带宽和流量的消耗，提升远程游戏的体验。</p>
-<p>Parsec 的使用方式非常简单，只要去官网注册一个账号并分别在服务端（用于运行游戏的设备）和客户端（用于远程操控的设备）下载安装 Parsec 客户端即可。在两台设备上同时安装并登陆软件后，软件界面应该是这样的：</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210502/parsec-interface.png"></p>
-<p>此时只要点击相应设备上的 Connect 按钮即可建立远程连接了。但为了提升我们的游戏体验，在正式使用前还需要进行一些简单的设置。点击左侧的齿轮图标进入设置界面，将客户端设备的“硬件解码”和“Hevc 编码”功能打开即可。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210502/parsec-settings.png"></p>
-<p>连接成功后，软件会自动将被操控的设备调至静音，而将所有系统声音转到操控的设备上播放，这一细节非常人性化。经测试，在局域网（千兆带宽）环境下，两台设备基本可以实现零延迟的远程控制，但在广域网环境下，由于带宽和延迟的限制，远程控制略有延迟和卡顿，但仍能满足一些对操作要求不是那么高的游戏。例如，我最近正在补完的《歧路旅人》。这是一款“高清马赛克”游戏，且所有战斗均为回合制，非常适合远程游玩。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210502/IMG_2477.JPG"></p>
-<p>由于 macOS 原生支持 Xbox 和 switch pro 手柄，同时 Parsec 也能直接识别上述两款手柄的所有按键，因此在远程游戏时，可以直接通过将手柄连接客户端设备的方式来操控服务端的游戏。网络状况较好的时候，远程游戏的体验和本地几乎没有区别。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210502/controller.png"></p>]]></content:encoded>
+      <description>&lt;p&gt;最近，我终于放弃了 Steam 或 Epic Games 等平台的买断制游戏模式，转而投靠了 &lt;a href=&#34;https://www.xbox.com/zh-HK/xbox-game-pass&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Xbox Game Pass (XGP)&lt;/a&gt; 这样的订阅制模式。尽管买断制可以极大地满足“喜加一”式的收集欲，但自从开始实习之后，我已经很难抽出整块的时间来通关各类单机游戏，以致于我的游戏库中屯了大量已购买的但未通关的游戏，这不仅降低了我购买和尝试最新游戏的欲望，也在资金上造成了很大的浪费。不知从什么时候起，玩游戏竟也成了一种待完成的“任务”，失去了工作之余放松心情的初衷。&lt;/p&gt;</description>
     </item>
     <item>
       <title>解决蜗牛星际B双安装黑群晖失败“文件已损毁（13）”</title>
       <link>https://masonblog.github.io/post/blog20210423/</link>
       <pubDate>Fri, 23 Apr 2021 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20210423/</guid>
-      <description>日常技术记录</description>
-      <content:encoded><![CDATA[<p>去年疫情期间，由于滞留家中实在无聊，我开始折腾软路由和 DIY NAS，而被折腾得最多的莫过于黑<a href="https://www.synology.com/en-us/dsm" target="_blank" rel="noopener">群晖</a>系统。为此，我特意买来两台蜗牛星际（B双和C），其中B双用作软路由，C则用于黑群晖。时隔一年，忙于工作的我已不再有闲暇时间折腾黑群晖，而出于对数据安全和便捷性的考虑，我于今年年初购买了一台威联通的 NAS 主机。俗话说得好，黑群晖折腾到头，就会转去白群辉。但奈何威联通的性价比要比群晖高太多，因此我只好无耻地叛变了革命。</p>
-<p>昨天心血来潮，想把放在角落吃灰许久的蜗牛星际B双刷成黑群晖，用作重要数据的冷备工具，平常都会处于关机状态，只有冷备的时候才会开机。由于我的B双之前一直都用作软路由，因此从来都没有刷过黑群晖。但鉴于蜗牛星际的配置都差不多，我简单地以为直接用之前C上现成的黑群晖引导U盘即可直接安装黑群晖系统。然而天真的我还是遇到了困难。</p>
-<p>问题出在新系统安装的过程中，每当进度走到 56% 的时候，都会跳出编号为 13 的错误，提示“系统安装失败，文件可能已经损毁（13）”。为了解决这一问题，我尝试了很多方法，包括但不限于格式化所有硬盘（包括 SSD）以及更换各个版本的官方或非官方 DSM 安装包，但都不奏效，错误 13 依然存在。</p>
-<p>最后，在电报群里高人的指点下，我终于解决了这一问题。其实，新系统安装的过程中之所以会出现错误 13， 是因为机器主板的 BIOS 没设置好。只要给主机插上键盘和显示器，在开机时进入 BIOS 界面（通常是在开机后显示主板厂商 logo 时按键盘上的 DEL 键进入），然后依次进入 <strong>Advanced—Miscellaneous Configuration—OS Selection</strong>，将 Win 7 改为 Win 8.x 即可。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210423/bios.jpeg"></p>
-<p>忙活了半天，最后才知道原来只是这么简单的一个问题。为了不让后来的小白们像我一样浪费时间，特此记录一下。本文也谈不上什么教程了。</p>]]></content:encoded>
+      <description>&lt;p&gt;去年疫情期间，由于滞留家中实在无聊，我开始折腾软路由和 DIY NAS，而被折腾得最多的莫过于黑&lt;a href=&#34;https://www.synology.com/en-us/dsm&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;群晖&lt;/a&gt;系统。为此，我特意买来两台蜗牛星际（B双和C），其中B双用作软路由，C则用于黑群晖。时隔一年，忙于工作的我已不再有闲暇时间折腾黑群晖，而出于对数据安全和便捷性的考虑，我于今年年初购买了一台威联通的 NAS 主机。俗话说得好，黑群晖折腾到头，就会转去白群辉。但奈何威联通的性价比要比群晖高太多，因此我只好无耻地叛变了革命。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Openwrt Luci Openvpn 服务器多设备同时接入</title>
       <link>https://masonblog.github.io/post/blog20210413/</link>
       <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20210413/</guid>
-      <description>日常技术记录</description>
-      <content:encoded><![CDATA[<p>我们日常使用的 Openwrt 软路由系统几乎都集成了 <a href="https://openwrt.org/docs/guide-user/luci/start" target="_blank" rel="noopener">Luci 界面</a>，它不仅可以为用户提供便利的可视化后台管理界面，还在各路大神的贡献下，适配了众多简单易用的图形化 App。<a href="https://github.com/DavBfr/luci-app-openvpn-server" target="_blank" rel="noopener">Luci-app-openvpn-server</a> 就是众多 Luci 应用中最常用的 VPN 服务器之一。</p>
-<p>简单来说，luci-app-openvpn-server 就是 Openvpn 服务器端的 Luci 界面版本。有了它，你就可以告别难搞的命令行，通过图形化的网页直接配置你的 Openvpn 服务器端。结合各主流平台的 Openvpn 客户端软件，你可以随时随地接入自己家里的局域网，实现内网访问或文件传输等功能。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210413/luci-openvpn.png"></p>
-<p>正常情况下，只要按照 Luci 界面的提示填写相应的配置信息，即可成功运行 Openvpn 的服务器端。此时只要点击“一键下载.Ovpn 文件”按钮，再将下载下来的配置文件直接导入 Openvpn 客户端软件即可开始使用。但 luci-app-openvpn-server 的默认配置支支持同时登陆一个客户端，当有第二个客户端尝试接入时，先前接入的第一个客户端就会被强制断线。然而在日常使用的过程中，多设备同时接入的情况是十分常见的，那么怎样才能使 luci-app-openvpn-server 可以同时接入多个设备呢？</p>
-<p>其实，Openvpn 的服务端是支持多设备同时接入的。根据 Github 上<a href="https://github.com/coolsnowwolf/lede/issues/6175" target="_blank" rel="noopener">这个 Issue</a> 中的介绍，我们能够得知，只要在 Openvpn 的配置文件中加入一行代码，即可开启 Openvpn 的多设备同时接入功能：</p>
-<p>具体如何操作呢？首先，用 ssh 工具登陆你的 Openwrt 软路由。具体的工具及方法可自行搜索，我日常使用的是微软官方发布的 <a href="https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab" target="_blank" rel="noopener">Windows Terminal</a> 终端工具。成功登陆 ssh 后，输入以下命令开始编辑 Openvpn 的配置文件：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vim /etc/config/openvpn
-</span></span></code></pre></div><p>如果没能成功打开配置文件的编辑界面，很可能是因为你的 Openwrt 系统没有安装 vim （一款命令行文本编辑器）。至于 vim 的安装方法，还请自行搜索，本文不再赘述。</p>
-<p>进入配置文件的编辑界面后，按键盘上的 I 健进入文本编辑模式，将光标移到配置文件末尾，将以下代码复制粘贴到配置文件最后一行。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>option duplicate_cn <span style="color:#e6db74">&#39;1&#39;</span>
-</span></span></code></pre></div><p>编辑完成后，按键盘上的 ESC 健，再依次输入以下命令保存并退出编辑器：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>:qw
-</span></span></code></pre></div><p>完成上述步骤后，重启路由器。不出意外的话，你就可以同时使用多个客户端接入自己的局域网了。</p>]]></content:encoded>
+      <description>&lt;p&gt;我们日常使用的 Openwrt 软路由系统几乎都集成了 &lt;a href=&#34;https://openwrt.org/docs/guide-user/luci/start&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Luci 界面&lt;/a&gt;，它不仅可以为用户提供便利的可视化后台管理界面，还在各路大神的贡献下，适配了众多简单易用的图形化 App。&lt;a href=&#34;https://github.com/DavBfr/luci-app-openvpn-server&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Luci-app-openvpn-server&lt;/a&gt; 就是众多 Luci 应用中最常用的 VPN 服务器之一。&lt;/p&gt;</description>
     </item>
     <item>
       <title>利用 Docker 搭建 Trilium Notes 服务器</title>
       <link>https://masonblog.github.io/post/blog20210320/</link>
       <pubDate>Sat, 20 Mar 2021 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20210320/</guid>
-      <description>日常技术记录</description>
-      <content:encoded><![CDATA[<p>由于平时需要处理大量结构复杂的内容，并且各内容板块间还存在相互交叉的引用关系，因此长久以来我一直在寻找一款既能满足需求，又简洁易用的内容管理工具。印象笔记或 OneNote 等笔记类服务似乎最为常见，但一来，将所有的私人内容存储在商业公司的服务器上总会让我缺乏安全感；二来这些软件要么不够轻便，要么对重要功能额外收费，因此一直都无法让我十分满意。</p>
-<p>两年前，我接触到一款叫做 <a href="https://www.notion.so/" target="_blank" rel="noopener">Notion</a> 的跨平台软件，无论是功能还是界面都令我十分满意，但它的价格并不便宜，我毕竟不是靠内容吃饭的职业创作者，无论如何也不愿为一款笔记软件搞月付。另外，Notion 仍然无法实现在牢牢掌控内容数据的同时实现便捷的多端同步，这也是一个不大不小的遗憾。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210320/Notion.png"></p>
-<p>直到今天，偶然在<a href="https://sspai.com/post/59739" target="_blank" rel="noopener">少数派这篇文章</a>的介绍下了解到一个叫 <a href="https://github.com/zadam/trilium" target="_blank" rel="noopener">Trilium</a> 的 Github 开源项目，几乎完美地满足我的所有需求。首先，它是一个开源项目，支持自建笔记服务器，可以让我在牢牢掌控笔记控制权的同时实现多端同步；其次，它界面简洁，非常轻量，甚至可以丢掉客户端，完全实现网页端访问；最后，它完全免费，这点非常重要。</p>
-<p>自从买了<a href="https://www.qnap.com/zh-cn/" target="_blank" rel="noopener">威联通</a> NAS 后，我越来越倾向于将自己的各种数据保存在 NAS 上，再通过各类开源软件实现多端同步。这样既能保证数据安全和个人隐私，又能方便地管理自己的文件和数据。<strong>用几千元的成本和少许的电费换得对个人数据的完全掌控，我认为是值得的</strong>。因此，在意识到 Trilium 提供开源的服务端软件后，我立刻开始本地服务器的搭建工作。</p>
-<p>Trilium 的官方文档中提供了通过 <a href="https://hub.docker.com/r/zadam/trilium" target="_blank" rel="noopener">Docker</a> 安装 Trilium Server 的具体方式。但由于文档为全英文，且只提供了 SSH 命令安装的方式，一些新手阅读起来可能有些困难，因此本文将以图形化的方式简单陈述 Trilium Server 的安装方式。</p>
-<p>首先，在你的 NAS 上安装 Docker 套件（在威联通的 QTS 中叫做 Container Station）并打开它。</p>
-<p><img alt="Container Station 介绍页面" loading="lazy" src="https://masonblog.github.io/images/blog20210320/Container-Station.png"></p>
-<p>进入“创建”，并在搜索框中搜索 Trilium，找到 zadam/trilium，点击右侧的“安装”。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210320/Docker-Trilium.png"></p>
-<p>在弹出的创建窗口中，点选“高级设置”，首先在“网络”选项卡中设置 Trilium 的端口转发，trilium 的默认 web 界面默认端口是 8080，因此 Container 的端口必须写 8080，而映射出的主机端口则可以根据自身需求填写。为了记忆方便，我倾向于内外端口一致的设置，即主机端口同样设置成 8080，但如果你的 NAS 的 8080 端口已被其他程序占用，请填写其他端口。</p>
-<p><img loading="lazy" src="/images/blog20210320/Docker-Trilium2.png"></p>
-<p>接着，在“共享文件夹”选项卡中，将一个共享文件夹挂在到 Trilium 的容器中。容器中的挂载路径必须写 /trilium-data，而本机共享文件夹则可根据自身需求进行选择，注意挂载共享文件夹的权限必须为读取和写入均有。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210320/Docker-Trilium3.png"></p>
-<p>上述设置完成后，点击“创建”按钮，系统会自动下载镜像文件并根据你的配置安装容器。容器安装完成后，便可通过在浏览器中输入 NAS IP/端口的方式访问 Trilium 的 web 界面。初次使用 Trilium 时要进行一些简单的初始化设置，例如创建用户名和密码等。虽然界面只有英文，但非常简单，这里不做赘述。</p>
-<p>至此，我们便搭建完成了自己的笔记服务器。关于 Trilium 的具体使用方法，可自行摸索或搜索，总体来说，这款工具的使用门槛并不高。我的这篇文章就是全称用 Trilium 撰写的。Trilium 支持 Marddown 语法，因此对我而言几乎没有任何使用门槛。另外，Trilium 的 web 界面支持移动端布局，只要做好 DDNS 和路由器端口映射，便可在任何地方随时随地访问自己的笔记，无论用电脑还是手机。</p>]]></content:encoded>
+      <description>&lt;p&gt;由于平时需要处理大量结构复杂的内容，并且各内容板块间还存在相互交叉的引用关系，因此长久以来我一直在寻找一款既能满足需求，又简洁易用的内容管理工具。印象笔记或 OneNote 等笔记类服务似乎最为常见，但一来，将所有的私人内容存储在商业公司的服务器上总会让我缺乏安全感；二来这些软件要么不够轻便，要么对重要功能额外收费，因此一直都无法让我十分满意。&lt;/p&gt;</description>
     </item>
     <item>
       <title>通过群晖与 Openwrt 软路由实现自动端口映射</title>
       <link>https://masonblog.github.io/post/blog20200914/</link>
       <pubDate>Mon, 14 Sep 2020 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20200914/</guid>
-      <description>日常技术记录</description>
-      <content:encoded><![CDATA[<p>要在家庭或公司的局域网以外（俗称外网）访问家中或公司内网的设备（例如 <a href="https://baike.baidu.com/item/NAS" target="_blank" rel="noopener">NAS</a>），通常有两种方式。第一种方式是在局域网的路由器上架设一个 VPN 服务器，再将外网的终端设备作为 VPN 客户端接入内网。在这种情况下，<a href="https://baike.baidu.com/item/VPN" target="_blank" rel="noopener">VPN（虚拟专有网络）</a>充当了网线的角色，即接入 VPN 的外网设备，就相当于拉了一根通往内网的网线。因此在 VPN 网络中，即使这根网线是虚拟的，也能实现如同身处局域网内一般的访问体验。</p>
-<p>第二种方法则更为简单直接，即通过<a href="https://baike.baidu.com/item/DDNS" target="_blank" rel="noopener">动态 DNS</a> 服务将一个域名绑定到局域网服务器的外网 ip，再议端口映射的方式将内网设备暴露在公网中，以供外网设备连接。由于众所周知的原因，我国境内的 VPN 连接并不稳定，因此大多数人都会选择第二种方式进行内网穿透。</p>
-<p>在路由器上进行端口映射的操作非常简单。这里以 <a href="https://openwrt.org/" target="_blank" rel="noopener">Openwrt</a> 系统为例，仅需在网络 - 防火墙 - 端口转发中新建转发规则，将相应内网设备的端口映射为外网端口即可。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200914/port-transfer.png"></p>
-<p>然而，由于内网设备的内部 ip 地址会随着 DHCP 租约的更新而不断变化，尽管我们可以通过 IP/MAC 绑定的方式人为地固定内网设备的 ip 地址，但实践证明这种方式并不稳定。因此，我们经常需要手动修改端口映射规则，这就使得相关的维护工作变得非常繁琐。如果我们长期在外，无法接入内网环境，上述规则修改的工作就很难进行。这时，我们就需要用到 UPnP（通用即插即用）服务。顾名思义，它是一种自动配置端口映射的工具。只要服务器和内网其他设备同时开启 UPnP 服务并稍加简单的配置，即可一劳永逸地解决端口映射的问题。</p>
-<p>以群晖和 Openwrt 系统为例，我们首先需要在 Openwrt 路由器上安装并开启 UPnP 服务。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200914/upnp.png"></p>
-<p>然后，登陆群晖的管理后台，在控制面板 - 外部访问 - 路由器配置选项卡中，选择“设置路由器”。此时系统会自动检测网络环境以及路由器型号与配置，不出意外的话，整个过程能够由系统自动完成，无须人工配置。之后，点击“新增”按钮，并根据自己的需求选择要转发的应用和端口，再点击“保存”即可。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200914/synology-upnp.png"></p>
-<p>最后，我们可以回到路由器后台的 UPnP 页面，查看已经被系统自动添加好的端口映射规则。值得注意的是，国内的网络运营商一般会禁用个人和家庭宽带的 443 和 445 端口（前者是 https 的默认端口，后者是 smb 服务的默认端口），因此，即使我们在 UPnP 服务中添加了上述两个端口的自动映射，也无法实现 443 和 445 端口的外网访问。此时，就需要我们在防火墙的端口映射中手动进行端口映射，即将 443 和 445 两个内网端口映射到外网的非 443 或 445 端口（如 444 和 446，全凭个人喜好）。这样，我们才能绕过运营商的封锁，成功进行上述两个端口的外部访问。</p>]]></content:encoded>
+      <description>&lt;p&gt;要在家庭或公司的局域网以外（俗称外网）访问家中或公司内网的设备（例如 &lt;a href=&#34;https://baike.baidu.com/item/NAS&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;NAS&lt;/a&gt;），通常有两种方式。第一种方式是在局域网的路由器上架设一个 VPN 服务器，再将外网的终端设备作为 VPN 客户端接入内网。在这种情况下，&lt;a href=&#34;https://baike.baidu.com/item/VPN&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;VPN（虚拟专有网络）&lt;/a&gt;充当了网线的角色，即接入 VPN 的外网设备，就相当于拉了一根通往内网的网线。因此在 VPN 网络中，即使这根网线是虚拟的，也能实现如同身处局域网内一般的访问体验。&lt;/p&gt;</description>
     </item>
     <item>
       <title>利用 NAS、Docker 和 Calibre Web 搭建个人线上书库</title>
       <link>https://masonblog.github.io/post/blog20200512/</link>
       <pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20200512/</guid>
-      <description>日常技术记录</description>
-      <content:encoded><![CDATA[<p>经常阅读电子书并且用过 Kindle 的人应该都体会过整理电子书时的痛苦。尤其是像我这种经常下载电子书文件再导入到 Kindle 上进行阅读的人（或是为了省钱、或是因为 Kindle 商城中没有我们想要阅读的书），对于那些有着各自不同的标题、作者、封面，以及文件格式的纷繁复杂的电子书，缺乏一套行之有效的管理方案，进而充分管理自己的阅读进度与时间。</p>
-<p>长期以来，PC 和 Mac 端的 <a href="https://calibre-ebook.com/" title="Calibre 官网" target="_blank" rel="noopener">Calibre</a> 都是一个差强人意的电子书管理解决方案。它不仅支持多平台、功能强大（支持电子书整理、编辑、格式转换、一键推送到 Kindle 等），而且完全免费。那我为什么要将这么厉害的软件说成是“差强人意”呢？因为 Calibre 已经多年没有较大的功能更新，作为一款电子书管理软件，它已经无法适应当下人们已经习以为常的需求。具体而言，Calibre 具有以下缺点：</p>
-<ol>
-<li>界面老旧（或曰古朴？），看起来像是十年前的软件；</li>
-<li>启动和运行速度较慢，操作繁琐；</li>
-<li>不支持多设备同步，不提供云存储服务（这是最重要的一点）。</li>
-</ol>
-<p>对于像我这样学习或工作繁忙，几乎没有固定的整段时间使用同一台终端设备的人来说，多端同步和云存储几乎是不可或缺的功能。而且在网页程序和微信小程序等日益普及的今天，有时连下载一个专门的应用程序都显得繁琐（可能是被这几年的技术进步惯坏了把）。因此，最好有一款类似于 <a href="https://www.plex.tv/" title="Plex 官网" target="_blank" rel="noopener">Plex</a> 影视库的电子书管理服务器应用，能够让我随时随地打开一个网页就能管理和阅读自己的电子书。幸运的是，这样的软件确实存在，它便是 Calibre 的继任者—— <a href="https://github.com/janeczku/calibre-web" title="Calibre Web 的 Github 页面" target="_blank" rel="noopener">Calibre Web</a>。</p>
-<p>下图就是我用 Calibre Web 在自己的 <a href="https://baike.baidu.com/item/NAS/3465615" title="NAS 的百度百科页面" target="_blank" rel="noopener">NAS</a> 上搭建的个人电子书管理网站（或曰个人电子图书馆？）。通过这个网站，我可以轻松地在各种终端设备上上传、修改、整理、推送各种格式的电子书。由于是网页端，因此我不用担心海量电子书会占用手机或电脑的硬盘容量，也不用担心多端同步的问题。更加难能可贵的是，由于 Calibre Web 开发得比较晚近，因此它的界面也很符合当下的主流审美标准。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_10-29-50.jpeg"></p>
-<p>关于 Calibre Web 的搭建方法，网络上有很多前辈们撰写的教程，他们已经说得非常详细了。首先，你必须拥有一台能够稳定运行的服务器或 NAS（其实任意一台普通电脑都是可以的，只要你舍得让它 7*24 小时运行）。然后，你需要在你的设备上搭建一个 <a href="https://www.docker.com/" title="docker 官网" target="_blank" rel="noopener">docker</a> 环境，因为 Calibre Web 需要 docker 作为运行的载体。最后，经过简单的安装和配置，你就可以拥有一个属于自己的电子书管理网站了。</p>
-<p>这里以<a href="https://www.synology.cn/zh-cn" title="群辉官网" target="_blank" rel="noopener">群辉</a>为例。首先在“控制面板”中创建一个新的共享文件夹，用于存放 Calibre Web 的数据库和电子书资源。我这里将它命名为&quot;Books&quot;。创建完成后切记要开放该文件夹对所有用户的读写权限，否则 Calibre Web 将无法正常运行。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_10-59-19.jpeg"></p>
-<p>共享文件夹配置完成后，在群辉的套件中心中选择安装 docker 并打开它。再在“注册表”页面中搜索“Calibre-web”，此处途中框选的三个镜像都可以下载，它们的区别并不大，这里主要推荐 linuxserver/Clibre-web，在双击后弹出的对话框中选择“latest”并点“确定”开始下载。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_10-47-03.jpeg"></p>
-<p>镜像下载成功后（系统右上角会弹出提示），进入 docker 的“镜像”页面选择刚刚下载好的 linuxserver/Clibre-web 镜像，点击启动。在弹出的对话框中，点击“高级设置”，再按下图所示进行设置即可。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_10-53-51.jpeg"></p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_10-54-25.jpeg"></p>
-<p>之后，启动 Calibre Web，并在浏览器地址栏中输入群辉的内网 IP 地址 + 半角冒号 + 上图中设置的端口号（默认为8083）。例如，我的群辉内网 IP 地址是 10.10.10.34，Calibre Web 的端口号是 3096，那么我输入的地址就是：</p>
-<pre><code>http:10.10.10.34:3096
-</code></pre>
-<p>初次进入 Clibre Web 时需要进行一些简单的配置，例如指定数据库目录（一定要和上图中设置的“装载路径”相匹配）、创建用户，以及配置邮件推送等。关于 Calibre Web 的配置和使用方法，这里就不再赘述了，网上教程一搜一大把。顺带一提，如果想在非家庭内网的环境中（例如出门在外的 4G 网络）继续使用 Calibre Web，你还需要进行内网穿透或动态 DDNS 的相关配置。至于这些内容，已经超出今天这篇文章的讨论了范围了，以后我们有机会在说把。</p>
-<p>最后，推荐一本我最近正在读的书——理想国译丛的《布达佩斯往事》，希望你们能够喜欢。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_11-13-44.jpeg"></p>]]></content:encoded>
+      <description>&lt;p&gt;经常阅读电子书并且用过 Kindle 的人应该都体会过整理电子书时的痛苦。尤其是像我这种经常下载电子书文件再导入到 Kindle 上进行阅读的人（或是为了省钱、或是因为 Kindle 商城中没有我们想要阅读的书），对于那些有着各自不同的标题、作者、封面，以及文件格式的纷繁复杂的电子书，缺乏一套行之有效的管理方案，进而充分管理自己的阅读进度与时间。&lt;/p&gt;</description>
     </item>
     <item>
       <title>可能是最好用的记忆辅助工具 Anki</title>
       <link>https://masonblog.github.io/post/blog20200326/</link>
       <pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20200326/</guid>
-      <description>日常科技见闻</description>
-      <content:encoded><![CDATA[<p>对包括我在内的相当一部分人来说，记单词几乎已经成为一种刚需。无论是为了应付考试、取得各类等级证书还是单纯提高语言能力，词汇都是我们不得不正面应对的挑战。而在如今这个互联网时代，捧着厚重的词汇书或者词典进行背诵的方式已经被大多数人所抛弃，因为它既枯燥又低效，不仅会消磨我们学习一门语言的热情，还不利于培养语感、付诸实用。</p>
-<p>在这样的背景下，一众“背单词”软件应运而生。这其中就包括<a href="https://cichang.hujiang.com/" title="开心词场官网" target="_blank" rel="noopener">开心词场</a>、<a href="https://www.shanbay.com/" title="扇贝英语官网" target="_blank" rel="noopener">扇贝英语</a>和<a href="https://www.baicizhan.com/" title="百词斩官网" target="_blank" rel="noopener">百词斩</a>等较为优秀的产品。但是，这些软件或多或少都存在着以下几点无法弥补的缺陷：</p>
-<ul>
-<li>词库多为厂商事先制作而成，缺乏根据个人情况进行定制的空间，灵活性不强。</li>
-<li>支持的语种多为英、日、韩等热门语种，无法满足小语种（如希伯来语）学习者的需求。</li>
-<li>出于营利目的，集成了许多不常用的花哨功能，洁面不够简洁。</li>
-<li>同样出于营利目的，部分功能仅对付费用户开放，免费用户的使用体验受限。</li>
-</ul>
-<p>凡此种种，都构成了我长期无法找到适合自己的背单词软件的原因。然而，就在将近两年前，也就是我正在准备研究生考试的时候，我遇到了 <a href="https://apps.ankiweb.net/" target="_blank" rel="noopener">Anki</a> 这个神一样的记忆软件。之所以称它为“记忆软件”而非“背单词软件”，是因为它几乎支持所有需要记忆的内容格式，而不像上文提到的众多“专业软件”那样只能用来背特定语种的单词。实际上，只要你愿意，Anki 可以被用来记忆唐诗、成语，甚至<a href="https://baike.baidu.com/item/%E7%BA%B3%E7%93%A6%E9%9C%8D%E5%AF%86%E7%A0%81/9482868?fromtitle=%E7%BA%B3%E7%93%A6%E8%8D%B7%E5%AF%86%E7%A0%81&amp;fromid=6646373" title="那瓦霍密码的百度百科词条" target="_blank" rel="noopener">纳瓦霍语</a>。</p>
-<p>简单来说，Anki 是一种利用类似于 Flash Cards 的卡片机制来辅助记忆的，支持高度定制化的工具。到目前为止，我发现它具有以下几个传统背单词软件所不具备的优点：</p>
-<ul>
-<li>支持几乎所有内容形式，只有你想不到，没有 Anki 不支持的内容。</li>
-<li>不仅支持传统的翻面单词卡，还支持诸如填空题、选择题等多种答题形式，满足各类需求。</li>
-<li>根据<a href="https://baike.baidu.com/item/%E9%81%97%E5%BF%98%E6%9B%B2%E7%BA%BF/7278665?fromtitle=%E8%89%BE%E5%AE%BE%E6%B5%A9%E6%96%AF%E9%81%97%E5%BF%98%E6%9B%B2%E7%BA%BF&amp;fromid=3905802" title="艾宾浩斯遗忘曲线的百度百科词条" target="_blank" rel="noopener">艾宾浩斯遗忘曲线</a>科学定制学习和温习计划，保证高效利用精力和时间。</li>
-<li>云端实时备份词库和学习进度，并支持包括 PC、Mac、iOS、Android 等类操作系统，让用户可以轻松跨平台同步学习进度，随时随地进行学习。</li>
-<li>支持牌组导出导入，结合活跃的社区和各类资源分享渠道，使那些不愿意自己制作牌组的用户也能通过下载并导入前人制作好的卡组来高效进入学习状态。</li>
-</ul>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200326/anki3.png"></p>
-<p>Anki 的桌面端（包括 Windows 和 Mac）和手机端（包括 iOS 和 Android）的功能几乎完全相同，但前者完全免费而后者必须付费。如果你既不愿意付费也不想使用盗版，那么只使用桌面版即可。这样除了无法获得多平台同步学习的体验外，不会受到任何具体功能上的限制。</p>
-<p>Anki 的桌面端界非常简洁，你可以通过点击“新建记忆库”来自定义录入自己的牌组，也可以点击“获取牌组”以进入 Anki 官网浏览和下载其他用户上传的现成牌组。另外，在诸如淘宝或闲鱼等交易网站上也会有卖家有偿销售自己制作的 Anki 牌组，如果你购买了那些牌组，那么只要点击“导入文件”按钮即可将买来的牌组轻松导入。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200326/anki2.png"></p>
-<p>以手机端为例，在学习牌组的过程中，我们可以根据自己的答题状况点选下方不同颜色的按钮。这样，Anki 就会将相应卡片加入对应的温习序列中，并根据艾宾浩斯遗忘曲线，结合我们后续的回忆状况，动态地安排学习计划。可以说，Anki 的这种根据个人记忆状况动态定制学习计划的特点，是使它从众多“背单词软件”中脱颖而出的最根本原因。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200326/anki4.jpg"></p>
-<p>去年的这个时候，我正在准备所报考学校的研究生复试。如果说我的研究生外语考试能够取得理想成绩“多半”是我自己努力的结果的话，那么 Anki 便是那“少半”的原因。</p>]]></content:encoded>
+      <description>&lt;p&gt;对包括我在内的相当一部分人来说，记单词几乎已经成为一种刚需。无论是为了应付考试、取得各类等级证书还是单纯提高语言能力，词汇都是我们不得不正面应对的挑战。而在如今这个互联网时代，捧着厚重的词汇书或者词典进行背诵的方式已经被大多数人所抛弃，因为它既枯燥又低效，不仅会消磨我们学习一门语言的热情，还不利于培养语感、付诸实用。&lt;/p&gt;</description>
     </item>
     <item>
       <title>MacOS 10.15.4 更新 iCloud 文件分享功能</title>
       <link>https://masonblog.github.io/post/blog20200325/</link>
       <pubDate>Wed, 25 Mar 2020 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20200325/</guid>
-      <description>日常科技见闻</description>
-      <content:encoded><![CDATA[<p>相比于国外而言，中国国内的公共网盘生态好似一潭死水。这其中固然也有厂商不思进取的缘故，但更主要的还是政府对网络信息的严密审查，使得公共网盘服务提供商很难在维持自身生存和提升用户体验之间取得平衡。</p>
-<p>经过几年前的一阵腥风血雨之后，目前国内叫得上号的公共网盘只剩下<a href="https://pan.baidu.com/" title="百度网盘官网" target="_blank" rel="noopener">百度网盘</a>、<a href="https://union.ctfile.com/" title="域通网盘官网" target="_blank" rel="noopener">域通网盘</a>和<a href="https://www.jianguoyun.com/" title="坚果云官网" target="_blank" rel="noopener">坚果云</a>等。其中最臭名昭著的非百度莫属，其不仅对非会员用户有着苛刻的功能限制（地容量+下载限速），并且身型极其臃肿、拥有很多大多数用户完全用不到的冗余功能。相比之下，坚果云就要好不少，它对免费用户只做月流量方面的限制，除此之外既不限制速度也无冗余内容，可以说非常良心了。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200325/jianguoyun.png"></p>
-<p>然而与百度网盘生成链接直接分享的便捷性相比，坚果云在文件分享方面又稍显不足。因此在目前国内的公共网盘生态中，想要免费使用一个功能简洁、分享方便又不限速的网盘产品，几乎是不可能的。在这种情况下，很多用户开始转向<a href="https://baike.baidu.com/item/NAS/3465615" title="NAS 的百度百科词条" target="_blank" rel="noopener">私有云（NAS）</a>方案，即建立私人的网络存储服务器，如购买<a href="https://www.synology.cn/zh-cn" title="群晖官网" target="_blank" rel="noopener">群晖</a>或 <a href="https://www.qnap.com.cn/" target="_blank" rel="noopener">QNAP</a> 的 NAS 主机或自行组装一台 DIY 主机。但无论是前者还是后者，都具有一定的技术门槛，并不适合所有用户。</p>
-<p>作为苹果产品生态的基础性服务，<a href="https://www.icloud.com/" title="iCloud 官网" target="_blank" rel="noopener">iCloud</a> 几乎为所有苹果设备用户所使用。无论你是否意识到，只要你用 iPhone 拍过照，你的照片就会自动被存储到你的 iCloud 中。无论你是否付费，只要你注册一个 Apple ID，你就会得到 5GB 的 iCloud 存储空间。虽然这个容量并不算大，但仅用于存储日常拍摄的照片和办公文档，是完全足够的。多年来，icloud 的封闭性一致为人们诟病。可能是出于数据安全的考虑，苹果并不允许用户将自己 iCloud 网盘中的文件分享给其他人。但好消息是，这一状况在最新一次的 MacOS 系统更新中被彻底改变。</p>
-<p>今天上午，当我打开电脑准备开始今天的工作时，发现苹果推送了最新版本的 MacOS 10.15.4 系统更新，更新说明里面赫然写着羡慕一段话：</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200325/mac-update-10.15.4.png"></p>
-<p>也就是说，<strong>iCloud 终于支持对外分享文件了</strong>！于是我立刻更新了系统，想尽快体验一下用 icloud 分享文件的感觉。在新版本的系统中，只要在 icloud 文件上右击鼠标，选择“共享”，再点“添加用户”，即可生成该文件的分享链接。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200325/icloud-share-0.png"></p>
-<p>打开“添加用户”对话框后，我们可以对共享链接进行相应的设置。如果我们只想对受邀请的用户共享文件，那么不仅要在下方将“有权访问的用户”设置为“仅限于受邀用户”，还要在上方填写我们所邀请用户的邮箱。注意，目前“受邀用户”功能只对其他 Apple ID 开放，填写的邮箱也必须是 Apple ID 的登陆邮箱。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200325/icloud-share-1.png"></p>
-<p>如果我们想要创建公开共享链接，而不是只针对特定用户开放浏览，那么我们可以选择“任何拥有链接的用户”。这样，只要将我们创建的共享链接发送给其他人，拥有链接的用户就可以随时打开相应链接浏览文件。</p>
-<p>另外，我们可以在下方的选项中设置共享文件的访问权限。其中“仅查看”是只读权限；“可更改”是读写权限。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200325/icloud-share-2.png"></p>
-<p>设置完成后，通过点击下方的“共享”按钮，我们就为指定文件创建了一个共享链接。共享链接创建完成后，它会自动地被复制到我们的剪贴板中，并且相应 iCloud 文件的名称后面会出现“由我共享”字样，便于我们事后查找。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200325/icloud-share-3.png"></p>
-<p>现在，我们就可以将复制好的共享链接发给其他用户，让他们通过浏览器打开该共享链接来读取或更改相应文件了。值得一提的是，如果共享文件是 PDF 等格式的文件，打开共享链接即可直接预览其内容，而无需先下载再查看，非常方便。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200325/icloud-share-4.jpg"></p>]]></content:encoded>
+      <description>&lt;p&gt;相比于国外而言，中国国内的公共网盘生态好似一潭死水。这其中固然也有厂商不思进取的缘故，但更主要的还是政府对网络信息的严密审查，使得公共网盘服务提供商很难在维持自身生存和提升用户体验之间取得平衡。&lt;/p&gt;</description>
     </item>
     <item>
       <title>利用 Hugo 和 Github Pages 搭建自己的个人博客</title>
       <link>https://masonblog.github.io/post/blog20200310/</link>
       <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20200310/</guid>
-      <description>此页面记录了我利用 Hugo 和 Github Pages 搭建本站的全过程</description>
-      <content:encoded><![CDATA[<p>如你所见，此博客是一个完全静态的 HTML 站点。相比于 PHP 编写的动态站点，静态站点不仅访问速度更快，而且部署门槛低。一个完全不会编程的新手，只要花点时间掌握一些工具的用法，也能轻松建立属于自己的站点。</p>
-<p>本站由 <a href="https://gohugo.io/" title="Hugo官网" target="_blank" rel="noopener">Hugo</a> 渲染而成。它的使用方式非常简单，想要自学的朋友可以阅读 Hugo 的<a href="https://gohugo.io/documentation/" title="Hugo官方文档" target="_blank" rel="noopener">官方文档</a>。与其他博客系统一样，Hugo 也拥有着众多简介美观的<a href="https://themes.gohugo.io/" title="Hugo 官网主题页面" target="_blank" rel="noopener">主题</a>，本站所使用的皮肤是 <a href="https://github.com/flysnow-org/maupassant-hugo" title="Github库" target="_blank" rel="noopener">maupassant</a><strong>，</strong> 它最初是由 <a href="https://github.com/pagecho" title="Github主页" target="_blank" rel="noopener">cho</a> 开发于 <a href="https://typecho.org/" title="Typecho官网" target="_blank" rel="noopener">Typecho</a> 平台的主题，后被移植到众多其他平台，并被加入了许多新功能。</p>
-<p>Hugo 的所有页面都支持 Markdown 语法，借助它，我们可以在任何环境下撰写出格式统一的博文，而不用担心外观问题。Markdown 的学习成本很低，任何人都可以在极短的时间内学会。如果你有兴趣，可以通过<a href="https://www.runoob.com/markdown/md-tutorial.html" title="Markdown菜鸟教程" target="_blank" rel="noopener">这份教程</a>入门 Markdown。<a href="https://typora.io/" title="Typora官网" target="_blank" rel="noopener">Typora</a> 是我目前正在使用的一款支持多平台的轻量级 Markdown 编辑器，界面非常干净简洁，并且免费开源。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200310/typora.PNG"></p>
-<p>通过 Hugo 生成好完整的 HTML 页面之后，我们便可以将这些页面放到我们的服务器上了。你可以购买一台虚拟主机，或者更加省时省力地，利用 Git 仓库托管自己的网站。<a href="https://git-scm.com/" title="Git官网" target="_blank" rel="noopener">Git</a> 是一个应用非常广泛的版本管理工具，而 Git 仓库则是用于托管源代码的小型服务器。最著名的 Git 仓库非 <a href="https://github.com/" title="Gitlab官网" target="_blank" rel="noopener">Github</a> 和 <a href="https://gitlab.com/" title="Gitlab官网" target="_blank" rel="noopener">Gitlab</a>，它们在提供免费的源代码托管服务的同时，还支持 Pages 托管服务。所谓 Pages，原本是用于介绍和传播开源项目的说明文档，但其本身也是一个小型的 HTML 静态 Web 服务器。利用 Pages，我们可以轻松而免费地部署自己的静态网站。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200310/Github.PNG"></p>
-<p>如果你不希望通过手动的方式创建页面或修改配置，而是习惯于通过类似于 PHP 动态博客后台的可视化界面来编辑自己的网站，那么你可以尝试 <a href="https://forestry.io/" title="Forestry官网" target="_blank" rel="noopener">Forestry</a>。它是一个支持多种环境的可视化内容管理系统（CMS）。通过 Forestry，你可以像编辑动态博客那样管理自己的静态网站，并实时地将编辑好的网站推送到你的 Git 库中，实现真正的无代码建站。</p>
-<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200310/Forestry.PNG"></p>
-<p>本站即通过 Hugo + Forestry + Github 搭建而成，从开始自学到写这篇文章总共花费三天时间。在此感谢所有为开发上述工具或撰写相关教程而无偿付出时间与精力的前人们，若不是站在他们伟岸的肩膀上，本站不会有问世的这天。</p>
-<h2 id="教程目录">教程目录</h2>
-<ul>
-<li>Hugo 的安装与使用</li>
-<li>Git 的安装与使用</li>
-<li>Github 桌面版的使用</li>
-<li>利用 Forestry 实现可视化的内容管理</li>
-</ul>]]></content:encoded>
+      <description>&lt;p&gt;如你所见，此博客是一个完全静态的 HTML 站点。相比于 PHP 编写的动态站点，静态站点不仅访问速度更快，而且部署门槛低。一个完全不会编程的新手，只要花点时间掌握一些工具的用法，也能轻松建立属于自己的站点。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
