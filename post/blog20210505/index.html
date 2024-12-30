@@ -214,7 +214,7 @@
 <p><img loading="lazy" src="https://masonblog.github.io/images/blog20210505/wan-config-1.png"></p>
 <p>接口名称随意填写，接口协议选择“静态地址”，包括的接口选择当前 WAN 口绑定的物理接口。<strong>注意，接口协议尽量不要选择 DHCP，因为桥接模式下的光猫基本都会关闭自身的 DHCP 功能，不会给新接口自动分配 IP 地址，所以此时需要通过“静态地址”协议来手动指定新接口的 IP 地址</strong>。完成上述配置后，点击“提交”按钮进入新接口的详细配置页面。</p>
 <p><img loading="lazy" src="https://masonblog.github.io/images/blog20210505/wan-config-2.png"></p>
-<p><strong>IPv4 地址一定要设置成与光猫位于相同网段的地址</strong>。例如光猫连接软路由的 LAN 口的地址（即光猫后台地址）为 192.168.1.1，那么这里新接口的静态 IP 地址就要设置为 192.168.1.x。子网掩码设为 255.255.255.0，默认网关就是光猫 LAN 口的 IP 地址。有关 IP 网段和子网掩码的相关知识，可以参考<a href="https://www.zhihu.com/question/56895036">这篇文章</a>。完成上述设置后，点击“保存&amp;应用”按钮即可完成配置。</p>
+<p><strong>IPv4 地址一定要设置成与光猫位于相同网段的地址</strong>。例如光猫连接软路由的 LAN 口的地址（即光猫后台地址）为 192.168.1.1，那么这里新接口的静态 IP 地址就要设置为 192.168.1.x。子网掩码设为 255.255.255.0，默认网关就是光猫 LAN 口的 IP 地址。有关 IP 网段和子网掩码的相关知识，可以参考<a href="https://www.zhihu.com/question/56895036" target="_blank" rel="noopener">这篇文章</a>。完成上述设置后，点击“保存&amp;应用”按钮即可完成配置。</p>
 <p><img loading="lazy" src="https://masonblog.github.io/images/blog20210505/wan-config-3.png"></p>
 <p>新接口配置完成后，DNS 缓存会有一定延迟，导致无法正常浏览网页，此时重启一下软路由即可解决问题。如果软路由之前配置了端口映射，则<strong>新接口创建完成后，所有的端口映射都将失效，此时仍需经过一番针对防火墙的额外设置才能恢复正常</strong>。</p>
 <p>重新进入新接口的详细设置页面，在“防火墙设置”中，将原先 WAN 口的防火墙区域绑定到新接口。</p>

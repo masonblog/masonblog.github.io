@@ -208,12 +208,12 @@
 <figure class="entry-cover"><img loading="eager" src="https://masonblog.github.io/images/blog20210413/openvpn.png" alt="">
         
 </figure>
-  <div class="post-content"><p>我们日常使用的 Openwrt 软路由系统几乎都集成了 <a href="https://openwrt.org/docs/guide-user/luci/start">Luci 界面</a>，它不仅可以为用户提供便利的可视化后台管理界面，还在各路大神的贡献下，适配了众多简单易用的图形化 App。<a href="https://github.com/DavBfr/luci-app-openvpn-server">Luci-app-openvpn-server</a> 就是众多 Luci 应用中最常用的 VPN 服务器之一。</p>
+  <div class="post-content"><p>我们日常使用的 Openwrt 软路由系统几乎都集成了 <a href="https://openwrt.org/docs/guide-user/luci/start" target="_blank" rel="noopener">Luci 界面</a>，它不仅可以为用户提供便利的可视化后台管理界面，还在各路大神的贡献下，适配了众多简单易用的图形化 App。<a href="https://github.com/DavBfr/luci-app-openvpn-server" target="_blank" rel="noopener">Luci-app-openvpn-server</a> 就是众多 Luci 应用中最常用的 VPN 服务器之一。</p>
 <p>简单来说，luci-app-openvpn-server 就是 Openvpn 服务器端的 Luci 界面版本。有了它，你就可以告别难搞的命令行，通过图形化的网页直接配置你的 Openvpn 服务器端。结合各主流平台的 Openvpn 客户端软件，你可以随时随地接入自己家里的局域网，实现内网访问或文件传输等功能。</p>
 <p><img loading="lazy" src="https://masonblog.github.io/images/blog20210413/luci-openvpn.png"></p>
 <p>正常情况下，只要按照 Luci 界面的提示填写相应的配置信息，即可成功运行 Openvpn 的服务器端。此时只要点击“一键下载.Ovpn 文件”按钮，再将下载下来的配置文件直接导入 Openvpn 客户端软件即可开始使用。但 luci-app-openvpn-server 的默认配置支支持同时登陆一个客户端，当有第二个客户端尝试接入时，先前接入的第一个客户端就会被强制断线。然而在日常使用的过程中，多设备同时接入的情况是十分常见的，那么怎样才能使 luci-app-openvpn-server 可以同时接入多个设备呢？</p>
-<p>其实，Openvpn 的服务端是支持多设备同时接入的。根据 Github 上<a href="https://github.com/coolsnowwolf/lede/issues/6175">这个 Issue</a> 中的介绍，我们能够得知，只要在 Openvpn 的配置文件中加入一行代码，即可开启 Openvpn 的多设备同时接入功能：</p>
-<p>具体如何操作呢？首先，用 ssh 工具登陆你的 Openwrt 软路由。具体的工具及方法可自行搜索，我日常使用的是微软官方发布的 <a href="https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab">Windows Terminal</a> 终端工具。成功登陆 ssh 后，输入以下命令开始编辑 Openvpn 的配置文件：</p>
+<p>其实，Openvpn 的服务端是支持多设备同时接入的。根据 Github 上<a href="https://github.com/coolsnowwolf/lede/issues/6175" target="_blank" rel="noopener">这个 Issue</a> 中的介绍，我们能够得知，只要在 Openvpn 的配置文件中加入一行代码，即可开启 Openvpn 的多设备同时接入功能：</p>
+<p>具体如何操作呢？首先，用 ssh 工具登陆你的 Openwrt 软路由。具体的工具及方法可自行搜索，我日常使用的是微软官方发布的 <a href="https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab" target="_blank" rel="noopener">Windows Terminal</a> 终端工具。成功登陆 ssh 后，输入以下命令开始编辑 Openvpn 的配置文件：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vim /etc/config/openvpn
 </span></span></code></pre></div><p>如果没能成功打开配置文件的编辑界面，很可能是因为你的 Openwrt 系统没有安装 vim （一款命令行文本编辑器）。至于 vim 的安装方法，还请自行搜索，本文不再赘述。</p>
 <p>进入配置文件的编辑界面后，按键盘上的 I 健进入文本编辑模式，将光标移到配置文件末尾，将以下代码复制粘贴到配置文件最后一行。</p>

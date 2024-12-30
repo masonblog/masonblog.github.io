@@ -209,17 +209,17 @@
         
 </figure>
   <div class="post-content"><p>经常阅读电子书并且用过 Kindle 的人应该都体会过整理电子书时的痛苦。尤其是像我这种经常下载电子书文件再导入到 Kindle 上进行阅读的人（或是为了省钱、或是因为 Kindle 商城中没有我们想要阅读的书），对于那些有着各自不同的标题、作者、封面，以及文件格式的纷繁复杂的电子书，缺乏一套行之有效的管理方案，进而充分管理自己的阅读进度与时间。</p>
-<p>长期以来，PC 和 Mac 端的 <a href="https://calibre-ebook.com/" title="Calibre 官网">Calibre</a> 都是一个差强人意的电子书管理解决方案。它不仅支持多平台、功能强大（支持电子书整理、编辑、格式转换、一键推送到 Kindle 等），而且完全免费。那我为什么要将这么厉害的软件说成是“差强人意”呢？因为 Calibre 已经多年没有较大的功能更新，作为一款电子书管理软件，它已经无法适应当下人们已经习以为常的需求。具体而言，Calibre 具有以下缺点：</p>
+<p>长期以来，PC 和 Mac 端的 <a href="https://calibre-ebook.com/" title="Calibre 官网" target="_blank" rel="noopener">Calibre</a> 都是一个差强人意的电子书管理解决方案。它不仅支持多平台、功能强大（支持电子书整理、编辑、格式转换、一键推送到 Kindle 等），而且完全免费。那我为什么要将这么厉害的软件说成是“差强人意”呢？因为 Calibre 已经多年没有较大的功能更新，作为一款电子书管理软件，它已经无法适应当下人们已经习以为常的需求。具体而言，Calibre 具有以下缺点：</p>
 <ol>
 <li>界面老旧（或曰古朴？），看起来像是十年前的软件；</li>
 <li>启动和运行速度较慢，操作繁琐；</li>
 <li>不支持多设备同步，不提供云存储服务（这是最重要的一点）。</li>
 </ol>
-<p>对于像我这样学习或工作繁忙，几乎没有固定的整段时间使用同一台终端设备的人来说，多端同步和云存储几乎是不可或缺的功能。而且在网页程序和微信小程序等日益普及的今天，有时连下载一个专门的应用程序都显得繁琐（可能是被这几年的技术进步惯坏了把）。因此，最好有一款类似于 <a href="https://www.plex.tv/" title="Plex 官网">Plex</a> 影视库的电子书管理服务器应用，能够让我随时随地打开一个网页就能管理和阅读自己的电子书。幸运的是，这样的软件确实存在，它便是 Calibre 的继任者—— <a href="https://github.com/janeczku/calibre-web" title="Calibre Web 的 Github 页面">Calibre Web</a>。</p>
-<p>下图就是我用 Calibre Web 在自己的 <a href="https://baike.baidu.com/item/NAS/3465615" title="NAS 的百度百科页面">NAS</a> 上搭建的个人电子书管理网站（或曰个人电子图书馆？）。通过这个网站，我可以轻松地在各种终端设备上上传、修改、整理、推送各种格式的电子书。由于是网页端，因此我不用担心海量电子书会占用手机或电脑的硬盘容量，也不用担心多端同步的问题。更加难能可贵的是，由于 Calibre Web 开发得比较晚近，因此它的界面也很符合当下的主流审美标准。</p>
+<p>对于像我这样学习或工作繁忙，几乎没有固定的整段时间使用同一台终端设备的人来说，多端同步和云存储几乎是不可或缺的功能。而且在网页程序和微信小程序等日益普及的今天，有时连下载一个专门的应用程序都显得繁琐（可能是被这几年的技术进步惯坏了把）。因此，最好有一款类似于 <a href="https://www.plex.tv/" title="Plex 官网" target="_blank" rel="noopener">Plex</a> 影视库的电子书管理服务器应用，能够让我随时随地打开一个网页就能管理和阅读自己的电子书。幸运的是，这样的软件确实存在，它便是 Calibre 的继任者—— <a href="https://github.com/janeczku/calibre-web" title="Calibre Web 的 Github 页面" target="_blank" rel="noopener">Calibre Web</a>。</p>
+<p>下图就是我用 Calibre Web 在自己的 <a href="https://baike.baidu.com/item/NAS/3465615" title="NAS 的百度百科页面" target="_blank" rel="noopener">NAS</a> 上搭建的个人电子书管理网站（或曰个人电子图书馆？）。通过这个网站，我可以轻松地在各种终端设备上上传、修改、整理、推送各种格式的电子书。由于是网页端，因此我不用担心海量电子书会占用手机或电脑的硬盘容量，也不用担心多端同步的问题。更加难能可贵的是，由于 Calibre Web 开发得比较晚近，因此它的界面也很符合当下的主流审美标准。</p>
 <p><img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_10-29-50.jpeg"></p>
-<p>关于 Calibre Web 的搭建方法，网络上有很多前辈们撰写的教程，他们已经说得非常详细了。首先，你必须拥有一台能够稳定运行的服务器或 NAS（其实任意一台普通电脑都是可以的，只要你舍得让它 7*24 小时运行）。然后，你需要在你的设备上搭建一个 <a href="https://www.docker.com/" title="docker 官网">docker</a> 环境，因为 Calibre Web 需要 docker 作为运行的载体。最后，经过简单的安装和配置，你就可以拥有一个属于自己的电子书管理网站了。</p>
-<p>这里以<a href="https://www.synology.cn/zh-cn" title="群辉官网">群辉</a>为例。首先在“控制面板”中创建一个新的共享文件夹，用于存放 Calibre Web 的数据库和电子书资源。我这里将它命名为&quot;Books&quot;。创建完成后切记要开放该文件夹对所有用户的读写权限，否则 Calibre Web 将无法正常运行。</p>
+<p>关于 Calibre Web 的搭建方法，网络上有很多前辈们撰写的教程，他们已经说得非常详细了。首先，你必须拥有一台能够稳定运行的服务器或 NAS（其实任意一台普通电脑都是可以的，只要你舍得让它 7*24 小时运行）。然后，你需要在你的设备上搭建一个 <a href="https://www.docker.com/" title="docker 官网" target="_blank" rel="noopener">docker</a> 环境，因为 Calibre Web 需要 docker 作为运行的载体。最后，经过简单的安装和配置，你就可以拥有一个属于自己的电子书管理网站了。</p>
+<p>这里以<a href="https://www.synology.cn/zh-cn" title="群辉官网" target="_blank" rel="noopener">群辉</a>为例。首先在“控制面板”中创建一个新的共享文件夹，用于存放 Calibre Web 的数据库和电子书资源。我这里将它命名为&quot;Books&quot;。创建完成后切记要开放该文件夹对所有用户的读写权限，否则 Calibre Web 将无法正常运行。</p>
 <p><img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_10-59-19.jpeg"></p>
 <p>共享文件夹配置完成后，在群辉的套件中心中选择安装 docker 并打开它。再在“注册表”页面中搜索“Calibre-web”，此处途中框选的三个镜像都可以下载，它们的区别并不大，这里主要推荐 linuxserver/Clibre-web，在双击后弹出的对话框中选择“latest”并点“确定”开始下载。</p>
 <p><img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_10-47-03.jpeg"></p>
