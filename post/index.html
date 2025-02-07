@@ -179,27 +179,24 @@
 <figure class="entry-cover"><img loading="lazy" src="https://masonblog.github.io/images/blog20250207/deepseek.png" alt="">
 </figure>
   <header class="entry-header">
-    <h2 class="entry-hint-parent">利用Deepseek R1第三方API实现AI辅助应用
+    <h2 class="entry-hint-parent">利用第三方 Deepseek API 实现 AI 辅助应用
     </h2>
   </header>
   <div class="entry-content">
-    <p>最近一段时间，AI圈最热的话题莫过于Deepseek。它作为国内团队“弯道超车”的典型案例，同时受到两种不同立场群体的吹捧与批评。不过，抛开政治和技术上的争论，单从普通人使用 AI 的成本与门槛来看，Deepseek确实做到了“AI 的普惠性”。与OpenAI等国外大模型运营商相比，Deepseek的价格极为低廉，对想要学习 AI 应用，而经济条件又非常有限的用户来说，确实是最好的选择。
-然而，受自身承载能力和大规模黑客攻击的限制，Deepseek的官方服务器在最近一段时间经常会出现连接不稳定的问题，这给用户带来了不便。所幸，Deepseek 大模型的开源属性使其能够被部署在任何第三方服务器上。硅基流动便是众多第三方 AI 大模型供应商之一，它与华为云合作，以低廉的价格，向用户提供Deepseek r1大模型的API接口应用。用户可以通过这一接口顺利使用Deepseek的模型功能。
-获取第三方 Deepseek API 首先，我们需要在硅基流动的官网注册一个账号，每个新账号都会赠送14 CNY的免费额度，可以用来免费体验各个大模型的魅力。如果免费额度用完，想要付费充值的话，就必须完成实名认证，这也是中国特色的监管要求。
-登录硅基流动的后台，我们就能看到它所支持的一系列大模型，其中就包含当下最热门的Deepseek R1。
-想要调用这些大模型为我们服务，首先要生成我们自己的API Key。点击硅基流动后台左侧的API 密钥，再点击右上角的新建 API 密钥按钮，来新建一个API Key。
-结合Chatbox使用Deepseek R1大模型 Chatbox是一款开源的AI聊天机器人客户端，支持包括个人电脑和移动端几乎所有平台（包括网页端），能够调用多种AI模型，以实现文字对话、文生图、程序编写、文案创作等诸多用途。
-出于数据安全与隐私保护的考虑，Chatbox的所有运行数据都只存储在本地。也就是说，Chatbox本身只是一个向AI大模型传递数据的工具，它本身并不记录用户的数据。因此，即使我们在不同设备上同时使用Chatbox，也无法做到配置设置和历史记录的多设备共享。
-硅基流动的官方文档中提供了将其API接入Chatbox的指引。这里简单讲一下配置的重点。软件安装好以后，第一次打开会自动弹出设置界面。选择&#34;添加自定义提供方&#34;，API 域名填写https://api.siliconflow.cn即可。更新版本的Chatbox已经原生支持了硅基流动的API接口，只要在模型提供方处选择SILICONFLOW API，再填写自己的API Key，并选择想要调用的模型即可。
+    <p>最近一段时间，AI 圈最热的话题莫过于 Deepseek。它作为国内团队“弯道超车”的典型案例，同时受到两种不同立场群体的吹捧与批评。不过，抛开政治和技术上的争论，单从普通人使用 AI 的成本与门槛来看，Deepseek 确实做到了“AI 的普惠性”。与 OpenAI 等国外大模型运营商相比，Deepseek 的价格极为低廉，对想要学习 AI 应用，而经济条件又非常有限的用户来说，确实是最好的选择。
+然而，受自身承载能力和大规模黑客攻击的限制，Deepseek 的官方服务器在最近一段时间经常会出现连接不稳定的问题，这给用户带来了不便。所幸，Deepseek 大模型的开源属性使其能够被部署在任何第三方服务器上。硅基流动便是众多第三方 AI 大模型供应商之一，它与华为云合作，以低廉的价格，向用户提供Deepseek r1大模型的API接口应用。用户可以通过这一接口顺利使用 Deepseek 的模型功能。
+获取第三方 Deepseek API 首先，我们需要在硅基流动的官网注册一个账号，每个新账号都会赠送 14 CNY 的免费额度，可以用来免费体验各个大模型的魅力。如果免费额度用完，想要付费充值的话，就必须完成实名认证，这也是中国特色的监管要求。
+登录硅基流动的后台，我们就能看到它所支持的一系列大模型，其中就包含当下最热门的 Deepseek R1。
+想要调用这些大模型为我们服务，首先要生成我们自己的 API Key。点击硅基流动后台左侧的API 密钥，再点击右上角的新建 API 密钥按钮，来新建一个 API Key。
+结合 Chatbox 使用 Deepseek R1 大模型 Chatbox 是一款开源的AI聊天机器人客户端，支持包括个人电脑和移动端几乎所有平台（包括网页端），能够调用多种AI模型，以实现文字对话、文生图、程序编写、文案创作等诸多用途。
+出于数据安全与隐私保护的考虑，Chatbox 的所有运行数据都只存储在本地。也就是说，Chatbox 本身只是一个向AI大模型传递数据的工具，它本身并不记录用户的数据。因此，即使我们在不同设备上同时使用 Chatbox，也无法做到配置设置和历史记录的多设备共享。
+硅基流动的官方文档中提供了将其API接入 Chatbox 的指引。这里简单讲一下配置的重点。软件安装好以后，第一次打开会自动弹出设置界面。选择&#34;添加自定义提供方&#34;，API 域名填写https://api.siliconflow.cn即可。更新版本的 Chatbox 已经原生支持了硅基流动的 API 接口，只要在模型提供方处选择SILICONFLOW API，再填写自己的 API Key，并选择想要调用的模型即可。
 值得注意的是，硅基流动同时提供了Pro/deepseek-ai/DeepSeek-R1和deepseek-ai/DeepSeek-R1两个R1模型，只有不带Pro的那个模型支持消耗平台赠送的免费额度，带Pro的必须付费充值后才能使用，选的时候不要选错了。
-配置好后点击保存，就可以开始和我们的AI大模型聊天了。Chatbox软件内预置了很多好用的Prompt场景，可以都尝试一下。
-结合VS Code的Cline插件使用Deepseek R1大模型 对于开发者，Visual Studio Code是一个非常流行的代码编辑器，同时也支持丰富的AI插件。我们可以通过这些插件让VS Code调用硅基流动的Deepseek R1大模型API，以实现AI辅助编程的应用。
-下载和安装好VS Code软件后，在它的扩展市场中搜索“AI”相关插件，比如Cline，它是一款能够调用各种AI大模型来辅助用户编写程序的插件，可以提供超越代码完成或技术支持的帮助。Cline 支持 OpenRouter、Deepseek、OpenAI、Google Gemini 和 GCP Vertex 等 API 提供商。你还可以配置任何兼容 OpenAI 的 API，或通过 LM Studio/Ollama 使用本地模型。
-打开VS Code软件，点击左侧的插件商店按钮，在搜索框中输入Cline，再搜索到的Cline页面中点击安装，即可在VS Code软件中安装Cline插件。
+配置好后点击保存，就可以开始和我们的AI大模型聊天了。Chatbox 软件内预置了很多好用的 Prompt 场景，可以都尝试一下。
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2025-02-07 00:00:00 +0000 UTC'>2025-02-07</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 利用Deepseek R1第三方API实现AI辅助应用" href="https://masonblog.github.io/post/blog20250207/"></a>
+  <a class="entry-link" aria-label="post link to 利用第三方 Deepseek API 实现 AI 辅助应用" href="https://masonblog.github.io/post/blog20250207/"></a>
 </article>
 
 <article class="post-entry"> 
