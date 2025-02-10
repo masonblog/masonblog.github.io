@@ -176,6 +176,28 @@
 </header>
 
 <article class="post-entry"> 
+<figure class="entry-cover"><img loading="lazy" src="https://masonblog.github.io/images/blog20241227/mijia-ha.png" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">HomeAssistant 米家官方集成的安装与使用
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>背景 我在2022年4月的一篇文章中介绍了 Home Assistant 的安装与配置方法。彼时，要将小米的众多智能家居接入 HA，我们必须安装一个第三方 HA 集成，即 Hass-Xiaomi-Miot。它由个人开发者 al-one 在 Github 上发布，一直以来都是我们将米家接入 HA 的唯一选择。直到最近，小米在 Github 上发布了官方的 HA 集成：HA_Xiaomi_Home，填补了米家接入 HA 的空白。
+虽然这又是一个“官方逼死同人”的故事，但小米的开源精神仍然值得称赞。与第三方集成相比，小米官方的集成对自家产品支持更好， 能够帮助我们更加轻松地将米家接入 HA，进而实现米家与 Homekit 生态的互联互通。今天，我们将跟随 HA_Xiaomi_Home 的官方文档，详细介绍一下这个集成的安装及使用方法。
+通过 HASC 安装米家官方集成 米家官方集成有多种安装方式，其中最简单，也是最新手友好的方式，就是通过 HACS 进行安装。HASC 的安装方法详见我的这篇文章，此处不再赘述。由于米家官方集成暂未加入 HASC 的官方库，我们需要通过添加自定义库链接的方式，将米家官方集成的库链接添加到 HASC 目录。登入 HA 后台，点击左侧的HASC，再点右上角的三个点，选择Custom Repositories，新建一个自定义库链接，如下图所示。
+库类型（Catagory）选择Integration；库链接填写下面的链接：
+https://github.com/XiaoMi/ha_xiaomi_home.git 最后点击ADD按钮，如果网络没有问题的话，米家官方集成的安装链接就会被添加到 HASC 的自定目录中。再依次点击设置—设备与集成—添加集成，在搜索框中输入Xiaomi，在弹出的结果中选择XIaomi Home。接下来，按照提示登录米家账号即可。
+注意⚠️：如果你和我一样，使用 Docker 作为 HA 的安装环境，那么大概率会在米家账号验证时遇到无法跳转的问题。无法跳转的核心原因在于，米家官方集成默认使用 homeassistant.local:8123这个本地域名来跳转回 HA 页面，而 Docker 容器中的 HA 无法在本地局域网中广播.local本地域名。因此，在验证米家账号并跳转回 HA 页面时，我们需要手动将浏览器地址栏中的homeassistant.local:8123改为IP:8123。这样就能完成米家账号的验证工作。以上方法参考自米家集成仓库的 Issue#8。
+停用多余的米家实体 当我们安装好米家官方集成并完成账号验证后，HA 就会自动搜索并添加米家的各种设备。同时，我们的家庭中会出现一堆乱七八糟的实体。所谓实体（Unit）是 HA 用来定义设备最小子功能单元的概念。通常一个设备会对应多个实体。例如，一台『热水器』设备，可以同时拥有『当前水温』、『目标水温』、『预热开关』、『增压开关』等多个实体。
+然而在日常使用过程中，我们并不需要将每一个设备都拆分成诸多零碎的子功能单元，这样不仅使人迷惑，还会让我们的家庭界面变得极其繁琐。因此，在将 HA 链接到 Homekit 之前，我们需要对米家集成添加进来的众多实体进行筛选，仅保留我们日常使用过程中最需要的开关和数值即可。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-12-27 00:00:00 +0000 UTC'>2024-12-27</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to HomeAssistant 米家官方集成的安装与使用" href="https://masonblog.github.io/post/blog20241227/"></a>
+</article>
+
+<article class="post-entry"> 
   <header class="entry-header">
     <h2 class="entry-hint-parent">关于个人博客迁移的絮叨
     </h2>
@@ -249,21 +271,6 @@
   </div>
   <footer class="entry-footer"><span title='2022-05-18 00:00:00 +0000 UTC'>2022-05-18</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 如何配置路由器的 DHCP ?" href="https://masonblog.github.io/post/blog20220518/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover"><img loading="lazy" src="https://masonblog.github.io/images/blog20220409/HA.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">利用 Home Assistant 搭建智能家居中枢
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>背景 随着智能家居的日益普及，各大互联网巨头纷纷进场，导致智能家居的平台和品牌越来越多，且各个平台和品牌间的产品无法互通。例如，你无法用米家的智能开关来控制 homekit 的智能灯，除非你的产品支持双平台，但目前同时支持两个以上平台的智能家居少之又少。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2022-04-09 00:00:00 +0000 UTC'>2022-04-09</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 利用 Home Assistant 搭建智能家居中枢" href="https://masonblog.github.io/post/blog20220409/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
