@@ -173,6 +173,25 @@
   </header>
   <div class="entry-content">
     <p>早在4年前刚开始搭建本博客时，我曾写过一篇简短的文章，介绍了我建站时使用的一些工具。如今，那篇文章中提到的很多工具都已过时。加之本次博客整体迁移，又使用了全新的 PaperMod 主题，很多功能的配置方式都发生了变化。于是我决定重新写一篇文章，记录一下我在折腾这个新主题过程中的一些技术细节。
+配置文件语法 Hugo 同时支持3钟配置文件语法，分别为 YAML、TOML和JSON。它们都是常用的数据序列化和配置文件格式，且各有特点和适用场景。
+YAML (YAML Ain’t Markup Language) YAML是一种人类可读的数据序列化格式，常用于配置文件和数据交换，它的语法格式为：
+name: John Doe age: 30 city: New York hobbies: - reading - traveling 它的特点为：
+语法简洁，易于阅读和编写
+支持注释、多行字符串和复杂的数据结构
+使用缩进表示层级关系
+TOML (Tom’s Obvious, Minimal Language) TOML是一种旨在成为最小配置文件格式的语言，设计目标是易于阅读和编写，它的语法格式为：
+[person] name = &#34;John Doe&#34; age = 30 city = &#34;New York&#34; [person.hobbies] favorite = &#34;reading&#34; others = [&#34;traveling&#34;, &#34;photography&#34;] 它的特点为：
+语法直观，易于理解
+支持注释
+支持多种数据类型，包括日期时间
+允许创建嵌套的数据结构
+JSON (JavaScript Object Notation) JSON是一种轻量级的数据交换格式，最初源于JavaScript，但现在已广泛应用于各种编程语言，它的语法格式为：
+{ &#34;name&#34;: &#34;John Doe&#34;, &#34;age&#34;: 30, &#34;city&#34;: &#34;New York&#34; } 它的特点为：
+简洁易读
+解析速度快
+与JavaScript高度兼容
+支持基本数据类型：字符串、数字、布尔值、null、对象和数组
+综合考虑易读性及与当前主题的兼容性，我选择的配置文件语法为YAML，以下所有配置命令，都将以YAML格式呈现。值得注意的是，YAML对缩进非常敏感，在利用 Hugo 进行渲染时，哪怕某一行少了一个空格，都会渲染失败，所以要特别注意。
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-12-30 00:00:00 +0000 UTC'>2024-12-30</span>&nbsp;·&nbsp;Mason</footer>

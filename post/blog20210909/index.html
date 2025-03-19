@@ -278,6 +278,7 @@
 <p>以上配置完成后，即可点击“Deploy the container”按钮创建容器。如果网络环境较好，等待半分钟左右即可完成容器的创建。至此，我们不仅手动配置完成了 jellyfin 的 Docker 容器，还将核心显卡的驱动文件直通给了该容器。最后，只要进入 Jellyfin 的控制台，在“播放”选项卡中，将“硬件加速”类型选为“Video Acceleration API (VAAPI)”，并在“VA API 设备”处填写 <code>/dev/dri/renderD128</code>，即可调用服务器的核显驱动进行硬件解码了。</p>
 <p><img loading="lazy" src="https://masonblog.github.io/images/blog20210909/jellyfin-config.png"></p>
 
+
   </div>
 
   <footer class="post-footer">
