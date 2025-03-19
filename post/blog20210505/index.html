@@ -10,7 +10,7 @@
 <meta name="description" content="日常技术记录">
 <meta name="author" content="Mason">
 <link rel="canonical" href="https://masonblog.github.io/post/blog20210505/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.277f0de547bc8856e38ac0fb5d0d4bcccfae7e3a8a97cece45e8dc352377c4da.css" integrity="sha256-J38N5Ue8iFbjisD7XQ1LzM&#43;ufjqKl87ORejcNSN3xNo=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ac7ad2a77424ec2f30840495bfd19507d0193159e0c03e9a7046b855562c4acd.css" integrity="sha256-rHrSp3Qk7C8whASVv9GVB9AZMVngwD6acEa4VVYsSs0=" rel="preload stylesheet" as="style">
 <link rel="icon" href="https://masonblog.github.io/favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="https://masonblog.github.io/favicon/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="https://masonblog.github.io/favicon/favicon-32x32.png">
@@ -158,7 +158,7 @@
         <div class="logo">
             <a href="https://masonblog.github.io/" accesskey="h" title="Mason&#39;s Blog (Alt + H)">Mason&#39;s Blog</a>
             <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -219,7 +219,8 @@
 
 </div>
   </header> 
-<figure class="entry-cover"><img loading="eager" src="https://masonblog.github.io/images/blog20210505/modem.jpg" alt="">
+<figure class="entry-cover">
+        <img loading="eager" src="https://masonblog.github.io/images/blog20210505/modem.jpg" alt="">
         
 </figure>
   <div class="post-content"><p>光猫开启桥接模式后，软路由作为默认网关进行拨号与 NAT，导致客户端设备无法获取与光猫相同网段的 IP 地址，进而也就无法登陆光猫的后台管理界面。虽然在日常使用的过程中，光猫的配置几乎是一次性的，其后台管理界面的使用频率很低，但是每次登陆光猫后台都要通过有线或无线（若有）的方式将设备直接与光猫相连也着实麻烦。因此需要通过一些简单的配置，实现桥接模式下，连接软路由的同时可以随时访问光猫后台。</p>
