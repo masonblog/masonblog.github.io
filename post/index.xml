@@ -585,13 +585,14 @@
 <p>站点地图是一个重要的网站文件，它为搜索引擎和用户提供了网站结构的概览。要为 Hugo 站点创建站点地图，在配置文件<code>config.yml</code>中添加以下内容：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">sitemap</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">changefreq</span>: <span style="color:#ae81ff">weekly</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">filename</span>: <span style="color:#ae81ff">sitemap.xml</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">priority</span>: <span style="color:#ae81ff">0.5</span>
-</span></span></code></pre></div><p>这样，Hugo 会在网站根目录下生成一个<code>sitemap.xml</code>文件，以便搜索引擎了解网站结构。</p>
+</span></span></code></pre></div><p>其中，<code>changefreq</code>表示更新频率，<code>filename</code>表示生成的站点地图文件名，<code>priority</code>表示页面的默认优先级。这样，Hugo 会在网站根目录下生成一个<code>sitemap.xml</code>文件，以便搜索引擎了解网站结构。</p>
 <h2 id="创建-robotstxt">创建 robots.txt</h2>
 <p><code>Robots.txt</code>是一个位于网站根目录的纯文本文件，用于将站点地图提交给搜索引擎，指导搜索引擎如何访问和索引网站内容。要为 Hugo 站点创建<code>robots.txt</code>，在配置文件<code>config.yml</code>中添加以下内容：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableRobotsTXT</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><p>这样，Hugo 会自动在网站根目录下生成<code>Robots.txt</code>文件。</p>
-<h1 id="参阅">参阅</h1>
+<h1 id="参考链接">参考链接</h1>
 <p><a href="https://gohugo.io/about/introduction/" target="_blank" rel="noopener">Introduction | Hugo</a></p>
 <p><a href="https://github.com/adityatelange/hugo-PaperMod/wiki" target="_blank" rel="noopener">Home · adityatelange/hugo-PaperMod Wiki</a></p>
 <p><a href="https://dvel.me/posts/hugo-papermod-config/" target="_blank" rel="noopener">折腾 Hugo &amp; PaperMod 主题 - Dvel&rsquo;s Blog</a></p>
