@@ -163,6 +163,30 @@
 
 <article class="post-entry tag-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20210505/modem.jpg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">桥接模式下 Openwrt 软路由直接访问光猫后台
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>光猫开启桥接模式后，软路由作为默认网关进行拨号与 NAT，导致客户端设备无法获取与光猫相同网段的 IP 地址，进而也就无法登陆光猫的后台管理界面。虽然在日常使用的过程中，光猫的配置几乎是一次性的，其后台管理界面的使用频率很低，但是每次登陆光猫后台都要通过有线或无线（若有）的方式将设备直接与光猫相连也着实麻烦。因此需要通过一些简单的配置，实现桥接模式下，连接软路由的同时可以随时访问光猫后台。
+实现原理其实很简单，只要在现有 DHCP 服务端正常工作的前提下，为软路由的 WAN 口再行分配一个与光猫网段相同的 IP 地址即可，前提是你的软路由支持多 WAN。
+以 Openwrt 系统为例，在“网络—接口”界面点击“添加新接口”，进入新接口创建页面。
+接口名称随意填写，接口协议选择“静态地址”，包括的接口选择当前 WAN 口绑定的物理接口。注意，接口协议尽量不要选择 DHCP，因为桥接模式下的光猫基本都会关闭自身的 DHCP 功能，不会给新接口自动分配 IP 地址，所以此时需要通过“静态地址”协议来手动指定新接口的 IP 地址。完成上述配置后，点击“提交”按钮进入新接口的详细配置页面。
+IPv4 地址一定要设置成与光猫位于相同网段的地址。例如光猫连接软路由的 LAN 口的地址（即光猫后台地址）为 192.168.1.1，那么这里新接口的静态 IP 地址就要设置为 192.168.1.x。子网掩码设为 255.255.255.0，默认网关就是光猫 LAN 口的 IP 地址。有关 IP 网段和子网掩码的相关知识，可以参考这篇文章。完成上述设置后，点击“保存&amp;应用”按钮即可完成配置。
+新接口配置完成后，DNS 缓存会有一定延迟，导致无法正常浏览网页，此时重启一下软路由即可解决问题。如果软路由之前配置了端口映射，则新接口创建完成后，所有的端口映射都将失效，此时仍需经过一番针对防火墙的额外设置才能恢复正常。
+重新进入新接口的详细设置页面，在“防火墙设置”中，将原先 WAN 口的防火墙区域绑定到新接口。
+然后进入“网络—防火墙—端口转发”页面，将原有的端口映射配置重新“保存&amp;应用”一下即可。
+至此，如果不出意外的话，我们便可在桥接模式下随时随地访问光猫的后台管理界面了。
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-05-05 00:00:00 +0000 UTC'>2021-05-05</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 桥接模式下 Openwrt 软路由直接访问光猫后台" href="https://masonblog.github.io/post/blog20210505/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20210502/Parsec.png" alt="">
 </figure>
   <header class="entry-header">
@@ -250,28 +274,6 @@ Trilium 的官方文档中提供了通过 Docker 安装 Trilium Server 的具体
   </div>
   <footer class="entry-footer"><span title='2021-03-20 00:00:00 +0000 UTC'>2021-03-20</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 利用 Docker 搭建 Trilium Notes 服务器" href="https://masonblog.github.io/post/blog20210320/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://masonblog.github.io/images/blog20200914/vpn.jpg" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">通过群晖与 Openwrt 软路由实现自动端口映射
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>要在家庭或公司的局域网以外（俗称外网）访问家中或公司内网的设备（例如 NAS），通常有两种方式。第一种方式是在局域网的路由器上架设一个 VPN 服务器，再将外网的终端设备作为 VPN 客户端接入内网。在这种情况下，VPN（虚拟专有网络）充当了网线的角色，即接入 VPN 的外网设备，就相当于拉了一根通往内网的网线。因此在 VPN 网络中，即使这根网线是虚拟的，也能实现如同身处局域网内一般的访问体验。
-第二种方法则更为简单直接，即通过动态 DNS 服务将一个域名绑定到局域网服务器的外网 ip，再议端口映射的方式将内网设备暴露在公网中，以供外网设备连接。由于众所周知的原因，我国境内的 VPN 连接并不稳定，因此大多数人都会选择第二种方式进行内网穿透。
-在路由器上进行端口映射的操作非常简单。这里以 Openwrt 系统为例，仅需在网络 - 防火墙 - 端口转发中新建转发规则，将相应内网设备的端口映射为外网端口即可。
-然而，由于内网设备的内部 ip 地址会随着 DHCP 租约的更新而不断变化，尽管我们可以通过 IP/MAC 绑定的方式人为地固定内网设备的 ip 地址，但实践证明这种方式并不稳定。因此，我们经常需要手动修改端口映射规则，这就使得相关的维护工作变得非常繁琐。如果我们长期在外，无法接入内网环境，上述规则修改的工作就很难进行。这时，我们就需要用到 UPnP（通用即插即用）服务。顾名思义，它是一种自动配置端口映射的工具。只要服务器和内网其他设备同时开启 UPnP 服务并稍加简单的配置，即可一劳永逸地解决端口映射的问题。
-以群晖和 Openwrt 系统为例，我们首先需要在 Openwrt 路由器上安装并开启 UPnP 服务。
-然后，登陆群晖的管理后台，在控制面板 - 外部访问 - 路由器配置选项卡中，选择“设置路由器”。此时系统会自动检测网络环境以及路由器型号与配置，不出意外的话，整个过程能够由系统自动完成，无须人工配置。之后，点击“新增”按钮，并根据自己的需求选择要转发的应用和端口，再点击“保存”即可。
-最后，我们可以回到路由器后台的 UPnP 页面，查看已经被系统自动添加好的端口映射规则。值得注意的是，国内的网络运营商一般会禁用个人和家庭宽带的 443 和 445 端口（前者是 https 的默认端口，后者是 smb 服务的默认端口），因此，即使我们在 UPnP 服务中添加了上述两个端口的自动映射，也无法实现 443 和 445 端口的外网访问。此时，就需要我们在防火墙的端口映射中手动进行端口映射，即将 443 和 445 两个内网端口映射到外网的非 443 或 445 端口（如 444 和 446，全凭个人喜好）。这样，我们才能绕过运营商的封锁，成功进行上述两个端口的外部访问。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2020-09-14 00:00:00 +0000 UTC'>2020-09-14</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 通过群晖与 Openwrt 软路由实现自动端口映射" href="https://masonblog.github.io/post/blog20200914/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
