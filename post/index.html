@@ -178,6 +178,27 @@
 
 <article class="post-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20250320/Adsense.webp" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">个人博客如何变现：Google Adsense 接入 Hugo
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>自从将我的个人博客接入 Google Analytics 后，我发现只要文章写得足够好，就会产生一些自然流量（虽然只有每天几十次的点击）。于是我开始思考个人博客变现的方式，哪怕只能赚取几美元，也是对自己智力成果的小小肯定。众所周知，我的个人博客是利用 Hugo 生成的纯静态网页，具体生成方式可以参考我的这篇文章。要真正从博客中赚取收益，需要结合 SEO 优化和广告投放策略。本文将详细解析如何为 Hugo 博客打造高流量的基础，并一步步接入 Google Adsense 实现广告收益。
+SEO 优化：博客变现的基础 要让博客被搜索引擎高效索引并吸引自然流量，SEO 优化是至关重要的一步。对于 Hugo 而言，需要重点关注 sitemap（站点地图） 和 robots.txt（爬虫索引） 的配置。
+配置 sitemap 站点地图 站点地图是一个重要的网站文件，它为搜索引擎和用户提供了网站结构的概览。要为 Hugo 站点创建站点地图，在配置文件config.yml中添加以下内容：
+sitemap: changefreq: weekly filename: sitemap.xml priority: 0.5 其中，changefreq表示更新频率，filename表示生成的站点地图文件名，priority表示页面的默认优先级。这样，Hugo 会在博客根目录下生成一个sitemap.xml文件，以便搜索引擎了解网站结构。
+某些主题的 sitemap 模板会自动包含标签页或分类页，但这些页面可能对搜索引擎价值不高。通过自定义模板，可以移除冗余条目。具体操作方法为：在 Hugo 项目的 layouts/ 目录下创建名为 sitemap.xml 的文件，覆盖主题默认的 sitemap 模板。例如，屏蔽标签页的代码示例如下：
+{{- $pages := where .Site.Pages &#34;Type&#34; &#34;not in&#34; (slice &#34;tags&#34;) -}} {{- $pages = $pages | union (where .Site.RegularPages &#34;Permalink&#34; &#34;!=&#34; &#34;&#34;) -}} 通过上述调整，能确保 sitemap 仅包含核心内容页面，提升搜索引擎抓取效率 。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-20 00:00:00 +0000 UTC'>2025-03-20</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 个人博客如何变现：Google Adsense 接入 Hugo" href="https://masonblog.github.io/post/blog20250320/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20250317/RedteaGO.png" alt="">
 </figure>
   <header class="entry-header">
@@ -286,31 +307,6 @@ AI的确是一种惊世骇俗的力量，但若深思其背后，那冰冷运算
   </div>
   <footer class="entry-footer"><span title='2025-02-07 00:00:00 +0000 UTC'>2025-02-07</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 利用第三方 Deepseek API 实现 AI 辅助应用" href="https://masonblog.github.io/post/blog20250207/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://masonblog.github.io/images/blog20250105/new-orleans-truck-attack.webp" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">美国新奥尔良新年夜恐袭事件
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>新奥尔良的法国区，以其独特的文化和热闹的夜生活而闻名于世。1 波旁街，这条古老的街道，是法国区的心脏地带，也是游客们体验新奥尔良魅力的必经之地。这里遍布着酒吧、餐馆和各种娱乐场所，霓虹闪烁，音乐震耳欲聋。每当夜幕降临，波旁街便会化身为欢乐的海洋，游客们在这里品尝着鸡尾酒，欣赏着爵士乐，感受着这座城市的活力与激情。新年夜的波旁街更是热闹非凡，来自世界各地的人们聚集于此，共同迎接新年的到来。
-然而，2025年的新年，对新奥尔良来说，注定是一个不眠之夜。午夜的狂欢还未散去，凌晨3点15分，一辆白色皮卡突然冲入波旁街拥挤的人群，尖叫声、枪声瞬间撕裂了节日欢乐的喧嚣……糖罐杯的狂欢之城，顷刻间变成了人间炼狱。14人死亡，35人受伤，这冰冷的数字背后，是14个家庭的破碎，是35个生命的重创。
-事件经过 监控画面记录下了这骇人的一幕：一辆白色福特皮卡，为了躲避一辆警车，竟然疯狂地冲上人行道，径直撞向毫无防备的人群。随后，袭击者跳下车，手持AR-10半自动步枪和格洛克手枪，疯狂扫射，两名警察在交火中受伤。最终，三名警察赶到现场，将袭击者击毙。但这短短的几分钟，却给新奥尔良的夜晚，刻下了永远无法抹去的伤痕。
-FBI将此次袭击定性为恐怖袭击，并很快查到了袭击者的身份。他是42岁的美国公民Shamsud-Din Jabbar。Jabbar来自德克萨斯州，是一名退伍军人，案发前，他租了一辆福特F-150皮卡，并在车内携带了AR-15步枪、格洛克手枪和简易爆炸装置。他甚至还留下了遗嘱。袭击发生前几个小时，Jabbar入住了他在新奥尔良通过网络平台租下的一间房屋，并在那里放置了爆炸装置，但这些爆炸装置并没有被引爆。FBI公布了一张照片，照片中是一个装有简易爆炸装置的冷藏箱。是故障还是另有原因？此外，Jabbar作案时还穿着防弹衣。种种迹象表明，这是一场有预谋、有准备的恐怖袭击。
-ISIS 的幽灵 更令人震惊的是，Jabbar在袭击发生前几个小时，在社交媒体上发布了多个视频，宣称自己效忠于ISIS，并表示自己在去年夏天加入了该组织。袭击发生时，他的卡车后保险杠上，赫然悬挂着一面黑色的ISIS旗帜。ISIS，全称“伊拉克和黎凡特伊斯兰国”，也称为“伊拉克和叙利亚伊斯兰国”（ISIS）或“达伊沙”（Daesh），是一个跨国逊尼派伊斯兰主义叛乱和恐怖组织。该组织起源于 2003 年至 2011 年的伊拉克战争，其前身是“伊拉克基地组织”（AQI）。
-ISIS 以其极端暴力和残酷的行径而臭名昭著，包括大规模处决俘虏和少数民族、性奴役妇女和女孩以及斩首士兵和平民。2014 年，ISIS 在伊拉克取得重大领土 gains 后，宣布建立一个由 ISIS 领导的哈里发国。在其控制的领土内，ISIS 对其他信仰的成员进行杀戮、强奸和虐待，并以偏离其对伊斯兰教的 harsh 解释的逊尼派穆斯林为目标。
-为了消灭 ISIS，国际社会付出了巨大的努力。由美国领导的军事干预最终将 ISIS 赶出了其自称的国家的城镇。2019 年 10 月，ISIS 的领导人 Abu Bakr al-Baghdadi 在叙利亚北部被美军击毙。尽管 ISIS 已经被击溃，但其意识形态的影响依然存在，一些受其极端思想吸引的“独狼”式袭击者，仍会以 ISIS 的名义发动恐怖袭击。新奥尔良的袭击事件，或许就是这样一个例子。
-拉斯维加斯的疑云 巧合的是，就在新奥尔良恐怖袭击发生的同一天，拉斯维加斯也发生了一起爆炸案。一辆特斯拉 Cybertruck 在拉斯维加斯特朗普酒店外爆炸，造成 7 人轻伤，司机当场死亡。调查显示，这辆 Cybertruck 装载了汽油罐、野营燃料罐和大型烟花弹。警方在爆炸车辆中发现了一具尸体和一把手枪，死者身份被确认为 37 岁的现役军人 Matthew Livelsberger。拉斯维加斯警方表示，这起爆炸案似乎是一起“自杀悲剧”。调查人员认为，Livelsberger 在引爆车内爆炸物的同时开枪自杀。FBI 表示，没有证据表明 Livelsberger 对当选总统特朗普怀有敌意，他可能患有创伤后应激障碍（PTSD）和其他问题。
-新奥尔良的袭击和拉斯维加斯的爆炸案，都发生在新年第一天，都使用了租来的车辆，并且都造成了人员伤亡，这不禁让人怀疑这两起事件之间是否存在关联。更令人感到蹊跷的是，这两辆车都是通过同一个在线租车平台 Turo 租用的。尽管存在这些巧合，但 FBI 表示，目前没有发现这两起事件之间存在明确关联。新奥尔良的袭击者显然是为了造成大量人员伤亡，而拉斯维加斯的爆炸案则更像是自杀事件。然而，随着调查的深入，这两起事件之间的关联，或许会变得更加扑朔迷离……
-美国梦魇 在这场悲剧中，14 条鲜活的生命逝去。他们中有学生、有工人、有挚爱的家人，年龄从 18 岁到 63 岁不等，其中大多数是 20 多岁的年轻人。他们来自阿拉巴马州、路易斯安那州、密西西比州、纽约州、新泽西州，甚至还有来自英国的游客。他们的故事，令人心碎。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-01-05 00:00:00 +0000 UTC'>2025-01-05</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 美国新奥尔良新年夜恐袭事件" href="https://masonblog.github.io/post/blog20250105/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

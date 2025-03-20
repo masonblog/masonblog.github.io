@@ -6,8 +6,63 @@
     <description>Recent content in Posts on Mason&#39;s Blog</description>
     <generator>Hugo -- 0.140.0</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 17 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://masonblog.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>个人博客如何变现：Google Adsense 接入 Hugo</title>
+      <link>https://masonblog.github.io/post/blog20250320/</link>
+      <pubDate>Thu, 20 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20250320/</guid>
+      <description>通过对 Hugo 站点进行 SEO 优化，并接入 Google Adsense 实现广告收益</description>
+      <content:encoded><![CDATA[<p>自从将我的个人博客接入 <a href="https://analytics.google.com/analytics/web/?authuser=0" target="_blank" rel="noopener">Google Analytics</a> 后，我发现只要文章写得足够好，就会产生一些自然流量（虽然只有每天几十次的点击）。于是我开始思考个人博客变现的方式，哪怕只能赚取几美元，也是对自己智力成果的小小肯定。众所周知，我的个人博客是利用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 生成的纯静态网页，具体生成方式可以参考我的<a href="/post/blog20241230/">这篇文章</a>。要真正从博客中赚取收益，需要结合 SEO 优化和广告投放策略。本文将详细解析如何为 Hugo 博客打造高流量的基础，并一步步接入 Google Adsense 实现广告收益。</p>
+<h2 id="seo-优化博客变现的基础">SEO 优化：博客变现的基础</h2>
+<p>要让博客被搜索引擎高效索引并吸引自然流量，SEO 优化是至关重要的一步。对于 Hugo 而言，需要重点关注 <strong>sitemap（站点地图）</strong> 和 <strong>robots.txt（爬虫索引）</strong> 的配置。</p>
+<h3 id="配置-sitemap-站点地图">配置 sitemap 站点地图</h3>
+<p>站点地图是一个重要的网站文件，它为搜索引擎和用户提供了网站结构的概览。要为 Hugo 站点创建站点地图，在配置文件<code>config.yml</code>中添加以下内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">sitemap</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">changefreq</span>: <span style="color:#ae81ff">weekly</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">filename</span>: <span style="color:#ae81ff">sitemap.xml</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">priority</span>: <span style="color:#ae81ff">0.5</span>
+</span></span></code></pre></div><p>其中，<code>changefreq</code>表示更新频率，<code>filename</code>表示生成的站点地图文件名，<code>priority</code>表示页面的默认优先级。这样，Hugo 会在博客根目录下生成一个<code>sitemap.xml</code>文件，以便搜索引擎了解网站结构。</p>
+<p>某些主题的 sitemap 模板会自动包含标签页或分类页，但这些页面可能对搜索引擎价值不高。通过自定义模板，可以移除冗余条目。具体操作方法为：在 Hugo 项目的 <code>layouts/</code> 目录下创建名为 <code>sitemap.xml</code> 的文件，覆盖主题默认的 sitemap 模板。例如，屏蔽标签页的代码示例如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>{{- $pages := where .Site.Pages &#34;Type&#34; &#34;not in&#34; (slice &#34;tags&#34;) -}}
+</span></span><span style="display:flex;"><span>{{- $pages = $pages | union (where .Site.RegularPages &#34;Permalink&#34; &#34;!=&#34; &#34;&#34;) -}}
+</span></span></code></pre></div><p>通过上述调整，能确保 sitemap 仅包含核心内容页面，提升搜索引擎抓取效率 。</p>
+<h3 id="生成-robotstxt-爬虫索引">生成 robots.txt 爬虫索引</h3>
+<p><code>Robots.txt</code>是一个位于网站根目录的纯文本文件，用于将站点地图提交给搜索引擎，指导搜索引擎如何访问和索引网站内容。要为 Hugo 站点创建<code>robots.txt</code>，在配置文件<code>config.yml</code>中添加以下内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableRobotsTXT</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p>这允许所有搜索引擎爬虫访问网站，并明确指定 sitemap 路径，确保内容被快速索引。</p>
+<p>完成这两步后，可通过 Google Search Console 提交 sitemap，实时监测索引状态。稳定的搜索引擎流量是申请 Google Adsense 的基础条件之一，通常需积累至少每日数十次的有效访问。</p>
+<h2 id="google-adsense-接入博客变现的开始">Google Adsense 接入：博客变现的开始</h2>
+<p>当博客的 SEO 优化初见成效后，即可着手接入 <a href="https://adsense.google.com/start/" target="_blank" rel="noopener">Google Adsense</a>。</p>
+<h3 id="adsense-账户申请与博客绑定">Adsense 账户申请与博客绑定</h3>
+<p>进入 <a href="https://adsense.google.com/" target="_blank" rel="noopener">Google Adsense 官网</a>，使用 Google 账号登录后，点击 <strong>站点 &gt; 新增网站</strong>，填写博客的完整 URL。提交后，系统会生成一段验证代码，一般都会包含一段以<code>pub-xxx</code>开头的识别码。用户可以通过两种方式（任选其一）将验证代码加入到自己的网页中，以证明自己对网页的所有权。</p>
+<h4 id="方式一将验证代码嵌入全部网页头部-head">方式一：将验证代码嵌入全部网页头部 <!-- raw HTML omitted --></h4>
+<p>Hugo 允许用户自定义任何所生成网页的头部内容，即 HTML 文件的<code>&lt;head&gt;&lt;/head&gt;</code>之间的内容。我们需要将 Google Adsense 验证代码添加到 Hugo 生成的每个网页的头部中。具体有以下三种方式（推荐使用第三种方式）：</p>
+<ol>
+<li>
+<p>直接将验证代码添加到所用主题的<code>head.html</code>模板文件中，具体路径为：<code>./themes/当前主题/layouts/partials/head.html</code>，该文件是主题的头部模板文件，<strong>可能会在主题更新时被覆盖，不推荐直接更改</strong>。</p>
+</li>
+<li>
+<p>将验证代码添加到所用主题的<code>extend_head.html</code>文件中，具体路径为：<code>./themes/当前主题/layouts/partials/extend_head.html</code>，该文件是主题的自定义头文件，<strong>不会在主题更新时被覆盖，但每次更换主题时都要重新更改，也不推荐更改</strong>。</p>
+</li>
+<li>
+<p>将验证代码添加到 Hugo 站点的<code>extend_head.html</code>文件中，具体路径为：<code>./layouts/partials/extend_head.html</code>，该文件是 Hugo 站点的自定义头文件，系统在生成网页时会自动将其内容覆盖掉主题的<code>extend_head.html</code>文件，<strong>不会因主题的更新或更换而受到影响，推荐使用该方法</strong>。</p>
+</li>
+</ol>
+<h4 id="方式二在站点根目录创建-adstxt-验证文件">方式二：在站点根目录创建 Ads.txt 验证文件</h4>
+<p>如果不想修改网页的头部内容，可以采用<code>Ads.txt</code>的方式进行验证，将 Google Adsense 生成的<code>Ads.txt</code>文件放入 Hugo 工程的<code>./static/</code>目录下。这样，系统在生成网页时，会将<code>Ads.txt</code>放入站点的根目录，以便 Google Adsense 检索认证。</p>
+<h3 id="等待审核通过">等待审核通过</h3>
+<p>验证网站所有权后，便可将网站提交 Google Adsense 进行审核。提交审核的过程，网站状态会显示为<code>正在准备</code>，此时只能耐心等待。如果网站流量不够高，可能会被系统拒绝，只能不断优化网站流量，重新提交审核，直到审核通过为止。</p>
+<h3 id="配置广告样式">配置广告样式</h3>
+<p>Google Adsense 允许用户自定义所投放广告的类型和位置。返回 Adsense 后台，进入 <strong>广告 &gt; 广告单元</strong>，可自定义广告类型、尺寸及展示规则。例如，启用 <strong>自动广告</strong> 功能，让 Google 自动匹配最佳广告位，提升收益效率。</p>
+<p>作为博客作者，我们需要在广告盈利性和博客美观性之间掌握平衡，如果因为广告投放太多，影响了博客的阅读体验，反而可能导致流量下降，不利于博客的可持续盈利。</p>
+<h2 id="博客运营与持续优化">博客运营与持续优化</h2>
+<p>接入 Google Adsense 后，我们还要持续监控广告表现和流量变化。通过 Google Analytics 与 Adsense 后台的联动，分析高收益的内容类型和广告位置，进而优化内容策略。</p>
+<p>广告收益与流量直接相关。若博客初期流量较低（如每日访问量不足百次），收益可能微薄（甚至仅为几美分），需坚持内容更新与 SEO 优化以积累用户。与此同时，可探索 <strong>联盟营销</strong> 或 <strong>数字产品销售</strong> 作为补充收入来源。</p>
+<p>通过 Hugo 的灵活性与 Google Adsense 的强大变现能力，个人博主完全有机会将兴趣转化为可持续的收入来源。关键在于从 SEO 基础做起，逐步优化广告策略，并保持对高质量内容的投入。无论刚起步的小站还是成熟博客，这一路径都非常值得尝试。</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>年费15元的奥地利 eSIM 电话卡：RedteaGo</title>
       <link>https://masonblog.github.io/post/blog20250317/</link>
@@ -581,14 +636,14 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> 关键词2
 </span></span><span style="display:flex;"><span>description: &#34;文章描述&#34;
 </span></span><span style="display:flex;"><span>---
-</span></span></code></pre></div><h2 id="创建站点地图">创建站点地图</h2>
+</span></span></code></pre></div><h2 id="创建-sitemap-站点地图">创建 sitemap 站点地图</h2>
 <p>站点地图是一个重要的网站文件，它为搜索引擎和用户提供了网站结构的概览。要为 Hugo 站点创建站点地图，在配置文件<code>config.yml</code>中添加以下内容：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">sitemap</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">changefreq</span>: <span style="color:#ae81ff">weekly</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">filename</span>: <span style="color:#ae81ff">sitemap.xml</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">priority</span>: <span style="color:#ae81ff">0.5</span>
 </span></span></code></pre></div><p>其中，<code>changefreq</code>表示更新频率，<code>filename</code>表示生成的站点地图文件名，<code>priority</code>表示页面的默认优先级。这样，Hugo 会在网站根目录下生成一个<code>sitemap.xml</code>文件，以便搜索引擎了解网站结构。</p>
-<h2 id="创建-robotstxt">创建 robots.txt</h2>
+<h2 id="创建-robotstxt-爬虫索引">创建 robots.txt 爬虫索引</h2>
 <p><code>Robots.txt</code>是一个位于网站根目录的纯文本文件，用于将站点地图提交给搜索引擎，指导搜索引擎如何访问和索引网站内容。要为 Hugo 站点创建<code>robots.txt</code>，在配置文件<code>config.yml</code>中添加以下内容：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableRobotsTXT</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><p>这样，Hugo 会自动在网站根目录下生成<code>Robots.txt</code>文件。</p>

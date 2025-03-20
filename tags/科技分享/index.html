@@ -163,6 +163,27 @@
 
 <article class="post-entry tag-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20250320/Adsense.webp" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">个人博客如何变现：Google Adsense 接入 Hugo
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>自从将我的个人博客接入 Google Analytics 后，我发现只要文章写得足够好，就会产生一些自然流量（虽然只有每天几十次的点击）。于是我开始思考个人博客变现的方式，哪怕只能赚取几美元，也是对自己智力成果的小小肯定。众所周知，我的个人博客是利用 Hugo 生成的纯静态网页，具体生成方式可以参考我的这篇文章。要真正从博客中赚取收益，需要结合 SEO 优化和广告投放策略。本文将详细解析如何为 Hugo 博客打造高流量的基础，并一步步接入 Google Adsense 实现广告收益。
+SEO 优化：博客变现的基础 要让博客被搜索引擎高效索引并吸引自然流量，SEO 优化是至关重要的一步。对于 Hugo 而言，需要重点关注 sitemap（站点地图） 和 robots.txt（爬虫索引） 的配置。
+配置 sitemap 站点地图 站点地图是一个重要的网站文件，它为搜索引擎和用户提供了网站结构的概览。要为 Hugo 站点创建站点地图，在配置文件config.yml中添加以下内容：
+sitemap: changefreq: weekly filename: sitemap.xml priority: 0.5 其中，changefreq表示更新频率，filename表示生成的站点地图文件名，priority表示页面的默认优先级。这样，Hugo 会在博客根目录下生成一个sitemap.xml文件，以便搜索引擎了解网站结构。
+某些主题的 sitemap 模板会自动包含标签页或分类页，但这些页面可能对搜索引擎价值不高。通过自定义模板，可以移除冗余条目。具体操作方法为：在 Hugo 项目的 layouts/ 目录下创建名为 sitemap.xml 的文件，覆盖主题默认的 sitemap 模板。例如，屏蔽标签页的代码示例如下：
+{{- $pages := where .Site.Pages &#34;Type&#34; &#34;not in&#34; (slice &#34;tags&#34;) -}} {{- $pages = $pages | union (where .Site.RegularPages &#34;Permalink&#34; &#34;!=&#34; &#34;&#34;) -}} 通过上述调整，能确保 sitemap 仅包含核心内容页面，提升搜索引擎抓取效率 。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-20 00:00:00 +0000 UTC'>2025-03-20</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 个人博客如何变现：Google Adsense 接入 Hugo" href="https://masonblog.github.io/post/blog20250320/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20250317/RedteaGO.png" alt="">
 </figure>
   <header class="entry-header">
@@ -268,33 +289,6 @@ https://github.com/XiaoMi/ha_xiaomi_home.git 最后点击ADD按钮，如果网�
   </div>
   <footer class="entry-footer"><span title='2024-12-27 00:00:00 +0000 UTC'>2024-12-27</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to HomeAssistant 米家官方集成的安装与使用" href="https://masonblog.github.io/post/blog20241227/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://masonblog.github.io/images/blog20220518/dhcp.jpg" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">如何配置路由器的 DHCP ?
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>开场 经常折腾家里网络的你，一定经常遇到这些问题：
-为什么明明插上了网线，却打不开路由器的后台？ 为什么 NAS 的 IP 地址经常变化？ 为什么用上了高价的软路由，打开网页的速度反而变慢？ 为什么跟着大佬的视频一通配置，却还是玩不转旁路由？ 以上这些问题其实都和 DHCP 有关。
-什么是 DHCP？ DHCP 是 Dynamic Host Configuration Protocol 的缩写，意思是动态主机配置协议。它的作用，是为每一个接入局域网的设备自动分配一个 IP 地址，并为这些设备自动配置默认网关和 DNS 服务器。
-名词解释 如果你不理解网关和 DNS 是什么意思，也不要紧。你可以把网关理解成一个中转站，局域网内的所有设备都要通过这个中转站来与外界联系，而家用网络的网关通常只有一个，那就是路由器。DNS 则要更加复杂一点，我后面会单独制作一期视频来讲解。这里你只要把它理解成一个“电话簿”就可以了。
-DHCP 的工作原理 DHCP 协议由一个服务端，和多个客户端组成。服务端一般就是你的路由器，而客户端就是你用来上网的设备。
-Discoer 每当一个新设备初次连入局域网，它就会向整个网络广播自己的 MAC 地址。所谓的 MAC 地址，是每个设备的硬件地址，它被写在设备的网卡上，一般情况下无法更改，相当于设备的“身份证号码”。当新设备初次连入，它会向局域网广播自己的 MAC 地址，相当于新员工的自我介绍。这段自我介绍有一个很洋气的名字，叫做 Discover。
-Offer 当路由器接收到新设备的广播，就会在现有的 IP 地址中，挑选一个还没有被其他设备占用的空缺地址，并将这个地址和其他配置信息（比如默认网关和 DNS）打包发给这个设备，相当于领导给新员工安排工位。这段安排也有一个非常洋气的名字，叫做 Offer。
-Request 接下来的事情就非常简单了，当设备收到路由器发出的配置信息，并且决定套用这些配置，会再次答复路由器，相当于接受领导的安排。这段答复同样有一个很洋气的名字，叫做 Request。
-这里要注意一点，如果局域网内有两个以上路由器，并且这些路由都开启了 DHCP 服务，那么它们在收到新设备的广播后，会同时给这个设备发送配置信息。当设备同时收到多个配置信息，会优先回复最先收到的那个。因此，为了避免网络混乱，即使你家里有多个路由器，也最好只开启一个 DHCP 服务。
-ACK 回到正题，当路由器收到设备的肯定答复后，就会再给设备回个话，表示占位成功。这时，设备会根据路由器下发的 IP 地址、默认网关和 DNS 服务器，自动配置自己的网络，实现成功联网。路由器的这个回话，叫做 ACK。
-解答问题一 说到这里，我们就解决了视频开头提到的第一个问题：
-为什么明明插上了网线，却打不开路由器的后台？ 这里有两种可能： 1. 你的路由器没有开启 DHCP 服务，你的电脑没有收到路由器下发的 IP 地址。 2. 你的路由器开启了 DHCP 服务，但你的电脑之前设置了静态 IP 地址，而这个静态地址和路由器的地址，不在同一个网段。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2022-05-18 00:00:00 +0000 UTC'>2022-05-18</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 如何配置路由器的 DHCP ?" href="https://masonblog.github.io/post/blog20220518/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

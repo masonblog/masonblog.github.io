@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>个人博客如何变现：Google Adsense 接入 Hugo | Mason&#39;s Blog</title>
+<meta name="keywords" content="Hugo, SEO, Google, Adsense, 个人博客, 变现">
+<meta name="description" content="通过对 Hugo 站点进行 SEO 优化，并接入 Google Adsense 实现广告收益">
+<meta name="author" content="Mason">
+<link rel="canonical" href="https://masonblog.github.io/post/blog20250320/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.ac7ad2a77424ec2f30840495bfd19507d0193159e0c03e9a7046b855562c4acd.css" integrity="sha256-rHrSp3Qk7C8whASVv9GVB9AZMVngwD6acEa4VVYsSs0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://masonblog.github.io/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://masonblog.github.io/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://masonblog.github.io/favicon/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://masonblog.github.io/favicon/apple-touch-icon.png">
+<link rel="mask-icon" href="https://masonblog.github.io/favicon/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://masonblog.github.io/post/blog20250320/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3746438298147903"
+     crossorigin="anonymous"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GJ7PD33N1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-5GJ7PD33N1');
+        }
+      </script><meta property="og:url" content="https://masonblog.github.io/post/blog20250320/">
+  <meta property="og:site_name" content="Mason&#39;s Blog">
+  <meta property="og:title" content="个人博客如何变现：Google Adsense 接入 Hugo">
+  <meta property="og:description" content="通过对 Hugo 站点进行 SEO 优化，并接入 Google Adsense 实现广告收益">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2025-03-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-03-20T00:00:00+00:00">
+    <meta property="article:tag" content="科技分享">
+    <meta property="og:image" content="https://masonblog.github.io/images/blog20250320/Adsense.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://masonblog.github.io/images/blog20250320/Adsense.webp">
+<meta name="twitter:title" content="个人博客如何变现：Google Adsense 接入 Hugo">
+<meta name="twitter:description" content="通过对 Hugo 站点进行 SEO 优化，并接入 Google Adsense 实现广告收益">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://masonblog.github.io/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "个人博客如何变现：Google Adsense 接入 Hugo",
+      "item": "https://masonblog.github.io/post/blog20250320/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "个人博客如何变现：Google Adsense 接入 Hugo",
+  "name": "个人博客如何变现：Google Adsense 接入 Hugo",
+  "description": "通过对 Hugo 站点进行 SEO 优化，并接入 Google Adsense 实现广告收益",
+  "keywords": [
+    "Hugo", "SEO", "Google", "Adsense", "个人博客", "变现"
+  ],
+  "articleBody": "自从将我的个人博客接入 Google Analytics 后，我发现只要文章写得足够好，就会产生一些自然流量（虽然只有每天几十次的点击）。于是我开始思考个人博客变现的方式，哪怕只能赚取几美元，也是对自己智力成果的小小肯定。众所周知，我的个人博客是利用 Hugo 生成的纯静态网页，具体生成方式可以参考我的这篇文章。要真正从博客中赚取收益，需要结合 SEO 优化和广告投放策略。本文将详细解析如何为 Hugo 博客打造高流量的基础，并一步步接入 Google Adsense 实现广告收益。\nSEO 优化：博客变现的基础 要让博客被搜索引擎高效索引并吸引自然流量，SEO 优化是至关重要的一步。对于 Hugo 而言，需要重点关注 sitemap（站点地图） 和 robots.txt（爬虫索引） 的配置。\n配置 sitemap 站点地图 站点地图是一个重要的网站文件，它为搜索引擎和用户提供了网站结构的概览。要为 Hugo 站点创建站点地图，在配置文件config.yml中添加以下内容：\nsitemap: changefreq: weekly filename: sitemap.xml priority: 0.5 其中，changefreq表示更新频率，filename表示生成的站点地图文件名，priority表示页面的默认优先级。这样，Hugo 会在博客根目录下生成一个sitemap.xml文件，以便搜索引擎了解网站结构。\n某些主题的 sitemap 模板会自动包含标签页或分类页，但这些页面可能对搜索引擎价值不高。通过自定义模板，可以移除冗余条目。具体操作方法为：在 Hugo 项目的 layouts/ 目录下创建名为 sitemap.xml 的文件，覆盖主题默认的 sitemap 模板。例如，屏蔽标签页的代码示例如下：\n{{- $pages := where .Site.Pages \"Type\" \"not in\" (slice \"tags\") -}} {{- $pages = $pages | union (where .Site.RegularPages \"Permalink\" \"!=\" \"\") -}} 通过上述调整，能确保 sitemap 仅包含核心内容页面，提升搜索引擎抓取效率 。\n生成 robots.txt 爬虫索引 Robots.txt是一个位于网站根目录的纯文本文件，用于将站点地图提交给搜索引擎，指导搜索引擎如何访问和索引网站内容。要为 Hugo 站点创建robots.txt，在配置文件config.yml中添加以下内容：\nenableRobotsTXT: true 这允许所有搜索引擎爬虫访问网站，并明确指定 sitemap 路径，确保内容被快速索引。\n完成这两步后，可通过 Google Search Console 提交 sitemap，实时监测索引状态。稳定的搜索引擎流量是申请 Google Adsense 的基础条件之一，通常需积累至少每日数十次的有效访问。\nGoogle Adsense 接入：博客变现的开始 当博客的 SEO 优化初见成效后，即可着手接入 Google Adsense。\nAdsense 账户申请与博客绑定 进入 Google Adsense 官网，使用 Google 账号登录后，点击 站点 \u003e 新增网站，填写博客的完整 URL。提交后，系统会生成一段验证代码，一般都会包含一段以pub-xxx开头的识别码。用户可以通过两种方式（任选其一）将验证代码加入到自己的网页中，以证明自己对网页的所有权。\n方式一：将验证代码嵌入全部网页头部 Hugo 允许用户自定义任何所生成网页的头部内容，即 HTML 文件的之间的内容。我们需要将 Google Adsense 验证代码添加到 Hugo 生成的每个网页的头部中。具体有以下三种方式（推荐使用第三种方式）：\n直接将验证代码添加到所用主题的head.html模板文件中，具体路径为：./themes/当前主题/layouts/partials/head.html，该文件是主题的头部模板文件，可能会在主题更新时被覆盖，不推荐直接更改。\n将验证代码添加到所用主题的extend_head.html文件中，具体路径为：./themes/当前主题/layouts/partials/extend_head.html，该文件是主题的自定义头文件，不会在主题更新时被覆盖，但每次更换主题时都要重新更改，也不推荐更改。\n将验证代码添加到 Hugo 站点的extend_head.html文件中，具体路径为：./layouts/partials/extend_head.html，该文件是 Hugo 站点的自定义头文件，系统在生成网页时会自动将其内容覆盖掉主题的extend_head.html文件，不会因主题的更新或更换而受到影响，推荐使用该方法。\n方式二：在站点根目录创建 Ads.txt 验证文件 如果不想修改网页的头部内容，可以采用Ads.txt的方式进行验证，将 Google Adsense 生成的Ads.txt文件放入 Hugo 工程的./static/目录下。这样，系统在生成网页时，会将Ads.txt放入站点的根目录，以便 Google Adsense 检索认证。\n等待审核通过 验证网站所有权后，便可将网站提交 Google Adsense 进行审核。提交审核的过程，网站状态会显示为正在准备，此时只能耐心等待。如果网站流量不够高，可能会被系统拒绝，只能不断优化网站流量，重新提交审核，直到审核通过为止。\n配置广告样式 Google Adsense 允许用户自定义所投放广告的类型和位置。返回 Adsense 后台，进入 广告 \u003e 广告单元，可自定义广告类型、尺寸及展示规则。例如，启用 自动广告 功能，让 Google 自动匹配最佳广告位，提升收益效率。\n作为博客作者，我们需要在广告盈利性和博客美观性之间掌握平衡，如果因为广告投放太多，影响了博客的阅读体验，反而可能导致流量下降，不利于博客的可持续盈利。\n博客运营与持续优化 接入 Google Adsense 后，我们还要持续监控广告表现和流量变化。通过 Google Analytics 与 Adsense 后台的联动，分析高收益的内容类型和广告位置，进而优化内容策略。\n广告收益与流量直接相关。若博客初期流量较低（如每日访问量不足百次），收益可能微薄（甚至仅为几美分），需坚持内容更新与 SEO 优化以积累用户。与此同时，可探索 联盟营销 或 数字产品销售 作为补充收入来源。\n通过 Hugo 的灵活性与 Google Adsense 的强大变现能力，个人博主完全有机会将兴趣转化为可持续的收入来源。关键在于从 SEO 基础做起，逐步优化广告策略，并保持对高质量内容的投入。无论刚起步的小站还是成熟博客，这一路径都非常值得尝试。\n",
+  "wordCount" : "189",
+  "inLanguage": "en",
+  "image":"https://masonblog.github.io/images/blog20250320/Adsense.webp","datePublished": "2025-03-20T00:00:00Z",
+  "dateModified": "2025-03-20T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Mason"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://masonblog.github.io/post/blog20250320/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Mason's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://masonblog.github.io/favicon/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://masonblog.github.io/" accesskey="h" title="Mason&#39;s Blog (Alt + H)">Mason&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://masonblog.github.io/archives" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://masonblog.github.io/about/" title="关于">
+                    <span>关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://masonblog.github.io/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://masonblog.github.io/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      个人博客如何变现：Google Adsense 接入 Hugo
+    </h1>
+    <div class="post-description">
+      通过对 Hugo 站点进行 SEO 优化，并接入 Google Adsense 实现广告收益
+    </div>
+    <div class="post-meta"><span title='2025-03-20 00:00:00 +0000 UTC'>2025-03-20</span>&nbsp;·&nbsp;Mason
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="https://masonblog.github.io/images/blog20250320/Adsense.webp" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#seo-%e4%bc%98%e5%8c%96%e5%8d%9a%e5%ae%a2%e5%8f%98%e7%8e%b0%e7%9a%84%e5%9f%ba%e7%a1%80" aria-label="SEO 优化：博客变现的基础">SEO 优化：博客变现的基础</a><ul>
+                        
+                <li>
+                    <a href="#%e9%85%8d%e7%bd%ae-sitemap-%e7%ab%99%e7%82%b9%e5%9c%b0%e5%9b%be" aria-label="配置 sitemap 站点地图">配置 sitemap 站点地图</a></li>
+                <li>
+                    <a href="#%e7%94%9f%e6%88%90-robotstxt-%e7%88%ac%e8%99%ab%e7%b4%a2%e5%bc%95" aria-label="生成 robots.txt 爬虫索引">生成 robots.txt 爬虫索引</a></li></ul>
+                </li>
+                <li>
+                    <a href="#google-adsense-%e6%8e%a5%e5%85%a5%e5%8d%9a%e5%ae%a2%e5%8f%98%e7%8e%b0%e7%9a%84%e5%bc%80%e5%a7%8b" aria-label="Google Adsense 接入：博客变现的开始">Google Adsense 接入：博客变现的开始</a><ul>
+                        
+                <li>
+                    <a href="#adsense-%e8%b4%a6%e6%88%b7%e7%94%b3%e8%af%b7%e4%b8%8e%e5%8d%9a%e5%ae%a2%e7%bb%91%e5%ae%9a" aria-label="Adsense 账户申请与博客绑定">Adsense 账户申请与博客绑定</a><ul>
+                        
+                <li>
+                    <a href="#%e6%96%b9%e5%bc%8f%e4%b8%80%e5%b0%86%e9%aa%8c%e8%af%81%e4%bb%a3%e7%a0%81%e5%b5%8c%e5%85%a5%e5%85%a8%e9%83%a8%e7%bd%91%e9%a1%b5%e5%a4%b4%e9%83%a8-head" aria-label="方式一：将验证代码嵌入全部网页头部 ">方式一：将验证代码嵌入全部网页头部 </a></li>
+                <li>
+                    <a href="#%e6%96%b9%e5%bc%8f%e4%ba%8c%e5%9c%a8%e7%ab%99%e7%82%b9%e6%a0%b9%e7%9b%ae%e5%bd%95%e5%88%9b%e5%bb%ba-adstxt-%e9%aa%8c%e8%af%81%e6%96%87%e4%bb%b6" aria-label="方式二：在站点根目录创建 Ads.txt 验证文件">方式二：在站点根目录创建 Ads.txt 验证文件</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%ad%89%e5%be%85%e5%ae%a1%e6%a0%b8%e9%80%9a%e8%bf%87" aria-label="等待审核通过">等待审核通过</a></li>
+                <li>
+                    <a href="#%e9%85%8d%e7%bd%ae%e5%b9%bf%e5%91%8a%e6%a0%b7%e5%bc%8f" aria-label="配置广告样式">配置广告样式</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%8d%9a%e5%ae%a2%e8%bf%90%e8%90%a5%e4%b8%8e%e6%8c%81%e7%bb%ad%e4%bc%98%e5%8c%96" aria-label="博客运营与持续优化">博客运营与持续优化</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>自从将我的个人博客接入 <a href="https://analytics.google.com/analytics/web/?authuser=0" target="_blank" rel="noopener">Google Analytics</a> 后，我发现只要文章写得足够好，就会产生一些自然流量（虽然只有每天几十次的点击）。于是我开始思考个人博客变现的方式，哪怕只能赚取几美元，也是对自己智力成果的小小肯定。众所周知，我的个人博客是利用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 生成的纯静态网页，具体生成方式可以参考我的<a href="/post/blog20241230/">这篇文章</a>。要真正从博客中赚取收益，需要结合 SEO 优化和广告投放策略。本文将详细解析如何为 Hugo 博客打造高流量的基础，并一步步接入 Google Adsense 实现广告收益。</p>
+<h2 id="seo-优化博客变现的基础">SEO 优化：博客变现的基础<a hidden class="anchor" aria-hidden="true" href="#seo-优化博客变现的基础">#</a></h2>
+<p>要让博客被搜索引擎高效索引并吸引自然流量，SEO 优化是至关重要的一步。对于 Hugo 而言，需要重点关注 <strong>sitemap（站点地图）</strong> 和 <strong>robots.txt（爬虫索引）</strong> 的配置。</p>
+<h3 id="配置-sitemap-站点地图">配置 sitemap 站点地图<a hidden class="anchor" aria-hidden="true" href="#配置-sitemap-站点地图">#</a></h3>
+<p>站点地图是一个重要的网站文件，它为搜索引擎和用户提供了网站结构的概览。要为 Hugo 站点创建站点地图，在配置文件<code>config.yml</code>中添加以下内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">sitemap</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">changefreq</span>: <span style="color:#ae81ff">weekly</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">filename</span>: <span style="color:#ae81ff">sitemap.xml</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">priority</span>: <span style="color:#ae81ff">0.5</span>
+</span></span></code></pre></div><p>其中，<code>changefreq</code>表示更新频率，<code>filename</code>表示生成的站点地图文件名，<code>priority</code>表示页面的默认优先级。这样，Hugo 会在博客根目录下生成一个<code>sitemap.xml</code>文件，以便搜索引擎了解网站结构。</p>
+<p>某些主题的 sitemap 模板会自动包含标签页或分类页，但这些页面可能对搜索引擎价值不高。通过自定义模板，可以移除冗余条目。具体操作方法为：在 Hugo 项目的 <code>layouts/</code> 目录下创建名为 <code>sitemap.xml</code> 的文件，覆盖主题默认的 sitemap 模板。例如，屏蔽标签页的代码示例如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>{{- $pages := where .Site.Pages &#34;Type&#34; &#34;not in&#34; (slice &#34;tags&#34;) -}}
+</span></span><span style="display:flex;"><span>{{- $pages = $pages | union (where .Site.RegularPages &#34;Permalink&#34; &#34;!=&#34; &#34;&#34;) -}}
+</span></span></code></pre></div><p>通过上述调整，能确保 sitemap 仅包含核心内容页面，提升搜索引擎抓取效率 。</p>
+<h3 id="生成-robotstxt-爬虫索引">生成 robots.txt 爬虫索引<a hidden class="anchor" aria-hidden="true" href="#生成-robotstxt-爬虫索引">#</a></h3>
+<p><code>Robots.txt</code>是一个位于网站根目录的纯文本文件，用于将站点地图提交给搜索引擎，指导搜索引擎如何访问和索引网站内容。要为 Hugo 站点创建<code>robots.txt</code>，在配置文件<code>config.yml</code>中添加以下内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableRobotsTXT</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p>这允许所有搜索引擎爬虫访问网站，并明确指定 sitemap 路径，确保内容被快速索引。</p>
+<p>完成这两步后，可通过 Google Search Console 提交 sitemap，实时监测索引状态。稳定的搜索引擎流量是申请 Google Adsense 的基础条件之一，通常需积累至少每日数十次的有效访问。</p>
+<h2 id="google-adsense-接入博客变现的开始">Google Adsense 接入：博客变现的开始<a hidden class="anchor" aria-hidden="true" href="#google-adsense-接入博客变现的开始">#</a></h2>
+<p>当博客的 SEO 优化初见成效后，即可着手接入 <a href="https://adsense.google.com/start/" target="_blank" rel="noopener">Google Adsense</a>。</p>
+<h3 id="adsense-账户申请与博客绑定">Adsense 账户申请与博客绑定<a hidden class="anchor" aria-hidden="true" href="#adsense-账户申请与博客绑定">#</a></h3>
+<p>进入 <a href="https://adsense.google.com/" target="_blank" rel="noopener">Google Adsense 官网</a>，使用 Google 账号登录后，点击 <strong>站点 &gt; 新增网站</strong>，填写博客的完整 URL。提交后，系统会生成一段验证代码，一般都会包含一段以<code>pub-xxx</code>开头的识别码。用户可以通过两种方式（任选其一）将验证代码加入到自己的网页中，以证明自己对网页的所有权。</p>
+<h4 id="方式一将验证代码嵌入全部网页头部-head">方式一：将验证代码嵌入全部网页头部 <!-- raw HTML omitted --><a hidden class="anchor" aria-hidden="true" href="#方式一将验证代码嵌入全部网页头部-head">#</a></h4>
+<p>Hugo 允许用户自定义任何所生成网页的头部内容，即 HTML 文件的<code>&lt;head&gt;&lt;/head&gt;</code>之间的内容。我们需要将 Google Adsense 验证代码添加到 Hugo 生成的每个网页的头部中。具体有以下三种方式（推荐使用第三种方式）：</p>
+<ol>
+<li>
+<p>直接将验证代码添加到所用主题的<code>head.html</code>模板文件中，具体路径为：<code>./themes/当前主题/layouts/partials/head.html</code>，该文件是主题的头部模板文件，<strong>可能会在主题更新时被覆盖，不推荐直接更改</strong>。</p>
+</li>
+<li>
+<p>将验证代码添加到所用主题的<code>extend_head.html</code>文件中，具体路径为：<code>./themes/当前主题/layouts/partials/extend_head.html</code>，该文件是主题的自定义头文件，<strong>不会在主题更新时被覆盖，但每次更换主题时都要重新更改，也不推荐更改</strong>。</p>
+</li>
+<li>
+<p>将验证代码添加到 Hugo 站点的<code>extend_head.html</code>文件中，具体路径为：<code>./layouts/partials/extend_head.html</code>，该文件是 Hugo 站点的自定义头文件，系统在生成网页时会自动将其内容覆盖掉主题的<code>extend_head.html</code>文件，<strong>不会因主题的更新或更换而受到影响，推荐使用该方法</strong>。</p>
+</li>
+</ol>
+<h4 id="方式二在站点根目录创建-adstxt-验证文件">方式二：在站点根目录创建 Ads.txt 验证文件<a hidden class="anchor" aria-hidden="true" href="#方式二在站点根目录创建-adstxt-验证文件">#</a></h4>
+<p>如果不想修改网页的头部内容，可以采用<code>Ads.txt</code>的方式进行验证，将 Google Adsense 生成的<code>Ads.txt</code>文件放入 Hugo 工程的<code>./static/</code>目录下。这样，系统在生成网页时，会将<code>Ads.txt</code>放入站点的根目录，以便 Google Adsense 检索认证。</p>
+<h3 id="等待审核通过">等待审核通过<a hidden class="anchor" aria-hidden="true" href="#等待审核通过">#</a></h3>
+<p>验证网站所有权后，便可将网站提交 Google Adsense 进行审核。提交审核的过程，网站状态会显示为<code>正在准备</code>，此时只能耐心等待。如果网站流量不够高，可能会被系统拒绝，只能不断优化网站流量，重新提交审核，直到审核通过为止。</p>
+<h3 id="配置广告样式">配置广告样式<a hidden class="anchor" aria-hidden="true" href="#配置广告样式">#</a></h3>
+<p>Google Adsense 允许用户自定义所投放广告的类型和位置。返回 Adsense 后台，进入 <strong>广告 &gt; 广告单元</strong>，可自定义广告类型、尺寸及展示规则。例如，启用 <strong>自动广告</strong> 功能，让 Google 自动匹配最佳广告位，提升收益效率。</p>
+<p>作为博客作者，我们需要在广告盈利性和博客美观性之间掌握平衡，如果因为广告投放太多，影响了博客的阅读体验，反而可能导致流量下降，不利于博客的可持续盈利。</p>
+<h2 id="博客运营与持续优化">博客运营与持续优化<a hidden class="anchor" aria-hidden="true" href="#博客运营与持续优化">#</a></h2>
+<p>接入 Google Adsense 后，我们还要持续监控广告表现和流量变化。通过 Google Analytics 与 Adsense 后台的联动，分析高收益的内容类型和广告位置，进而优化内容策略。</p>
+<p>广告收益与流量直接相关。若博客初期流量较低（如每日访问量不足百次），收益可能微薄（甚至仅为几美分），需坚持内容更新与 SEO 优化以积累用户。与此同时，可探索 <strong>联盟营销</strong> 或 <strong>数字产品销售</strong> 作为补充收入来源。</p>
+<p>通过 Hugo 的灵活性与 Google Adsense 的强大变现能力，个人博主完全有机会将兴趣转化为可持续的收入来源。关键在于从 SEO 基础做起，逐步优化广告策略，并保持对高质量内容的投入。无论刚起步的小站还是成熟博客，这一路径都非常值得尝试。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://masonblog.github.io/tags/%E7%A7%91%E6%8A%80%E5%88%86%E4%BA%AB/">科技分享</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://masonblog.github.io/">Mason&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
