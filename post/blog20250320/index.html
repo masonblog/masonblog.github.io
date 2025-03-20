@@ -80,9 +80,9 @@
     <meta property="article:published_time" content="2025-03-20T00:00:00+00:00">
     <meta property="article:modified_time" content="2025-03-20T00:00:00+00:00">
     <meta property="article:tag" content="科技分享">
-    <meta property="og:image" content="https://masonblog.github.io/images/blog20250320/Adsense.webp">
+    <meta property="og:image" content="https://masonblog.github.io/images/blog20250320/Adsense.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://masonblog.github.io/images/blog20250320/Adsense.webp">
+<meta name="twitter:image" content="https://masonblog.github.io/images/blog20250320/Adsense.jpg">
 <meta name="twitter:title" content="个人博客如何变现：Google Adsense 接入 Hugo">
 <meta name="twitter:description" content="通过对 Hugo 站点进行 SEO 优化，并接入 Google Adsense 实现广告收益">
 
@@ -120,7 +120,7 @@
   "articleBody": "自从将我的个人博客接入 Google Analytics 后，我发现只要文章写得足够好，就会产生一些自然流量（虽然只有每天几十次的点击）。于是我开始思考个人博客变现的方式，哪怕只能赚取几美元，也是对自己智力成果的小小肯定。众所周知，我的个人博客是利用 Hugo 生成的纯静态网页，具体生成方式可以参考我的这篇文章。要真正从博客中赚取收益，需要结合 SEO 优化和广告投放策略。本文将详细解析如何为 Hugo 博客打造高流量的基础，并一步步接入 Google Adsense 实现广告收益。\nSEO 优化：博客变现的基础 要让博客被搜索引擎高效索引并吸引自然流量，SEO 优化是至关重要的一步。对于 Hugo 而言，需要重点关注 sitemap（站点地图） 和 robots.txt（爬虫索引） 的配置。\n配置 sitemap 站点地图 站点地图是一个重要的网站文件，它为搜索引擎和用户提供了网站结构的概览。要为 Hugo 站点创建站点地图，在配置文件config.yml中添加以下内容：\nsitemap: changefreq: weekly filename: sitemap.xml priority: 0.5 其中，changefreq表示更新频率，filename表示生成的站点地图文件名，priority表示页面的默认优先级。这样，Hugo 会在博客根目录下生成一个sitemap.xml文件，以便搜索引擎了解网站结构。\n某些主题的 sitemap 模板会自动包含标签页或分类页，但这些页面可能对搜索引擎价值不高。通过自定义模板，可以移除冗余条目。具体操作方法为：在 Hugo 项目的 layouts/ 目录下创建名为 sitemap.xml 的文件，覆盖主题默认的 sitemap 模板。例如，屏蔽标签页的代码示例如下：\n{{- $pages := where .Site.Pages \"Type\" \"not in\" (slice \"tags\") -}} {{- $pages = $pages | union (where .Site.RegularPages \"Permalink\" \"!=\" \"\") -}} 通过上述调整，能确保 sitemap 仅包含核心内容页面，提升搜索引擎抓取效率 。\n生成 robots.txt 爬虫索引 Robots.txt是一个位于网站根目录的纯文本文件，用于将站点地图提交给搜索引擎，指导搜索引擎如何访问和索引网站内容。要为 Hugo 站点创建robots.txt，在配置文件config.yml中添加以下内容：\nenableRobotsTXT: true 这允许所有搜索引擎爬虫访问网站，并明确指定 sitemap 路径，确保内容被快速索引。\n完成这两步后，可通过 Google Search Console 提交 sitemap，实时监测索引状态。稳定的搜索引擎流量是申请 Google Adsense 的基础条件之一，通常需积累至少每日数十次的有效访问。\nGoogle Adsense 接入：博客变现的开始 当博客的 SEO 优化初见成效后，即可着手接入 Google Adsense。\nAdsense 账户申请与博客绑定 进入 Google Adsense 官网，使用 Google 账号登录后，点击 站点 \u003e 新增网站，填写博客的完整 URL。提交后，系统会生成一段验证代码，一般都会包含一段以pub-xxx开头的识别码。用户可以通过两种方式（任选其一）将验证代码加入到自己的网页中，以证明自己对网页的所有权。\n方式一：将验证代码嵌入全部网页头部 Hugo 允许用户自定义任何所生成网页的头部内容，即 HTML 文件的之间的内容。我们需要将 Google Adsense 验证代码添加到 Hugo 生成的每个网页的头部中。具体有以下三种方式（推荐使用第三种方式）：\n直接将验证代码添加到所用主题的head.html模板文件中，具体路径为：./themes/当前主题/layouts/partials/head.html，该文件是主题的头部模板文件，可能会在主题更新时被覆盖，不推荐直接更改。\n将验证代码添加到所用主题的extend_head.html文件中，具体路径为：./themes/当前主题/layouts/partials/extend_head.html，该文件是主题的自定义头文件，不会在主题更新时被覆盖，但每次更换主题时都要重新更改，也不推荐更改。\n将验证代码添加到 Hugo 站点的extend_head.html文件中，具体路径为：./layouts/partials/extend_head.html，该文件是 Hugo 站点的自定义头文件，系统在生成网页时会自动将其内容覆盖掉主题的extend_head.html文件，不会因主题的更新或更换而受到影响，推荐使用该方法。\n方式二：在站点根目录创建 Ads.txt 验证文件 如果不想修改网页的头部内容，可以采用Ads.txt的方式进行验证，将 Google Adsense 生成的Ads.txt文件放入 Hugo 工程的./static/目录下。这样，系统在生成网页时，会将Ads.txt放入站点的根目录，以便 Google Adsense 检索认证。\n等待审核通过 验证网站所有权后，便可将网站提交 Google Adsense 进行审核。提交审核的过程，网站状态会显示为正在准备，此时只能耐心等待。如果网站流量不够高，可能会被系统拒绝，只能不断优化网站流量，重新提交审核，直到审核通过为止。\n配置广告样式 Google Adsense 允许用户自定义所投放广告的类型和位置。返回 Adsense 后台，进入 广告 \u003e 广告单元，可自定义广告类型、尺寸及展示规则。例如，启用 自动广告 功能，让 Google 自动匹配最佳广告位，提升收益效率。\n作为博客作者，我们需要在广告盈利性和博客美观性之间掌握平衡，如果因为广告投放太多，影响了博客的阅读体验，反而可能导致流量下降，不利于博客的可持续盈利。\n博客运营与持续优化 接入 Google Adsense 后，我们还要持续监控广告表现和流量变化。通过 Google Analytics 与 Adsense 后台的联动，分析高收益的内容类型和广告位置，进而优化内容策略。\n广告收益与流量直接相关。若博客初期流量较低（如每日访问量不足百次），收益可能微薄（甚至仅为几美分），需坚持内容更新与 SEO 优化以积累用户。与此同时，可探索 联盟营销 或 数字产品销售 作为补充收入来源。\n通过 Hugo 的灵活性与 Google Adsense 的强大变现能力，个人博主完全有机会将兴趣转化为可持续的收入来源。关键在于从 SEO 基础做起，逐步优化广告策略，并保持对高质量内容的投入。无论刚起步的小站还是成熟博客，这一路径都非常值得尝试。\n",
   "wordCount" : "189",
   "inLanguage": "en",
-  "image":"https://masonblog.github.io/images/blog20250320/Adsense.webp","datePublished": "2025-03-20T00:00:00Z",
+  "image":"https://masonblog.github.io/images/blog20250320/Adsense.jpg","datePublished": "2025-03-20T00:00:00Z",
   "dateModified": "2025-03-20T00:00:00Z",
   "author":{
     "@type": "Person",
@@ -221,7 +221,7 @@
 </div>
   </header> 
 <figure class="entry-cover">
-        <img loading="eager" src="https://masonblog.github.io/images/blog20250320/Adsense.webp" alt="">
+        <img loading="eager" src="https://masonblog.github.io/images/blog20250320/Adsense.jpg" alt="">
         
 </figure><div class="toc">
     <details >
