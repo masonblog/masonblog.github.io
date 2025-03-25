@@ -178,30 +178,6 @@
 
 <article class="post-entry"> 
 <figure class="entry-cover">
-        <img loading="lazy" src="https://masonblog.github.io/images/blog20210909/jellyfin.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">利用 Portainer 实现 Docker 端 Jellyfin 硬件解码
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>原理及环境检测 随着版本的不断迭代，Jellyfin 已经逐渐超过 Plex 和自家兄弟 Emby，成为用户数量最所的个人媒体管理方案，这不仅因为它的所有功能均为免费，更是因为它的源代码完全开源，具有极高的维护与拓展空间。
-不论用于运行 Jellyfin 的具体是哪款操作系统，只要该系统是基于 Linux，我们就可以通过 Docker 容器来实现极为简单且方式一致的部署。但相比于原生套件，Docker 有一个显而易见的缺点，即无法直接调用各类系统资源，核显驱动就是其中之一。
-要让 Jellyfin 的 Docker 容器实时调用核显驱动（也就是人们常说的开启硬解），要满足两个条件：
-拥有支持视频解码的核心显卡，且核心显卡的驱动程序运行正常； 将核显驱动直通给 Docker 容器，并赋予 Docker 容器调用该驱动的权限。 对于系统是否满足上述第一个条件，可以通过以下方式进行检验：首先用 ssh 工具连接到服务器，确保登陆 ssh 的账户拥有系统管理权限，再输入以下命令：
-ls /dev/dri 如果返回的结果为 card0 renderD128 ，那么恭喜，核显驱动运行正常，硬件系统满足视频解码的基本条件。接下来便是将 renderD128 这个核显驱动直通给 Docker 容器的方法。
-为什么必须用 Portainer? 无论是群辉、威联通还是 Unraid，市场上绝大多数 NAS 系统都提供了图形化的 Docker 容器管理工具。但无论上述哪一个，都不支持核显驱动的直通功能。群辉的 Docker 套件无法编辑容器的系统资源参数，威联通的 Container Station 干脆无法编辑已经创建好的容器。
-这里所说的“直通”，其实是将 /dev/dri/renderD128 这个驱动文件映射到 Docker 容器的相同位置。这一点利用命令行可以非常轻松地实现，即在 Jellyfin 容器的拉取命令中加入下列参数：
---device=/dev/dri/renderD128 \ 因此，要快速拉取并创建一个开启硬件解码的 Jellyfin 容器，只要在 NAS 的命令行界面输入以下命令即可：
-sudo docker run -d --name jellyfin \ -v /share/Container/Jellyfin/config:/config \ #冒号左边为存放配置文件的目录 -v /share/Container/Jellyfin/cache:/cache \ #冒号左边为存放媒体缓存的目录 -v /share/Media/:/media \ #冒号左边为存放电影文件的目录 -p 8096:8096 \ #web界面访问端口（http） -p 8920:8920 \ #web界面访问端口（https） --device=/dev/dri/renderD128 \ #映射核显驱动 --restart=always \ #重启策略 jellyfin/jellyfin 但对许多轻度用户来说，命令行不仅不便理解，也断绝了后续对容器进行修改和自定义的空间。因此对于绝大多数日常用户来说，我个人强烈推荐使用 Portainer。它本身也是一个运行在 Docker 容器里的程序，但它拥有强大的 Docker 管理功能，是目前市面上功能最完善的网页端 Docker 容器管理界面。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-09-09 00:00:00 +0000 UTC'>2021-09-09</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 利用 Portainer 实现 Docker 端 Jellyfin 硬件解码" href="https://masonblog.github.io/post/blog20210909/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20210608/wwdc2021.png" alt="">
 </figure>
   <header class="entry-header">
@@ -292,6 +268,26 @@ Parsec 的使用方式非常简单，只要去官网注册一个账号并分别�
   </div>
   <footer class="entry-footer"><span title='2021-05-02 00:00:00 +0000 UTC'>2021-05-02</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 利用 Parsec 实现远程游戏串流" href="https://masonblog.github.io/post/blog20210502/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20210423/error13.png" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">解决蜗牛星际B双安装黑群晖失败“文件已损毁（13）”
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>去年疫情期间，由于滞留家中实在无聊，我开始折腾软路由和 DIY NAS，而被折腾得最多的莫过于黑群晖系统。为此，我特意买来两台蜗牛星际（B双和C），其中B双用作软路由，C则用于黑群晖。时隔一年，忙于工作的我已不再有闲暇时间折腾黑群晖，而出于对数据安全和便捷性的考虑，我于今年年初购买了一台威联通的 NAS 主机。俗话说得好，黑群晖折腾到头，就会转去白群辉。但奈何威联通的性价比要比群晖高太多，因此我只好无耻地叛变了革命。
+昨天心血来潮，想把放在角落吃灰许久的蜗牛星际B双刷成黑群晖，用作重要数据的冷备工具，平常都会处于关机状态，只有冷备的时候才会开机。由于我的B双之前一直都用作软路由，因此从来都没有刷过黑群晖。但鉴于蜗牛星际的配置都差不多，我简单地以为直接用之前C上现成的黑群晖引导U盘即可直接安装黑群晖系统。然而天真的我还是遇到了困难。
+问题出在新系统安装的过程中，每当进度走到 56% 的时候，都会跳出编号为 13 的错误，提示“系统安装失败，文件可能已经损毁（13）”。为了解决这一问题，我尝试了很多方法，包括但不限于格式化所有硬盘（包括 SSD）以及更换各个版本的官方或非官方 DSM 安装包，但都不奏效，错误 13 依然存在。
+最后，在电报群里高人的指点下，我终于解决了这一问题。其实，新系统安装的过程中之所以会出现错误 13， 是因为机器主板的 BIOS 没设置好。只要给主机插上键盘和显示器，在开机时进入 BIOS 界面（通常是在开机后显示主板厂商 logo 时按键盘上的 DEL 键进入），然后依次进入 Advanced—Miscellaneous Configuration—OS Selection，将 Win 7 改为 Win 8.x 即可。
+忙活了半天，最后才知道原来只是这么简单的一个问题。为了不让后来的小白们像我一样浪费时间，特此记录一下。本文也谈不上什么教程了。
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-04-23 00:00:00 +0000 UTC'>2021-04-23</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 解决蜗牛星际B双安装黑群晖失败“文件已损毁（13）”" href="https://masonblog.github.io/post/blog20210423/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
