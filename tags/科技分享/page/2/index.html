@@ -163,6 +163,29 @@
 
 <article class="post-entry tag-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20241227/mijia-ha.png" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">HomeAssistant 米家官方集成的安装与使用
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>背景 我在2022年4月的一篇文章中介绍了 Home Assistant 的安装与配置方法。彼时，要将小米的众多智能家居接入 HA，我们必须安装一个第三方 HA 集成，即 Hass-Xiaomi-Miot。它由个人开发者 al-one 在 Github 上发布，一直以来都是我们将米家接入 HA 的唯一选择。直到最近，小米在 Github 上发布了官方的 HA 集成：HA_Xiaomi_Home，填补了米家接入 HA 的空白。
+虽然这又是一个“官方逼死同人”的故事，但小米的开源精神仍然值得称赞。与第三方集成相比，小米官方的集成对自家产品支持更好， 能够帮助我们更加轻松地将米家接入 HA，进而实现米家与 Homekit 生态的互联互通。今天，我们将跟随 HA_Xiaomi_Home 的官方文档，详细介绍一下这个集成的安装及使用方法。
+通过 HASC 安装米家官方集成 米家官方集成有多种安装方式，其中最简单，也是最新手友好的方式，就是通过 HACS 进行安装。HASC 的安装方法详见我的这篇文章，此处不再赘述。由于米家官方集成暂未加入 HASC 的官方库，我们需要通过添加自定义库链接的方式，将米家官方集成的库链接添加到 HASC 目录。登入 HA 后台，点击左侧的HASC，再点右上角的三个点，选择Custom Repositories，新建一个自定义库链接，如下图所示。
+库类型（Catagory）选择Integration；库链接填写下面的链接：
+https://github.com/XiaoMi/ha_xiaomi_home.git 最后点击ADD按钮，如果网络没有问题的话，米家官方集成的安装链接就会被添加到 HASC 的自定目录中。再依次点击设置—设备与集成—添加集成，在搜索框中输入Xiaomi，在弹出的结果中选择XIaomi Home。接下来，按照提示登录米家账号即可。
+注意⚠️：如果你和我一样，使用 Docker 作为 HA 的安装环境，那么大概率会在米家账号验证时遇到无法跳转的问题。无法跳转的核心原因在于，米家官方集成默认使用 homeassistant.local:8123这个本地域名来跳转回 HA 页面，而 Docker 容器中的 HA 无法在本地局域网中广播.local本地域名。因此，在验证米家账号并跳转回 HA 页面时，我们需要手动将浏览器地址栏中的homeassistant.local:8123改为IP:8123。这样就能完成米家账号的验证工作。以上方法参考自米家集成仓库的 Issue#8。
+停用多余的米家实体 当我们安装好米家官方集成并完成账号验证后，HA 就会自动搜索并添加米家的各种设备。同时，我们的家庭中会出现一堆乱七八糟的实体。所谓实体（Unit）是 HA 用来定义设备最小子功能单元的概念。通常一个设备会对应多个实体。例如，一台『热水器』设备，可以同时拥有『当前水温』、『目标水温』、『预热开关』、『增压开关』等多个实体。
+然而在日常使用过程中，我们并不需要将每一个设备都拆分成诸多零碎的子功能单元，这样不仅使人迷惑，还会让我们的家庭界面变得极其繁琐。因此，在将 HA 链接到 Homekit 之前，我们需要对米家集成添加进来的众多实体进行筛选，仅保留我们日常使用过程中最需要的开关和数值即可。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-12-27 00:00:00 +0000 UTC'>2024-12-27</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to HomeAssistant 米家官方集成的安装与使用" href="https://masonblog.github.io/post/blog20241227/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20220518/dhcp.jpg" alt="">
 </figure>
   <header class="entry-header">
@@ -256,37 +279,12 @@ sudo docker run -d --name jellyfin \ -v /share/Container/Jellyfin/config:/config
   <footer class="entry-footer"><span title='2021-06-08 00:00:00 +0000 UTC'>2021-06-08</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 实测苹果专用转接代理可用于翻墙，但中国大陆地区无法使用" href="https://masonblog.github.io/post/blog20210608/"></a>
 </article>
-
-<article class="post-entry tag-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://masonblog.github.io/images/blog20210527/favicon.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">利用 Favicon 为 Hugo 静态站点添加图标
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>我们在使用 Hugo 生成静态站点时，经常会遇到一些虽不致命，但很不爽的小问题，例如没有自定义站点图标的问题。假如我们跟随了所用主题的默认配置，通常情况下生成的站点要么没有图标，要么直接套用主题自带的图标，这显然无法满足我那强烈的 DIY 欲望。
-经常访问本博客的读者可能会注意到，我所使用的 Hugo 主题是一个支持自动切换明暗模式的第三方主题——AutoFuji. 今天在阅读这个主题的说明文档时，我发现原来它是支持 Favicon 图标代码的。于是经过一通简单的操作，我的博客终于有了自己的图标。
-为 Hugo 站点添加 Favicon 代码的方法非常简单。首先访问这个网站上传一张图片作为网站图标的母本。其实类似的 Favicon 生成器还有很多，大家可以根据自己的习惯或喜好自由选择，基本功能都是一样的。
-图片上传完成后，会自动跳转到参数配置页面。如无特殊需求，保持默认配置即可。点击页面下方的生成按钮生成我们的图标和代码。
-生成完成后，点击如图所示按钮下载各类格式的图标包，再将自动生成的 HTML 代码复制到剪贴板。
-之后，来到 Hugo 站点的根目录，将刚刚下载的压缩包里的所有文件解压到 /static/ 文件夹下。
-用文本编辑器打开 /layouts/partials/favicon.html 文件，清空原有代码，将刚刚复制到代码粘贴进去，保存并退出。
-最后，打开 /themes/正在使用的主题名/layouts/partials/head.html 文件（不同主题需要编辑的文件可能不同，例如我所使用的 Fuji 主题就是直接编辑同一目录下的 favicon.html 文件），找到下列代码：
-&lt;link rel=&#34;shortcut icon&#34; href=&#34;xxx&#34; /&gt; 将 xxx 替换成 favicon.ico ，保存并退出即可。
-此时，我们的 favicon 图标安装工作就宣告完成了。使用 hugo 命令重新生成站点，不出意外的话，就能看到我们刚才上传的站点图标了。
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-05-27 00:00:00 +0000 UTC'>2021-05-27</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 利用 Favicon 为 Hugo 静态站点添加图标" href="https://masonblog.github.io/post/blog20210527/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://masonblog.github.io/tags/%E7%A7%91%E6%8A%80%E5%88%86%E4%BA%AB/">
-      «&nbsp;Prev&nbsp;1/4
+      «&nbsp;Prev&nbsp;1/5
     </a>
-    <a class="next" href="https://masonblog.github.io/tags/%E7%A7%91%E6%8A%80%E5%88%86%E4%BA%AB/page/3/">Next&nbsp;3/4&nbsp;»
+    <a class="next" href="https://masonblog.github.io/tags/%E7%A7%91%E6%8A%80%E5%88%86%E4%BA%AB/page/3/">Next&nbsp;3/5&nbsp;»
     </a>
   </nav>
 </footer>
