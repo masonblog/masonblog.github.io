@@ -14,8 +14,7 @@
       <pubDate>Tue, 27 Jan 2026 20:00:00 +0800</pubDate>
       <guid>https://masonblog.github.io/post/blog20260127/</guid>
       <description>在 Windows 上安装 ClawdBot 的详细教程</description>
-      <content:encoded><![CDATA[<p><img alt="header" loading="lazy" src="/images/blog20260127/header.jpg"></p>
-<p>你听说过 <strong>ClawdBot</strong> 吗？这是一个目前非常热门的开源个人 AI 助手。与那些只会“坐等指令”的传统聊天机器人不同，ClawdBot 具有 <strong>主动性</strong>——它可以主动给你发消息、管理任务，而且是运行在你自己的本地设备上。</p>
+      <content:encoded><![CDATA[<p>你听说过 <strong>ClawdBot</strong> 吗？这是一个目前非常热门的开源个人 AI 助手。与那些只会“坐等指令”的传统聊天机器人不同，ClawdBot 具有 <strong>主动性</strong>——它可以主动给你发消息、管理任务，而且是运行在你自己的本地设备上。</p>
 <p>虽然很多教程都推荐在 Mac Mini 或 Linux 服务器上运行它，但其实 <strong>在 Windows 上运行它也完全没问题</strong>。</p>
 <p>在这篇文章中，我将手把手教你在 <strong>Windows</strong> 上安装 ClawdBot，将其配置为使用 Google 的 <strong>Gemini API</strong>（目前最好的 AI 模型，并且赠送有免费额度），并连接到 <strong>Telegram</strong>，让你随时随地都能与你的 AI 助手聊天。</p>
 <hr>
