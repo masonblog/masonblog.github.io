@@ -178,6 +178,31 @@
 
 <article class="post-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20250207/deepseek.png" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">利用第三方 Deepseek API 实现 AI 辅助应用
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>最近一段时间，AI 圈最热的话题莫过于 Deepseek。它作为国内团队“弯道超车”的典型案例，同时受到两种不同立场群体的吹捧与批评。不过，抛开政治和技术上的争论，单从普通人使用 AI 的成本与门槛来看，Deepseek 确实做到了“AI 的普惠性”。与 OpenAI 等国外大模型运营商相比，Deepseek 的价格极为低廉，对想要学习 AI 应用，而经济条件又非常有限的用户来说，确实是最好的选择。
+然而，受自身承载能力和大规模黑客攻击的限制，Deepseek 的官方服务器在最近一段时间经常会出现连接不稳定的问题，这给用户带来了不便。所幸，Deepseek 大模型的开源属性使其能够被部署在任何第三方服务器上。硅基流动便是众多第三方 AI 大模型供应商之一，它与华为云合作，以低廉的价格，向用户提供Deepseek r1大模型的API接口应用。用户可以通过这一接口顺利使用 Deepseek 的模型功能。
+获取第三方 Deepseek API 首先，我们需要在硅基流动的官网注册一个账号。你可以使用我的邀请码1MwHUt0X注册，这样，你和我都会得到 14 CNY 的免费额度，可以用来免费体验各个大模型的功能。如果免费额度用完，想要付费充值的话，就必须完成实名认证，这也是中国特色的监管要求。
+登录硅基流动的后台，我们就能看到它所支持的一系列大模型，其中就包含当下最热门的 Deepseek R1。
+想要调用这些大模型为我们服务，首先要生成我们自己的 API Key。点击硅基流动后台左侧的API 密钥，再点击右上角的新建 API 密钥按钮，来新建一个 API Key。
+结合 Chatbox 使用 Deepseek R1 大模型 Chatbox 是一款开源的AI聊天机器人客户端，支持包括个人电脑和移动端几乎所有平台（包括网页端），能够调用多种AI模型，以实现文字对话、文生图、程序编写、文案创作等诸多用途。
+出于数据安全与隐私保护的考虑，Chatbox 的所有运行数据都只存储在本地。也就是说，Chatbox 本身只是一个向AI大模型传递数据的工具，它本身并不记录用户的数据。因此，即使我们在不同设备上同时使用 Chatbox，也无法做到配置设置和历史记录的多设备共享。
+硅基流动的官方文档中提供了将其API接入 Chatbox 的指引。这里简单讲一下配置的重点。软件安装好以后，第一次打开会自动弹出设置界面。选择&#34;添加自定义提供方&#34;，API 域名填写https://api.siliconflow.cn即可。更新版本的 Chatbox 已经原生支持了硅基流动的 API 接口，只要在模型提供方处选择SILICONFLOW API，再填写自己的 API Key，并选择想要调用的模型即可。
+值得注意的是，硅基流动同时提供了Pro/deepseek-ai/DeepSeek-R1和deepseek-ai/DeepSeek-R1两个R1模型，只有不带Pro的那个模型支持消耗平台赠送的免费额度，带Pro的必须付费充值后才能使用，选的时候不要选错了。
+配置好后点击保存，就可以开始和我们的AI大模型聊天了。Chatbox 软件内预置了很多好用的 Prompt 场景，可以都尝试一下。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-02-07 00:00:00 +0000 UTC'>2025-02-07</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 利用第三方 Deepseek API 实现 AI 辅助应用" href="https://masonblog.github.io/post/blog20250207/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20250105/new-orleans-truck-attack.webp" alt="">
 </figure>
   <header class="entry-header">
@@ -297,25 +322,6 @@ https://github.com/XiaoMi/ha_xiaomi_home.git 最后点击ADD按钮，如果网�
   <footer class="entry-footer"><span title='2024-12-27 00:00:00 +0000 UTC'>2024-12-27</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to HomeAssistant 米家官方集成的安装与使用" href="https://masonblog.github.io/post/blog20241227/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">关于个人博客迁移的絮叨
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>关于博客迁移 由于一些个人原因，我在今年年中时注销了我的Google账号。这导致我的原 Github 账号无法进行 2FA 认证，也就无法继续在原博客地址更新文章。于是我重新申请了新的 Github 账号，并将之前的文章都迁移到了这里。
-不知道有多少人收藏了我的原博客地址？可能从他们的视角看来，我已经永久停更了吧。在弱社交的静态博客平台发布个人文章，最大的弊端就是无法与读者取得联系。我无法将这篇博客迁移的通知转发给任何老读者，实在非常遗憾😞。
-既然同时更换了 Github 账号和博客地址，我索性把自己的笔名也从 Bright 变为了 Mason。说起来，Bright 这个看上去并不那么 Native 的名字，其实来源于一款我最喜欢的电子游戏——《英雄传说：空之轨迹》（Bright 是游戏主角一家的姓）。在我读研期间，我的 Legal English 老师，一位名叫 David 的旧金山老男孩，曾委婉地告诉我，Bright这个名字并不适合我。于是我启用了 Mason 这个更加 Native 的名字，虽然我依然非常喜欢 Bright 这个词🙂。
-我说这些，是想告诉那些碰巧发现这篇新博客的老读者们：Bright 和 Mason 其实是同一个人。不过说这些大概也是徒劳，就让一切都随风吧👋。
-关于博客主题更换 一直以来，我都用 Hugo 生成自己的静态博客（具体方法可以参考我的这篇文章），使用的主题是一位国人开发者写的 Hugo-fuji。这款主题非常简洁，我很喜欢。可惜 Hugo 的更新版本弃用了几个 Hugo-fuji 所依赖的模块，导致这一主题无法兼容当前版本的 Hugo。而该主题的作者似乎早在两三年前就停止了对项目的维护。因此，我不得不更换博客主题。
-搜了一圈，发现简洁好看的主题实在很少，最终我选择了 Hugo-papermod，也就是大家现在看到的这个主题。这个主题支持更多的自定义功能，对各平台的适应性支持也做得很好，只不过用起来不如 Hugo-fuji 那样简单。
-以上就是关于博客迁移和主题更换的絮叨，希望你没有不耐烦。后面，我会继续在这里更新文章，并稍微提高一点更新频率。致于 YouTube 和播客，我也想重启更新。不知这次又能坚持多久？
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-12-26 00:00:00 +0000 UTC'>2024-12-26</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 关于个人博客迁移的絮叨" href="https://masonblog.github.io/post/blog20241226/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://masonblog.github.io/post/">
@@ -328,7 +334,7 @@ https://github.com/XiaoMi/ha_xiaomi_home.git 最后点击ADD按钮，如果网�
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://masonblog.github.io/">Mason&#39;s Blog</a></span> · 
+        <span>&copy; 2026 <a href="https://masonblog.github.io/">Mason&#39;s Blog</a></span> · 
 
     <span>
         Powered by

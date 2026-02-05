@@ -95,7 +95,7 @@
 <p>当博客的 SEO 优化初见成效后，即可着手接入 <a href="https://adsense.google.com/start/" target="_blank" rel="noopener">Google Adsense</a>。</p>
 <h3 id="adsense-账户申请与博客绑定">Adsense 账户申请与博客绑定</h3>
 <p>进入 <a href="https://adsense.google.com/" target="_blank" rel="noopener">Google Adsense 官网</a>，使用 Google 账号登录后，点击 <strong>站点 &gt; 新增网站</strong>，填写博客的完整 URL。提交后，系统会生成一段验证代码，一般都会包含一段以<code>pub-xxx</code>开头的识别码。用户可以通过两种方式（任选其一）将验证代码加入到自己的网页中，以证明自己对网页的所有权。</p>
-<h4 id="方式一将验证代码嵌入全部网页头部-head">方式一：将验证代码嵌入全部网页头部 <!-- raw HTML omitted --></h4>
+<h4 id="方式一将验证代码嵌入全部网页头部-head">方式一：将验证代码嵌入全部网页头部 <head></h4>
 <p>Hugo 允许用户自定义任何所生成网页的头部内容，即 HTML 文件的<code>&lt;head&gt;&lt;/head&gt;</code>之间的内容。我们需要将 Google Adsense 验证代码添加到 Hugo 生成的每个网页的头部中。具体有以下三种方式（推荐使用第三种方式）：</p>
 <ol>
 <li>

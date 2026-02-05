@@ -6,8 +6,131 @@
     <description>Recent content on Mason&#39;s Blog</description>
     <generator>Hugo -- 0.140.0</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 28 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 27 Jan 2026 20:00:00 +0800</lastBuildDate>
     <atom:link href="https://masonblog.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何在 Windows 上使用 ClawdBot ：用 Gemini 和 Telegram 打造你的私人 AI 助理</title>
+      <link>https://masonblog.github.io/post/blog20260127/</link>
+      <pubDate>Tue, 27 Jan 2026 20:00:00 +0800</pubDate>
+      <guid>https://masonblog.github.io/post/blog20260127/</guid>
+      <description>在 Windows 上安装 ClawdBot 的详细教程</description>
+      <content:encoded><![CDATA[<p><img alt="header" loading="lazy" src="/images/blog20260127/header.jpg"></p>
+<p>你听说过 <strong>ClawdBot</strong> 吗？这是一个目前非常热门的开源个人 AI 助手。与那些只会“坐等指令”的传统聊天机器人不同，ClawdBot 具有 <strong>主动性</strong>——它可以主动给你发消息、管理任务，而且是运行在你自己的本地设备上。</p>
+<p>虽然很多教程都推荐在 Mac Mini 或 Linux 服务器上运行它，但其实 <strong>在 Windows 上运行它也完全没问题</strong>。</p>
+<p>在这篇文章中，我将手把手教你在 <strong>Windows</strong> 上安装 ClawdBot，将其配置为使用 Google 的 <strong>Gemini API</strong>（目前最好的 AI 模型，并且赠送有免费额度），并连接到 <strong>Telegram</strong>，让你随时随地都能与你的 AI 助手聊天。</p>
+<hr>
+<h2 id="-准备工作">🛠️ 准备工作</h2>
+<p>在开始之前，请确保你准备好了以下几样东西：</p>
+<ol>
+<li>一台运行 <strong>Windows 11</strong> 的电脑。</li>
+<li><strong>一个 Google Gemini API Key（密钥）：</strong> 你可以在 <a href="https://aistudio.google.com/" target="_blank" rel="noopener">Google AI Studio</a> 免费获取。</li>
+<li><strong>一个 Telegram 账号：</strong> 用于创建你的机器人。</li>
+</ol>
+<h2 id="第一步安装-wsl2-windows-subsystem-for-linux">第一步：安装 WSL2 (Windows Subsystem for Linux)</h2>
+<p><strong>关键点：</strong> ClawdBot 无法直接在 Windows 的 PowerShell 或 CMD 中原生运行。它需要一个 Linux 环境。幸运的是，Windows 自带了一个完美的工具——<strong>WSL2</strong>。</p>
+<ol>
+<li>
+<p>点击 Windows 开始菜单，找到 <strong>PowerShell</strong>，右键选择 <strong>“以管理员身份运行”</strong>。</p>
+</li>
+<li>
+<p>输入以下命令并回车：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>wsl --install
+</span></span></code></pre></div></li>
+<li>
+<p><strong>重启你的电脑。</strong></p>
+</li>
+<li>
+<p>重启后，打开 应用商店（Microsoft Store），搜索“Ubuntu”，下载并安装 “<strong>Ubuntu 24.04.1 LTS</strong>” 。</p>
+</li>
+<li>
+<p>打开 Ubuntu ，它会要求你创建一个 <strong>用户名和密码</strong>。
+<em>提示：输入密码时屏幕上不会显示任何字符，这是正常的，输完回车即可。</em></p>
+</li>
+</ol>
+<p>一旦你进入了这个 Ubuntu 终端窗口，我们就可以继续了。</p>
+<h2 id="第二步安装-nodejs-正确姿势">第二步：安装 Node.js (正确姿势)</h2>
+<p>ClawdBot 需要较新版本的 <strong>Node.js (v22+)</strong>。Ubuntu 默认自带的版本通常太旧了，所以我们要使用 <strong>NVM</strong> (Node Version Manager) 来安装最新版。</p>
+<p><strong>请在刚才打开的 Ubuntu 终端中运行以下命令：</strong></p>
+<ol>
+<li>
+<p><strong>下载并安装 NVM：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+</span></span></code></pre></div></li>
+<li>
+<p><strong>刷新环境变量</strong> (让系统识别 NVM)：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source ~/.bashrc
+</span></span></code></pre></div></li>
+<li>
+<p><strong>安装 Node.js 最新版：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nvm install --lts
+</span></span></code></pre></div></li>
+<li>
+<p><strong>验证安装是否成功：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>node -v
+</span></span><span style="display:flex;"><span>npm -v
+</span></span></code></pre></div></li>
+</ol>
+<p>只要这两个命令能打印出版本号，就说明安装成功了！</p>
+<h2 id="第三步安装并配置-clawdbot">第三步：安装并配置 ClawdBot</h2>
+<p>最简单的部分来了。ClawdBot 提供了一键安装脚本。在你的 Ubuntu 终端中运行：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://clawd.bot/install.sh | bash
+</span></span></code></pre></div><p>脚本会自动下载必要的文件，并将 ClawdBot 全局安装到你的虚拟 Linux 系统中。</p>
+<p>安装完成后，看到如下界面，说明已经安装成功了：</p>
+<p><img alt="Clawdbot 初始化界面" loading="lazy" src="/images/blog20260127/cli_setup.png"></p>
+<p>安装完成后，我们需要进行简单的快速配置</p>
+<ol>
+<li>
+<p><strong>启动设置向导的命令如下：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>clawdbot onboard
+</span></span></code></pre></div></li>
+<li>
+<p><strong>按照提示操作：</strong></p>
+<ul>
+<li>Understand this is risky（同意风险）: 选 <strong>Yes.</strong></li>
+<li>Onboarding mode（启动模式）: 选 <strong>QuickStart.</strong></li>
+<li>Model provider: <strong>按需选择</strong>，这里选择 Google Gemini.</li>
+<li>API key: 粘贴你之前申请的 Google AI <strong>密钥</strong>。</li>
+<li>Defualt model: <strong>按需选择</strong>，推荐选择 gemini-2.0-flash (速度快/成本低) 或 gemini-2.0-pro (更聪明)。</li>
+<li>Select channel: <strong>按需选择</strong>，推荐选择 Telegram.</li>
+</ul>
+</li>
+</ol>
+<h2 id="第四步配置-telegram-机器人">第四步：配置 Telegram 机器人</h2>
+<p>选择 Telegram ，它会要求你输入 <strong>Bot Token</strong>。打开手机或电脑上的 Telegram，搜索 <a href="https://t.me/BotFather" target="_blank" rel="noopener"><strong>@BotFather</strong></a>。</p>
+<p>发送消息 <code>/newbot</code> 给它，它会让你给你的机器人起个名字（例如 &ldquo;My Jarvis&rdquo;）和用户名（例如 <code>my_private_clawd_bot</code>）。BotFather 会给你一串 API Token（看起来像 <code>123456:ABC-DEF...</code>）。<strong>将这个 Token 粘贴回 Ubuntu 终端窗口中。</strong></p>
+<p>继续配置 Clawdbot ，<strong>Skills 和 Hooks 这些都可以先暂时跳过</strong>，监看方式 (how to hatch your bot) 可以按需选择，这里推荐直接在 <strong>命令行 (TUI)</strong> 上监看。</p>
+<p>上面这些都配置完成后，你的 Clawbot 就正式开始运行了。</p>
+<h2 id="第五步设备配对-pairing">第五步：设备配对 (Pairing)</h2>
+<p>为了安全起见，你的机器人不会随便理睬陌生人。你需要将它与 <em>你</em> 的 Telegram 账号进行配对。</p>
+<ol>
+<li>确保 ClawdBot 正在终端中运行。打开 Telegram 中你刚才创建的机器人，点击 <strong>Start</strong> (或发送 <code>/start</code>)。</li>
+<li>机器人会回复一个 <strong>配对码 (Pairing Code)</strong>。</li>
+<li>回到你的 Ubuntu 终端。你应该会看到一个请求批准的提示。</li>
+<li>根据屏幕提示输入刚才的配对码批准命令。</li>
+</ol>
+<p><strong>🎉 成功！你的机器人上线，随时待命。</strong></p>
+<h2 id="第六步如何使用">第六步：如何使用</h2>
+<p>现在，你可以直接在 Telegram 上与你的机器人聊天了。试试这些指令：</p>
+<ul>
+<li><strong>&ldquo;帮我总结这篇文章：&rdquo;</strong> (粘贴一个文章链接)</li>
+<li><strong>&ldquo;提醒我 20 分钟后关烤箱。&rdquo;</strong> (它到时候会主动给你发消息！)</li>
+<li><strong>&ldquo;东京现在的天气怎么样？&rdquo;</strong></li>
+</ul>
+<p><img alt="how to use" loading="lazy" src="/images/blog20260127/bot_chat.jpg"></p>
+<h3 id="如何保持后台运行">如何保持后台运行</h3>
+<p>因为这个程序运行在你的电脑上，如果你关闭了 Ubuntu 窗口或关机，机器人就会下线。 为了让它在你使用 Windows 时保持后台运行，你可以：</p>
+<ol>
+<li>简单地将 Ubuntu 终端窗口 <strong>最小化</strong>（不要关闭）。</li>
+<li>或者在 Ubuntu 中学习使用 <code>tmux</code> 或 <code>screen</code> 等工具来保持会话。</li>
+</ol>
+<h3 id="常见问题排查">常见问题排查</h3>
+<ul>
+<li><strong>错误：&ldquo;Command not found&rdquo;：</strong> 确保你是在 Ubuntu (WSL) 终端中输入命令，而不是在 Windows 的 PowerShell 中。</li>
+<li><strong>机器人不回复：</strong> 检查终端里的日志。如果你看到 Gemini API 报错，可能是你的 Key 无效，或者因为请求过多触发了限制（如果用量大，可能需要在 Google Cloud 开启按量付费）。</li>
+</ul>
+<p><strong>享受你的新 AI 伙伴吧！</strong> 与 ChatGPT 不同，它住在你的硬盘里，了解你的上下文，并且会在 <em>它</em> 觉得你需要知道某些事情时，主动联系你。</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>GigSky eSIM全球漫游，美国原生IP，最低$2.4/天不限量</title>
       <link>https://masonblog.github.io/post/blog20251028/</link>
@@ -95,7 +218,7 @@
 <p>当博客的 SEO 优化初见成效后，即可着手接入 <a href="https://adsense.google.com/start/" target="_blank" rel="noopener">Google Adsense</a>。</p>
 <h3 id="adsense-账户申请与博客绑定">Adsense 账户申请与博客绑定</h3>
 <p>进入 <a href="https://adsense.google.com/" target="_blank" rel="noopener">Google Adsense 官网</a>，使用 Google 账号登录后，点击 <strong>站点 &gt; 新增网站</strong>，填写博客的完整 URL。提交后，系统会生成一段验证代码，一般都会包含一段以<code>pub-xxx</code>开头的识别码。用户可以通过两种方式（任选其一）将验证代码加入到自己的网页中，以证明自己对网页的所有权。</p>
-<h4 id="方式一将验证代码嵌入全部网页头部-head">方式一：将验证代码嵌入全部网页头部 <!-- raw HTML omitted --></h4>
+<h4 id="方式一将验证代码嵌入全部网页头部-head">方式一：将验证代码嵌入全部网页头部 <head></h4>
 <p>Hugo 允许用户自定义任何所生成网页的头部内容，即 HTML 文件的<code>&lt;head&gt;&lt;/head&gt;</code>之间的内容。我们需要将 Google Adsense 验证代码添加到 Hugo 生成的每个网页的头部中。具体有以下三种方式（推荐使用第三种方式）：</p>
 <ol>
 <li>
