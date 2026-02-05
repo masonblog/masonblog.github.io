@@ -4,7 +4,7 @@
     <title>Telegram on Mason&#39;s Blog</title>
     <link>https://masonblog.github.io/tags/telegram/</link>
     <description>Recent content in Telegram on Mason&#39;s Blog</description>
-    <generator>Hugo -- 0.140.0</generator>
+    <generator>Hugo -- 0.155.2</generator>
     <language>en</language>
     <lastBuildDate>Tue, 27 Jan 2026 20:00:00 +0800</lastBuildDate>
     <atom:link href="https://masonblog.github.io/tags/telegram/index.xml" rel="self" type="application/rss+xml" />
@@ -34,7 +34,7 @@
 </li>
 <li>
 <p>输入以下命令并回车：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>wsl --install
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>wsl --install
 </span></span></code></pre></div></li>
 <li>
 <p><strong>重启你的电脑。</strong></p>
@@ -54,26 +54,26 @@
 <ol>
 <li>
 <p><strong>下载并安装 NVM：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 </span></span></code></pre></div></li>
 <li>
 <p><strong>刷新环境变量</strong> (让系统识别 NVM)：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source ~/.bashrc
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source ~/.bashrc
 </span></span></code></pre></div></li>
 <li>
 <p><strong>安装 Node.js 最新版：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nvm install --lts
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nvm install --lts
 </span></span></code></pre></div></li>
 <li>
 <p><strong>验证安装是否成功：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>node -v
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>node -v
 </span></span><span style="display:flex;"><span>npm -v
 </span></span></code></pre></div></li>
 </ol>
 <p>只要这两个命令能打印出版本号，就说明安装成功了！</p>
 <h2 id="第三步安装并配置-clawdbot">第三步：安装并配置 ClawdBot</h2>
 <p>最简单的部分来了。ClawdBot 提供了一键安装脚本。在你的 Ubuntu 终端中运行：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://clawd.bot/install.sh | bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://clawd.bot/install.sh | bash
 </span></span></code></pre></div><p>脚本会自动下载必要的文件，并将 ClawdBot 全局安装到你的虚拟 Linux 系统中。</p>
 <p>安装完成后，看到如下界面，说明已经安装成功了：</p>
 <p><img alt="Clawdbot 初始化界面" loading="lazy" src="/images/blog20260127/cli_setup.png"></p>
@@ -81,7 +81,7 @@
 <ol>
 <li>
 <p><strong>启动设置向导的命令如下：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>clawdbot onboard
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>clawdbot onboard
 </span></span></code></pre></div></li>
 <li>
 <p><strong>按照提示操作：</strong></p>

@@ -60,7 +60,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GJ7PD33N1"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -235,7 +235,7 @@
 <p>之后，来到 Hugo 站点的根目录，将刚刚下载的压缩包里的所有文件解压到 <code>/static/</code> 文件夹下。</p>
 <p>用文本编辑器打开 <code>/layouts/partials/favicon.html</code> 文件，清空原有代码，将刚刚复制到代码粘贴进去，保存并退出。</p>
 <p>最后，打开 <code>/themes/正在使用的主题名/layouts/partials/head.html</code> 文件（不同主题需要编辑的文件可能不同，例如我所使用的 Fuji 主题就是直接编辑同一目录下的 favicon.html 文件），找到下列代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;shortcut icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;xxx&#34;</span> /&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;shortcut icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;xxx&#34;</span> /&gt;
 </span></span></code></pre></div><p>将 xxx 替换成 <code>favicon.ico</code> ，保存并退出即可。</p>
 <p>此时，我们的 favicon 图标安装工作就宣告完成了。使用 <code>hugo</code> 命令重新生成站点，不出意外的话，就能看到我们刚才上传的站点图标了。</p>
 
