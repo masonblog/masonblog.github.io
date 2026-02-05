@@ -165,6 +165,30 @@
 
 <article class="post-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20210505/modem.jpg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">桥接模式下 Openwrt 软路由直接访问光猫后台
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>光猫开启桥接模式后，软路由作为默认网关进行拨号与 NAT，导致客户端设备无法获取与光猫相同网段的 IP 地址，进而也就无法登陆光猫的后台管理界面。虽然在日常使用的过程中，光猫的配置几乎是一次性的，其后台管理界面的使用频率很低，但是每次登陆光猫后台都要通过有线或无线（若有）的方式将设备直接与光猫相连也着实麻烦。因此需要通过一些简单的配置，实现桥接模式下，连接软路由的同时可以随时访问光猫后台。
+实现原理其实很简单，只要在现有 DHCP 服务端正常工作的前提下，为软路由的 WAN 口再行分配一个与光猫网段相同的 IP 地址即可，前提是你的软路由支持多 WAN。
+以 Openwrt 系统为例，在“网络—接口”界面点击“添加新接口”，进入新接口创建页面。
+接口名称随意填写，接口协议选择“静态地址”，包括的接口选择当前 WAN 口绑定的物理接口。注意，接口协议尽量不要选择 DHCP，因为桥接模式下的光猫基本都会关闭自身的 DHCP 功能，不会给新接口自动分配 IP 地址，所以此时需要通过“静态地址”协议来手动指定新接口的 IP 地址。完成上述配置后，点击“提交”按钮进入新接口的详细配置页面。
+IPv4 地址一定要设置成与光猫位于相同网段的地址。例如光猫连接软路由的 LAN 口的地址（即光猫后台地址）为 192.168.1.1，那么这里新接口的静态 IP 地址就要设置为 192.168.1.x。子网掩码设为 255.255.255.0，默认网关就是光猫 LAN 口的 IP 地址。有关 IP 网段和子网掩码的相关知识，可以参考这篇文章。完成上述设置后，点击“保存&amp;应用”按钮即可完成配置。
+新接口配置完成后，DNS 缓存会有一定延迟，导致无法正常浏览网页，此时重启一下软路由即可解决问题。如果软路由之前配置了端口映射，则新接口创建完成后，所有的端口映射都将失效，此时仍需经过一番针对防火墙的额外设置才能恢复正常。
+重新进入新接口的详细设置页面，在“防火墙设置”中，将原先 WAN 口的防火墙区域绑定到新接口。
+然后进入“网络—防火墙—端口转发”页面，将原有的端口映射配置重新“保存&amp;应用”一下即可。
+至此，如果不出意外的话，我们便可在桥接模式下随时随地访问光猫的后台管理界面了。
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-05-05 00:00:00 +0000 UTC'>2021-05-05</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 桥接模式下 Openwrt 软路由直接访问光猫后台" href="https://masonblog.github.io/post/blog20210505/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20210502/Parsec.png" alt="">
 </figure>
   <header class="entry-header">
@@ -257,31 +281,6 @@ option duplicate_cn &#39;1&#39; 编辑完成后，按键盘上的 ESC 健，再�
   </div>
   <footer class="entry-footer"><span title='2021-04-13 00:00:00 +0000 UTC'>2021-04-13</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to Openwrt Luci Openvpn 服务器多设备同时接入" href="https://masonblog.github.io/post/blog20210413/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://masonblog.github.io/images/blog20210320/Trilium.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">利用 Docker 搭建 Trilium Notes 服务器
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>由于平时需要处理大量结构复杂的内容，并且各内容板块间还存在相互交叉的引用关系，因此长久以来我一直在寻找一款既能满足需求，又简洁易用的内容管理工具。印象笔记或 OneNote 等笔记类服务似乎最为常见，但一来，将所有的私人内容存储在商业公司的服务器上总会让我缺乏安全感；二来这些软件要么不够轻便，要么对重要功能额外收费，因此一直都无法让我十分满意。
-两年前，我接触到一款叫做 Notion 的跨平台软件，无论是功能还是界面都令我十分满意，但它的价格并不便宜，我毕竟不是靠内容吃饭的职业创作者，无论如何也不愿为一款笔记软件搞月付。另外，Notion 仍然无法实现在牢牢掌控内容数据的同时实现便捷的多端同步，这也是一个不大不小的遗憾。
-直到今天，偶然在少数派这篇文章的介绍下了解到一个叫 Trilium 的 Github 开源项目，几乎完美地满足我的所有需求。首先，它是一个开源项目，支持自建笔记服务器，可以让我在牢牢掌控笔记控制权的同时实现多端同步；其次，它界面简洁，非常轻量，甚至可以丢掉客户端，完全实现网页端访问；最后，它完全免费，这点非常重要。
-自从买了威联通 NAS 后，我越来越倾向于将自己的各种数据保存在 NAS 上，再通过各类开源软件实现多端同步。这样既能保证数据安全和个人隐私，又能方便地管理自己的文件和数据。用几千元的成本和少许的电费换得对个人数据的完全掌控，我认为是值得的。因此，在意识到 Trilium 提供开源的服务端软件后，我立刻开始本地服务器的搭建工作。
-Trilium 的官方文档中提供了通过 Docker 安装 Trilium Server 的具体方式。但由于文档为全英文，且只提供了 SSH 命令安装的方式，一些新手阅读起来可能有些困难，因此本文将以图形化的方式简单陈述 Trilium Server 的安装方式。
-首先，在你的 NAS 上安装 Docker 套件（在威联通的 QTS 中叫做 Container Station）并打开它。
-进入“创建”，并在搜索框中搜索 Trilium，找到 zadam/trilium，点击右侧的“安装”。
-在弹出的创建窗口中，点选“高级设置”，首先在“网络”选项卡中设置 Trilium 的端口转发，trilium 的默认 web 界面默认端口是 8080，因此 Container 的端口必须写 8080，而映射出的主机端口则可以根据自身需求填写。为了记忆方便，我倾向于内外端口一致的设置，即主机端口同样设置成 8080，但如果你的 NAS 的 8080 端口已被其他程序占用，请填写其他端口。
-接着，在“共享文件夹”选项卡中，将一个共享文件夹挂在到 Trilium 的容器中。容器中的挂载路径必须写 /trilium-data，而本机共享文件夹则可根据自身需求进行选择，注意挂载共享文件夹的权限必须为读取和写入均有。
-上述设置完成后，点击“创建”按钮，系统会自动下载镜像文件并根据你的配置安装容器。容器安装完成后，便可通过在浏览器中输入 NAS IP/端口的方式访问 Trilium 的 web 界面。初次使用 Trilium 时要进行一些简单的初始化设置，例如创建用户名和密码等。虽然界面只有英文，但非常简单，这里不做赘述。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-03-20 00:00:00 +0000 UTC'>2021-03-20</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 利用 Docker 搭建 Trilium Notes 服务器" href="https://masonblog.github.io/post/blog20210320/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
