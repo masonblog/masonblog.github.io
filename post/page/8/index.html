@@ -178,6 +178,29 @@
 
 <article class="post-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-12_21-51-38.jpeg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">利用 NAS、Docker 和 Calibre Web 搭建个人线上书库
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>经常阅读电子书并且用过 Kindle 的人应该都体会过整理电子书时的痛苦。尤其是像我这种经常下载电子书文件再导入到 Kindle 上进行阅读的人（或是为了省钱、或是因为 Kindle 商城中没有我们想要阅读的书），对于那些有着各自不同的标题、作者、封面，以及文件格式的纷繁复杂的电子书，缺乏一套行之有效的管理方案，进而充分管理自己的阅读进度与时间。
+长期以来，PC 和 Mac 端的 Calibre 都是一个差强人意的电子书管理解决方案。它不仅支持多平台、功能强大（支持电子书整理、编辑、格式转换、一键推送到 Kindle 等），而且完全免费。那我为什么要将这么厉害的软件说成是“差强人意”呢？因为 Calibre 已经多年没有较大的功能更新，作为一款电子书管理软件，它已经无法适应当下人们已经习以为常的需求。具体而言，Calibre 具有以下缺点：
+界面老旧（或曰古朴？），看起来像是十年前的软件； 启动和运行速度较慢，操作繁琐； 不支持多设备同步，不提供云存储服务（这是最重要的一点）。 对于像我这样学习或工作繁忙，几乎没有固定的整段时间使用同一台终端设备的人来说，多端同步和云存储几乎是不可或缺的功能。而且在网页程序和微信小程序等日益普及的今天，有时连下载一个专门的应用程序都显得繁琐（可能是被这几年的技术进步惯坏了把）。因此，最好有一款类似于 Plex 影视库的电子书管理服务器应用，能够让我随时随地打开一个网页就能管理和阅读自己的电子书。幸运的是，这样的软件确实存在，它便是 Calibre 的继任者—— Calibre Web。
+下图就是我用 Calibre Web 在自己的 NAS 上搭建的个人电子书管理网站（或曰个人电子图书馆？）。通过这个网站，我可以轻松地在各种终端设备上上传、修改、整理、推送各种格式的电子书。由于是网页端，因此我不用担心海量电子书会占用手机或电脑的硬盘容量，也不用担心多端同步的问题。更加难能可贵的是，由于 Calibre Web 开发得比较晚近，因此它的界面也很符合当下的主流审美标准。
+关于 Calibre Web 的搭建方法，网络上有很多前辈们撰写的教程，他们已经说得非常详细了。首先，你必须拥有一台能够稳定运行的服务器或 NAS（其实任意一台普通电脑都是可以的，只要你舍得让它 7*24 小时运行）。然后，你需要在你的设备上搭建一个 docker 环境，因为 Calibre Web 需要 docker 作为运行的载体。最后，经过简单的安装和配置，你就可以拥有一个属于自己的电子书管理网站了。
+这里以群辉为例。首先在“控制面板”中创建一个新的共享文件夹，用于存放 Calibre Web 的数据库和电子书资源。我这里将它命名为&#34;Books&#34;。创建完成后切记要开放该文件夹对所有用户的读写权限，否则 Calibre Web 将无法正常运行。
+共享文件夹配置完成后，在群辉的套件中心中选择安装 docker 并打开它。再在“注册表”页面中搜索“Calibre-web”，此处途中框选的三个镜像都可以下载，它们的区别并不大，这里主要推荐 linuxserver/Clibre-web，在双击后弹出的对话框中选择“latest”并点“确定”开始下载。
+镜像下载成功后（系统右上角会弹出提示），进入 docker 的“镜像”页面选择刚刚下载好的 linuxserver/Clibre-web 镜像，点击启动。在弹出的对话框中，点击“高级设置”，再按下图所示进行设置即可。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2020-05-12 00:00:00 +0000 UTC'>2020-05-12</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 利用 NAS、Docker 和 Calibre Web 搭建个人线上书库" href="https://masonblog.github.io/post/blog20200512/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20200326/anki.png" alt="">
 </figure>
   <header class="entry-header">
@@ -269,26 +292,6 @@ Hugo 的所有页面都支持 Markdown 语法，借助它，我们可以在任�
   <footer class="entry-footer"><span title='2020-03-10 00:00:00 +0000 UTC'>2020-03-10</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 利用 Hugo 和 Github Pages 搭建自己的个人博客" href="https://masonblog.github.io/post/blog20200310/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">这个世界不需要英雄
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>2019年12月底，谷歌照例公布了去年的年度词汇——“英雄（Hero）”.这或许和过去一年上映的众多超级英雄电影不无关系，但在这个充满混乱与焦虑的时代，呼唤英雄也确实会成为人们的选择之一。因为历史毕竟只是过去事件的缩略记录，难免会给人一种“英雄史观”的错觉，所以越是善于“以史为鉴”的民族，越会在自身无法应付的历史关口前，翘首期盼英雄的出现。就像拿破仑之于法国、希特勒之于德国，尽管二者为各自民族留下了性质完全不同的精神遗产——前者留下了伟大的《法国民法典》、并将法国的自由与民主精神遍撒欧洲，而后者则留下了恐怖的战争与屠杀，并使德国化为一片废墟——但他们无一不是被自己的人民亲手推上的英雄宝座。
-每一部英雄史诗——无论是悲剧还是喜剧——都离不开两个要素，即懒汉与野心家。人民天生便具有将眼前的复杂局势交给一名能力超群的英雄来解决的倾向。毕竟公共事务复杂而多变，其处理过程充满了枯燥的盘算，相较于参与其中并耗费自己的精力与时间，人们更愿意投身于短暂而刺激的“公审大会”或“造神运动”。至于无聊的公共事务，交给英雄就好。填补这种“懒汉需求”的便是野心家，他们总是带着不切实际的“救世计划”进入公众视野，并向人们许诺一个流淌着奶和蜜的美丽新世界。众多野心家中，总会有少数“出类拔萃”的人会被人们选中，成为应对危机、带领人民前往新世界的“领袖”。
-翻遍史书，懒汉与野心家的默契配合无不以悲剧收场。因为复杂而多变的公共议题根本不存在所谓“一劳永逸”的解决之道，即使有，也不是一小撮高居庙堂的“领袖”们所能想出。公共事务的解决需要全体公民的参与，关注、讨论、投票、请愿等都是参与的方式。这是公民在享受各项权利的同时，应当尽到的基本义务。懒汉们无视除纳税以外的其他公民义务，转而寄希望于“英雄”于“领袖”的出现，最终只会招致野心家，酿成无法挽回的悲剧。
-身为一个尚未走出此类悲剧的古老民族的我们，更应当铭记历史的教训，拒绝充当自食其果的懒汉、拒绝满嘴美好愿景的野心家，与其他公民一起打拼、真正尽到一位公民的义务。这才是真正的“以史为鉴”。“公审大会”与“造神运动”固然精彩刺激，但公民不能沉浸于这种虚假的参与感、止步于肉欲上的的满足。伟大的民族必然需要伟大的公民，而懒汉们永远无法实现“民族复兴“
-2019年是个多事之秋，我隐约嗅到了人类文明周期性衰落的味道。在这场无法避免的衰落中，哪些民族会走入沉沦、哪些又能度过难关？这是一个值得思考的问题。毫无疑问，中国人的勤劳与勇敢是值得骄傲的，他们能在体制的重重阻碍之下创造出世界第二的经济奇迹。但正如前总理温家宝所言，没有政治体制改革的成功，经济体制改革无法进行到底。30年前的枪声使全民噤声，也使中国的改革步入了“改无可改”的尴尬境地。但人们的沉默并不代表他们选择充当懒汉，因为这个世界需要的永远不是英雄，而是所有人抛弃“主义”、研究“问题”，共同努力，对这个古老的民族负起责任。
-我的手机铃声是美国乐队 Family of the Year 为一部年更剧集写的一首插曲《Hero》，它的歌词很好地表达了年轻一代拒绝宏大叙事，但热情地迎接未来生活的精神。
-Let me go, I don’t wanna be your hero. I don’t wanna be your big man, I just wanna fight witheveryone else. You’re a masquerade, I don’t wanna be a part of your parade. Everyone deserves a chance to, Walk with everyone else.
-如今，中国的年轻一代承受着远超其负荷的生存压力。房价畸高、公司压榨、食品毒害、环境污染，加之愈发严重的人口老龄化以及随之而来的社保将空，这些压在中国年轻人身上的重担没有一个是可以被“英雄”轻松解决的。我们受够了“大众创业、万众创新”或“中华民族伟大复兴”这样的宏大叙事，在即将到来的复杂时代面前，这些口号显得无比苍白。在这样的艰难境地中，我们不能寄希望于“英雄”的出现。抑或说，我们自己才能做自己的英雄。
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2020-01-21 00:00:00 +0000 UTC'>2020-01-21</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 这个世界不需要英雄" href="https://masonblog.github.io/post/blog20200121/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://masonblog.github.io/post/page/7/">
@@ -301,7 +304,7 @@ Let me go, I don’t wanna be your hero. I don’t wanna be your big man, I just
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="https://masonblog.github.io/">Mason&#39;s Blog</a></span> · 
+        <span>&copy; 2026 <a href="https://masonblog.github.io/">Mason&#39;s Blog</a></span> · 
 
     <span>
         Powered by
