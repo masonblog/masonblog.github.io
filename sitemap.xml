@@ -2,40 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://masonblog.github.io/tags/ai/</loc>
-    <lastmod>2026-01-27T20:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://masonblog.github.io/tags/clawdbot/</loc>
-    <lastmod>2026-01-27T20:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://masonblog.github.io/tags/gemini/</loc>
-    <lastmod>2026-01-27T20:00:00+08:00</lastmod>
-  </url><url>
     <loc>https://masonblog.github.io/</loc>
-    <lastmod>2026-01-27T20:00:00+08:00</lastmod>
+    <lastmod>2026-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://masonblog.github.io/post/</loc>
-    <lastmod>2026-01-27T20:00:00+08:00</lastmod>
+    <lastmod>2026-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://masonblog.github.io/tags/</loc>
-    <lastmod>2026-01-27T20:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://masonblog.github.io/tags/telegram/</loc>
-    <lastmod>2026-01-27T20:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://masonblog.github.io/tags/windows/</loc>
-    <lastmod>2026-01-27T20:00:00+08:00</lastmod>
+    <lastmod>2026-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://masonblog.github.io/post/blog20260127/</loc>
-    <lastmod>2026-01-27T20:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://masonblog.github.io/tags/%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2026-01-27T20:00:00+08:00</lastmod>
-  </url><url>
-    <loc>https://masonblog.github.io/post/blog20251028/</loc>
-    <lastmod>2025-10-28T00:00:00+00:00</lastmod>
+    <lastmod>2026-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://masonblog.github.io/tags/%E7%A7%91%E6%8A%80%E5%88%86%E4%BA%AB/</loc>
+    <lastmod>2026-01-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://masonblog.github.io/post/blog20251028/</loc>
     <lastmod>2025-10-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://masonblog.github.io/post/blog20250320/</loc>

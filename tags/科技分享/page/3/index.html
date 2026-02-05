@@ -163,6 +163,28 @@
 
 <article class="post-entry tag-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20210608/wwdc2021.png" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">实测苹果专用转接代理可用于翻墙，但中国大陆地区无法使用
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>昨晚熬夜看了今年的 Apple WWDC 直播。虽然今年没有发布任何硬件设备，但 iOS 15 和 macOS Monterey 的一些新的功能特性确实解决了我的好几个痛点。
+一直以来，隐私保护都是苹果公司的宣传重点之一，以致于其越发严苛的隐私政策已经十足地损害了像 Facebook 和 Google 这种以收集用户数据为主要盈利方式的互联网巨头的利益。iOS 14.5 版本新增的“允许 App 请求跟踪”功能，就曾遭到 Facebook 的强烈反对。
+针对用户隐私保护，苹果在今年的 WWDC 上公布了全新的 iCloud&#43; 服务。在订阅价格保持不变的前提下，iCloud 加入了“Homekit 安全摄像头”、“邮件隐私保护”和“专用转接代理（Privacy Relay）”等功能。前两项功能的字面意思都很好理解，那这最后一个“专用转接代理”又是什么东西呢？
+其实，看到“代理“两个字时应该就不难猜到，所谓的”专用转接代理“，就是一个类似于 VPN 的服务。当这个功能被开启时， Safari 浏览器的所有流量都将由苹果的服务器进行“转接”，从而达到隐藏用户真实 ip 地址的目的。
+既然 Safari 浏览器的流量都由苹果的服务器转接，那么我们是否可以通过开启“专用转接代理”的方式来访问被 GFW 封锁的网站呢？单从理论上来说，答案是肯定的。但是，根据各大外媒的报道，苹果已经主动表示，依据相关国家的政策，专用转接代理功能不对包括白俄罗斯、哥伦比亚、埃及、哈萨克斯坦、沙特阿拉伯、南非、土库曼斯坦、乌干达、菲律宾，以及中国在内的国家和地区开放。
+经本人实测，美国 ip ➕ 美区 iCloud 账号可以正常开启专用转接代理，且当 ip 地址变为中国时，代理功能仍会在几分钟内正常运行，此时通过 Safari 浏览器，是可以正常访问 Google 等国外网站的。然而几分钟后，一旦 iCloud 服务器检测到中国大陆的 ip 地址，代理功能就会自动关闭。也就是说，iCloud 服务器对用户实际 ip 地址的检测并非实时进行，而是每隔几分钟进行一次。
+这是可能有人会问，能不能通过某种手段，瞒过 iCloud 服务器的检测，以达到长期使用专用转接代理的目的？答案是肯定的，但你必须首先在路由器上套一层外国代理（直接在手机上开启代理软件是行不通的，全局代理也不行），再通过苹果的服务器访问互联网。归根结底，专用转接代理只是一个隐私保护工具，它不能、也不应被用于翻墙，想薅苹果羊毛，用上一个月一美元的翻墙代理的朋友们可能要失望了。
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-06-08 00:00:00 +0000 UTC'>2021-06-08</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 实测苹果专用转接代理可用于翻墙，但中国大陆地区无法使用" href="https://masonblog.github.io/post/blog20210608/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20210527/favicon.png" alt="">
 </figure>
   <header class="entry-header">
@@ -251,29 +273,6 @@ Parsec 的使用方式非常简单，只要去官网注册一个账号并分别�
   </div>
   <footer class="entry-footer"><span title='2021-04-23 00:00:00 +0000 UTC'>2021-04-23</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 解决蜗牛星际B双安装黑群晖失败“文件已损毁（13）”" href="https://masonblog.github.io/post/blog20210423/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://masonblog.github.io/images/blog20210413/openvpn.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Openwrt Luci Openvpn 服务器多设备同时接入
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>我们日常使用的 Openwrt 软路由系统几乎都集成了 Luci 界面，它不仅可以为用户提供便利的可视化后台管理界面，还在各路大神的贡献下，适配了众多简单易用的图形化 App。Luci-app-openvpn-server 就是众多 Luci 应用中最常用的 VPN 服务器之一。
-简单来说，luci-app-openvpn-server 就是 Openvpn 服务器端的 Luci 界面版本。有了它，你就可以告别难搞的命令行，通过图形化的网页直接配置你的 Openvpn 服务器端。结合各主流平台的 Openvpn 客户端软件，你可以随时随地接入自己家里的局域网，实现内网访问或文件传输等功能。
-正常情况下，只要按照 Luci 界面的提示填写相应的配置信息，即可成功运行 Openvpn 的服务器端。此时只要点击“一键下载.Ovpn 文件”按钮，再将下载下来的配置文件直接导入 Openvpn 客户端软件即可开始使用。但 luci-app-openvpn-server 的默认配置支支持同时登陆一个客户端，当有第二个客户端尝试接入时，先前接入的第一个客户端就会被强制断线。然而在日常使用的过程中，多设备同时接入的情况是十分常见的，那么怎样才能使 luci-app-openvpn-server 可以同时接入多个设备呢？
-其实，Openvpn 的服务端是支持多设备同时接入的。根据 Github 上这个 Issue 中的介绍，我们能够得知，只要在 Openvpn 的配置文件中加入一行代码，即可开启 Openvpn 的多设备同时接入功能：
-具体如何操作呢？首先，用 ssh 工具登陆你的 Openwrt 软路由。具体的工具及方法可自行搜索，我日常使用的是微软官方发布的 Windows Terminal 终端工具。成功登陆 ssh 后，输入以下命令开始编辑 Openvpn 的配置文件：
-vim /etc/config/openvpn 如果没能成功打开配置文件的编辑界面，很可能是因为你的 Openwrt 系统没有安装 vim （一款命令行文本编辑器）。至于 vim 的安装方法，还请自行搜索，本文不再赘述。
-进入配置文件的编辑界面后，按键盘上的 I 健进入文本编辑模式，将光标移到配置文件末尾，将以下代码复制粘贴到配置文件最后一行。
-option duplicate_cn &#39;1&#39; 编辑完成后，按键盘上的 ESC 健，再依次输入以下命令保存并退出编辑器：
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-04-13 00:00:00 +0000 UTC'>2021-04-13</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to Openwrt Luci Openvpn 服务器多设备同时接入" href="https://masonblog.github.io/post/blog20210413/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
