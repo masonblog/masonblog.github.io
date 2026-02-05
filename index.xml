@@ -4,7 +4,7 @@
     <title>Mason&#39;s Blog</title>
     <link>https://masonblog.github.io/</link>
     <description>Recent content on Mason&#39;s Blog</description>
-    <generator>Hugo -- 0.140.0</generator>
+    <generator>Hugo -- 0.155.2</generator>
     <language>en</language>
     <lastBuildDate>Tue, 27 Jan 2026 20:00:00 +0800</lastBuildDate>
     <atom:link href="https://masonblog.github.io/index.xml" rel="self" type="application/rss+xml" />
@@ -34,7 +34,7 @@
 </li>
 <li>
 <p>输入以下命令并回车：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>wsl --install
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>wsl --install
 </span></span></code></pre></div></li>
 <li>
 <p><strong>重启你的电脑。</strong></p>
@@ -54,26 +54,26 @@
 <ol>
 <li>
 <p><strong>下载并安装 NVM：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 </span></span></code></pre></div></li>
 <li>
 <p><strong>刷新环境变量</strong> (让系统识别 NVM)：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source ~/.bashrc
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source ~/.bashrc
 </span></span></code></pre></div></li>
 <li>
 <p><strong>安装 Node.js 最新版：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nvm install --lts
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nvm install --lts
 </span></span></code></pre></div></li>
 <li>
 <p><strong>验证安装是否成功：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>node -v
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>node -v
 </span></span><span style="display:flex;"><span>npm -v
 </span></span></code></pre></div></li>
 </ol>
 <p>只要这两个命令能打印出版本号，就说明安装成功了！</p>
 <h2 id="第三步安装并配置-clawdbot">第三步：安装并配置 ClawdBot</h2>
 <p>最简单的部分来了。ClawdBot 提供了一键安装脚本。在你的 Ubuntu 终端中运行：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://clawd.bot/install.sh | bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://clawd.bot/install.sh | bash
 </span></span></code></pre></div><p>脚本会自动下载必要的文件，并将 ClawdBot 全局安装到你的虚拟 Linux 系统中。</p>
 <p>安装完成后，看到如下界面，说明已经安装成功了：</p>
 <p><img alt="Clawdbot 初始化界面" loading="lazy" src="/images/blog20260127/cli_setup.png"></p>
@@ -81,7 +81,7 @@
 <ol>
 <li>
 <p><strong>启动设置向导的命令如下：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>clawdbot onboard
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>clawdbot onboard
 </span></span></code></pre></div></li>
 <li>
 <p><strong>按照提示操作：</strong></p>
@@ -200,25 +200,25 @@
 <p>要让博客被搜索引擎高效索引并吸引自然流量，SEO 优化是至关重要的一步。对于 Hugo 而言，需要重点关注 <strong>sitemap（站点地图）</strong> 和 <strong>robots.txt（爬虫索引）</strong> 的配置。</p>
 <h3 id="配置-sitemap-站点地图">配置 sitemap 站点地图</h3>
 <p>站点地图是一个重要的网站文件，它为搜索引擎和用户提供了网站结构的概览。要为 Hugo 站点创建站点地图，在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">sitemap</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">sitemap</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">changefreq</span>: <span style="color:#ae81ff">weekly</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">filename</span>: <span style="color:#ae81ff">sitemap.xml</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">priority</span>: <span style="color:#ae81ff">0.5</span>
 </span></span></code></pre></div><p>其中，<code>changefreq</code>表示更新频率，<code>filename</code>表示生成的站点地图文件名，<code>priority</code>表示页面的默认优先级。这样，Hugo 会在博客根目录下生成一个<code>sitemap.xml</code>文件，以便搜索引擎了解网站结构。</p>
 <p>某些主题的 sitemap 模板会自动包含标签页或分类页，但这些页面可能对搜索引擎价值不高。通过自定义模板，可以移除冗余条目。具体操作方法为：在 Hugo 项目的 <code>layouts/</code> 目录下创建名为 <code>sitemap.xml</code> 的文件，覆盖主题默认的 sitemap 模板。例如，屏蔽标签页的代码示例如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>{{- $pages := where .Site.Pages &#34;Type&#34; &#34;not in&#34; (slice &#34;tags&#34;) -}}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>{{- $pages := where .Site.Pages &#34;Type&#34; &#34;not in&#34; (slice &#34;tags&#34;) -}}
 </span></span><span style="display:flex;"><span>{{- $pages = $pages | union (where .Site.RegularPages &#34;Permalink&#34; &#34;!=&#34; &#34;&#34;) -}}
 </span></span></code></pre></div><p>通过上述调整，能确保 sitemap 仅包含核心内容页面，提升搜索引擎抓取效率 。</p>
 <h3 id="生成-robotstxt-爬虫索引">生成 robots.txt 爬虫索引</h3>
 <p><code>Robots.txt</code>是一个位于网站根目录的纯文本文件，用于将站点地图提交给搜索引擎，指导搜索引擎如何访问和索引网站内容。要为 Hugo 站点创建<code>robots.txt</code>，在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableRobotsTXT</span>: <span style="color:#66d9ef">true</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableRobotsTXT</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><p>这允许所有搜索引擎爬虫访问网站，并明确指定 sitemap 路径，确保内容被快速索引。</p>
 <p>完成这两步后，可通过 Google Search Console 提交 sitemap，实时监测索引状态。稳定的搜索引擎流量是申请 Google Adsense 的基础条件之一，通常需积累至少每日数十次的有效访问。</p>
 <h2 id="google-adsense-接入博客变现的开始">Google Adsense 接入：博客变现的开始</h2>
 <p>当博客的 SEO 优化初见成效后，即可着手接入 <a href="https://adsense.google.com/start/" target="_blank" rel="noopener">Google Adsense</a>。</p>
 <h3 id="adsense-账户申请与博客绑定">Adsense 账户申请与博客绑定</h3>
 <p>进入 <a href="https://adsense.google.com/" target="_blank" rel="noopener">Google Adsense 官网</a>，使用 Google 账号登录后，点击 <strong>站点 &gt; 新增网站</strong>，填写博客的完整 URL。提交后，系统会生成一段验证代码，一般都会包含一段以<code>pub-xxx</code>开头的识别码。用户可以通过两种方式（任选其一）将验证代码加入到自己的网页中，以证明自己对网页的所有权。</p>
-<h4 id="方式一将验证代码嵌入全部网页头部-head">方式一：将验证代码嵌入全部网页头部 <head></h4>
+<h4 id="方式一将验证代码嵌入全部网页头部">方式一：将验证代码嵌入全部网页头部 <head></h4>
 <p>Hugo 允许用户自定义任何所生成网页的头部内容，即 HTML 文件的<code>&lt;head&gt;&lt;/head&gt;</code>之间的内容。我们需要将 Google Adsense 验证代码添加到 Hugo 生成的每个网页的头部中。具体有以下三种方式（推荐使用第三种方式）：</p>
 <ol>
 <li>
@@ -632,7 +632,7 @@
 <p>Hugo 同时支持3钟配置文件语法，分别为 <code>YAML</code>、<code>TOML</code>和<code>JSON</code>。它们都是常用的数据序列化和配置文件格式，且各有特点和适用场景。</p>
 <h2 id="yaml-yaml-aint-markup-language">YAML (YAML Ain&rsquo;t Markup Language)</h2>
 <p><code>YAML</code>是一种人类可读的数据序列化格式，常用于配置文件和数据交换，它的语法格式为：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">John Doe</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">John Doe</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">age</span>: <span style="color:#ae81ff">30</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">city</span>: <span style="color:#ae81ff">New York</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">hobbies</span>:
@@ -652,7 +652,7 @@
 </ul>
 <h2 id="toml-toms-obvious-minimal-language">TOML (Tom&rsquo;s Obvious, Minimal Language)</h2>
 <p><code>TOML</code>是一种旨在成为最小配置文件格式的语言，设计目标是易于阅读和编写，它的语法格式为：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">person</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">person</span>]
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;John Doe&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">age</span> = <span style="color:#ae81ff">30</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">city</span> = <span style="color:#e6db74">&#34;New York&#34;</span>
@@ -676,7 +676,7 @@
 </ul>
 <h2 id="json-javascript-object-notation">JSON (JavaScript Object Notation)</h2>
 <p>JSON是一种轻量级的数据交换格式，最初源于JavaScript，但现在已广泛应用于各种编程语言，它的语法格式为：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;John Doe&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;age&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">30</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;city&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;New York&#34;</span>
@@ -699,7 +699,7 @@
 <p>综合考虑易读性及与当前主题的兼容性，我选择的配置文件语法为<code>YAML</code>，以下所有配置命令，都将以<code>YAML</code>格式呈现。值得注意的是，<strong>YAML对缩进非常敏感，在利用 Hugo 进行渲染时，哪怕某一行少了一个空格，都会渲染失败，所以要特别注意</strong>。</p>
 <h1 id="添加文章时间轴页面archives">添加文章时间轴页面（Archives）</h1>
 <p>在<code>/Content/</code>目录下新建<code>archieves.md</code>，写入以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>title: &#34;Archive&#34;
 </span></span><span style="display:flex;"><span>layout: &#34;archives&#34;
@@ -709,13 +709,13 @@
 </span></span><span style="display:flex;"><span>---
 </span></span></code></pre></div><h1 id="添加搜索页面search">添加搜索页面（Search）</h1>
 <p>第1步：在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">outputs</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">outputs</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">home</span>:
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">HTML</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">RSS</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">JSON</span> <span style="color:#75715e"># 搜索页所必需</span>
 </span></span></code></pre></div><p>第2步：在<code>/Content/</code>目录下新建<code>archieves.md</code>，写入以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
 </span></span><span style="display:flex;"><span><span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;Search&#34;</span> <span style="color:#75715e"># 以你想要的任何语言</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">layout</span>: <span style="color:#e6db74">&#34;search&#34;</span> <span style="color:#75715e"># 搜索页所必需</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># url: &#34;/archive&#34;</span>
@@ -725,7 +725,7 @@
 </span></span><span style="display:flex;"><span>---
 </span></span></code></pre></div><h1 id="添加菜单">添加菜单</h1>
 <p>在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">menu</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">menu</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">main</span>:
 </span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">文章</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">url</span>: <span style="color:#ae81ff">archives</span>
@@ -741,12 +741,12 @@
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">10</span>
 </span></span></code></pre></div><h1 id="启用-emoji-white_check_mark">启用 Emoji &#x2705;</h1>
 <p>Hugo 原生支持 Emoji 渲染，只要在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableEmoji</span>: <span style="color:#66d9ef">true</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableEmoji</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><p>这样，只要在<code>.md</code>文件中输入符合 Markdown 语法的<code>:emojiname:</code>（两个半角冒号中间写上 Emoji 名称），即可输入一个 Emoji。你可以在<a href="https://gist.github.com/rxaviers/7360908" target="_blank" rel="noopener">这个列表</a>中查询 Markdown 语法中的 Emoji 名称。</p>
 <h1 id="添加-favicon-图标">添加 Favicon 图标</h1>
 <p>可以参考我的这篇<a href="/post/blog20210527/">文章</a>，访问<a href="https://favicon.io/" target="_blank" rel="noopener">这个网站</a>，将你喜欢的站点图标图片转换成<code>Favicon</code>专用格式，将生成的所有文件放入<code>/static/</code>目录下。</p>
 <p>可选：如果想将图标文件放入<code>/static/</code>的子目录下，例如<code>/static/favicon/</code>，则还需在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">assets</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">favicon</span>: <span style="color:#e6db74">&#34;/favicon/favicon.ico&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">favicon16x16</span>: <span style="color:#e6db74">&#34;/favicon/favicon-16x16.png&#34;</span>
@@ -755,27 +755,27 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">safari_pinned_tab</span>: <span style="color:#e6db74">&#34;/favicon/safari-pinned-tab.svg&#34;</span> 
 </span></span></code></pre></div><h1 id="启用代码复制按钮">启用代码复制按钮</h1>
 <p>在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">ShowCodeCopyButtons</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><h1 id="翻页按钮显示页数">翻页按钮显示页数</h1>
 <p>在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">ShowPageNums</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><h1 id="文章列表页面添加rss订阅按钮">文章列表页面添加RSS订阅按钮</h1>
 <p>在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">ShowRssButtonInSectionTermList</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><h1 id="rss-feed-输出全文">RSS Feed 输出全文</h1>
 <p>在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">ShowFullTextinRss</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><h1 id="以新标签页打开站外链接">以新标签页打开站外链接</h1>
 <p>在<code>/themes/主题名/layouts/_default/_markup/</code>目录下新建<code>render-link.html</code>，写入以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ .Destination | safeURL }}&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">with</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">Title</span><span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ . }}&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">end</span> <span style="color:#960050;background-color:#1e0010">}}{{</span> <span style="color:#a6e22e">if</span> <span style="color:#a6e22e">strings</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">HasPrefix</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">Destination</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">http</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_blank&#34;</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;noopener&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">end</span> <span style="color:#960050;background-color:#1e0010">}}</span>&gt;{{ .Text | safeHTML }}&lt;/<span style="color:#f92672">a</span>&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ .Destination | safeURL }}&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">with</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">Title</span><span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ . }}&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">end</span> <span style="color:#960050;background-color:#1e0010">}}{{</span> <span style="color:#a6e22e">if</span> <span style="color:#a6e22e">strings</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">HasPrefix</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">Destination</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">http</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_blank&#34;</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;noopener&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">end</span> <span style="color:#960050;background-color:#1e0010">}}</span>&gt;{{ .Text | safeHTML }}&lt;/<span style="color:#f92672">a</span>&gt;
 </span></span></code></pre></div><h1 id="自定义超链接样式">自定义超链接样式</h1>
 <p>PaperMod 主题支持自定义CSS，我们可以通过自定义CSS改变网站默认的超链接样式，如颜色、下划线，以及鼠标悬停时的变化等。</p>
 <p>在<code>/themes/主题名/assets/css/extended/</code>目录下新建<code>custom.css</code>，写入以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">post-content</span> <span style="color:#f92672">a</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">post-content</span> <span style="color:#f92672">a</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#0969da</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">box-shadow</span>: <span style="color:#66d9ef">none</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">text-decoration</span>: <span style="color:#66d9ef">none</span>;
@@ -789,10 +789,10 @@
 <p><strong>SEO (Search Engine Optimization) 是一种通过优化网站内容和结构来提高网站在搜索引擎结果页面中自然排名的方法</strong>。SEO的目标是增加网站的有机流量，提升网站的可见度，吸引更多目标受众。要为 Hugo 站点做 SEO 优化，我们需要做好以下工作：</p>
 <h2 id="配置文件优化">配置文件优化</h2>
 <p>在配置文件<code>config.yml</code>中添加网站描述：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;您的网站描述&#34;</span>
 </span></span></code></pre></div><p>同样，我们也可以为每篇文章设置标题、关键词和描述，在<code>.md</code>文件的头部添加以下内容，来定义文章的基本信息：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
 </span></span><span style="display:flex;"><span>title: &#34;文章标题&#34;
 </span></span><span style="display:flex;"><span>keywords:
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> 关键词1
@@ -801,14 +801,14 @@
 </span></span><span style="display:flex;"><span>---
 </span></span></code></pre></div><h2 id="创建-sitemap-站点地图">创建 sitemap 站点地图</h2>
 <p>站点地图是一个重要的网站文件，它为搜索引擎和用户提供了网站结构的概览。要为 Hugo 站点创建站点地图，在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">sitemap</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">sitemap</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">changefreq</span>: <span style="color:#ae81ff">weekly</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">filename</span>: <span style="color:#ae81ff">sitemap.xml</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">priority</span>: <span style="color:#ae81ff">0.5</span>
 </span></span></code></pre></div><p>其中，<code>changefreq</code>表示更新频率，<code>filename</code>表示生成的站点地图文件名，<code>priority</code>表示页面的默认优先级。这样，Hugo 会在网站根目录下生成一个<code>sitemap.xml</code>文件，以便搜索引擎了解网站结构。</p>
 <h2 id="创建-robotstxt-爬虫索引">创建 robots.txt 爬虫索引</h2>
 <p><code>Robots.txt</code>是一个位于网站根目录的纯文本文件，用于将站点地图提交给搜索引擎，指导搜索引擎如何访问和索引网站内容。要为 Hugo 站点创建<code>robots.txt</code>，在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableRobotsTXT</span>: <span style="color:#66d9ef">true</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableRobotsTXT</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><p>这样，Hugo 会自动在网站根目录下生成<code>Robots.txt</code>文件。</p>
 <h1 id="参考链接">参考链接</h1>
 <p><a href="https://gohugo.io/about/introduction/" target="_blank" rel="noopener">Introduction | Hugo</a></p>
@@ -904,7 +904,7 @@
 <p>米家官方集成有多种安装方式，其中最简单，也是最新手友好的方式，就是通过 <a href="https://www.hacs.xyz/" target="_blank" rel="noopener">HACS</a> 进行安装。HASC 的安装方法详见我的这篇文章，此处不再赘述。<strong>由于米家官方集成暂未加入 HASC 的官方库，我们需要通过添加自定义库链接的方式，将米家官方集成的库链接添加到 HASC 目录</strong>。登入 HA 后台，点击左侧的<code>HASC</code>，再点右上角的三个点，选择<code>Custom Repositories</code>，新建一个自定义库链接，如下图所示。</p>
 <p><img alt="image" loading="lazy" src="/images/blog20241227/hacs1.png"></p>
 <p>库类型（Catagory）选择<code>Integration</code>；库链接填写下面的链接：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>https://github.com/XiaoMi/ha_xiaomi_home.git
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>https://github.com/XiaoMi/ha_xiaomi_home.git
 </span></span></code></pre></div><p>最后点击ADD按钮，如果网络没有问题的话，米家官方集成的安装链接就会被添加到 HASC 的自定目录中。再依次点击设置—设备与集成—添加集成，在搜索框中输入<code>Xiaomi</code>，在弹出的结果中选择<code>XIaomi Home</code>。接下来，按照提示登录米家账号即可。</p>
 <p><img alt="image" loading="lazy" src="/images/blog20241227/hacs2.png"></p>
 <p><img loading="lazy" src="/images/blog20241227/xiaomi-home-auth1.png"></p>
@@ -1101,15 +1101,15 @@
 <li>将核显驱动<strong>直通</strong>给 Docker 容器，并赋予 Docker 容器调用该驱动的权限。</li>
 </ol>
 <p>对于系统是否满足上述第一个条件，可以通过以下方式进行检验：首先用 ssh 工具连接到服务器，确保登陆 ssh 的账户拥有系统管理权限，再输入以下命令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ls /dev/dri
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ls /dev/dri
 </span></span></code></pre></div><p>如果返回的结果为 <code>card0 renderD128</code> ，那么恭喜，核显驱动运行正常，硬件系统满足视频解码的基本条件。接下来便是将 renderD128 这个核显驱动直通给 Docker 容器的方法。</p>
 <h2 id="为什么必须用-portainer">为什么必须用 Portainer?</h2>
 <p>无论是群辉、威联通还是 <a href="https://www.unraid.net" target="_blank" rel="noopener">Unraid</a>，市场上绝大多数 NAS 系统都提供了图形化的 Docker 容器管理工具。但无论上述哪一个，都不支持核显驱动的直通功能。群辉的 Docker 套件无法编辑容器的系统资源参数，威联通的 Container Station 干脆无法编辑已经创建好的容器。</p>
 <p><strong>这里所说的“直通”，其实是将 <code>/dev/dri/renderD128</code> 这个驱动文件映射到 Docker 容器的相同位置</strong>。这一点利用命令行可以非常轻松地实现，即在 Jellyfin 容器的拉取命令中加入下列参数：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>--device<span style="color:#f92672">=</span>/dev/dri/renderD128 <span style="color:#ae81ff">\
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>--device<span style="color:#f92672">=</span>/dev/dri/renderD128 <span style="color:#ae81ff">\
 </span></span></span></code></pre></div><p>因此，要快速拉取并创建一个开启硬件解码的 Jellyfin 容器，只要在 NAS 的命令行界面输入以下命令即可：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name jellyfin <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /share/Container/Jellyfin/config:/config <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放配置文件的目录</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name jellyfin <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v /share/Container/Jellyfin/config:/config <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放配置文件的目录</span>
 </span></span><span style="display:flex;"><span>-v /share/Container/Jellyfin/cache:/cache <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放媒体缓存的目录</span>
 </span></span><span style="display:flex;"><span>-v /share/Media/:/media <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放电影文件的目录</span>
 </span></span><span style="display:flex;"><span>-p 8096:8096 <span style="color:#ae81ff">\ </span><span style="color:#75715e">#web界面访问端口（http）</span>
@@ -1121,8 +1121,8 @@
 <p>因此，对于那些既不想用命令行，又希望对 Docker 有较为全面管控的用户来说，Portainer 几乎是唯一的选择。通过 Portainer，即使是初学者也能轻松为 Jellyfin 开启硬件解码。</p>
 <h2 id="portainer-的安装与使用">Portainer 的安装与使用</h2>
 <p>由于 Portainer 需要调用 <code>/var/run/docker.sock</code> 这个文件以实现对 Docker 的直接管理，因此 Portainer 也无法通过群辉或威联通自带的 Docker 管理界面进行安装，因为上述管理界面均不支持针对单个文件的映射。但由于 Portainer 需要配置的参数较少，且容器创建完成后不需要频繁修改，因此普通用户可以直接复制一以下命令进行安装。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name prtainer <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /var/run/docker.sock:/var/run/docker.sock <span style="color:#ae81ff">\ </span><span style="color:#75715e">#关键</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name prtainer <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v /var/run/docker.sock:/var/run/docker.sock <span style="color:#ae81ff">\ </span><span style="color:#75715e">#关键</span>
 </span></span><span style="display:flex;"><span>-p 9000:9000 <span style="color:#ae81ff">\ </span><span style="color:#75715e">#web界面访问端口</span>
 </span></span><span style="display:flex;"><span>--restart<span style="color:#f92672">=</span>always <span style="color:#ae81ff">\ </span><span style="color:#75715e">#重启策略</span>
 </span></span><span style="display:flex;"><span>portainer/portainer
@@ -1180,7 +1180,7 @@
 <p>之后，来到 Hugo 站点的根目录，将刚刚下载的压缩包里的所有文件解压到 <code>/static/</code> 文件夹下。</p>
 <p>用文本编辑器打开 <code>/layouts/partials/favicon.html</code> 文件，清空原有代码，将刚刚复制到代码粘贴进去，保存并退出。</p>
 <p>最后，打开 <code>/themes/正在使用的主题名/layouts/partials/head.html</code> 文件（不同主题需要编辑的文件可能不同，例如我所使用的 Fuji 主题就是直接编辑同一目录下的 favicon.html 文件），找到下列代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;shortcut icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;xxx&#34;</span> /&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;shortcut icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;xxx&#34;</span> /&gt;
 </span></span></code></pre></div><p>将 xxx 替换成 <code>favicon.ico</code> ，保存并退出即可。</p>
 <p>此时，我们的 favicon 图标安装工作就宣告完成了。使用 <code>hugo</code> 命令重新生成站点，不出意外的话，就能看到我们刚才上传的站点图标了。</p>
 ]]></content:encoded>
@@ -1310,12 +1310,12 @@
 <p>正常情况下，只要按照 Luci 界面的提示填写相应的配置信息，即可成功运行 Openvpn 的服务器端。此时只要点击“一键下载.Ovpn 文件”按钮，再将下载下来的配置文件直接导入 Openvpn 客户端软件即可开始使用。但 luci-app-openvpn-server 的默认配置支支持同时登陆一个客户端，当有第二个客户端尝试接入时，先前接入的第一个客户端就会被强制断线。然而在日常使用的过程中，多设备同时接入的情况是十分常见的，那么怎样才能使 luci-app-openvpn-server 可以同时接入多个设备呢？</p>
 <p>其实，Openvpn 的服务端是支持多设备同时接入的。根据 Github 上<a href="https://github.com/coolsnowwolf/lede/issues/6175" target="_blank" rel="noopener">这个 Issue</a> 中的介绍，我们能够得知，只要在 Openvpn 的配置文件中加入一行代码，即可开启 Openvpn 的多设备同时接入功能：</p>
 <p>具体如何操作呢？首先，用 ssh 工具登陆你的 Openwrt 软路由。具体的工具及方法可自行搜索，我日常使用的是微软官方发布的 <a href="https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab" target="_blank" rel="noopener">Windows Terminal</a> 终端工具。成功登陆 ssh 后，输入以下命令开始编辑 Openvpn 的配置文件：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vim /etc/config/openvpn
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vim /etc/config/openvpn
 </span></span></code></pre></div><p>如果没能成功打开配置文件的编辑界面，很可能是因为你的 Openwrt 系统没有安装 vim （一款命令行文本编辑器）。至于 vim 的安装方法，还请自行搜索，本文不再赘述。</p>
 <p>进入配置文件的编辑界面后，按键盘上的 I 健进入文本编辑模式，将光标移到配置文件末尾，将以下代码复制粘贴到配置文件最后一行。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>option duplicate_cn <span style="color:#e6db74">&#39;1&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>option duplicate_cn <span style="color:#e6db74">&#39;1&#39;</span>
 </span></span></code></pre></div><p>编辑完成后，按键盘上的 ESC 健，再依次输入以下命令保存并退出编辑器：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>:qw
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>:qw
 </span></span></code></pre></div><p>完成上述步骤后，重启路由器。不出意外的话，你就可以同时使用多个客户端接入自己的局域网了。</p>
 ]]></content:encoded>
     </item>

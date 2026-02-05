@@ -61,7 +61,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GJ7PD33N1"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -202,7 +202,7 @@ Trilium 的官方文档中提供了通过 Docker 安装 Trilium Server 的具体
 以群晖和 Openwrt 系统为例，我们首先需要在 Openwrt 路由器上安装并开启 UPnP 服务。
 然后，登陆群晖的管理后台，在控制面板 - 外部访问 - 路由器配置选项卡中，选择“设置路由器”。此时系统会自动检测网络环境以及路由器型号与配置，不出意外的话，整个过程能够由系统自动完成，无须人工配置。之后，点击“新增”按钮，并根据自己的需求选择要转发的应用和端口，再点击“保存”即可。
 最后，我们可以回到路由器后台的 UPnP 页面，查看已经被系统自动添加好的端口映射规则。值得注意的是，国内的网络运营商一般会禁用个人和家庭宽带的 443 和 445 端口（前者是 https 的默认端口，后者是 smb 服务的默认端口），因此，即使我们在 UPnP 服务中添加了上述两个端口的自动映射，也无法实现 443 和 445 端口的外网访问。此时，就需要我们在防火墙的端口映射中手动进行端口映射，即将 443 和 445 两个内网端口映射到外网的非 443 或 445 端口（如 444 和 446，全凭个人喜好）。这样，我们才能绕过运营商的封锁，成功进行上述两个端口的外部访问。
-...</p>
+</p>
   </div>
   <footer class="entry-footer"><span title='2020-09-14 00:00:00 +0000 UTC'>2020-09-14</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 通过群晖与 Openwrt 软路由实现自动端口映射" href="https://masonblog.github.io/post/blog20200914/"></a>
