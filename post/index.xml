@@ -6,12 +6,12 @@
     <description>Recent content in Posts on Mason&#39;s Blog</description>
     <generator>Hugo -- 0.155.2</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 27 Jan 2026 20:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 27 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://masonblog.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>如何在 Windows 上使用 ClawdBot ：用 Gemini 和 Telegram 打造你的私人 AI 助理</title>
       <link>https://masonblog.github.io/post/blog20260127/</link>
-      <pubDate>Tue, 27 Jan 2026 20:00:00 +0800</pubDate>
+      <pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://masonblog.github.io/post/blog20260127/</guid>
       <description>在 Windows 上安装 ClawdBot 的详细教程</description>
       <content:encoded><![CDATA[<p>你听说过 <strong>ClawdBot</strong> 吗？这是一个目前非常热门的开源个人 AI 助手。与那些只会“坐等指令”的传统聊天机器人不同，ClawdBot 具有 <strong>主动性</strong>——它可以主动给你发消息、管理任务，而且是运行在你自己的本地设备上。</p>
