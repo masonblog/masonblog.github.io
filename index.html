@@ -2,7 +2,7 @@
 <html lang="en" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.155.2"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.140.0"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -63,7 +63,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GJ7PD33N1"></script>
       <script>
         var doNotTrack = false;
-        if ( true ) {
+        if ( false ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -205,6 +205,31 @@
 
 <article class="post-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20260214/header.jpg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">为了寻找 ATMB 美国住宅地址，我专门写了一个小程序
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>如果你是“云居民”或数字游民，相信你对 Anytime Mailbox (ATMB) 一定不陌生。它是目前最流行的美国云信箱服务之一，提供了海量的美国地址供我们租赁使用。
+但是，对于很多需要申请美国银行账户（如 Capital One, Chase 等）或注册美国券商账号的朋友来说，ATMB 最大的痛点在于：绝大多数地址都是“商业地址” (Commercial / CMRA)，而银行往往要求提供“住宅地址” (Residential / RDI)。
+要在 ATMB 浩如烟海的地址列表中，手动一个个去查哪个是住宅地址，简直是大海捞针，费时费力。
+为了解决这个问题，我写了一个开源的小程序：ATMB-Addresses。
+这个工具能做什么？ 简单来说，它就像一个自动化的“探针”，可以帮我们：
+自动爬取 ATMB 上指定州（或全美）的所有地址信息。 自动识别 每个地址的属性，帮我们判断它究竟是 住宅 (Residential) 还是 商业 (Commercial) 地址。 整理成表，将结果保存为 Excel/CSV 文件，方便我们筛选。 如何使用（无需编程基础！） 虽然这是一个 Python 程序，但我知道很多朋友可能对代码并不熟悉。没关系！为了方便大家，我已经把爬取并验证好的现成数据直接上传到了仓库里。
+如果你懒得自己跑程序，只需要直接下载我跑好的数据即可。
+步骤如下： 访问我的 GitHub 仓库：https://github.com/masonblog/ATMB-Addresses 点击页面上的 “Public” 文件夹。 在里面找到你感兴趣的州（比如 new-york.csv 或 california.csv）。 下载这个 CSV 文件，用 Excel 打开。 在表格中寻找 rdi 这一列： 如果显示 Residential，恭喜你！这很可能就是一个银行认可的住宅地址。 如果显示 Commercial，那就是普通的商业地址。 就是这么简单！
+💻 进阶玩家：如何自己运行代码 如果你是技术党，或者你想获取最新的实时数据（毕竟地址库会更新），你也可以把代码下载到本地自己运行。
+1. 准备工作 首先，你需要确保电脑上安装了 Python 3.x 环境，并安装必要的依赖库。在终端中运行以下命令：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-02-14 00:00:00 +0000 UTC'>2026-02-14</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 为了寻找 ATMB 美国住宅地址，我专门写了一个小程序" href="https://masonblog.github.io/post/blog20260214/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20260130/cover.jpg" alt="">
 </figure>
   <header class="entry-header">
@@ -321,35 +346,9 @@ sitemap: changefreq: weekly filename: sitemap.xml priority: 0.5 其中，changef
   <footer class="entry-footer"><span title='2025-03-20 00:00:00 +0000 UTC'>2025-03-20</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 个人博客如何变现：Google Adsense 接入 Hugo" href="https://masonblog.github.io/post/blog20250320/"></a>
 </article>
-
-<article class="post-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://masonblog.github.io/images/blog20250317/RedteaGO.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">年费15元的奥地利 eSIM 电话卡：RedteaGo
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>由于个人的一些特殊需求，我经常需要用到海外手机号，也因此一直在寻找经济实惠、性能稳定的海外电话卡。之前，我一直在使用美国 UltraMobile 每月 3 美元 的 PayGo 卡，以及香港 3HK 每年 268HKD、45G 流量的漫游卡。这两张卡都各有各的劣势：PayGo 卡在国内只能接打电话、收发短信，无法漫游上网；3HK 可以在国内漫游上网，但它使用的 IP 地址是香港的，无法登录 ChatGPT，也无法接打电话或收发短信。因此，长久以来我一直在寻找一款既能在国内漫游上网（非香港 IP 地址）、又能接收短信，并且价格不能太贵的海外电话卡，直到我发现了一家奥地利运营商 RedteaMobile 的全球上网手机卡——RedteaGo。
-RedteaGo 的全球套餐有以下几点优势：
-有效期内（最长365天，可续费）可免费接收短信，注册各类 APP【仅全球套餐】
-支持全球130&#43;地区（包括中国大陆）的漫游上网，且 IP 地址在欧洲，可以轻松登录 ChatGPT【仅全球套餐】
-价格低廉，100MB 保号套餐仅需 3.2 美元/年，若叠加邀请码赠金，则最低 2 美元（约合人民币15元）即可保号一年
-支持 eSIM，无需实体卡即可轻松激活
-无需实名登记
-RedteaGo 的套餐可以在官方网站或者官方APP上直接购买，如果你的手机支持 eSIM，那么可以通过官方APP直接购买；如果你的手机不支持 eSIM，需要借助第三方实体 eSIM 卡，那么最好在官方网站上下单，因为只有官方网站下单的套餐才会提供 eSIM 二维码。
-先用邮箱注册一个 RedteaGo 账号，注册时可以使用我的邀请码MASO0042，这样你和我都可以获得 3 美元的赠金，后续购买套餐时可以直接抵用。叠加邀请码赠金后，最低只要 2 美元就能保号一整年。
-注册完成后，就可以选购套餐了。如果想要在购买套餐时使用上面的 3 美元赠金，一定要先往账户里充值，再购买套餐，因为如果购买套餐时账户余额低于套餐金额的话，就只能选择直接支付套餐金额，无法抵扣邀请码赠金，这点一定切记。
-账户充值的最小金额是 2 美元，支付方式可以选择Apple Pay、国际信用卡或支付宝等，下图为 RedteaGo APP 内的充值演示。注意充值前先看好你想购买套餐的价格，确保充值金额&#43;3美元赠金要大于套餐价格，才能在购买套餐时抵扣。
-以最便宜的 3.2 美元套餐为例，用邀请码注册账号的初始余额为 3 美元（赠送），那么我们只要充值最低的 2 美元，即可拥有 3&#43;2=5 美元的余额。购买套餐时选择用余额支付，则购买完成后，账户中还剩下 5-3.2=1.8 美元，可用于下次购买其他套餐使用。 ...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-03-17 00:00:00 +0000 UTC'>2025-03-17</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 年费15元的奥地利 eSIM 电话卡：RedteaGo" href="https://masonblog.github.io/post/blog20250317/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="next" href="https://masonblog.github.io/page/2/">Next&nbsp;2/9&nbsp;»
+    <a class="next" href="https://masonblog.github.io/page/2/">Next&nbsp;2/10&nbsp;»
     </a>
   </nav>
 </footer>

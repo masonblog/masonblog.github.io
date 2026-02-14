@@ -61,7 +61,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GJ7PD33N1"></script>
       <script>
         var doNotTrack = false;
-        if ( true ) {
+        if ( false ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -163,6 +163,26 @@
 
 <article class="post-entry tag-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20210423/error13.png" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">解决蜗牛星际B双安装黑群晖失败“文件已损毁（13）”
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>去年疫情期间，由于滞留家中实在无聊，我开始折腾软路由和 DIY NAS，而被折腾得最多的莫过于黑群晖系统。为此，我特意买来两台蜗牛星际（B双和C），其中B双用作软路由，C则用于黑群晖。时隔一年，忙于工作的我已不再有闲暇时间折腾黑群晖，而出于对数据安全和便捷性的考虑，我于今年年初购买了一台威联通的 NAS 主机。俗话说得好，黑群晖折腾到头，就会转去白群辉。但奈何威联通的性价比要比群晖高太多，因此我只好无耻地叛变了革命。
+昨天心血来潮，想把放在角落吃灰许久的蜗牛星际B双刷成黑群晖，用作重要数据的冷备工具，平常都会处于关机状态，只有冷备的时候才会开机。由于我的B双之前一直都用作软路由，因此从来都没有刷过黑群晖。但鉴于蜗牛星际的配置都差不多，我简单地以为直接用之前C上现成的黑群晖引导U盘即可直接安装黑群晖系统。然而天真的我还是遇到了困难。
+问题出在新系统安装的过程中，每当进度走到 56% 的时候，都会跳出编号为 13 的错误，提示“系统安装失败，文件可能已经损毁（13）”。为了解决这一问题，我尝试了很多方法，包括但不限于格式化所有硬盘（包括 SSD）以及更换各个版本的官方或非官方 DSM 安装包，但都不奏效，错误 13 依然存在。
+最后，在电报群里高人的指点下，我终于解决了这一问题。其实，新系统安装的过程中之所以会出现错误 13， 是因为机器主板的 BIOS 没设置好。只要给主机插上键盘和显示器，在开机时进入 BIOS 界面（通常是在开机后显示主板厂商 logo 时按键盘上的 DEL 键进入），然后依次进入 Advanced—Miscellaneous Configuration—OS Selection，将 Win 7 改为 Win 8.x 即可。
+忙活了半天，最后才知道原来只是这么简单的一个问题。为了不让后来的小白们像我一样浪费时间，特此记录一下。本文也谈不上什么教程了。
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-04-23 00:00:00 +0000 UTC'>2021-04-23</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 解决蜗牛星际B双安装黑群晖失败“文件已损毁（13）”" href="https://masonblog.github.io/post/blog20210423/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20210413/openvpn.png" alt="">
 </figure>
   <header class="entry-header">
@@ -225,7 +245,7 @@ Trilium 的官方文档中提供了通过 Docker 安装 Trilium Server 的具体
 以群晖和 Openwrt 系统为例，我们首先需要在 Openwrt 路由器上安装并开启 UPnP 服务。
 然后，登陆群晖的管理后台，在控制面板 - 外部访问 - 路由器配置选项卡中，选择“设置路由器”。此时系统会自动检测网络环境以及路由器型号与配置，不出意外的话，整个过程能够由系统自动完成，无须人工配置。之后，点击“新增”按钮，并根据自己的需求选择要转发的应用和端口，再点击“保存”即可。
 最后，我们可以回到路由器后台的 UPnP 页面，查看已经被系统自动添加好的端口映射规则。值得注意的是，国内的网络运营商一般会禁用个人和家庭宽带的 443 和 445 端口（前者是 https 的默认端口，后者是 smb 服务的默认端口），因此，即使我们在 UPnP 服务中添加了上述两个端口的自动映射，也无法实现 443 和 445 端口的外网访问。此时，就需要我们在防火墙的端口映射中手动进行端口映射，即将 443 和 445 两个内网端口映射到外网的非 443 或 445 端口（如 444 和 446，全凭个人喜好）。这样，我们才能绕过运营商的封锁，成功进行上述两个端口的外部访问。
-</p>
+...</p>
   </div>
   <footer class="entry-footer"><span title='2020-09-14 00:00:00 +0000 UTC'>2020-09-14</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 通过群晖与 Openwrt 软路由实现自动端口映射" href="https://masonblog.github.io/post/blog20200914/"></a>
@@ -252,29 +272,6 @@ Trilium 的官方文档中提供了通过 Docker 安装 Trilium Server 的具体
   </div>
   <footer class="entry-footer"><span title='2020-05-12 00:00:00 +0000 UTC'>2020-05-12</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 利用 NAS、Docker 和 Calibre Web 搭建个人线上书库" href="https://masonblog.github.io/post/blog20200512/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://masonblog.github.io/images/blog20200326/anki.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">可能是最好用的记忆辅助工具 Anki
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>对包括我在内的相当一部分人来说，记单词几乎已经成为一种刚需。无论是为了应付考试、取得各类等级证书还是单纯提高语言能力，词汇都是我们不得不正面应对的挑战。而在如今这个互联网时代，捧着厚重的词汇书或者词典进行背诵的方式已经被大多数人所抛弃，因为它既枯燥又低效，不仅会消磨我们学习一门语言的热情，还不利于培养语感、付诸实用。
-在这样的背景下，一众“背单词”软件应运而生。这其中就包括开心词场、扇贝英语和百词斩等较为优秀的产品。但是，这些软件或多或少都存在着以下几点无法弥补的缺陷：
-词库多为厂商事先制作而成，缺乏根据个人情况进行定制的空间，灵活性不强。 支持的语种多为英、日、韩等热门语种，无法满足小语种（如希伯来语）学习者的需求。 出于营利目的，集成了许多不常用的花哨功能，洁面不够简洁。 同样出于营利目的，部分功能仅对付费用户开放，免费用户的使用体验受限。 凡此种种，都构成了我长期无法找到适合自己的背单词软件的原因。然而，就在将近两年前，也就是我正在准备研究生考试的时候，我遇到了 Anki 这个神一样的记忆软件。之所以称它为“记忆软件”而非“背单词软件”，是因为它几乎支持所有需要记忆的内容格式，而不像上文提到的众多“专业软件”那样只能用来背特定语种的单词。实际上，只要你愿意，Anki 可以被用来记忆唐诗、成语，甚至纳瓦霍语。
-简单来说，Anki 是一种利用类似于 Flash Cards 的卡片机制来辅助记忆的，支持高度定制化的工具。到目前为止，我发现它具有以下几个传统背单词软件所不具备的优点：
-支持几乎所有内容形式，只有你想不到，没有 Anki 不支持的内容。 不仅支持传统的翻面单词卡，还支持诸如填空题、选择题等多种答题形式，满足各类需求。 根据艾宾浩斯遗忘曲线科学定制学习和温习计划，保证高效利用精力和时间。 云端实时备份词库和学习进度，并支持包括 PC、Mac、iOS、Android 等类操作系统，让用户可以轻松跨平台同步学习进度，随时随地进行学习。 支持牌组导出导入，结合活跃的社区和各类资源分享渠道，使那些不愿意自己制作牌组的用户也能通过下载并导入前人制作好的卡组来高效进入学习状态。 Anki 的桌面端（包括 Windows 和 Mac）和手机端（包括 iOS 和 Android）的功能几乎完全相同，但前者完全免费而后者必须付费。如果你既不愿意付费也不想使用盗版，那么只使用桌面版即可。这样除了无法获得多平台同步学习的体验外，不会受到任何具体功能上的限制。
-Anki 的桌面端界非常简洁，你可以通过点击“新建记忆库”来自定义录入自己的牌组，也可以点击“获取牌组”以进入 Anki 官网浏览和下载其他用户上传的现成牌组。另外，在诸如淘宝或闲鱼等交易网站上也会有卖家有偿销售自己制作的 Anki 牌组，如果你购买了那些牌组，那么只要点击“导入文件”按钮即可将买来的牌组轻松导入。
-以手机端为例，在学习牌组的过程中，我们可以根据自己的答题状况点选下方不同颜色的按钮。这样，Anki 就会将相应卡片加入对应的温习序列中，并根据艾宾浩斯遗忘曲线，结合我们后续的回忆状况，动态地安排学习计划。可以说，Anki 的这种根据个人记忆状况动态定制学习计划的特点，是使它从众多“背单词软件”中脱颖而出的最根本原因。
-去年的这个时候，我正在准备所报考学校的研究生复试。如果说我的研究生外语考试能够取得理想成绩“多半”是我自己努力的结果的话，那么 Anki 便是那“少半”的原因。
-</p>
-  </div>
-  <footer class="entry-footer"><span title='2020-03-26 00:00:00 +0000 UTC'>2020-03-26</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 可能是最好用的记忆辅助工具 Anki" href="https://masonblog.github.io/post/blog20200326/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
