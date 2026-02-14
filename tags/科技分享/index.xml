@@ -42,13 +42,14 @@
 </li>
 </ol>
 <p>就是这么简单！</p>
-<h2 id="-进阶玩家如何自己运行代码">💻 进阶玩家：如何自己运行代码</h2>
+<h2 id="进阶玩家如何自己运行代码">进阶玩家：如何自己运行代码</h2>
 <p>如果你是技术党，或者你想获取最新的实时数据（毕竟地址库会更新），你也可以把代码下载到本地自己运行。</p>
 <h3 id="1-准备工作">1. 准备工作</h3>
 <p>首先，你需要确保电脑上安装了 Python 3.x 环境，并安装必要的依赖库。在终端中运行以下命令：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install requests beautifulsoup4
 </span></span></code></pre></div><p>其次，这个工具最核心的“验证”功能依赖于 <strong>Smarty API</strong>。你需要去 <a href="https://www.smarty.com/" target="_blank" rel="noopener">Smarty.com</a> 注册一个账号（它提供免费1000条地址验证的试用额度，够我们跑很多数据了）。注册好后，获取你的 <code>Auth ID</code> 和 <code>Auth Token</code>，把它们保存好，后面会用到。</p>
 <p>然后，访问我的 GitHub 仓库：<a href="https://github.com/masonblog/ATMB-Addresses" target="_blank" rel="noopener">https://github.com/masonblog/ATMB-Addresses</a>，点击<strong>Code</strong>按钮，再点击<strong>Download ZIP</strong>打包下载代码。</p>
+<p><img alt="Download_ZIP" loading="lazy" src="/images/blog20260214/download_zip.png"></p>
 <p>在代码**根目录（解压后的文件夹）**下创建一个名为 <code>smarty_api_key.txt</code> 的文件，将刚刚保存的 Smarty API 的 <code>Auth ID</code> 和 <code>Auth Token</code> 填入这个文件并保存：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>auth_id=你的AUTH_ID
 </span></span><span style="display:flex;"><span>auth_token=你的AUTH_TOKEN

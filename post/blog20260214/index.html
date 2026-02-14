@@ -80,9 +80,9 @@
     <meta property="article:published_time" content="2026-02-14T00:00:00+00:00">
     <meta property="article:modified_time" content="2026-02-14T00:00:00+00:00">
     <meta property="article:tag" content="科技分享">
-    <meta property="og:image" content="https://masonblog.github.io/images/blog20260214/header.jpg">
+    <meta property="og:image" content="https://masonblog.github.io/images/blog20260214/Cover.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://masonblog.github.io/images/blog20260214/header.jpg">
+<meta name="twitter:image" content="https://masonblog.github.io/images/blog20260214/Cover.png">
 <meta name="twitter:title" content="为了寻找 ATMB 美国住宅地址，我专门写了一个小程序">
 <meta name="twitter:description" content="介绍一个能帮你快速筛选美国住宅地址的开源小工具">
 
@@ -117,10 +117,10 @@
   "keywords": [
     "数字游民", "ATMB", "美国地址", "Anytime Mailbox", "Python", "开源"
   ],
-  "articleBody": "如果你是“云居民”或数字游民，相信你对 Anytime Mailbox (ATMB) 一定不陌生。它是目前最流行的美国云信箱服务之一，提供了海量的美国地址供我们租赁使用。\n但是，对于很多需要申请美国银行账户（如 Capital One, Chase 等）或注册美国券商账号的朋友来说，ATMB 最大的痛点在于：绝大多数地址都是“商业地址” (Commercial / CMRA)，而银行往往要求提供“住宅地址” (Residential / RDI)。\n要在 ATMB 浩如烟海的地址列表中，手动一个个去查哪个是住宅地址，简直是大海捞针，费时费力。\n为了解决这个问题，我写了一个开源的小程序：ATMB-Addresses。\n这个工具能做什么？ 简单来说，它就像一个自动化的“探针”，可以帮我们：\n自动爬取 ATMB 上指定州（或全美）的所有地址信息。 自动识别 每个地址的属性，帮我们判断它究竟是 住宅 (Residential) 还是 商业 (Commercial) 地址。 整理成表，将结果保存为 Excel/CSV 文件，方便我们筛选。 如何使用（无需编程基础！） 虽然这是一个 Python 程序，但我知道很多朋友可能对代码并不熟悉。没关系！为了方便大家，我已经把爬取并验证好的现成数据直接上传到了仓库里。\n如果你懒得自己跑程序，只需要直接下载我跑好的数据即可。\n步骤如下： 访问我的 GitHub 仓库：https://github.com/masonblog/ATMB-Addresses 点击页面上的 “Public” 文件夹。 在里面找到你感兴趣的州（比如 new-york.csv 或 california.csv）。 下载这个 CSV 文件，用 Excel 打开。 在表格中寻找 rdi 这一列： 如果显示 Residential，恭喜你！这很可能就是一个银行认可的住宅地址。 如果显示 Commercial，那就是普通的商业地址。 就是这么简单！\n💻 进阶玩家：如何自己运行代码 如果你是技术党，或者你想获取最新的实时数据（毕竟地址库会更新），你也可以把代码下载到本地自己运行。\n1. 准备工作 首先，你需要确保电脑上安装了 Python 3.x 环境，并安装必要的依赖库。在终端中运行以下命令：\npip install requests beautifulsoup4 其次，这个工具最核心的“验证”功能依赖于 Smarty API。你需要去 Smarty.com 注册一个账号（它提供免费1000条地址验证的试用额度，够我们跑很多数据了）。注册好后，获取你的 Auth ID 和 Auth Token，把它们保存好，后面会用到。\n然后，访问我的 GitHub 仓库：https://github.com/masonblog/ATMB-Addresses，点击Code按钮，再点击Download ZIP打包下载代码。\n在代码**根目录（解压后的文件夹）**下创建一个名为 smarty_api_key.txt 的文件，将刚刚保存的 Smarty API 的 Auth ID 和 Auth Token 填入这个文件并保存：\nauth_id=你的AUTH_ID auth_token=你的AUTH_TOKEN 2. 开始运行 整个流程分为三步：爬取 -\u003e 补充详情（可选） -\u003e 验证。\n第一步：爬取基本地址信息 在代码文件夹右键单击，选择“在终端中打开”，然后输入以下命令运行 ATMB_scrape.py。你可以指定爬取某个州，或者直接爬取全美所有地址。\n# 爬取纽约州 python ATMB_scrape.py --input new-york # 爬取全美（耗时较长） python ATMB_scrape.py --input us 程序运行后，会在 Public 文件夹下生成一个 CSV 文件，比如 Public/new-york.csv，里面包含了 ATMB 上最新爬取的地址信息，包括街道地址、城市、州、邮编等。\n第二步：补充单元号信息（可选） ATMB 的列表页通常只显示街道地址，但很多时候我们需要知道具体的单元号信息，比如 Suite # 或 Unit #。这一步就要在终端中输入以下命令，程序会访问每个地址的详情页，把这些信息抓取下来：\npython ATMB_detail.py --input Public/new-york.csv 运行完成后，会生成一个新的文件 Public/new-york_detailed.csv。\n第三步：验证地址性质（关键步骤） 最后，我们使用 Smarty API 来验证这些地址是住宅还是商业。在终端中运行以下命令：\npython ATMB_verify.py --input Public/new-york_detailed.csv 程序会逐行验证，并生成最终的文件 Public/new-york_detailed_verified.csv。\n打开这个最终文件，查看 rdi 列：\nResidential: 住宅地址（银行喜欢这个！✅） Commercial: 商业地址（⚠️） 详细的技术文档和使用参数，我都写在仓库的 README.md 里了，欢迎大家去 Star 和 Fork！\n结语 寻找一个靠谱的美国住宅地址是很多“云居民”迈向全球化的第一步。希望这个小工具能帮你节省宝贵的时间，少走弯路。\n如果你觉得好用，别忘了分享给身边有需要的朋友！\n",
-  "wordCount" : "178",
+  "articleBody": "如果你是“云居民”或数字游民，相信你对 Anytime Mailbox (ATMB) 一定不陌生。它是目前最流行的美国云信箱服务之一，提供了海量的美国地址供我们租赁使用。\n但是，对于很多需要申请美国银行账户（如 Capital One, Chase 等）或注册美国券商账号的朋友来说，ATMB 最大的痛点在于：绝大多数地址都是“商业地址” (Commercial / CMRA)，而银行往往要求提供“住宅地址” (Residential / RDI)。\n要在 ATMB 浩如烟海的地址列表中，手动一个个去查哪个是住宅地址，简直是大海捞针，费时费力。\n为了解决这个问题，我写了一个开源的小程序：ATMB-Addresses。\n这个工具能做什么？ 简单来说，它就像一个自动化的“探针”，可以帮我们：\n自动爬取 ATMB 上指定州（或全美）的所有地址信息。 自动识别 每个地址的属性，帮我们判断它究竟是 住宅 (Residential) 还是 商业 (Commercial) 地址。 整理成表，将结果保存为 Excel/CSV 文件，方便我们筛选。 如何使用（无需编程基础！） 虽然这是一个 Python 程序，但我知道很多朋友可能对代码并不熟悉。没关系！为了方便大家，我已经把爬取并验证好的现成数据直接上传到了仓库里。\n如果你懒得自己跑程序，只需要直接下载我跑好的数据即可。\n步骤如下： 访问我的 GitHub 仓库：https://github.com/masonblog/ATMB-Addresses 点击页面上的 “Public” 文件夹。 在里面找到你感兴趣的州（比如 new-york.csv 或 california.csv）。 下载这个 CSV 文件，用 Excel 打开。 在表格中寻找 rdi 这一列： 如果显示 Residential，恭喜你！这很可能就是一个银行认可的住宅地址。 如果显示 Commercial，那就是普通的商业地址。 就是这么简单！\n进阶玩家：如何自己运行代码 如果你是技术党，或者你想获取最新的实时数据（毕竟地址库会更新），你也可以把代码下载到本地自己运行。\n1. 准备工作 首先，你需要确保电脑上安装了 Python 3.x 环境，并安装必要的依赖库。在终端中运行以下命令：\npip install requests beautifulsoup4 其次，这个工具最核心的“验证”功能依赖于 Smarty API。你需要去 Smarty.com 注册一个账号（它提供免费1000条地址验证的试用额度，够我们跑很多数据了）。注册好后，获取你的 Auth ID 和 Auth Token，把它们保存好，后面会用到。\n然后，访问我的 GitHub 仓库：https://github.com/masonblog/ATMB-Addresses，点击Code按钮，再点击Download ZIP打包下载代码。\n在代码**根目录（解压后的文件夹）**下创建一个名为 smarty_api_key.txt 的文件，将刚刚保存的 Smarty API 的 Auth ID 和 Auth Token 填入这个文件并保存：\nauth_id=你的AUTH_ID auth_token=你的AUTH_TOKEN 2. 开始运行 整个流程分为三步：爬取 -\u003e 补充详情（可选） -\u003e 验证。\n第一步：爬取基本地址信息 在代码文件夹右键单击，选择“在终端中打开”，然后输入以下命令运行 ATMB_scrape.py。你可以指定爬取某个州，或者直接爬取全美所有地址。\n# 爬取纽约州 python ATMB_scrape.py --input new-york # 爬取全美（耗时较长） python ATMB_scrape.py --input us 程序运行后，会在 Public 文件夹下生成一个 CSV 文件，比如 Public/new-york.csv，里面包含了 ATMB 上最新爬取的地址信息，包括街道地址、城市、州、邮编等。\n第二步：补充单元号信息（可选） ATMB 的列表页通常只显示街道地址，但很多时候我们需要知道具体的单元号信息，比如 Suite # 或 Unit #。这一步就要在终端中输入以下命令，程序会访问每个地址的详情页，把这些信息抓取下来：\npython ATMB_detail.py --input Public/new-york.csv 运行完成后，会生成一个新的文件 Public/new-york_detailed.csv。\n第三步：验证地址性质（关键步骤） 最后，我们使用 Smarty API 来验证这些地址是住宅还是商业。在终端中运行以下命令：\npython ATMB_verify.py --input Public/new-york_detailed.csv 程序会逐行验证，并生成最终的文件 Public/new-york_detailed_verified.csv。\n打开这个最终文件，查看 rdi 列：\nResidential: 住宅地址（银行喜欢这个！✅） Commercial: 商业地址（⚠️） 详细的技术文档和使用参数，我都写在仓库的 README.md 里了，欢迎大家去 Star 和 Fork！\n结语 寻找一个靠谱的美国住宅地址是很多“云居民”迈向全球化的第一步。希望这个小工具能帮你节省宝贵的时间，少走弯路。\n如果你觉得好用，别忘了分享给身边有需要的朋友！\n",
+  "wordCount" : "177",
   "inLanguage": "en",
-  "image":"https://masonblog.github.io/images/blog20260214/header.jpg","datePublished": "2026-02-14T00:00:00Z",
+  "image":"https://masonblog.github.io/images/blog20260214/Cover.png","datePublished": "2026-02-14T00:00:00Z",
   "dateModified": "2026-02-14T00:00:00Z",
   "author":{
     "@type": "Person",
@@ -221,7 +221,7 @@
 </div>
   </header> 
 <figure class="entry-cover">
-        <img loading="eager" src="https://masonblog.github.io/images/blog20260214/header.jpg" alt="">
+        <img loading="eager" src="https://masonblog.github.io/images/blog20260214/Cover.png" alt="">
         
 </figure><div class="toc">
     <details >
@@ -239,7 +239,7 @@
                     <a href="#%e6%ad%a5%e9%aa%a4%e5%a6%82%e4%b8%8b" aria-label="步骤如下：">步骤如下：</a></li></ul>
                 </li>
                 <li>
-                    <a href="#-%e8%bf%9b%e9%98%b6%e7%8e%a9%e5%ae%b6%e5%a6%82%e4%bd%95%e8%87%aa%e5%b7%b1%e8%bf%90%e8%a1%8c%e4%bb%a3%e7%a0%81" aria-label="💻 进阶玩家：如何自己运行代码">💻 进阶玩家：如何自己运行代码</a><ul>
+                    <a href="#%e8%bf%9b%e9%98%b6%e7%8e%a9%e5%ae%b6%e5%a6%82%e4%bd%95%e8%87%aa%e5%b7%b1%e8%bf%90%e8%a1%8c%e4%bb%a3%e7%a0%81" aria-label="进阶玩家：如何自己运行代码">进阶玩家：如何自己运行代码</a><ul>
                         
                 <li>
                     <a href="#1-%e5%87%86%e5%a4%87%e5%b7%a5%e4%bd%9c" aria-label="1. 准备工作">1. 准备工作</a></li>
@@ -290,13 +290,14 @@
 </li>
 </ol>
 <p>就是这么简单！</p>
-<h2 id="-进阶玩家如何自己运行代码">💻 进阶玩家：如何自己运行代码<a hidden class="anchor" aria-hidden="true" href="#-进阶玩家如何自己运行代码">#</a></h2>
+<h2 id="进阶玩家如何自己运行代码">进阶玩家：如何自己运行代码<a hidden class="anchor" aria-hidden="true" href="#进阶玩家如何自己运行代码">#</a></h2>
 <p>如果你是技术党，或者你想获取最新的实时数据（毕竟地址库会更新），你也可以把代码下载到本地自己运行。</p>
 <h3 id="1-准备工作">1. 准备工作<a hidden class="anchor" aria-hidden="true" href="#1-准备工作">#</a></h3>
 <p>首先，你需要确保电脑上安装了 Python 3.x 环境，并安装必要的依赖库。在终端中运行以下命令：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install requests beautifulsoup4
 </span></span></code></pre></div><p>其次，这个工具最核心的“验证”功能依赖于 <strong>Smarty API</strong>。你需要去 <a href="https://www.smarty.com/" target="_blank" rel="noopener">Smarty.com</a> 注册一个账号（它提供免费1000条地址验证的试用额度，够我们跑很多数据了）。注册好后，获取你的 <code>Auth ID</code> 和 <code>Auth Token</code>，把它们保存好，后面会用到。</p>
 <p>然后，访问我的 GitHub 仓库：<a href="https://github.com/masonblog/ATMB-Addresses" target="_blank" rel="noopener">https://github.com/masonblog/ATMB-Addresses</a>，点击<strong>Code</strong>按钮，再点击<strong>Download ZIP</strong>打包下载代码。</p>
+<p><img alt="Download_ZIP" loading="lazy" src="/images/blog20260214/download_zip.png"></p>
 <p>在代码**根目录（解压后的文件夹）**下创建一个名为 <code>smarty_api_key.txt</code> 的文件，将刚刚保存的 Smarty API 的 <code>Auth ID</code> 和 <code>Auth Token</code> 填入这个文件并保存：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>auth_id=你的AUTH_ID
 </span></span><span style="display:flex;"><span>auth_token=你的AUTH_TOKEN
