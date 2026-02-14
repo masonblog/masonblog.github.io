@@ -60,7 +60,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GJ7PD33N1"></script>
       <script>
         var doNotTrack = false;
-        if ( true ) {
+        if ( false ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -252,7 +252,7 @@
 <p>米家官方集成有多种安装方式，其中最简单，也是最新手友好的方式，就是通过 <a href="https://www.hacs.xyz/" target="_blank" rel="noopener">HACS</a> 进行安装。HASC 的安装方法详见我的这篇文章，此处不再赘述。<strong>由于米家官方集成暂未加入 HASC 的官方库，我们需要通过添加自定义库链接的方式，将米家官方集成的库链接添加到 HASC 目录</strong>。登入 HA 后台，点击左侧的<code>HASC</code>，再点右上角的三个点，选择<code>Custom Repositories</code>，新建一个自定义库链接，如下图所示。</p>
 <p><img alt="image" loading="lazy" src="/images/blog20241227/hacs1.png"></p>
 <p>库类型（Catagory）选择<code>Integration</code>；库链接填写下面的链接：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>https://github.com/XiaoMi/ha_xiaomi_home.git
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>https://github.com/XiaoMi/ha_xiaomi_home.git
 </span></span></code></pre></div><p>最后点击ADD按钮，如果网络没有问题的话，米家官方集成的安装链接就会被添加到 HASC 的自定目录中。再依次点击设置—设备与集成—添加集成，在搜索框中输入<code>Xiaomi</code>，在弹出的结果中选择<code>XIaomi Home</code>。接下来，按照提示登录米家账号即可。</p>
 <p><img alt="image" loading="lazy" src="/images/blog20241227/hacs2.png"></p>
 <p><img loading="lazy" src="/images/blog20241227/xiaomi-home-auth1.png"></p>

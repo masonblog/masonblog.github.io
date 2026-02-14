@@ -61,7 +61,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GJ7PD33N1"></script>
       <script>
         var doNotTrack = false;
-        if ( true ) {
+        if ( false ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -160,6 +160,31 @@
     </a>
   </h1>
 </header>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20250207/deepseek.png" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">利用第三方 Deepseek API 实现 AI 辅助应用
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>最近一段时间，AI 圈最热的话题莫过于 Deepseek。它作为国内团队“弯道超车”的典型案例，同时受到两种不同立场群体的吹捧与批评。不过，抛开政治和技术上的争论，单从普通人使用 AI 的成本与门槛来看，Deepseek 确实做到了“AI 的普惠性”。与 OpenAI 等国外大模型运营商相比，Deepseek 的价格极为低廉，对想要学习 AI 应用，而经济条件又非常有限的用户来说，确实是最好的选择。
+然而，受自身承载能力和大规模黑客攻击的限制，Deepseek 的官方服务器在最近一段时间经常会出现连接不稳定的问题，这给用户带来了不便。所幸，Deepseek 大模型的开源属性使其能够被部署在任何第三方服务器上。硅基流动便是众多第三方 AI 大模型供应商之一，它与华为云合作，以低廉的价格，向用户提供Deepseek r1大模型的API接口应用。用户可以通过这一接口顺利使用 Deepseek 的模型功能。
+获取第三方 Deepseek API 首先，我们需要在硅基流动的官网注册一个账号。你可以使用我的邀请码1MwHUt0X注册，这样，你和我都会得到 14 CNY 的免费额度，可以用来免费体验各个大模型的功能。如果免费额度用完，想要付费充值的话，就必须完成实名认证，这也是中国特色的监管要求。
+登录硅基流动的后台，我们就能看到它所支持的一系列大模型，其中就包含当下最热门的 Deepseek R1。
+想要调用这些大模型为我们服务，首先要生成我们自己的 API Key。点击硅基流动后台左侧的API 密钥，再点击右上角的新建 API 密钥按钮，来新建一个 API Key。
+结合 Chatbox 使用 Deepseek R1 大模型 Chatbox 是一款开源的AI聊天机器人客户端，支持包括个人电脑和移动端几乎所有平台（包括网页端），能够调用多种AI模型，以实现文字对话、文生图、程序编写、文案创作等诸多用途。
+出于数据安全与隐私保护的考虑，Chatbox 的所有运行数据都只存储在本地。也就是说，Chatbox 本身只是一个向AI大模型传递数据的工具，它本身并不记录用户的数据。因此，即使我们在不同设备上同时使用 Chatbox，也无法做到配置设置和历史记录的多设备共享。
+硅基流动的官方文档中提供了将其API接入 Chatbox 的指引。这里简单讲一下配置的重点。软件安装好以后，第一次打开会自动弹出设置界面。选择&#34;添加自定义提供方&#34;，API 域名填写https://api.siliconflow.cn即可。更新版本的 Chatbox 已经原生支持了硅基流动的 API 接口，只要在模型提供方处选择SILICONFLOW API，再填写自己的 API Key，并选择想要调用的模型即可。
+值得注意的是，硅基流动同时提供了Pro/deepseek-ai/DeepSeek-R1和deepseek-ai/DeepSeek-R1两个R1模型，只有不带Pro的那个模型支持消耗平台赠送的免费额度，带Pro的必须付费充值后才能使用，选的时候不要选错了。
+配置好后点击保存，就可以开始和我们的AI大模型聊天了。Chatbox 软件内预置了很多好用的 Prompt 场景，可以都尝试一下。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-02-07 00:00:00 +0000 UTC'>2025-02-07</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 利用第三方 Deepseek API 实现 AI 辅助应用" href="https://masonblog.github.io/post/blog20250207/"></a>
+</article>
 
 <article class="post-entry tag-entry"> 
 <figure class="entry-cover">
@@ -267,30 +292,6 @@ Portainer 本身的安装可以参考上面提到的文章，本文不再赘述�
   </div>
   <footer class="entry-footer"><span title='2022-04-09 00:00:00 +0000 UTC'>2022-04-09</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 利用 Home Assistant 搭建智能家居中枢" href="https://masonblog.github.io/post/blog20220409/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://masonblog.github.io/images/blog20210909/jellyfin.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">利用 Portainer 实现 Docker 端 Jellyfin 硬件解码
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>原理及环境检测 随着版本的不断迭代，Jellyfin 已经逐渐超过 Plex 和自家兄弟 Emby，成为用户数量最所的个人媒体管理方案，这不仅因为它的所有功能均为免费，更是因为它的源代码完全开源，具有极高的维护与拓展空间。
-不论用于运行 Jellyfin 的具体是哪款操作系统，只要该系统是基于 Linux，我们就可以通过 Docker 容器来实现极为简单且方式一致的部署。但相比于原生套件，Docker 有一个显而易见的缺点，即无法直接调用各类系统资源，核显驱动就是其中之一。
-要让 Jellyfin 的 Docker 容器实时调用核显驱动（也就是人们常说的开启硬解），要满足两个条件：
-拥有支持视频解码的核心显卡，且核心显卡的驱动程序运行正常； 将核显驱动直通给 Docker 容器，并赋予 Docker 容器调用该驱动的权限。 对于系统是否满足上述第一个条件，可以通过以下方式进行检验：首先用 ssh 工具连接到服务器，确保登陆 ssh 的账户拥有系统管理权限，再输入以下命令：
-ls /dev/dri 如果返回的结果为 card0 renderD128 ，那么恭喜，核显驱动运行正常，硬件系统满足视频解码的基本条件。接下来便是将 renderD128 这个核显驱动直通给 Docker 容器的方法。
-为什么必须用 Portainer? 无论是群辉、威联通还是 Unraid，市场上绝大多数 NAS 系统都提供了图形化的 Docker 容器管理工具。但无论上述哪一个，都不支持核显驱动的直通功能。群辉的 Docker 套件无法编辑容器的系统资源参数，威联通的 Container Station 干脆无法编辑已经创建好的容器。
-这里所说的“直通”，其实是将 /dev/dri/renderD128 这个驱动文件映射到 Docker 容器的相同位置。这一点利用命令行可以非常轻松地实现，即在 Jellyfin 容器的拉取命令中加入下列参数：
---device=/dev/dri/renderD128 \ 因此，要快速拉取并创建一个开启硬件解码的 Jellyfin 容器，只要在 NAS 的命令行界面输入以下命令即可：
-sudo docker run -d --name jellyfin \ -v /share/Container/Jellyfin/config:/config \ #冒号左边为存放配置文件的目录 -v /share/Container/Jellyfin/cache:/cache \ #冒号左边为存放媒体缓存的目录 -v /share/Media/:/media \ #冒号左边为存放电影文件的目录 -p 8096:8096 \ #web界面访问端口（http） -p 8920:8920 \ #web界面访问端口（https） --device=/dev/dri/renderD128 \ #映射核显驱动 --restart=always \ #重启策略 jellyfin/jellyfin 但对许多轻度用户来说，命令行不仅不便理解，也断绝了后续对容器进行修改和自定义的空间。因此对于绝大多数日常用户来说，我个人强烈推荐使用 Portainer。它本身也是一个运行在 Docker 容器里的程序，但它拥有强大的 Docker 管理功能，是目前市面上功能最完善的网页端 Docker 容器管理界面。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-09-09 00:00:00 +0000 UTC'>2021-09-09</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 利用 Portainer 实现 Docker 端 Jellyfin 硬件解码" href="https://masonblog.github.io/post/blog20210909/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

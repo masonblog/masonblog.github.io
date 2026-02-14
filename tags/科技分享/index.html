@@ -61,7 +61,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GJ7PD33N1"></script>
       <script>
         var doNotTrack = false;
-        if ( true ) {
+        if ( false ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -163,6 +163,31 @@
 
 <article class="post-entry tag-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20260214/header.jpg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">为了寻找 ATMB 美国住宅地址，我专门写了一个小程序
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>如果你是“云居民”或数字游民，相信你对 Anytime Mailbox (ATMB) 一定不陌生。它是目前最流行的美国云信箱服务之一，提供了海量的美国地址供我们租赁使用。
+但是，对于很多需要申请美国银行账户（如 Capital One, Chase 等）或注册美国券商账号的朋友来说，ATMB 最大的痛点在于：绝大多数地址都是“商业地址” (Commercial / CMRA)，而银行往往要求提供“住宅地址” (Residential / RDI)。
+要在 ATMB 浩如烟海的地址列表中，手动一个个去查哪个是住宅地址，简直是大海捞针，费时费力。
+为了解决这个问题，我写了一个开源的小程序：ATMB-Addresses。
+这个工具能做什么？ 简单来说，它就像一个自动化的“探针”，可以帮我们：
+自动爬取 ATMB 上指定州（或全美）的所有地址信息。 自动识别 每个地址的属性，帮我们判断它究竟是 住宅 (Residential) 还是 商业 (Commercial) 地址。 整理成表，将结果保存为 Excel/CSV 文件，方便我们筛选。 如何使用（无需编程基础！） 虽然这是一个 Python 程序，但我知道很多朋友可能对代码并不熟悉。没关系！为了方便大家，我已经把爬取并验证好的现成数据直接上传到了仓库里。
+如果你懒得自己跑程序，只需要直接下载我跑好的数据即可。
+步骤如下： 访问我的 GitHub 仓库：https://github.com/masonblog/ATMB-Addresses 点击页面上的 “Public” 文件夹。 在里面找到你感兴趣的州（比如 new-york.csv 或 california.csv）。 下载这个 CSV 文件，用 Excel 打开。 在表格中寻找 rdi 这一列： 如果显示 Residential，恭喜你！这很可能就是一个银行认可的住宅地址。 如果显示 Commercial，那就是普通的商业地址。 就是这么简单！
+💻 进阶玩家：如何自己运行代码 如果你是技术党，或者你想获取最新的实时数据（毕竟地址库会更新），你也可以把代码下载到本地自己运行。
+1. 准备工作 首先，你需要确保电脑上安装了 Python 3.x 环境，并安装必要的依赖库。在终端中运行以下命令：
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2026-02-14 00:00:00 +0000 UTC'>2026-02-14</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 为了寻找 ATMB 美国住宅地址，我专门写了一个小程序" href="https://masonblog.github.io/post/blog20260214/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20260127/header.jpg" alt="">
 </figure>
   <header class="entry-header">
@@ -252,31 +277,6 @@ RedteaGo 的套餐可以在官方网站或者官方APP上直接购买，如果�
   </div>
   <footer class="entry-footer"><span title='2025-03-17 00:00:00 +0000 UTC'>2025-03-17</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 年费15元的奥地利 eSIM 电话卡：RedteaGo" href="https://masonblog.github.io/post/blog20250317/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://masonblog.github.io/images/blog20250207/deepseek.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">利用第三方 Deepseek API 实现 AI 辅助应用
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>最近一段时间，AI 圈最热的话题莫过于 Deepseek。它作为国内团队“弯道超车”的典型案例，同时受到两种不同立场群体的吹捧与批评。不过，抛开政治和技术上的争论，单从普通人使用 AI 的成本与门槛来看，Deepseek 确实做到了“AI 的普惠性”。与 OpenAI 等国外大模型运营商相比，Deepseek 的价格极为低廉，对想要学习 AI 应用，而经济条件又非常有限的用户来说，确实是最好的选择。
-然而，受自身承载能力和大规模黑客攻击的限制，Deepseek 的官方服务器在最近一段时间经常会出现连接不稳定的问题，这给用户带来了不便。所幸，Deepseek 大模型的开源属性使其能够被部署在任何第三方服务器上。硅基流动便是众多第三方 AI 大模型供应商之一，它与华为云合作，以低廉的价格，向用户提供Deepseek r1大模型的API接口应用。用户可以通过这一接口顺利使用 Deepseek 的模型功能。
-获取第三方 Deepseek API 首先，我们需要在硅基流动的官网注册一个账号。你可以使用我的邀请码1MwHUt0X注册，这样，你和我都会得到 14 CNY 的免费额度，可以用来免费体验各个大模型的功能。如果免费额度用完，想要付费充值的话，就必须完成实名认证，这也是中国特色的监管要求。
-登录硅基流动的后台，我们就能看到它所支持的一系列大模型，其中就包含当下最热门的 Deepseek R1。
-想要调用这些大模型为我们服务，首先要生成我们自己的 API Key。点击硅基流动后台左侧的API 密钥，再点击右上角的新建 API 密钥按钮，来新建一个 API Key。
-结合 Chatbox 使用 Deepseek R1 大模型 Chatbox 是一款开源的AI聊天机器人客户端，支持包括个人电脑和移动端几乎所有平台（包括网页端），能够调用多种AI模型，以实现文字对话、文生图、程序编写、文案创作等诸多用途。
-出于数据安全与隐私保护的考虑，Chatbox 的所有运行数据都只存储在本地。也就是说，Chatbox 本身只是一个向AI大模型传递数据的工具，它本身并不记录用户的数据。因此，即使我们在不同设备上同时使用 Chatbox，也无法做到配置设置和历史记录的多设备共享。
-硅基流动的官方文档中提供了将其API接入 Chatbox 的指引。这里简单讲一下配置的重点。软件安装好以后，第一次打开会自动弹出设置界面。选择&#34;添加自定义提供方&#34;，API 域名填写https://api.siliconflow.cn即可。更新版本的 Chatbox 已经原生支持了硅基流动的 API 接口，只要在模型提供方处选择SILICONFLOW API，再填写自己的 API Key，并选择想要调用的模型即可。
-值得注意的是，硅基流动同时提供了Pro/deepseek-ai/DeepSeek-R1和deepseek-ai/DeepSeek-R1两个R1模型，只有不带Pro的那个模型支持消耗平台赠送的免费额度，带Pro的必须付费充值后才能使用，选的时候不要选错了。
-配置好后点击保存，就可以开始和我们的AI大模型聊天了。Chatbox 软件内预置了很多好用的 Prompt 场景，可以都尝试一下。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2025-02-07 00:00:00 +0000 UTC'>2025-02-07</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 利用第三方 Deepseek API 实现 AI 辅助应用" href="https://masonblog.github.io/post/blog20250207/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

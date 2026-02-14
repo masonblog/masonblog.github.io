@@ -2,7 +2,7 @@
 <html lang="en" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.155.2"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.140.0"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -63,7 +63,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GJ7PD33N1"></script>
       <script>
         var doNotTrack = false;
-        if ( true ) {
+        if ( false ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -165,6 +165,31 @@
 
 <article class="post-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20210527/favicon.png" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">利用 Favicon 为 Hugo 静态站点添加图标
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>我们在使用 Hugo 生成静态站点时，经常会遇到一些虽不致命，但很不爽的小问题，例如没有自定义站点图标的问题。假如我们跟随了所用主题的默认配置，通常情况下生成的站点要么没有图标，要么直接套用主题自带的图标，这显然无法满足我那强烈的 DIY 欲望。
+经常访问本博客的读者可能会注意到，我所使用的 Hugo 主题是一个支持自动切换明暗模式的第三方主题——AutoFuji. 今天在阅读这个主题的说明文档时，我发现原来它是支持 Favicon 图标代码的。于是经过一通简单的操作，我的博客终于有了自己的图标。
+为 Hugo 站点添加 Favicon 代码的方法非常简单。首先访问这个网站上传一张图片作为网站图标的母本。其实类似的 Favicon 生成器还有很多，大家可以根据自己的习惯或喜好自由选择，基本功能都是一样的。
+图片上传完成后，会自动跳转到参数配置页面。如无特殊需求，保持默认配置即可。点击页面下方的生成按钮生成我们的图标和代码。
+生成完成后，点击如图所示按钮下载各类格式的图标包，再将自动生成的 HTML 代码复制到剪贴板。
+之后，来到 Hugo 站点的根目录，将刚刚下载的压缩包里的所有文件解压到 /static/ 文件夹下。
+用文本编辑器打开 /layouts/partials/favicon.html 文件，清空原有代码，将刚刚复制到代码粘贴进去，保存并退出。
+最后，打开 /themes/正在使用的主题名/layouts/partials/head.html 文件（不同主题需要编辑的文件可能不同，例如我所使用的 Fuji 主题就是直接编辑同一目录下的 favicon.html 文件），找到下列代码：
+&lt;link rel=&#34;shortcut icon&#34; href=&#34;xxx&#34; /&gt; 将 xxx 替换成 favicon.ico ，保存并退出即可。
+此时，我们的 favicon 图标安装工作就宣告完成了。使用 hugo 命令重新生成站点，不出意外的话，就能看到我们刚才上传的站点图标了。
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-05-27 00:00:00 +0000 UTC'>2021-05-27</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 利用 Favicon 为 Hugo 静态站点添加图标" href="https://masonblog.github.io/post/blog20210527/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20210505/modem.jpg" alt="">
 </figure>
   <header class="entry-header">
@@ -259,35 +284,12 @@ Parsec 的使用方式非常简单，只要去官网注册一个账号并分别�
   <footer class="entry-footer"><span title='2021-04-16 00:00:00 +0000 UTC'>2021-04-16</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 告别，为了新的开始：记一次迂回的返乡行" href="https://masonblog.github.io/post/blog20210416/"></a>
 </article>
-
-<article class="post-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://masonblog.github.io/images/blog20210413/openvpn.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Openwrt Luci Openvpn 服务器多设备同时接入
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>我们日常使用的 Openwrt 软路由系统几乎都集成了 Luci 界面，它不仅可以为用户提供便利的可视化后台管理界面，还在各路大神的贡献下，适配了众多简单易用的图形化 App。Luci-app-openvpn-server 就是众多 Luci 应用中最常用的 VPN 服务器之一。
-简单来说，luci-app-openvpn-server 就是 Openvpn 服务器端的 Luci 界面版本。有了它，你就可以告别难搞的命令行，通过图形化的网页直接配置你的 Openvpn 服务器端。结合各主流平台的 Openvpn 客户端软件，你可以随时随地接入自己家里的局域网，实现内网访问或文件传输等功能。
-正常情况下，只要按照 Luci 界面的提示填写相应的配置信息，即可成功运行 Openvpn 的服务器端。此时只要点击“一键下载.Ovpn 文件”按钮，再将下载下来的配置文件直接导入 Openvpn 客户端软件即可开始使用。但 luci-app-openvpn-server 的默认配置支支持同时登陆一个客户端，当有第二个客户端尝试接入时，先前接入的第一个客户端就会被强制断线。然而在日常使用的过程中，多设备同时接入的情况是十分常见的，那么怎样才能使 luci-app-openvpn-server 可以同时接入多个设备呢？
-其实，Openvpn 的服务端是支持多设备同时接入的。根据 Github 上这个 Issue 中的介绍，我们能够得知，只要在 Openvpn 的配置文件中加入一行代码，即可开启 Openvpn 的多设备同时接入功能：
-具体如何操作呢？首先，用 ssh 工具登陆你的 Openwrt 软路由。具体的工具及方法可自行搜索，我日常使用的是微软官方发布的 Windows Terminal 终端工具。成功登陆 ssh 后，输入以下命令开始编辑 Openvpn 的配置文件：
-vim /etc/config/openvpn 如果没能成功打开配置文件的编辑界面，很可能是因为你的 Openwrt 系统没有安装 vim （一款命令行文本编辑器）。至于 vim 的安装方法，还请自行搜索，本文不再赘述。
-进入配置文件的编辑界面后，按键盘上的 I 健进入文本编辑模式，将光标移到配置文件末尾，将以下代码复制粘贴到配置文件最后一行。
-option duplicate_cn &#39;1&#39; 编辑完成后，按键盘上的 ESC 健，再依次输入以下命令保存并退出编辑器：
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-04-13 00:00:00 +0000 UTC'>2021-04-13</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to Openwrt Luci Openvpn 服务器多设备同时接入" href="https://masonblog.github.io/post/blog20210413/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://masonblog.github.io/page/4/">
-      «&nbsp;Prev&nbsp;4/9
+      «&nbsp;Prev&nbsp;4/10
     </a>
-    <a class="next" href="https://masonblog.github.io/page/6/">Next&nbsp;6/9&nbsp;»
+    <a class="next" href="https://masonblog.github.io/page/6/">Next&nbsp;6/10&nbsp;»
     </a>
   </nav>
 </footer>
