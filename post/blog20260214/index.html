@@ -60,7 +60,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GJ7PD33N1"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -294,18 +294,18 @@
 <p>如果你是技术党，或者你想获取最新的实时数据（毕竟地址库会更新），你也可以把代码下载到本地自己运行。</p>
 <h3 id="1-准备工作">1. 准备工作<a hidden class="anchor" aria-hidden="true" href="#1-准备工作">#</a></h3>
 <p>首先，你需要确保电脑上安装了 Python 3.x 环境，并安装必要的依赖库。在终端中运行以下命令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install requests beautifulsoup4
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install requests beautifulsoup4
 </span></span></code></pre></div><p>其次，这个工具最核心的“验证”功能依赖于 <strong>Smarty API</strong>。你需要去 <a href="https://www.smarty.com/" target="_blank" rel="noopener">Smarty.com</a> 注册一个账号（它提供免费1000条地址验证的试用额度，够我们跑很多数据了）。注册好后，获取你的 <code>Auth ID</code> 和 <code>Auth Token</code>，把它们保存好，后面会用到。</p>
 <p>然后，访问我的 GitHub 仓库：<a href="https://github.com/masonblog/ATMB-Addresses" target="_blank" rel="noopener">https://github.com/masonblog/ATMB-Addresses</a>，点击<strong>Code</strong>按钮，再点击<strong>Download ZIP</strong>打包下载代码。</p>
 <p><img alt="Download_ZIP" loading="lazy" src="/images/blog20260214/download_zip.png"></p>
 <p>在代码**根目录（解压后的文件夹）**下创建一个名为 <code>smarty_api_key.txt</code> 的文件，将刚刚保存的 Smarty API 的 <code>Auth ID</code> 和 <code>Auth Token</code> 填入这个文件并保存：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>auth_id=你的AUTH_ID
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>auth_id=你的AUTH_ID
 </span></span><span style="display:flex;"><span>auth_token=你的AUTH_TOKEN
 </span></span></code></pre></div><h3 id="2-开始运行">2. 开始运行<a hidden class="anchor" aria-hidden="true" href="#2-开始运行">#</a></h3>
 <p>整个流程分为三步：爬取 -&gt; 补充详情（可选） -&gt; 验证。</p>
 <h4 id="第一步爬取基本地址信息">第一步：爬取基本地址信息<a hidden class="anchor" aria-hidden="true" href="#第一步爬取基本地址信息">#</a></h4>
 <p>在代码文件夹右键单击，选择“在终端中打开”，然后输入以下命令运行 <code>ATMB_scrape.py</code>。你可以指定爬取某个州，或者直接爬取全美所有地址。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 爬取纽约州</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 爬取纽约州</span>
 </span></span><span style="display:flex;"><span>python ATMB_scrape.py --input new-york
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 爬取全美（耗时较长）</span>
@@ -313,11 +313,11 @@
 </span></span></code></pre></div><p>程序运行后，会在 <code>Public</code> 文件夹下生成一个 CSV 文件，比如 <code>Public/new-york.csv</code>，里面包含了 ATMB 上最新爬取的地址信息，包括街道地址、城市、州、邮编等。</p>
 <h4 id="第二步补充单元号信息可选">第二步：补充单元号信息（可选）<a hidden class="anchor" aria-hidden="true" href="#第二步补充单元号信息可选">#</a></h4>
 <p>ATMB 的列表页通常只显示街道地址，但很多时候我们需要知道具体的<strong>单元号信息</strong>，比如 <code>Suite #</code> 或 <code>Unit #</code>。这一步就要在终端中输入以下命令，程序会访问每个地址的详情页，把这些信息抓取下来：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python ATMB_detail.py --input Public/new-york.csv
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python ATMB_detail.py --input Public/new-york.csv
 </span></span></code></pre></div><p>运行完成后，会生成一个新的文件 <code>Public/new-york_detailed.csv</code>。</p>
 <h4 id="第三步验证地址性质关键步骤">第三步：验证地址性质（关键步骤）<a hidden class="anchor" aria-hidden="true" href="#第三步验证地址性质关键步骤">#</a></h4>
 <p>最后，我们使用 Smarty API 来验证这些地址是<strong>住宅</strong>还是<strong>商业</strong>。在终端中运行以下命令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python ATMB_verify.py --input Public/new-york_detailed.csv
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python ATMB_verify.py --input Public/new-york_detailed.csv
 </span></span></code></pre></div><p>程序会逐行验证，并生成最终的文件 <code>Public/new-york_detailed_verified.csv</code>。</p>
 <p>打开这个最终文件，查看 <strong><code>rdi</code></strong> 列：</p>
 <ul>
