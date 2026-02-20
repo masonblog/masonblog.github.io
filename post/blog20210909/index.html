@@ -60,7 +60,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GJ7PD33N1"></script>
       <script>
         var doNotTrack = false;
-        if ( false ) {
+        if ( true ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -233,15 +233,15 @@
 <li>将核显驱动<strong>直通</strong>给 Docker 容器，并赋予 Docker 容器调用该驱动的权限。</li>
 </ol>
 <p>对于系统是否满足上述第一个条件，可以通过以下方式进行检验：首先用 ssh 工具连接到服务器，确保登陆 ssh 的账户拥有系统管理权限，再输入以下命令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ls /dev/dri
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ls /dev/dri
 </span></span></code></pre></div><p>如果返回的结果为 <code>card0 renderD128</code> ，那么恭喜，核显驱动运行正常，硬件系统满足视频解码的基本条件。接下来便是将 renderD128 这个核显驱动直通给 Docker 容器的方法。</p>
 <h2 id="为什么必须用-portainer">为什么必须用 Portainer?<a hidden class="anchor" aria-hidden="true" href="#为什么必须用-portainer">#</a></h2>
 <p>无论是群辉、威联通还是 <a href="https://www.unraid.net" target="_blank" rel="noopener">Unraid</a>，市场上绝大多数 NAS 系统都提供了图形化的 Docker 容器管理工具。但无论上述哪一个，都不支持核显驱动的直通功能。群辉的 Docker 套件无法编辑容器的系统资源参数，威联通的 Container Station 干脆无法编辑已经创建好的容器。</p>
 <p><strong>这里所说的“直通”，其实是将 <code>/dev/dri/renderD128</code> 这个驱动文件映射到 Docker 容器的相同位置</strong>。这一点利用命令行可以非常轻松地实现，即在 Jellyfin 容器的拉取命令中加入下列参数：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>--device<span style="color:#f92672">=</span>/dev/dri/renderD128 <span style="color:#ae81ff">\
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>--device<span style="color:#f92672">=</span>/dev/dri/renderD128 <span style="color:#ae81ff">\
 </span></span></span></code></pre></div><p>因此，要快速拉取并创建一个开启硬件解码的 Jellyfin 容器，只要在 NAS 的命令行界面输入以下命令即可：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name jellyfin <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /share/Container/Jellyfin/config:/config <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放配置文件的目录</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name jellyfin <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v /share/Container/Jellyfin/config:/config <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放配置文件的目录</span>
 </span></span><span style="display:flex;"><span>-v /share/Container/Jellyfin/cache:/cache <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放媒体缓存的目录</span>
 </span></span><span style="display:flex;"><span>-v /share/Media/:/media <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放电影文件的目录</span>
 </span></span><span style="display:flex;"><span>-p 8096:8096 <span style="color:#ae81ff">\ </span><span style="color:#75715e">#web界面访问端口（http）</span>
@@ -253,8 +253,8 @@
 <p>因此，对于那些既不想用命令行，又希望对 Docker 有较为全面管控的用户来说，Portainer 几乎是唯一的选择。通过 Portainer，即使是初学者也能轻松为 Jellyfin 开启硬件解码。</p>
 <h2 id="portainer-的安装与使用">Portainer 的安装与使用<a hidden class="anchor" aria-hidden="true" href="#portainer-的安装与使用">#</a></h2>
 <p>由于 Portainer 需要调用 <code>/var/run/docker.sock</code> 这个文件以实现对 Docker 的直接管理，因此 Portainer 也无法通过群辉或威联通自带的 Docker 管理界面进行安装，因为上述管理界面均不支持针对单个文件的映射。但由于 Portainer 需要配置的参数较少，且容器创建完成后不需要频繁修改，因此普通用户可以直接复制一以下命令进行安装。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name prtainer <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /var/run/docker.sock:/var/run/docker.sock <span style="color:#ae81ff">\ </span><span style="color:#75715e">#关键</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name prtainer <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v /var/run/docker.sock:/var/run/docker.sock <span style="color:#ae81ff">\ </span><span style="color:#75715e">#关键</span>
 </span></span><span style="display:flex;"><span>-p 9000:9000 <span style="color:#ae81ff">\ </span><span style="color:#75715e">#web界面访问端口</span>
 </span></span><span style="display:flex;"><span>--restart<span style="color:#f92672">=</span>always <span style="color:#ae81ff">\ </span><span style="color:#75715e">#重启策略</span>
 </span></span><span style="display:flex;"><span>portainer/portainer
