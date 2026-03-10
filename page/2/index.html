@@ -165,6 +165,27 @@
 
 <article class="post-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20250320/Adsense.jpg" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">个人博客如何变现：Google Adsense 接入 Hugo
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>自从将我的个人博客接入 Google Analytics 后，我发现只要文章写得足够好，就会产生一些自然流量（虽然只有每天几十次的点击）。于是我开始思考个人博客变现的方式，哪怕只能赚取几美元，也是对自己智力成果的小小肯定。众所周知，我的个人博客是利用 Hugo 生成的纯静态网页，具体生成方式可以参考我的这篇文章。要真正从博客中赚取收益，需要结合 SEO 优化和广告投放策略。本文将详细解析如何为 Hugo 博客打造高流量的基础，并一步步接入 Google Adsense 实现广告收益。
+SEO 优化：博客变现的基础 要让博客被搜索引擎高效索引并吸引自然流量，SEO 优化是至关重要的一步。对于 Hugo 而言，需要重点关注 sitemap（站点地图） 和 robots.txt（爬虫索引） 的配置。
+配置 sitemap 站点地图 站点地图是一个重要的网站文件，它为搜索引擎和用户提供了网站结构的概览。要为 Hugo 站点创建站点地图，在配置文件config.yml中添加以下内容：
+sitemap: changefreq: weekly filename: sitemap.xml priority: 0.5 其中，changefreq表示更新频率，filename表示生成的站点地图文件名，priority表示页面的默认优先级。这样，Hugo 会在博客根目录下生成一个sitemap.xml文件，以便搜索引擎了解网站结构。
+某些主题的 sitemap 模板会自动包含标签页或分类页，但这些页面可能对搜索引擎价值不高。通过自定义模板，可以移除冗余条目。具体操作方法为：在 Hugo 项目的 layouts/ 目录下创建名为 sitemap.xml 的文件，覆盖主题默认的 sitemap 模板。例如，屏蔽标签页的代码示例如下：
+{{- $pages := where .Site.Pages &#34;Type&#34; &#34;not in&#34; (slice &#34;tags&#34;) -}} {{- $pages = $pages | union (where .Site.RegularPages &#34;Permalink&#34; &#34;!=&#34; &#34;&#34;) -}} 通过上述调整，能确保 sitemap 仅包含核心内容页面，提升搜索引擎抓取效率 。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-20 00:00:00 +0000 UTC'>2025-03-20</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 个人博客如何变现：Google Adsense 接入 Hugo" href="https://masonblog.github.io/post/blog20250320/"></a>
+</article>
+
+<article class="post-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20250317/RedteaGO.png" alt="">
 </figure>
   <header class="entry-header">
@@ -276,41 +297,6 @@ ISIS 以其极端暴力和残酷的行径而臭名昭著，包括大规模处决
   </div>
   <footer class="entry-footer"><span title='2025-01-05 00:00:00 +0000 UTC'>2025-01-05</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 美国新奥尔良新年夜恐袭事件" href="https://masonblog.github.io/post/blog20250105/"></a>
-</article>
-
-<article class="post-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://masonblog.github.io/images/blog20241230/masonblog.png" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Hugo &amp; PaperMod 建站技术记录
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>早在4年前刚开始搭建本博客时，我曾写过一篇简短的文章，介绍了我建站时使用的一些工具。如今，那篇文章中提到的很多工具都已过时。加之本次博客整体迁移，又使用了全新的 PaperMod 主题，很多功能的配置方式都发生了变化。于是我决定重新写一篇文章，记录一下我在折腾这个新主题过程中的一些技术细节。
-配置文件语法 Hugo 同时支持3钟配置文件语法，分别为 YAML、TOML和JSON。它们都是常用的数据序列化和配置文件格式，且各有特点和适用场景。
-YAML (YAML Ain’t Markup Language) YAML是一种人类可读的数据序列化格式，常用于配置文件和数据交换，它的语法格式为：
-name: John Doe age: 30 city: New York hobbies: - reading - traveling 它的特点为：
-语法简洁，易于阅读和编写
-支持注释、多行字符串和复杂的数据结构
-使用缩进表示层级关系
-TOML (Tom’s Obvious, Minimal Language) TOML是一种旨在成为最小配置文件格式的语言，设计目标是易于阅读和编写，它的语法格式为：
-[person] name = &#34;John Doe&#34; age = 30 city = &#34;New York&#34; [person.hobbies] favorite = &#34;reading&#34; others = [&#34;traveling&#34;, &#34;photography&#34;] 它的特点为：
-语法直观，易于理解
-支持注释
-支持多种数据类型，包括日期时间
-允许创建嵌套的数据结构
-JSON (JavaScript Object Notation) JSON是一种轻量级的数据交换格式，最初源于JavaScript，但现在已广泛应用于各种编程语言，它的语法格式为：
-{ &#34;name&#34;: &#34;John Doe&#34;, &#34;age&#34;: 30, &#34;city&#34;: &#34;New York&#34; } 它的特点为：
-简洁易读
-解析速度快
-与JavaScript高度兼容
-支持基本数据类型：字符串、数字、布尔值、null、对象和数组
-综合考虑易读性及与当前主题的兼容性，我选择的配置文件语法为YAML，以下所有配置命令，都将以YAML格式呈现。值得注意的是，YAML对缩进非常敏感，在利用 Hugo 进行渲染时，哪怕某一行少了一个空格，都会渲染失败，所以要特别注意。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-12-30 00:00:00 +0000 UTC'>2024-12-30</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to Hugo & PaperMod 建站技术记录" href="https://masonblog.github.io/post/blog20241230/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
