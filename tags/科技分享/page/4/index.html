@@ -61,7 +61,7 @@
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GJ7PD33N1"></script>
       <script>
         var doNotTrack = false;
-        if ( true ) {
+        if ( false ) {
           var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
           var doNotTrack = (dnt == "1" || dnt == "yes");
         }
@@ -163,6 +163,29 @@
 
 <article class="post-entry tag-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://masonblog.github.io/images/blog20210502/Parsec.png" alt="">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">利用 Parsec 实现远程游戏串流
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>最近，我终于放弃了 Steam 或 Epic Games 等平台的买断制游戏模式，转而投靠了 Xbox Game Pass (XGP) 这样的订阅制模式。尽管买断制可以极大地满足“喜加一”式的收集欲，但自从开始实习之后，我已经很难抽出整块的时间来通关各类单机游戏，以致于我的游戏库中屯了大量已购买的但未通关的游戏，这不仅降低了我购买和尝试最新游戏的欲望，也在资金上造成了很大的浪费。不知从什么时候起，玩游戏竟也成了一种待完成的“任务”，失去了工作之余放松心情的初衷。
+因此，我纠结许久，终于决定以后不再购买任何单机游戏。如果某段时间我不是那么忙了（例如辞职在家的现在），就去订阅一个月的 XGP，体验一下最新的单机游戏。事实上，Xbox 账户是可以随时切换区域的。因此我们可以简单地通过将 Win10 的系统区域切换成香港的方式来享受港区 XGP 79 港元每月（首月10港币）的优惠价格。在一个单机游戏动辄就要三百块以上的当下，XGP 确实是一种非常合算方案。毕竟，一个月的时间，完全够我通关一个中型单机游戏，而买断这款游戏的价格远远不止 79 港币。
+开通了 XGP 之后，我又开始琢磨如何在出差的时候利用“零碎的时间”玩游戏。例如驻场期间每天下班以后，住在酒店里的我只有一台性能羸弱的 MacBook，如何利用现有设备在酒店里玩上 XGP 上的单机游戏呢？其实解决方案只有一个：远程桌面。只要在家里的 PC 上开启网络唤醒功能，在将某款远程桌面软件设置成开机自动启动，我就可以在任何地方，通过网络唤醒 &#43; 远程操控的方式随时随地游玩家里电脑上的游戏。
+思路虽然很简单，但找到合适的远程桌面软件着实费了我一番工夫。经过仔细的搜索，我发现了一款叫做 Parsec 的远程桌面软件。它不仅同时支持 Windows 和 macOS 双平台，还专门针对远程游戏进行了优化。不仅如此，Parsec 还支持 Hevc 编码。只要客户端设备支持 Hevc 解码，就能大大降低串流数据体积，减少网络带宽和流量的消耗，提升远程游戏的体验。
+Parsec 的使用方式非常简单，只要去官网注册一个账号并分别在服务端（用于运行游戏的设备）和客户端（用于远程操控的设备）下载安装 Parsec 客户端即可。在两台设备上同时安装并登陆软件后，软件界面应该是这样的：
+此时只要点击相应设备上的 Connect 按钮即可建立远程连接了。但为了提升我们的游戏体验，在正式使用前还需要进行一些简单的设置。点击左侧的齿轮图标进入设置界面，将客户端设备的“硬件解码”和“Hevc 编码”功能打开即可。
+连接成功后，软件会自动将被操控的设备调至静音，而将所有系统声音转到操控的设备上播放，这一细节非常人性化。经测试，在局域网（千兆带宽）环境下，两台设备基本可以实现零延迟的远程控制，但在广域网环境下，由于带宽和延迟的限制，远程控制略有延迟和卡顿，但仍能满足一些对操作要求不是那么高的游戏。例如，我最近正在补完的《歧路旅人》。这是一款“高清马赛克”游戏，且所有战斗均为回合制，非常适合远程游玩。
+由于 macOS 原生支持 Xbox 和 switch pro 手柄，同时 Parsec 也能直接识别上述两款手柄的所有按键，因此在远程游戏时，可以直接通过将手柄连接客户端设备的方式来操控服务端的游戏。网络状况较好的时候，远程游戏的体验和本地几乎没有区别。
+</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-05-02 00:00:00 +0000 UTC'>2021-05-02</span>&nbsp;·&nbsp;Mason</footer>
+  <a class="entry-link" aria-label="post link to 利用 Parsec 实现远程游戏串流" href="https://masonblog.github.io/post/blog20210502/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://masonblog.github.io/images/blog20210423/error13.png" alt="">
 </figure>
   <header class="entry-header">
@@ -245,33 +268,10 @@ Trilium 的官方文档中提供了通过 Docker 安装 Trilium Server 的具体
 以群晖和 Openwrt 系统为例，我们首先需要在 Openwrt 路由器上安装并开启 UPnP 服务。
 然后，登陆群晖的管理后台，在控制面板 - 外部访问 - 路由器配置选项卡中，选择“设置路由器”。此时系统会自动检测网络环境以及路由器型号与配置，不出意外的话，整个过程能够由系统自动完成，无须人工配置。之后，点击“新增”按钮，并根据自己的需求选择要转发的应用和端口，再点击“保存”即可。
 最后，我们可以回到路由器后台的 UPnP 页面，查看已经被系统自动添加好的端口映射规则。值得注意的是，国内的网络运营商一般会禁用个人和家庭宽带的 443 和 445 端口（前者是 https 的默认端口，后者是 smb 服务的默认端口），因此，即使我们在 UPnP 服务中添加了上述两个端口的自动映射，也无法实现 443 和 445 端口的外网访问。此时，就需要我们在防火墙的端口映射中手动进行端口映射，即将 443 和 445 两个内网端口映射到外网的非 443 或 445 端口（如 444 和 446，全凭个人喜好）。这样，我们才能绕过运营商的封锁，成功进行上述两个端口的外部访问。
-</p>
+...</p>
   </div>
   <footer class="entry-footer"><span title='2020-09-14 00:00:00 +0000 UTC'>2020-09-14</span>&nbsp;·&nbsp;Mason</footer>
   <a class="entry-link" aria-label="post link to 通过群晖与 Openwrt 软路由实现自动端口映射" href="https://masonblog.github.io/post/blog20200914/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-<figure class="entry-cover">
-        <img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-12_21-51-38.jpeg" alt="">
-</figure>
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">利用 NAS、Docker 和 Calibre Web 搭建个人线上书库
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>经常阅读电子书并且用过 Kindle 的人应该都体会过整理电子书时的痛苦。尤其是像我这种经常下载电子书文件再导入到 Kindle 上进行阅读的人（或是为了省钱、或是因为 Kindle 商城中没有我们想要阅读的书），对于那些有着各自不同的标题、作者、封面，以及文件格式的纷繁复杂的电子书，缺乏一套行之有效的管理方案，进而充分管理自己的阅读进度与时间。
-长期以来，PC 和 Mac 端的 Calibre 都是一个差强人意的电子书管理解决方案。它不仅支持多平台、功能强大（支持电子书整理、编辑、格式转换、一键推送到 Kindle 等），而且完全免费。那我为什么要将这么厉害的软件说成是“差强人意”呢？因为 Calibre 已经多年没有较大的功能更新，作为一款电子书管理软件，它已经无法适应当下人们已经习以为常的需求。具体而言，Calibre 具有以下缺点：
-界面老旧（或曰古朴？），看起来像是十年前的软件； 启动和运行速度较慢，操作繁琐； 不支持多设备同步，不提供云存储服务（这是最重要的一点）。 对于像我这样学习或工作繁忙，几乎没有固定的整段时间使用同一台终端设备的人来说，多端同步和云存储几乎是不可或缺的功能。而且在网页程序和微信小程序等日益普及的今天，有时连下载一个专门的应用程序都显得繁琐（可能是被这几年的技术进步惯坏了把）。因此，最好有一款类似于 Plex 影视库的电子书管理服务器应用，能够让我随时随地打开一个网页就能管理和阅读自己的电子书。幸运的是，这样的软件确实存在，它便是 Calibre 的继任者—— Calibre Web。
-下图就是我用 Calibre Web 在自己的 NAS 上搭建的个人电子书管理网站（或曰个人电子图书馆？）。通过这个网站，我可以轻松地在各种终端设备上上传、修改、整理、推送各种格式的电子书。由于是网页端，因此我不用担心海量电子书会占用手机或电脑的硬盘容量，也不用担心多端同步的问题。更加难能可贵的是，由于 Calibre Web 开发得比较晚近，因此它的界面也很符合当下的主流审美标准。
-关于 Calibre Web 的搭建方法，网络上有很多前辈们撰写的教程，他们已经说得非常详细了。首先，你必须拥有一台能够稳定运行的服务器或 NAS（其实任意一台普通电脑都是可以的，只要你舍得让它 7*24 小时运行）。然后，你需要在你的设备上搭建一个 docker 环境，因为 Calibre Web 需要 docker 作为运行的载体。最后，经过简单的安装和配置，你就可以拥有一个属于自己的电子书管理网站了。
-这里以群辉为例。首先在“控制面板”中创建一个新的共享文件夹，用于存放 Calibre Web 的数据库和电子书资源。我这里将它命名为&#34;Books&#34;。创建完成后切记要开放该文件夹对所有用户的读写权限，否则 Calibre Web 将无法正常运行。
-共享文件夹配置完成后，在群辉的套件中心中选择安装 docker 并打开它。再在“注册表”页面中搜索“Calibre-web”，此处途中框选的三个镜像都可以下载，它们的区别并不大，这里主要推荐 linuxserver/Clibre-web，在双击后弹出的对话框中选择“latest”并点“确定”开始下载。
-镜像下载成功后（系统右上角会弹出提示），进入 docker 的“镜像”页面选择刚刚下载好的 linuxserver/Clibre-web 镜像，点击启动。在弹出的对话框中，点击“高级设置”，再按下图所示进行设置即可。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2020-05-12 00:00:00 +0000 UTC'>2020-05-12</span>&nbsp;·&nbsp;Mason</footer>
-  <a class="entry-link" aria-label="post link to 利用 NAS、Docker 和 Calibre Web 搭建个人线上书库" href="https://masonblog.github.io/post/blog20200512/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
