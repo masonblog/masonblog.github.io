@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Claude Code 源代码泄露：一个 .npmignore 引发的连锁风暴 | Mason&#39;s Blog</title>
+<meta name="keywords" content="Claude Code, 源代码泄露, Anthropic, npm, 供应链安全, KAIROS, AI安全">
+<meta name="description" content="深度解析 2026 年 3 月 Anthropic 意外泄露 Claude Code 全部源代码的事件始末。">
+<meta name="author" content="Mason">
+<link rel="canonical" href="https://masonblog.github.io/post/blog20260406/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.88634a8359040f9ad13cef4a211341f5bf1761cf0cbb9a8256759d1957683325.css" integrity="sha256-iGNKg1kED5rRPO9KIRNB9b8XYc8Mu5qCVnWdGVdoMyU=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://masonblog.github.io/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://masonblog.github.io/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://masonblog.github.io/favicon/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://masonblog.github.io/favicon/apple-touch-icon.png">
+<link rel="mask-icon" href="https://masonblog.github.io/favicon/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://masonblog.github.io/post/blog20260406/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3746438298147903"
+     crossorigin="anonymous"></script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GJ7PD33N1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-5GJ7PD33N1');
+        }
+      </script><meta property="og:url" content="https://masonblog.github.io/post/blog20260406/">
+  <meta property="og:site_name" content="Mason&#39;s Blog">
+  <meta property="og:title" content="Claude Code 源代码泄露：一个 .npmignore 引发的连锁风暴">
+  <meta property="og:description" content="深度解析 2026 年 3 月 Anthropic 意外泄露 Claude Code 全部源代码的事件始末。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2026-04-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-04-06T00:00:00+00:00">
+    <meta property="article:tag" content="科技分享">
+    <meta property="og:image" content="https://masonblog.github.io/images/blog20260406/Cover.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://masonblog.github.io/images/blog20260406/Cover.webp">
+<meta name="twitter:title" content="Claude Code 源代码泄露：一个 .npmignore 引发的连锁风暴">
+<meta name="twitter:description" content="深度解析 2026 年 3 月 Anthropic 意外泄露 Claude Code 全部源代码的事件始末。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://masonblog.github.io/post/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Claude Code 源代码泄露：一个 .npmignore 引发的连锁风暴",
+      "item": "https://masonblog.github.io/post/blog20260406/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Claude Code 源代码泄露：一个 .npmignore 引发的连锁风暴",
+  "name": "Claude Code 源代码泄露：一个 .npmignore 引发的连锁风暴",
+  "description": "深度解析 2026 年 3 月 Anthropic 意外泄露 Claude Code 全部源代码的事件始末。",
+  "keywords": [
+    "Claude Code", "源代码泄露", "Anthropic", "npm", "供应链安全", "KAIROS", "AI安全"
+  ],
+  "articleBody": "2026 年 3 月 31 日，AI 圈迎来了一场意想不到的\"愚人节前夕大礼\"：Anthropic 旗下明星产品 Claude Code 的全部源代码，因一个打包失误意外流向了互联网。\n这不是黑客攻击，不是内鬼泄密，而是有人忘记在 .npmignore 里加了一行 *.map。\n就这样，51 万行 TypeScript 代码、44 个隐藏功能开关、以及一个叫做 KAIROS 的神秘\"后台自主代理\"，在几小时内暴露在所有人面前。\n事件经过：一个 .map 文件引发的雪崩 泄露是如何发生的？ 2026 年 3 月 31 日，Anthropic 在 npm 上发布了 @anthropic-ai/claude-code 的 2.1.88 版本。这次更新本是例行维护，但却附带了一个巨大的\"彩蛋\"——一个 59.8 MB 的 JavaScript Source Map 文件（.map 后缀）。\nSource Map 是开发者用于调试压缩/混淆代码的工具，它能将编译后的代码映射回原始的 TypeScript 源码。正是这个本应只存在于内部的调试文件，被意外打入了公开发布的 npm 包里。\n更关键的是，这个 .map 文件还指向了一个 Anthropic 自家云存储上的 ZIP 压缩包，里面存放着完整的源代码仓库。所有人只需要顺着这条线索，就能下载到全部代码。\n根本原因：有人忘记在 .npmignore 文件中添加 *.map 规则，导致 Source Map 文件随包一起发布。\n传播有多快？ 代码在公开后数小时内便被开发者社区察觉，随即被备份到 GitHub 上。根据 Layer5 的统计，相关仓库的 Fork 数量迅速突破 41,500 次，一度成为 GitHub 历史上增长最快的仓库。\nAnthropic 很快确认了这一事件，但表示这只是一次\"发布打包失误\"，没有泄露用户数据或凭证信息。\n泄露的内容：512,000 行代码里藏着什么？ 源代码共包含 1,906 个 TypeScript 文件，整个 AI 圈的开发者和研究者们开始像考古学家一样，在代码里挖掘 Anthropic 从未公开过的秘密。\n秘密一：KAIROS —— 始终在线的自主 AI 代理 这是泄露内容中最受关注的发现之一。代码中一个名为 KAIROS 的功能标志被提及超过 150 次。\nKAIROS 来自古希腊语，意为\"恰当的时机\"。从代码逻辑来看，它代表着 Claude Code 的一次重大范式转变：从被动响应变为主动的后台自主守护进程（Daemon）。\n具体来说，KAIROS 模式包含一个叫做 autoDream 的子机制：当用户处于空闲状态时，Claude 会在后台自动进行\"记忆整合\"，将分散的观察合并、消除逻辑矛盾，并将模糊的认知转化为具体的知识。\n这本质上是让 AI 拥有了一种持续学习和自我优化的能力——不仅是在你主动使用时，而是随时随地都在运转。\n秘密二：BUDDY —— 一只赛博电子宠物 是的，你没看错。代码里藏着一个完整的电子宠物系统，叫做 BUDDY。\n它有：\n18 个物种可供选择 稀有度分级：普通（60%）→ 稀有 → 史诗 → 传说（1%） 闪光变体（类似宝可梦的色违） 专属属性值，包括 DEBUGGING（调试力）、PATIENCE（耐心）、CHAOS（混乱值）、WISDOM（智慧）和 SNARK（毒舌度） 根据代码注释，BUDDY 原本计划作为愚人节彩蛋于 4 月 1 日悄悄上线预告，并在 5 月正式发布。结果，在 3 月 31 日就被这次意外泄露提前\"剧透\"了——时机不可谓不讽刺。\n秘密三：隐身模式 —— Anthropic 员工的\"马甲\" 代码中还发现了一个被称为\"隐身模式\"（Stealth Mode）的功能，其设计目的是隐藏 Anthropic 员工对开源项目的贡献。\n简单来说，当 Anthropic 工程师使用 Claude Code 向开源社区提交代码时，该模式会对外屏蔽其 Anthropic 员工的身份。这一发现在开源社区引发了一定的讨论和争议。\n秘密四：反蒸馏机制 —— 给竞争对手的\"毒药\" 代码中的 ANTI_DISTILLATION_CC 功能标志揭示了一个更具攻击性的策略：向 API 请求中注入虚假的工具定义。\n其目的在于污染那些监听 API 流量、试图通过\"知识蒸馏\"来学习和复制 Claude 能力的竞争对手的训练数据。此外，代码还会对 AI 的推理过程进行摘要并附上加密签名，使得窃听者只能获取摘要，而非完整的思维链输出。\n安全警告：趁火打劫的黑客 意外泄露事件本身危害有限，但随之而来的安全风险不可小觑。\nAxios npm 遭投毒：北朝鲜黑客的精准狙击 就在同一天（3 月 31 日），黑客攻陷了流行 HTTP 库 Axios 的 npm 账号，发布了两个恶意版本（1.14.1 和 0.30.4）。这些版本通过一个名为 plain-crypto-js 的隐藏依赖，植入了一个跨平台远程访问木马（RAT）。\n恶意版本在被 npm 下架前存活了约 2-3 小时。\nGoogle 威胁情报团队将此次攻击归因于 UNC1069——一个具有朝鲜背景的、以经济利益为驱动的威胁行为者，所使用的恶意软件为 WAVESHAPER.V2。\n高危时间窗口：如果你在 3 月 31 日 00:21 UTC 至 03:29 UTC 之间通过 npm 安装或更新了 Claude Code，你的机器可能已被植入恶意代码。\nGitHub 上的假冒仓库 除了 npm 投毒，威胁行为者还在 GitHub 上散布了伪装成\"Claude Code 源代码镜像\"的恶意仓库。这些仓库诱骗用户运行一个 Rust 编写的投放程序，最终部署 Vidar Stealer（信息窃取木马）和 GhostSocks（代理恶意软件）。\n应急自查步骤 如果你是开发者，请立即执行以下检查：\n检查你的项目 lockfile（package-lock.json 或 yarn.lock），查找 axios 版本 1.14.1 或 0.30.4。 检查是否存在 plain-crypto-js 依赖项。 如果发现上述任一情况，立即将该主机视为已完全沦陷：轮换所有密钥和凭证，并考虑重装操作系统。 影响与反思 对 Anthropic 的影响 这次事件对 Anthropic 的直接损失是竞争情报的泄露。KAIROS、反蒸馏机制等未发布的战略功能，已被竞争对手和研究者提前看到。\n但从另一个角度看，Anthropic 的处理方式——快速承认、如实说明原因——在一定程度上维护了公众信任。\n对供应链安全的警示 这次事件是一个关于 软件供应链安全 的经典案例：\n开发侧：一个被遗忘的打包规则（.npmignore）可以造成灾难性的信息泄露。 攻击侧：黑客能够以惊人的速度（同日）利用高关注度事件实施供应链攻击。 用户侧：在重大事件发酵期间，来自\"官方渠道\"之外的任何下载都极度危险。 这提醒每一个维护开源项目的团队：发布流程的审计和自动化检查，与代码本身的质量同等重要。\n结语 Claude Code 源代码泄露事件，是 2026 年 AI 领域最戏剧性的事故之一。它以一种意想不到的方式，让公众得以一窥顶尖 AI 工具背后的工程逻辑与产品野心——从重塑人机交互范式的 KAIROS，到充满极客趣味的电子宠物 BUDDY。\n然而，伴随着这场意外透明化而来的，是供应链攻击的真实威胁。它再次提醒我们：在这个软件高度依赖开源生态的时代，安全从来不只是代码里的事，更是发布流程、依赖管理和应急响应能力的综合体现。\n延伸阅读：\nClaude Code 源代码泄露事件详情 - VentureBeat Anthropic 确认 npm 打包失误 - The Hacker News Axios npm 投毒与 RAT 事件 - Decode the Future 伪造 Claude Code 下载传播恶意软件 - The Register KAIROS 与隐藏功能完整分析 - WaveSpeed AI 供应链安全的启示 - Coder Blog ",
+  "wordCount" : "319",
+  "inLanguage": "en",
+  "image":"https://masonblog.github.io/images/blog20260406/Cover.webp","datePublished": "2026-04-06T00:00:00Z",
+  "dateModified": "2026-04-06T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Mason"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://masonblog.github.io/post/blog20260406/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Mason's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://masonblog.github.io/favicon/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://masonblog.github.io/" accesskey="h" title="Mason&#39;s Blog (Alt + H)">Mason&#39;s Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://masonblog.github.io/archives" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://masonblog.github.io/about/" title="关于">
+                    <span>关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://masonblog.github.io/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://masonblog.github.io/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Claude Code 源代码泄露：一个 .npmignore 引发的连锁风暴
+    </h1>
+    <div class="post-description">
+      深度解析 2026 年 3 月 Anthropic 意外泄露 Claude Code 全部源代码的事件始末。
+    </div>
+    <div class="post-meta"><span title='2026-04-06 00:00:00 +0000 UTC'>2026-04-06</span>&nbsp;·&nbsp;Mason
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="https://masonblog.github.io/images/blog20260406/Cover.webp" alt="">
+        
+</figure><div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%e4%ba%8b%e4%bb%b6%e7%bb%8f%e8%bf%87%e4%b8%80%e4%b8%aa-map-%e6%96%87%e4%bb%b6%e5%bc%95%e5%8f%91%e7%9a%84%e9%9b%aa%e5%b4%a9" aria-label="事件经过：一个 .map 文件引发的雪崩">事件经过：一个 .map 文件引发的雪崩</a><ul>
+                        
+                <li>
+                    <a href="#%e6%b3%84%e9%9c%b2%e6%98%af%e5%a6%82%e4%bd%95%e5%8f%91%e7%94%9f%e7%9a%84" aria-label="泄露是如何发生的？">泄露是如何发生的？</a></li>
+                <li>
+                    <a href="#%e4%bc%a0%e6%92%ad%e6%9c%89%e5%a4%9a%e5%bf%ab" aria-label="传播有多快？">传播有多快？</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%b3%84%e9%9c%b2%e7%9a%84%e5%86%85%e5%ae%b9512000-%e8%a1%8c%e4%bb%a3%e7%a0%81%e9%87%8c%e8%97%8f%e7%9d%80%e4%bb%80%e4%b9%88" aria-label="泄露的内容：512,000 行代码里藏着什么？">泄露的内容：512,000 行代码里藏着什么？</a><ul>
+                        
+                <li>
+                    <a href="#%e7%a7%98%e5%af%86%e4%b8%80kairos--%e5%a7%8b%e7%bb%88%e5%9c%a8%e7%ba%bf%e7%9a%84%e8%87%aa%e4%b8%bb-ai-%e4%bb%a3%e7%90%86" aria-label="秘密一：KAIROS —— 始终在线的自主 AI 代理">秘密一：KAIROS —— 始终在线的自主 AI 代理</a></li>
+                <li>
+                    <a href="#%e7%a7%98%e5%af%86%e4%ba%8cbuddy--%e4%b8%80%e5%8f%aa%e8%b5%9b%e5%8d%9a%e7%94%b5%e5%ad%90%e5%ae%a0%e7%89%a9" aria-label="秘密二：BUDDY —— 一只赛博电子宠物">秘密二：BUDDY —— 一只赛博电子宠物</a></li>
+                <li>
+                    <a href="#%e7%a7%98%e5%af%86%e4%b8%89%e9%9a%90%e8%ba%ab%e6%a8%a1%e5%bc%8f--anthropic-%e5%91%98%e5%b7%a5%e7%9a%84%e9%a9%ac%e7%94%b2" aria-label="秘密三：隐身模式 —— Anthropic 员工的&quot;马甲&quot;">秘密三：隐身模式 —— Anthropic 员工的&quot;马甲&quot;</a></li>
+                <li>
+                    <a href="#%e7%a7%98%e5%af%86%e5%9b%9b%e5%8f%8d%e8%92%b8%e9%a6%8f%e6%9c%ba%e5%88%b6--%e7%bb%99%e7%ab%9e%e4%ba%89%e5%af%b9%e6%89%8b%e7%9a%84%e6%af%92%e8%8d%af" aria-label="秘密四：反蒸馏机制 —— 给竞争对手的&quot;毒药&quot;">秘密四：反蒸馏机制 —— 给竞争对手的&quot;毒药&quot;</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%ae%89%e5%85%a8%e8%ad%a6%e5%91%8a%e8%b6%81%e7%81%ab%e6%89%93%e5%8a%ab%e7%9a%84%e9%bb%91%e5%ae%a2" aria-label="安全警告：趁火打劫的黑客">安全警告：趁火打劫的黑客</a><ul>
+                        
+                <li>
+                    <a href="#axios-npm-%e9%81%ad%e6%8a%95%e6%af%92%e5%8c%97%e6%9c%9d%e9%b2%9c%e9%bb%91%e5%ae%a2%e7%9a%84%e7%b2%be%e5%87%86%e7%8b%99%e5%87%bb" aria-label="Axios npm 遭投毒：北朝鲜黑客的精准狙击">Axios npm 遭投毒：北朝鲜黑客的精准狙击</a></li>
+                <li>
+                    <a href="#github-%e4%b8%8a%e7%9a%84%e5%81%87%e5%86%92%e4%bb%93%e5%ba%93" aria-label="GitHub 上的假冒仓库">GitHub 上的假冒仓库</a></li>
+                <li>
+                    <a href="#%e5%ba%94%e6%80%a5%e8%87%aa%e6%9f%a5%e6%ad%a5%e9%aa%a4" aria-label="应急自查步骤">应急自查步骤</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e5%bd%b1%e5%93%8d%e4%b8%8e%e5%8f%8d%e6%80%9d" aria-label="影响与反思">影响与反思</a><ul>
+                        
+                <li>
+                    <a href="#%e5%af%b9-anthropic-%e7%9a%84%e5%bd%b1%e5%93%8d" aria-label="对 Anthropic 的影响">对 Anthropic 的影响</a></li>
+                <li>
+                    <a href="#%e5%af%b9%e4%be%9b%e5%ba%94%e9%93%be%e5%ae%89%e5%85%a8%e7%9a%84%e8%ad%a6%e7%a4%ba" aria-label="对供应链安全的警示">对供应链安全的警示</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e7%bb%93%e8%af%ad" aria-label="结语">结语</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p>2026 年 3 月 31 日，AI 圈迎来了一场意想不到的&quot;愚人节前夕大礼&quot;：Anthropic 旗下明星产品 <strong>Claude Code</strong> 的全部源代码，因一个打包失误意外流向了互联网。</p>
+<p>这不是黑客攻击，不是内鬼泄密，而是有人忘记在 <code>.npmignore</code> 里加了一行 <code>*.map</code>。</p>
+<p>就这样，51 万行 TypeScript 代码、44 个隐藏功能开关、以及一个叫做 KAIROS 的神秘&quot;后台自主代理&quot;，在几小时内暴露在所有人面前。</p>
+<h2 id="事件经过一个-map-文件引发的雪崩">事件经过：一个 .map 文件引发的雪崩<a hidden class="anchor" aria-hidden="true" href="#事件经过一个-map-文件引发的雪崩">#</a></h2>
+<h3 id="泄露是如何发生的">泄露是如何发生的？<a hidden class="anchor" aria-hidden="true" href="#泄露是如何发生的">#</a></h3>
+<p>2026 年 3 月 31 日，Anthropic 在 npm 上发布了 <code>@anthropic-ai/claude-code</code> 的 <strong>2.1.88 版本</strong>。这次更新本是例行维护，但却附带了一个巨大的&quot;彩蛋&quot;——一个 <strong>59.8 MB 的 JavaScript Source Map 文件</strong>（<code>.map</code> 后缀）。</p>
+<p>Source Map 是开发者用于调试压缩/混淆代码的工具，它能将编译后的代码映射回原始的 TypeScript 源码。正是这个本应只存在于内部的调试文件，被意外打入了公开发布的 npm 包里。</p>
+<p>更关键的是，这个 <code>.map</code> 文件还指向了一个 Anthropic 自家云存储上的 ZIP 压缩包，里面存放着<strong>完整的源代码仓库</strong>。所有人只需要顺着这条线索，就能下载到全部代码。</p>
+<p><strong>根本原因</strong>：有人忘记在 <code>.npmignore</code> 文件中添加 <code>*.map</code> 规则，导致 Source Map 文件随包一起发布。</p>
+<h3 id="传播有多快">传播有多快？<a hidden class="anchor" aria-hidden="true" href="#传播有多快">#</a></h3>
+<p>代码在公开后数小时内便被开发者社区察觉，随即被备份到 GitHub 上。根据 Layer5 的统计，相关仓库的 Fork 数量迅速突破 <strong>41,500 次</strong>，一度成为 <strong>GitHub 历史上增长最快的仓库</strong>。</p>
+<p>Anthropic 很快确认了这一事件，但表示这只是一次&quot;发布打包失误&quot;，没有泄露用户数据或凭证信息。</p>
+<h2 id="泄露的内容512000-行代码里藏着什么">泄露的内容：512,000 行代码里藏着什么？<a hidden class="anchor" aria-hidden="true" href="#泄露的内容512000-行代码里藏着什么">#</a></h2>
+<p>源代码共包含 <strong>1,906 个 TypeScript 文件</strong>，整个 AI 圈的开发者和研究者们开始像考古学家一样，在代码里挖掘 Anthropic 从未公开过的秘密。</p>
+<h3 id="秘密一kairos--始终在线的自主-ai-代理">秘密一：KAIROS —— 始终在线的自主 AI 代理<a hidden class="anchor" aria-hidden="true" href="#秘密一kairos--始终在线的自主-ai-代理">#</a></h3>
+<p>这是泄露内容中最受关注的发现之一。代码中一个名为 <strong>KAIROS</strong> 的功能标志被提及超过 <strong>150 次</strong>。</p>
+<p>KAIROS 来自古希腊语，意为&quot;恰当的时机&quot;。从代码逻辑来看，它代表着 Claude Code 的一次重大范式转变：<strong>从被动响应变为主动的后台自主守护进程（Daemon）</strong>。</p>
+<p>具体来说，KAIROS 模式包含一个叫做 <strong>autoDream</strong> 的子机制：当用户处于空闲状态时，Claude 会在后台自动进行&quot;记忆整合&quot;，将分散的观察合并、消除逻辑矛盾，并将模糊的认知转化为具体的知识。</p>
+<p>这本质上是让 AI 拥有了一种<strong>持续学习和自我优化</strong>的能力——不仅是在你主动使用时，而是随时随地都在运转。</p>
+<h3 id="秘密二buddy--一只赛博电子宠物">秘密二：BUDDY —— 一只赛博电子宠物<a hidden class="anchor" aria-hidden="true" href="#秘密二buddy--一只赛博电子宠物">#</a></h3>
+<p>是的，你没看错。代码里藏着一个完整的<strong>电子宠物系统</strong>，叫做 <strong>BUDDY</strong>。</p>
+<p>它有：</p>
+<ul>
+<li><strong>18 个物种</strong>可供选择</li>
+<li><strong>稀有度分级</strong>：普通（60%）→ 稀有 → 史诗 → 传说（1%）</li>
+<li><strong>闪光变体</strong>（类似宝可梦的色违）</li>
+<li><strong>专属属性值</strong>，包括 <code>DEBUGGING</code>（调试力）、<code>PATIENCE</code>（耐心）、<code>CHAOS</code>（混乱值）、<code>WISDOM</code>（智慧）和 <code>SNARK</code>（毒舌度）</li>
+</ul>
+<p>根据代码注释，BUDDY 原本计划作为<strong>愚人节彩蛋</strong>于 4 月 1 日悄悄上线预告，并在 5 月正式发布。结果，在 3 月 31 日就被这次意外泄露提前&quot;剧透&quot;了——时机不可谓不讽刺。</p>
+<h3 id="秘密三隐身模式--anthropic-员工的马甲">秘密三：隐身模式 —— Anthropic 员工的&quot;马甲&quot;<a hidden class="anchor" aria-hidden="true" href="#秘密三隐身模式--anthropic-员工的马甲">#</a></h3>
+<p>代码中还发现了一个被称为&quot;隐身模式&quot;（Stealth Mode）的功能，其设计目的是<strong>隐藏 Anthropic 员工对开源项目的贡献</strong>。</p>
+<p>简单来说，当 Anthropic 工程师使用 Claude Code 向开源社区提交代码时，该模式会对外屏蔽其 Anthropic 员工的身份。这一发现在开源社区引发了一定的讨论和争议。</p>
+<h3 id="秘密四反蒸馏机制--给竞争对手的毒药">秘密四：反蒸馏机制 —— 给竞争对手的&quot;毒药&quot;<a hidden class="anchor" aria-hidden="true" href="#秘密四反蒸馏机制--给竞争对手的毒药">#</a></h3>
+<p>代码中的 <code>ANTI_DISTILLATION_CC</code> 功能标志揭示了一个更具攻击性的策略：<strong>向 API 请求中注入虚假的工具定义</strong>。</p>
+<p>其目的在于污染那些监听 API 流量、试图通过&quot;知识蒸馏&quot;来学习和复制 Claude 能力的竞争对手的训练数据。此外，代码还会对 AI 的推理过程进行摘要并附上加密签名，使得窃听者只能获取摘要，而非完整的思维链输出。</p>
+<h2 id="安全警告趁火打劫的黑客">安全警告：趁火打劫的黑客<a hidden class="anchor" aria-hidden="true" href="#安全警告趁火打劫的黑客">#</a></h2>
+<p>意外泄露事件本身危害有限，但随之而来的安全风险不可小觑。</p>
+<h3 id="axios-npm-遭投毒北朝鲜黑客的精准狙击">Axios npm 遭投毒：北朝鲜黑客的精准狙击<a hidden class="anchor" aria-hidden="true" href="#axios-npm-遭投毒北朝鲜黑客的精准狙击">#</a></h3>
+<p>就在同一天（3 月 31 日），黑客攻陷了流行 HTTP 库 <strong>Axios 的 npm 账号</strong>，发布了两个恶意版本（<code>1.14.1</code> 和 <code>0.30.4</code>）。这些版本通过一个名为 <code>plain-crypto-js</code> 的隐藏依赖，植入了一个<strong>跨平台远程访问木马（RAT）</strong>。</p>
+<p>恶意版本在被 npm 下架前存活了约 <strong>2-3 小时</strong>。</p>
+<p>Google 威胁情报团队将此次攻击归因于 <strong>UNC1069</strong>——一个具有朝鲜背景的、以经济利益为驱动的威胁行为者，所使用的恶意软件为 <strong>WAVESHAPER.V2</strong>。</p>
+<p><strong>高危时间窗口</strong>：如果你在 <strong>3 月 31 日 00:21 UTC 至 03:29 UTC</strong> 之间通过 npm 安装或更新了 Claude Code，你的机器可能已被植入恶意代码。</p>
+<h3 id="github-上的假冒仓库">GitHub 上的假冒仓库<a hidden class="anchor" aria-hidden="true" href="#github-上的假冒仓库">#</a></h3>
+<p>除了 npm 投毒，威胁行为者还在 GitHub 上散布了伪装成&quot;Claude Code 源代码镜像&quot;的恶意仓库。这些仓库诱骗用户运行一个 Rust 编写的投放程序，最终部署 <strong>Vidar Stealer</strong>（信息窃取木马）和 <strong>GhostSocks</strong>（代理恶意软件）。</p>
+<h3 id="应急自查步骤">应急自查步骤<a hidden class="anchor" aria-hidden="true" href="#应急自查步骤">#</a></h3>
+<p>如果你是开发者，请立即执行以下检查：</p>
+<ol>
+<li>检查你的项目 <code>lockfile</code>（<code>package-lock.json</code> 或 <code>yarn.lock</code>），查找 <code>axios</code> 版本 <code>1.14.1</code> 或 <code>0.30.4</code>。</li>
+<li>检查是否存在 <code>plain-crypto-js</code> 依赖项。</li>
+<li>如果发现上述任一情况，<strong>立即将该主机视为已完全沦陷</strong>：轮换所有密钥和凭证，并考虑重装操作系统。</li>
+</ol>
+<h2 id="影响与反思">影响与反思<a hidden class="anchor" aria-hidden="true" href="#影响与反思">#</a></h2>
+<h3 id="对-anthropic-的影响">对 Anthropic 的影响<a hidden class="anchor" aria-hidden="true" href="#对-anthropic-的影响">#</a></h3>
+<p>这次事件对 Anthropic 的直接损失是<strong>竞争情报的泄露</strong>。KAIROS、反蒸馏机制等未发布的战略功能，已被竞争对手和研究者提前看到。</p>
+<p>但从另一个角度看，Anthropic 的处理方式——快速承认、如实说明原因——在一定程度上维护了公众信任。</p>
+<h3 id="对供应链安全的警示">对供应链安全的警示<a hidden class="anchor" aria-hidden="true" href="#对供应链安全的警示">#</a></h3>
+<p>这次事件是一个关于 <strong>软件供应链安全</strong> 的经典案例：</p>
+<ul>
+<li><strong>开发侧</strong>：一个被遗忘的打包规则（<code>.npmignore</code>）可以造成灾难性的信息泄露。</li>
+<li><strong>攻击侧</strong>：黑客能够以惊人的速度（同日）利用高关注度事件实施供应链攻击。</li>
+<li><strong>用户侧</strong>：在重大事件发酵期间，来自&quot;官方渠道&quot;之外的任何下载都极度危险。</li>
+</ul>
+<p>这提醒每一个维护开源项目的团队：<strong>发布流程的审计和自动化检查，与代码本身的质量同等重要。</strong></p>
+<h2 id="结语">结语<a hidden class="anchor" aria-hidden="true" href="#结语">#</a></h2>
+<p>Claude Code 源代码泄露事件，是 2026 年 AI 领域最戏剧性的事故之一。它以一种意想不到的方式，让公众得以一窥顶尖 AI 工具背后的工程逻辑与产品野心——从重塑人机交互范式的 KAIROS，到充满极客趣味的电子宠物 BUDDY。</p>
+<p>然而，伴随着这场意外透明化而来的，是供应链攻击的真实威胁。它再次提醒我们：在这个软件高度依赖开源生态的时代，安全从来不只是代码里的事，更是发布流程、依赖管理和应急响应能力的综合体现。</p>
+<hr>
+<p><strong>延伸阅读：</strong></p>
+<ul>
+<li><a href="https://venturebeat.com/technology/claude-codes-source-code-appears-to-have-leaked-heres-what-we-know" target="_blank" rel="noopener">Claude Code 源代码泄露事件详情 - VentureBeat</a></li>
+<li><a href="https://thehackernews.com/2026/04/claude-code-tleaked-via-npm-packaging.html" target="_blank" rel="noopener">Anthropic 确认 npm 打包失误 - The Hacker News</a></li>
+<li><a href="https://decodethefuture.org/en/axios-npm-attack-rat-claude-code/" target="_blank" rel="noopener">Axios npm 投毒与 RAT 事件 - Decode the Future</a></li>
+<li><a href="https://www.theregister.com/2026/04/02/trojanized_claude_code_leak_github/" target="_blank" rel="noopener">伪造 Claude Code 下载传播恶意软件 - The Register</a></li>
+<li><a href="https://wavespeed.ai/blog/posts/claude-code-leaked-source-hidden-features/" target="_blank" rel="noopener">KAIROS 与隐藏功能完整分析 - WaveSpeed AI</a></li>
+<li><a href="https://coder.com/blog/what-the-claude-code-leak-tells-us-about-supply-chain-security" target="_blank" rel="noopener">供应链安全的启示 - Coder Blog</a></li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://masonblog.github.io/tags/%E7%A7%91%E6%8A%80%E5%88%86%E4%BA%AB/">科技分享</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://masonblog.github.io/">Mason&#39;s Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
