@@ -6,8 +6,246 @@
     <description>Recent content in 科技分享 on Mason&#39;s Blog</description>
     <generator>Hugo -- 0.140.0</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 06 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 14 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://masonblog.github.io/tags/%E7%A7%91%E6%8A%80%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 Nginx 反向代理下部署 Webtop 远程浏览器</title>
+      <link>https://masonblog.github.io/post/blog20260414/</link>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20260414/</guid>
+      <description>深度解析在 Nginx 反向代理下部署 Webtop 远程浏览器——踩坑与解决方案。</description>
+      <content:encoded><![CDATA[<p>背景</p>
+<p>最近需要在 ARM64 服务器上部署一个远程浏览器，通过 Web UI 访问。选了一圈发现 <a href="https://hub.docker.com/r/linuxserver/webtop" target="_blank" rel="noopener">linuxserver/webtop</a> 对 ARM64 原生支持，底层用的是 <strong>Selkies</strong> 流媒体引擎（不是老的 KasmVNC），整体体验不错。</p>
+<p>但问题来了——WebRTC 要求浏览器必须在 <strong>安全上下文（Secure Context）</strong> 下运行，也就是说必须通过 HTTPS 访问。而 webtop 容器内部的 nginx 只监听 HTTP（端口 3000），这就需要外部 nginx 做 SSL 终端并反向代理。</p>
+<p>这个反向代理的配置比想象中复杂得多，踩了不少坑，记录下来供参考。</p>
+<h2 id="架构概览">架构概览</h2>
+<p>最终架构如下：</p>
+<pre tabindex="0"><code>浏览器 (HTTPS)
+    ↓
+外部 Nginx (443/SSL终端)
+    ↓ /browser/*          → 容器 Nginx (3080→3000)
+    ↓ /browser/webrtc/*   → Selkies 信令服务器 (3082→8082)
+    ↓
+webtop 容器
+    ├── Nginx (3000) — 静态资源 + 代理
+    └── Selkies Python 信令服务器 (8082) — WebSocket + WebRTC 信令
+</code></pre><p>关键点：Selkies 的信令服务器是独立的 Python 进程，容器内的 nginx 只是做了一层代理。所以我们需要把信令流量直接送到 8082 端口，而不是经过容器 nginx 中转。</p>
+<h2 id="踩坑过程">踩坑过程</h2>
+<h3 id="坑一直接暴露端口行不通">坑一：直接暴露端口行不通</h3>
+<p>最初的想法最简单——不做反向代理，直接通过 <code>http://域名:3080</code> 访问。但浏览器要求 HTTPS（Secure Context），在 HTTP 下 WebRTC 会被拒绝，WebRTC DataChannel 无法建立。直接暴露端口意味着你得自己配容器内的 SSL 证书，或者用自签证书（浏览器会弹警告）。</p>
+<p>结论：<strong>必须通过 nginx 做 SSL 终端</strong>。</p>
+<h3 id="坑二子路径反代的路径构造问题">坑二：子路径反代的路径构造问题</h3>
+<p>最初配置了简单的反向代理：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">location</span> <span style="color:#e6db74">/browser/</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:3080/</span>;  <span style="color:#75715e"># 注意末尾的 /，会剥离 /browser/ 前缀
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>这样 webtop 收到的是根路径 <code>/</code> 的请求，静态资源没问题。但 Selkies 的 JavaScript 客户端会根据 <code>window.location.pathname</code> 动态构造 WebSocket URL：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Selkies JS 核心逻辑（简化版）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pathname</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">pathname</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 当 pathname 以 / 结尾时，取第二段作为信令路径名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">signaling_name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pathname</span>.<span style="color:#a6e22e">endsWith</span>(<span style="color:#e6db74">&#34;/&#34;</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">pathname</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;/&#34;</span>)[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;webrtc&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 取 pathname 的目录前缀
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">prefix</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pathname</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">pathname</span>.<span style="color:#a6e22e">lastIndexOf</span>(<span style="color:#e6db74">&#34;/&#34;</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 构造 WebSocket URL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ws_url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wss://&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">host</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">prefix</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">signaling_name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/signaling/&#34;</span>;
+</span></span></code></pre></div><p>当浏览器访问 <code>/browser/</code> 时，nginx 剥离前缀后，容器内的页面在 <code>/</code> 下加载，JS 构造出的 URL 变成：</p>
+<pre tabindex="0"><code>wss://host/webrtc/signaling/   ← 正确路径，但容器 nginx 没有 location 来处理！
+</code></pre><p>当访问根路径 <code>/</code> 时，JS 构造：</p>
+<pre tabindex="0"><code>wss://host/webrtc/signaling/   ← 同样的路径
+</code></pre><p>但容器内的 nginx 配置只有 <code>/websocket</code> 代理到 8082，没有 <code>/webrtc/signaling/</code> 这个 location！</p>
+<h3 id="坑三容器-nginx-配置每次启动都会被覆盖">坑三：容器 nginx 配置每次启动都会被覆盖</h3>
+<p>webtop 使用 <code>s6-overlay</code> 管理初始化，容器 nginx 配置在 <code>/etc/nginx/sites-available/default</code>，<strong>每次启动都会从 <code>/defaults/default.conf</code> 模板重新生成</strong>。我试过用 <code>docker cp</code> 直接修改容器内的 nginx 配置来添加信令代理，但容器一重启就全没了。</p>
+<p>又尝试通过 <code>s6-overlay</code> 的 init 脚本自动注入，但 <code>sed</code>/<code>awk</code> 插入多行 nginx 配置很容易破坏格式，导致 nginx 启动失败。</p>
+<h3 id="坑四confignginxdefaultconf-是个目录不是文件">坑四：/config/nginx/default.conf 是个目录不是文件</h3>
+<p>webtop 的持久化卷 <code>/config</code> 挂载后，<code>/config/nginx/</code> 目录会被创建，但 <code>default.conf</code> 变成了目录而不是文件。直接挂载配置文件的方案也行不通。</p>
+<h2 id="最终解决方案">最终解决方案</h2>
+<p>折腾了一圈后，发现 webtop 自带 <code>SUBFOLDER</code> 环境变量支持。设置后所有路径都会自动加前缀，包括容器内 nginx 的 location 规则和 Selkies JS 的路径构造。</p>
+<h3 id="第一步设置-subfolder-环境变量">第一步：设置 SUBFOLDER 环境变量</h3>
+<p><code>docker-compose.yml</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">webtop</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">lscr.io/linuxserver/webtop:ubuntu-xfce</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">webtop</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">shm_size</span>: <span style="color:#e6db74">&#34;2gb&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=Asia/Shanghai</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">CUSTOM_USER=mason</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PASSWORD=your_password</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">SUBFOLDER=/browser/    </span> <span style="color:#75715e"># ← 关键！</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/opt/webtop/config:/config</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;3080:3000&#34;</span>   <span style="color:#75715e"># Web 界面</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;3082:8082&#34;</span>   <span style="color:#75715e"># Selkies 信令服务器（必须暴露）</span>
+</span></span></code></pre></div><p><code>SUBFOLDER=/browser/</code> 的效果：</p>
+<ul>
+<li>容器 nginx 的 location 规则自动变为 <code>/browser/</code>、<code>/browser/websocket</code>、<code>/browser/files</code> 等</li>
+<li>Selkies JS 在 <code>/browser/</code> 页面下会构造 <code>/browser/webrtc/signaling/</code> 的 WebSocket URL</li>
+<li><strong>不再有路径不匹配的问题</strong></li>
+</ul>
+<p>启动后查看容器内 nginx 配置，确认 location 已正确替换：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec webtop grep <span style="color:#e6db74">&#34;location&#34;</span> /etc/nginx/sites-available/default
+</span></span><span style="display:flex;"><span>location /browser/ <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>location /devmode <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>location /browser/websocket <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>location /browser/files <span style="color:#f92672">{</span>
+</span></span></code></pre></div><h3 id="第二步暴露-selkies-信令端口">第二步：暴露 Selkies 信令端口</h3>
+<p>这是最关键的发现。容器内有两个进程处理请求：</p>
+<table>
+  <thead>
+      <tr>
+          <th>端口</th>
+          <th>进程</th>
+          <th>作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>3000</td>
+          <td>nginx</td>
+          <td>静态资源 + 代理到 8082 的 <code>/websocket</code> 路径</td>
+      </tr>
+      <tr>
+          <td>8082</td>
+          <td>Selkies Python</td>
+          <td>WebSocket 信令（<code>/webrtc/signaling/</code>）、TURN 凭证（<code>/turn/</code>）</td>
+      </tr>
+  </tbody>
+</table>
+<p>容器 nginx 只代理了 <code>/websocket</code> 到 8082，但 <strong><code>/webrtc/signaling/</code> 和 <code>/turn/</code> 完全没有 location 规则</strong>！这些请求会被当作静态文件处理，返回 404。</p>
+<p>所以必须把 8082 端口也暴露出来，让外部 nginx 直接将信令请求代理到 Selkies 服务器。</p>
+<h3 id="第三步配置外部-nginx">第三步：配置外部 Nginx</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">443</span> <span style="color:#e6db74">ssl</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">your-domain.com</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate</span>     <span style="color:#e6db74">/path/to/cert.pem</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate_key</span> <span style="color:#e6db74">/path/to/key.pem</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ====== 主界面：代理到容器 nginx ======
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/browser/</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:3080/browser/</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_http_version</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Upgrade</span> $http_upgrade;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Connection</span> <span style="color:#e6db74">&#34;upgrade&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_read_timeout</span> <span style="color:#e6db74">3600s</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_send_timeout</span> <span style="color:#e6db74">3600s</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_connect_timeout</span> <span style="color:#e6db74">3600s</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_buffering</span> <span style="color:#66d9ef">off</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_cache</span> <span style="color:#66d9ef">off</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">chunked_transfer_encoding</span> <span style="color:#66d9ef">on</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ====== WebRTC 信令 WebSocket ======
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/browser/webrtc/signaling/</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:3082/browser/webrtc/signaling/</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_http_version</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Upgrade</span> $http_upgrade;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Connection</span> <span style="color:#e6db74">&#34;upgrade&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_read_timeout</span> <span style="color:#e6db74">3600s</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_send_timeout</span> <span style="color:#e6db74">3600s</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_connect_timeout</span> <span style="color:#e6db74">3600s</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_buffering</span> <span style="color:#66d9ef">off</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_cache</span> <span style="color:#66d9ef">off</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ====== TURN 凭证 ======
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/browser/turn/</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:3082/browser/turn/</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_http_version</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ====== WebSocket (websockets 模式回退路径) ======
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/browser/websocket</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:3082/browser/websocket</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_http_version</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Upgrade</span> $http_upgrade;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Connection</span> <span style="color:#e6db74">&#34;upgrade&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_read_timeout</span> <span style="color:#e6db74">3600s</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_send_timeout</span> <span style="color:#e6db74">3600s</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_connect_timeout</span> <span style="color:#e6db74">3600s</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_buffering</span> <span style="color:#66d9ef">off</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_cache</span> <span style="color:#66d9ef">off</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>关键设计决策：</p>
+<ol>
+<li><strong><code>/browser/</code> 主界面代理到 3080（容器 nginx）</strong>——处理静态资源和页面加载</li>
+<li><strong><code>/browser/webrtc/signaling/</code>、<code>/browser/turn/</code>、<code>/browser/websocket</code> 直接代理到 3082（Selkies 信令服务器）</strong>——绕过容器 nginx，避免 404</li>
+<li><strong>所有 <code>proxy_pass</code> 保留完整路径</strong>——因为容器设置了 <code>SUBFOLDER=/browser/</code>，信令服务器也会处理带前缀的路径</li>
+</ol>
+<h3 id="验证">验证</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 主界面 - 应返回 200（需要认证则 401）</span>
+</span></span><span style="display:flex;"><span>$ curl -sI -u user:pass https://your-domain.com/browser/
+</span></span><span style="display:flex;"><span>HTTP/2 <span style="color:#ae81ff">200</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># WebSocket 端点 - 应返回 426 (Upgrade Required)</span>
+</span></span><span style="display:flex;"><span>$ curl -s -o /dev/null -w <span style="color:#e6db74">&#34;%{http_code}&#34;</span> https://your-domain.com/browser/websocket
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">426</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># WebRTC 信令 - 应返回 426</span>
+</span></span><span style="display:flex;"><span>$ curl -s -o /dev/null -w <span style="color:#e6db74">&#34;%{http_code}&#34;</span> https://your-domain.com/browser/webrtc/signaling/
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">426</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># TURN 凭证 - 应返回 426</span>
+</span></span><span style="display:flex;"><span>$ curl -s -o /dev/null -w <span style="color:#e6db74">&#34;%{http_code}&#34;</span> https://your-domain.com/browser/turn/
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">426</span>
+</span></span></code></pre></div><p>426 状态码表示 &ldquo;Upgrade Required&rdquo;，是 WebSocket/信令 端点的正常响应——它们期望连接升级为 WebSocket，普通 HTTP 请求返回 426 是正确的。</p>
+<h2 id="为什么不用-neko">为什么不用 Neko？</h2>
+<p>部署过程中也试过 <a href="https://github.com/m1k1o/neko" target="_blank" rel="noopener">Neko</a>，它的 WebRTC 支持更成熟。但 Neko 的官方 Docker 镜像只支持 amd64 架构。服务器是 ARM64，通过 QEMU 模拟运行 amd64 二进制时会因 SIGSEGV 崩溃。所以最终选择了原生支持 ARM64 的 webtop。</p>
+<h2 id="总结">总结</h2>
+<table>
+  <thead>
+      <tr>
+          <th>问题</th>
+          <th>解决方案</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>WebRTC 需要 HTTPS</td>
+          <td>外部 nginx 做 SSL 终端</td>
+      </tr>
+      <tr>
+          <td>子路径反代路径错乱</td>
+          <td>使用 <code>SUBFOLDER=/browser/</code> 环境变量</td>
+      </tr>
+      <tr>
+          <td>容器 nginx 缺少信令 location</td>
+          <td>暴露 8082 端口，外部 nginx 直接代理到信令服务器</td>
+      </tr>
+      <tr>
+          <td>容器 nginx 配置重启被覆盖</td>
+          <td>不修改容器内部配置，用 SUBFOLDER 机制解决</td>
+      </tr>
+      <tr>
+          <td>Selkies JS 动态构造路径</td>
+          <td>SUBFOLDER 模式下路径自然对齐</td>
+      </tr>
+  </tbody>
+</table>
+<p>核心经验：<strong>遇到容器内部的反向代理问题时，优先看有没有官方的路径前缀支持，而不是试图修改容器内部配置。</strong> webtop 的 <code>SUBFOLDER</code> 环境变量完美解决了子路径反代的问题。唯一需要额外处理的是把 Selkies 信令服务器的端口也暴露出来，因为容器 nginx 没有代理所有信令路径。</p>
+]]></content:encoded>
+    </item>
     <item>
       <title>Claude Code 源代码泄露：一个 .npmignore 引发的连锁风暴</title>
       <link>https://masonblog.github.io/post/blog20260406/</link>
