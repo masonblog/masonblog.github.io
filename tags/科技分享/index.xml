@@ -113,6 +113,90 @@
 ]]></content:encoded>
     </item>
     <item>
+      <title>Claude Code 源代码泄露：一个 .npmignore 引发的连锁风暴</title>
+      <link>https://masonblog.github.io/post/blog20260406/</link>
+      <pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20260406/</guid>
+      <description>深度解析 2026 年 3 月 Anthropic 意外泄露 Claude Code 全部源代码的事件始末。</description>
+      <content:encoded><![CDATA[<p>2026 年 3 月 31 日，AI 圈迎来了一场意想不到的&quot;愚人节前夕大礼&quot;：Anthropic 旗下明星产品 <strong>Claude Code</strong> 的全部源代码，因一个打包失误意外流向了互联网。</p>
+<p>这不是黑客攻击，不是内鬼泄密，而是有人忘记在 <code>.npmignore</code> 里加了一行 <code>*.map</code>。</p>
+<p>就这样，51 万行 TypeScript 代码、44 个隐藏功能开关、以及一个叫做 KAIROS 的神秘&quot;后台自主代理&quot;，在几小时内暴露在所有人面前。</p>
+<h2 id="事件经过一个-map-文件引发的雪崩">事件经过：一个 .map 文件引发的雪崩</h2>
+<h3 id="泄露是如何发生的">泄露是如何发生的？</h3>
+<p>2026 年 3 月 31 日，Anthropic 在 npm 上发布了 <code>@anthropic-ai/claude-code</code> 的 <strong>2.1.88 版本</strong>。这次更新本是例行维护，但却附带了一个巨大的&quot;彩蛋&quot;——一个 <strong>59.8 MB 的 JavaScript Source Map 文件</strong>（<code>.map</code> 后缀）。</p>
+<p>Source Map 是开发者用于调试压缩/混淆代码的工具，它能将编译后的代码映射回原始的 TypeScript 源码。正是这个本应只存在于内部的调试文件，被意外打入了公开发布的 npm 包里。</p>
+<p>更关键的是，这个 <code>.map</code> 文件还指向了一个 Anthropic 自家云存储上的 ZIP 压缩包，里面存放着<strong>完整的源代码仓库</strong>。所有人只需要顺着这条线索，就能下载到全部代码。</p>
+<p><strong>根本原因</strong>：有人忘记在 <code>.npmignore</code> 文件中添加 <code>*.map</code> 规则，导致 Source Map 文件随包一起发布。</p>
+<h3 id="传播有多快">传播有多快？</h3>
+<p>代码在公开后数小时内便被开发者社区察觉，随即被备份到 GitHub 上。根据 Layer5 的统计，相关仓库的 Fork 数量迅速突破 <strong>41,500 次</strong>，一度成为 <strong>GitHub 历史上增长最快的仓库</strong>。</p>
+<p>Anthropic 很快确认了这一事件，但表示这只是一次&quot;发布打包失误&quot;，没有泄露用户数据或凭证信息。</p>
+<h2 id="泄露的内容512000-行代码里藏着什么">泄露的内容：512,000 行代码里藏着什么？</h2>
+<p>源代码共包含 <strong>1,906 个 TypeScript 文件</strong>，整个 AI 圈的开发者和研究者们开始像考古学家一样，在代码里挖掘 Anthropic 从未公开过的秘密。</p>
+<h3 id="秘密一kairos--始终在线的自主-ai-代理">秘密一：KAIROS —— 始终在线的自主 AI 代理</h3>
+<p>这是泄露内容中最受关注的发现之一。代码中一个名为 <strong>KAIROS</strong> 的功能标志被提及超过 <strong>150 次</strong>。</p>
+<p>KAIROS 来自古希腊语，意为&quot;恰当的时机&quot;。从代码逻辑来看，它代表着 Claude Code 的一次重大范式转变：<strong>从被动响应变为主动的后台自主守护进程（Daemon）</strong>。</p>
+<p>具体来说，KAIROS 模式包含一个叫做 <strong>autoDream</strong> 的子机制：当用户处于空闲状态时，Claude 会在后台自动进行&quot;记忆整合&quot;，将分散的观察合并、消除逻辑矛盾，并将模糊的认知转化为具体的知识。</p>
+<p>这本质上是让 AI 拥有了一种<strong>持续学习和自我优化</strong>的能力——不仅是在你主动使用时，而是随时随地都在运转。</p>
+<h3 id="秘密二buddy--一只赛博电子宠物">秘密二：BUDDY —— 一只赛博电子宠物</h3>
+<p>是的，你没看错。代码里藏着一个完整的<strong>电子宠物系统</strong>，叫做 <strong>BUDDY</strong>。</p>
+<p>它有：</p>
+<ul>
+<li><strong>18 个物种</strong>可供选择</li>
+<li><strong>稀有度分级</strong>：普通（60%）→ 稀有 → 史诗 → 传说（1%）</li>
+<li><strong>闪光变体</strong>（类似宝可梦的色违）</li>
+<li><strong>专属属性值</strong>，包括 <code>DEBUGGING</code>（调试力）、<code>PATIENCE</code>（耐心）、<code>CHAOS</code>（混乱值）、<code>WISDOM</code>（智慧）和 <code>SNARK</code>（毒舌度）</li>
+</ul>
+<p>根据代码注释，BUDDY 原本计划作为<strong>愚人节彩蛋</strong>于 4 月 1 日悄悄上线预告，并在 5 月正式发布。结果，在 3 月 31 日就被这次意外泄露提前&quot;剧透&quot;了——时机不可谓不讽刺。</p>
+<h3 id="秘密三隐身模式--anthropic-员工的马甲">秘密三：隐身模式 —— Anthropic 员工的&quot;马甲&quot;</h3>
+<p>代码中还发现了一个被称为&quot;隐身模式&quot;（Stealth Mode）的功能，其设计目的是<strong>隐藏 Anthropic 员工对开源项目的贡献</strong>。</p>
+<p>简单来说，当 Anthropic 工程师使用 Claude Code 向开源社区提交代码时，该模式会对外屏蔽其 Anthropic 员工的身份。这一发现在开源社区引发了一定的讨论和争议。</p>
+<h3 id="秘密四反蒸馏机制--给竞争对手的毒药">秘密四：反蒸馏机制 —— 给竞争对手的&quot;毒药&quot;</h3>
+<p>代码中的 <code>ANTI_DISTILLATION_CC</code> 功能标志揭示了一个更具攻击性的策略：<strong>向 API 请求中注入虚假的工具定义</strong>。</p>
+<p>其目的在于污染那些监听 API 流量、试图通过&quot;知识蒸馏&quot;来学习和复制 Claude 能力的竞争对手的训练数据。此外，代码还会对 AI 的推理过程进行摘要并附上加密签名，使得窃听者只能获取摘要，而非完整的思维链输出。</p>
+<h2 id="安全警告趁火打劫的黑客">安全警告：趁火打劫的黑客</h2>
+<p>意外泄露事件本身危害有限，但随之而来的安全风险不可小觑。</p>
+<h3 id="axios-npm-遭投毒北朝鲜黑客的精准狙击">Axios npm 遭投毒：北朝鲜黑客的精准狙击</h3>
+<p>就在同一天（3 月 31 日），黑客攻陷了流行 HTTP 库 <strong>Axios 的 npm 账号</strong>，发布了两个恶意版本（<code>1.14.1</code> 和 <code>0.30.4</code>）。这些版本通过一个名为 <code>plain-crypto-js</code> 的隐藏依赖，植入了一个<strong>跨平台远程访问木马（RAT）</strong>。</p>
+<p>恶意版本在被 npm 下架前存活了约 <strong>2-3 小时</strong>。</p>
+<p>Google 威胁情报团队将此次攻击归因于 <strong>UNC1069</strong>——一个具有朝鲜背景的、以经济利益为驱动的威胁行为者，所使用的恶意软件为 <strong>WAVESHAPER.V2</strong>。</p>
+<p><strong>高危时间窗口</strong>：如果你在 <strong>3 月 31 日 00:21 UTC 至 03:29 UTC</strong> 之间通过 npm 安装或更新了 Claude Code，你的机器可能已被植入恶意代码。</p>
+<h3 id="github-上的假冒仓库">GitHub 上的假冒仓库</h3>
+<p>除了 npm 投毒，威胁行为者还在 GitHub 上散布了伪装成&quot;Claude Code 源代码镜像&quot;的恶意仓库。这些仓库诱骗用户运行一个 Rust 编写的投放程序，最终部署 <strong>Vidar Stealer</strong>（信息窃取木马）和 <strong>GhostSocks</strong>（代理恶意软件）。</p>
+<h3 id="应急自查步骤">应急自查步骤</h3>
+<p>如果你是开发者，请立即执行以下检查：</p>
+<ol>
+<li>检查你的项目 <code>lockfile</code>（<code>package-lock.json</code> 或 <code>yarn.lock</code>），查找 <code>axios</code> 版本 <code>1.14.1</code> 或 <code>0.30.4</code>。</li>
+<li>检查是否存在 <code>plain-crypto-js</code> 依赖项。</li>
+<li>如果发现上述任一情况，<strong>立即将该主机视为已完全沦陷</strong>：轮换所有密钥和凭证，并考虑重装操作系统。</li>
+</ol>
+<h2 id="影响与反思">影响与反思</h2>
+<h3 id="对-anthropic-的影响">对 Anthropic 的影响</h3>
+<p>这次事件对 Anthropic 的直接损失是<strong>竞争情报的泄露</strong>。KAIROS、反蒸馏机制等未发布的战略功能，已被竞争对手和研究者提前看到。</p>
+<p>但从另一个角度看，Anthropic 的处理方式——快速承认、如实说明原因——在一定程度上维护了公众信任。</p>
+<h3 id="对供应链安全的警示">对供应链安全的警示</h3>
+<p>这次事件是一个关于 <strong>软件供应链安全</strong> 的经典案例：</p>
+<ul>
+<li><strong>开发侧</strong>：一个被遗忘的打包规则（<code>.npmignore</code>）可以造成灾难性的信息泄露。</li>
+<li><strong>攻击侧</strong>：黑客能够以惊人的速度（同日）利用高关注度事件实施供应链攻击。</li>
+<li><strong>用户侧</strong>：在重大事件发酵期间，来自&quot;官方渠道&quot;之外的任何下载都极度危险。</li>
+</ul>
+<p>这提醒每一个维护开源项目的团队：<strong>发布流程的审计和自动化检查，与代码本身的质量同等重要。</strong></p>
+<h2 id="结语">结语</h2>
+<p>Claude Code 源代码泄露事件，是 2026 年 AI 领域最戏剧性的事故之一。它以一种意想不到的方式，让公众得以一窥顶尖 AI 工具背后的工程逻辑与产品野心——从重塑人机交互范式的 KAIROS，到充满极客趣味的电子宠物 BUDDY。</p>
+<p>然而，伴随着这场意外透明化而来的，是供应链攻击的真实威胁。它再次提醒我们：在这个软件高度依赖开源生态的时代，安全从来不只是代码里的事，更是发布流程、依赖管理和应急响应能力的综合体现。</p>
+<hr>
+<p><strong>延伸阅读：</strong></p>
+<ul>
+<li><a href="https://venturebeat.com/technology/claude-codes-source-code-appears-to-have-leaked-heres-what-we-know" target="_blank" rel="noopener">Claude Code 源代码泄露事件详情 - VentureBeat</a></li>
+<li><a href="https://thehackernews.com/2026/04/claude-code-tleaked-via-npm-packaging.html" target="_blank" rel="noopener">Anthropic 确认 npm 打包失误 - The Hacker News</a></li>
+<li><a href="https://decodethefuture.org/en/axios-npm-attack-rat-claude-code/" target="_blank" rel="noopener">Axios npm 投毒与 RAT 事件 - Decode the Future</a></li>
+<li><a href="https://www.theregister.com/2026/04/02/trojanized_claude_code_leak_github/" target="_blank" rel="noopener">伪造 Claude Code 下载传播恶意软件 - The Register</a></li>
+<li><a href="https://wavespeed.ai/blog/posts/claude-code-leaked-source-hidden-features/" target="_blank" rel="noopener">KAIROS 与隐藏功能完整分析 - WaveSpeed AI</a></li>
+<li><a href="https://coder.com/blog/what-the-claude-code-leak-tells-us-about-supply-chain-security" target="_blank" rel="noopener">供应链安全的启示 - Coder Blog</a></li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
       <title>为了寻找 ATMB 美国住宅地址，我专门写了一个小程序</title>
       <link>https://masonblog.github.io/post/blog20260214/</link>
       <pubDate>Sat, 14 Feb 2026 00:00:00 +0000</pubDate>
