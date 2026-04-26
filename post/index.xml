@@ -4,330 +4,112 @@
     <title>Posts on Mason&#39;s Blog</title>
     <link>https://masonblog.github.io/post/</link>
     <description>Recent content in Posts on Mason&#39;s Blog</description>
-    <generator>Hugo -- 0.140.0</generator>
+    <generator>Hugo -- 0.155.2</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 14 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 26 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://masonblog.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>在 Nginx 反向代理下部署 Webtop 远程浏览器</title>
-      <link>https://masonblog.github.io/post/blog20260414/</link>
-      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://masonblog.github.io/post/blog20260414/</guid>
-      <description>深度解析在 Nginx 反向代理下部署 Webtop 远程浏览器——踩坑与解决方案。</description>
-      <content:encoded><![CDATA[<p>背景</p>
-<p>最近需要在 ARM64 服务器上部署一个远程浏览器，通过 Web UI 访问。选了一圈发现 <a href="https://hub.docker.com/r/linuxserver/webtop" target="_blank" rel="noopener">linuxserver/webtop</a> 对 ARM64 原生支持，底层用的是 <strong>Selkies</strong> 流媒体引擎（不是老的 KasmVNC），整体体验不错。</p>
-<p>但问题来了——WebRTC 要求浏览器必须在 <strong>安全上下文（Secure Context）</strong> 下运行，也就是说必须通过 HTTPS 访问。而 webtop 容器内部的 nginx 只监听 HTTP（端口 3000），这就需要外部 nginx 做 SSL 终端并反向代理。</p>
-<p>这个反向代理的配置比想象中复杂得多，踩了不少坑，记录下来供参考。</p>
-<h2 id="架构概览">架构概览</h2>
-<p>最终架构如下：</p>
-<pre tabindex="0"><code>浏览器 (HTTPS)
-    ↓
-外部 Nginx (443/SSL终端)
-    ↓ /browser/*          → 容器 Nginx (3080→3000)
-    ↓ /browser/webrtc/*   → Selkies 信令服务器 (3082→8082)
-    ↓
-webtop 容器
-    ├── Nginx (3000) — 静态资源 + 代理
-    └── Selkies Python 信令服务器 (8082) — WebSocket + WebRTC 信令
-</code></pre><p>关键点：Selkies 的信令服务器是独立的 Python 进程，容器内的 nginx 只是做了一层代理。所以我们需要把信令流量直接送到 8082 端口，而不是经过容器 nginx 中转。</p>
-<h2 id="踩坑过程">踩坑过程</h2>
-<h3 id="坑一直接暴露端口行不通">坑一：直接暴露端口行不通</h3>
-<p>最初的想法最简单——不做反向代理，直接通过 <code>http://域名:3080</code> 访问。但浏览器要求 HTTPS（Secure Context），在 HTTP 下 WebRTC 会被拒绝，WebRTC DataChannel 无法建立。直接暴露端口意味着你得自己配容器内的 SSL 证书，或者用自签证书（浏览器会弹警告）。</p>
-<p>结论：<strong>必须通过 nginx 做 SSL 终端</strong>。</p>
-<h3 id="坑二子路径反代的路径构造问题">坑二：子路径反代的路径构造问题</h3>
-<p>最初配置了简单的反向代理：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">location</span> <span style="color:#e6db74">/browser/</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:3080/</span>;  <span style="color:#75715e"># 注意末尾的 /，会剥离 /browser/ 前缀
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span></code></pre></div><p>这样 webtop 收到的是根路径 <code>/</code> 的请求，静态资源没问题。但 Selkies 的 JavaScript 客户端会根据 <code>window.location.pathname</code> 动态构造 WebSocket URL：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Selkies JS 核心逻辑（简化版）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pathname</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">pathname</span>;
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 当 pathname 以 / 结尾时，取第二段作为信令路径名
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">signaling_name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pathname</span>.<span style="color:#a6e22e">endsWith</span>(<span style="color:#e6db74">&#34;/&#34;</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">pathname</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;/&#34;</span>)[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;webrtc&#34;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 取 pathname 的目录前缀
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">prefix</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pathname</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">pathname</span>.<span style="color:#a6e22e">lastIndexOf</span>(<span style="color:#e6db74">&#34;/&#34;</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 构造 WebSocket URL
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ws_url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wss://&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">host</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">prefix</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">signaling_name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/signaling/&#34;</span>;
-</span></span></code></pre></div><p>当浏览器访问 <code>/browser/</code> 时，nginx 剥离前缀后，容器内的页面在 <code>/</code> 下加载，JS 构造出的 URL 变成：</p>
-<pre tabindex="0"><code>wss://host/webrtc/signaling/   ← 正确路径，但容器 nginx 没有 location 来处理！
-</code></pre><p>当访问根路径 <code>/</code> 时，JS 构造：</p>
-<pre tabindex="0"><code>wss://host/webrtc/signaling/   ← 同样的路径
-</code></pre><p>但容器内的 nginx 配置只有 <code>/websocket</code> 代理到 8082，没有 <code>/webrtc/signaling/</code> 这个 location！</p>
-<h3 id="坑三容器-nginx-配置每次启动都会被覆盖">坑三：容器 nginx 配置每次启动都会被覆盖</h3>
-<p>webtop 使用 <code>s6-overlay</code> 管理初始化，容器 nginx 配置在 <code>/etc/nginx/sites-available/default</code>，<strong>每次启动都会从 <code>/defaults/default.conf</code> 模板重新生成</strong>。我试过用 <code>docker cp</code> 直接修改容器内的 nginx 配置来添加信令代理，但容器一重启就全没了。</p>
-<p>又尝试通过 <code>s6-overlay</code> 的 init 脚本自动注入，但 <code>sed</code>/<code>awk</code> 插入多行 nginx 配置很容易破坏格式，导致 nginx 启动失败。</p>
-<h3 id="坑四confignginxdefaultconf-是个目录不是文件">坑四：/config/nginx/default.conf 是个目录不是文件</h3>
-<p>webtop 的持久化卷 <code>/config</code> 挂载后，<code>/config/nginx/</code> 目录会被创建，但 <code>default.conf</code> 变成了目录而不是文件。直接挂载配置文件的方案也行不通。</p>
-<h2 id="最终解决方案">最终解决方案</h2>
-<p>折腾了一圈后，发现 webtop 自带 <code>SUBFOLDER</code> 环境变量支持。设置后所有路径都会自动加前缀，包括容器内 nginx 的 location 规则和 Selkies JS 的路径构造。</p>
-<h3 id="第一步设置-subfolder-环境变量">第一步：设置 SUBFOLDER 环境变量</h3>
-<p><code>docker-compose.yml</code>：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">webtop</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">lscr.io/linuxserver/webtop:ubuntu-xfce</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">webtop</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">shm_size</span>: <span style="color:#e6db74">&#34;2gb&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PUID=1000</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=Asia/Shanghai</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">CUSTOM_USER=mason</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PASSWORD=your_password</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">SUBFOLDER=/browser/    </span> <span style="color:#75715e"># ← 关键！</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/opt/webtop/config:/config</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
-</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;3080:3000&#34;</span>   <span style="color:#75715e"># Web 界面</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;3082:8082&#34;</span>   <span style="color:#75715e"># Selkies 信令服务器（必须暴露）</span>
-</span></span></code></pre></div><p><code>SUBFOLDER=/browser/</code> 的效果：</p>
+      <title>借助 AI，我做了一个各省假期政策查询网站</title>
+      <link>https://masonblog.github.io/post/blog20260426/</link>
+      <pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20260426/</guid>
+      <description>我是如何借助 Vibe Coding，用一个周末做出了这个各省假期政策查询网站的。</description>
+      <content:encoded><![CDATA[<h2 id="起心动念一个法学生的不务正业">起心动念：一个法学生的&quot;不务正业&quot;</h2>
+<p>作为一名公司律师，我每天打交道最多的就是各种法规条文，以及来咨询各种法律条文的亲戚朋友。其中一个最常被问到的问题，就是各种劳动法规。尤其是各地假期政策，比如婚假怎么请，产假有多长……这些是每个人都会遇到的问题。</p>
+<p>前段时间，我有个朋友跳槽到一家深圳的公司，问我：&ldquo;深圳的陪产假到底是几天？网上查的乱七八糟的。&ldquo;我翻了一圈，发现确实如此。国家层面有一套规定，各省又有各自补充的地方规定，信息散落在各级人社厅的官网、政府公报、地方性法规里，没有一个能一站式对比查看的地方。</p>
+<p>我当时就想：要是有一个网站，选一个省份，所有假期政策一目了然，中央规定和地方特别规定并列展示，每条规则还附上法律出处，那该多好。</p>
+<p>然后我脑子里蹦出另一个念头——<strong>我为什么不自己做一个呢？</strong></p>
+<p>放在以前，这个念头冒出来三秒钟就会被我自己摁回去。我不会写前端，不会画地图，不知道怎么部署网站。但最近这一年，情况变了。</p>
+<h2 id="当法学撞上-vibe-coding">当法学撞上 Vibe Coding</h2>
+<p>先聊聊什么是 Vibe Coding。这个词是 Andrej Karpathy 在 2025 年初提出来的，大意是：你不再需要逐行手写代码，而是用自然语言描述你想要什么，AI 帮你写。你要做的不是&quot;编程&rdquo;，而是&quot;指挥&rdquo;。<strong>你负责想法和品位，AI 负责执行。</strong></p>
+<p>我刚接触 Vibe Coding 的时候，也经历过一段迷茫期。看别人用 Cursor、用 Claude Code 三下五除二搞出一个项目，自己上去一试，发现根本不是那么回事。AI 确实能写代码，但写出来的东西经常有这样那样的问题：组件渲染不出来、类型报错、样式错乱、路由不对……</p>
+<p>后来我慢慢悟出来一个道理：<strong>Vibe Coding 不是&quot;不用动脑子&quot;，而是&quot;换一种方式动脑子&quot;。</strong> 你不能真的完全放手，你得学会审阅代码、提出精准的修改指令、在 AI 卡壳的时候指出方向。某种意义上，这和 review 一篇法学论文没什么区别——你不是从头到尾自己写每一个字，但你必须判断哪里有问题、该怎么改。</p>
+<p>而我的法律背景，在这个项目里扮演了一个意想不到的角色。</p>
+<h2 id="法律思维如何重塑我的开发流程">法律思维如何重塑我的开发流程</h2>
+<p>法学的核心训练是什么？如果只让我说一点，那就是<strong>体系化的分类与归入</strong>。面对一个案件，你要做的第一件事不是拍脑袋下结论，而是把事实拆解成若干个法律要件，逐一检视，最后得出结论。</p>
+<p>这套思维方式，在我做这个假期政策查询网站的时候，天然地映射到了数据结构的搭建上。</p>
+<p>假期政策说白了，就是一个多层级的规则体系：</p>
 <ul>
-<li>容器 nginx 的 location 规则自动变为 <code>/browser/</code>、<code>/browser/websocket</code>、<code>/browser/files</code> 等</li>
-<li>Selkies JS 在 <code>/browser/</code> 页面下会构造 <code>/browser/webrtc/signaling/</code> 的 WebSocket URL</li>
-<li><strong>不再有路径不匹配的问题</strong></li>
+<li><strong>第一层，国家法定基准</strong>。比如产假 98 天、婚假 3 天，这是写在《女职工劳动保护特别规定》和《人口与计划生育法》里的，全国通用。</li>
+<li><strong>第二层，各省地方补充规定</strong>。比如上海在 98 天基础上再加 30 天产假，广东的陪产假是 15 天，少数民族自治地方还有特殊政策。</li>
+<li><strong>第三层，兜底规则</strong>。如果地方没有特别规定，就自动沿用中央标准。</li>
 </ul>
-<p>启动后查看容器内 nginx 配置，确认 location 已正确替换：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec webtop grep <span style="color:#e6db74">&#34;location&#34;</span> /etc/nginx/sites-available/default
-</span></span><span style="display:flex;"><span>location /browser/ <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>location /devmode <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>location /browser/websocket <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>location /browser/files <span style="color:#f92672">{</span>
-</span></span></code></pre></div><h3 id="第二步暴露-selkies-信令端口">第二步：暴露 Selkies 信令端口</h3>
-<p>这是最关键的发现。容器内有两个进程处理请求：</p>
-<table>
-  <thead>
-      <tr>
-          <th>端口</th>
-          <th>进程</th>
-          <th>作用</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>3000</td>
-          <td>nginx</td>
-          <td>静态资源 + 代理到 8082 的 <code>/websocket</code> 路径</td>
-      </tr>
-      <tr>
-          <td>8082</td>
-          <td>Selkies Python</td>
-          <td>WebSocket 信令（<code>/webrtc/signaling/</code>）、TURN 凭证（<code>/turn/</code>）</td>
-      </tr>
-  </tbody>
-</table>
-<p>容器 nginx 只代理了 <code>/websocket</code> 到 8082，但 <strong><code>/webrtc/signaling/</code> 和 <code>/turn/</code> 完全没有 location 规则</strong>！这些请求会被当作静态文件处理，返回 404。</p>
-<p>所以必须把 8082 端口也暴露出来，让外部 nginx 直接将信令请求代理到 Selkies 服务器。</p>
-<h3 id="第三步配置外部-nginx">第三步：配置外部 Nginx</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">443</span> <span style="color:#e6db74">ssl</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">your-domain.com</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate</span>     <span style="color:#e6db74">/path/to/cert.pem</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate_key</span> <span style="color:#e6db74">/path/to/key.pem</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ====== 主界面：代理到容器 nginx ======
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/browser/</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:3080/browser/</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_http_version</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Upgrade</span> $http_upgrade;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Connection</span> <span style="color:#e6db74">&#34;upgrade&#34;</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_read_timeout</span> <span style="color:#e6db74">3600s</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_send_timeout</span> <span style="color:#e6db74">3600s</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_connect_timeout</span> <span style="color:#e6db74">3600s</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_buffering</span> <span style="color:#66d9ef">off</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_cache</span> <span style="color:#66d9ef">off</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">chunked_transfer_encoding</span> <span style="color:#66d9ef">on</span>;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ====== WebRTC 信令 WebSocket ======
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/browser/webrtc/signaling/</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:3082/browser/webrtc/signaling/</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_http_version</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Upgrade</span> $http_upgrade;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Connection</span> <span style="color:#e6db74">&#34;upgrade&#34;</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_read_timeout</span> <span style="color:#e6db74">3600s</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_send_timeout</span> <span style="color:#e6db74">3600s</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_connect_timeout</span> <span style="color:#e6db74">3600s</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_buffering</span> <span style="color:#66d9ef">off</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_cache</span> <span style="color:#66d9ef">off</span>;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ====== TURN 凭证 ======
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/browser/turn/</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:3082/browser/turn/</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_http_version</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ====== WebSocket (websockets 模式回退路径) ======
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/browser/websocket</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:3082/browser/websocket</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_http_version</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Upgrade</span> $http_upgrade;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Connection</span> <span style="color:#e6db74">&#34;upgrade&#34;</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_read_timeout</span> <span style="color:#e6db74">3600s</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_send_timeout</span> <span style="color:#e6db74">3600s</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_connect_timeout</span> <span style="color:#e6db74">3600s</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_buffering</span> <span style="color:#66d9ef">off</span>;
-</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_cache</span> <span style="color:#66d9ef">off</span>;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>关键设计决策：</p>
+<p>这个三层结构，我用法学里&quot;一般法与特别法&quot;的关系来理解：特别法优先于一般法，特别法没有规定的，适用一般法。这恰恰就是代码里 <code>mergePolicy()</code> 函数的核心逻辑——先加载中央基准数据，再用各省的覆盖字段去 merge，本地有的覆盖中央，本地没有的 fallback 到中央。</p>
+<p>所以当 AI 问我要怎么设计数据结构的时候，我几乎没有犹豫就画出了这个 YAML schema：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">婚姻假</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">天数</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">适用条件</span>: <span style="color:#ae81ff">依法办理结婚登记的夫妻</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">工资待遇</span>: <span style="color:#ae81ff">正常发放</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">法律依据</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">名称</span>: <span style="color:#ae81ff">国家劳动总局、财政部关于国营企业职工请婚丧假和路程假问题的通知</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">条款</span>: <span style="color:#ae81ff">第一条</span>
+</span></span></code></pre></div><p>然后在各省的文件里，只写和中央不同的部分。比如江苏：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">婚姻假</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">天数</span>: <span style="color:#ae81ff">13</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">法律依据</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">名称</span>: <span style="color:#ae81ff">江苏省人口与计划生育条例</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">条款</span>: <span style="color:#ae81ff">第二十七条</span>
+</span></span></code></pre></div><p>这个设计思路，法学圈的人一眼就能看出来是&quot;特别法优于一般法&quot;的逻辑，但你要让我从头手写代码实现这个 merge 逻辑，放一年前的我绝对写不出来。现在呢？我把思路描述给 AI，半分钟代码就出来了，而且类型检查全过。</p>
+<p>Zod 数据校验也是同样的道理。法律讲究&quot;形式要件&quot;，合同缺了某个必要条款就无效。映射到项目里，就是数据文件必须有严格的 schema 验证——<code>central.yaml</code> 必须包含全部 7 类假期，省份文件里每个假期必须包含&quot;天数&quot;字段，法律依据不能为空。我把这些约束用自然语言描述给 AI，它生成了一套 Zod schema，build 之前自动跑一遍验证脚本，任何一个省份的 YAML 格式不对，整个 CI 直接报错。</p>
+<p>说起来有点好笑，我的导师要是知道我拿法律方法论去&quot;调教&quot; AI 写代码，不知道会怎么想。但说实话，<strong>这种跨学科的思维迁移，恰恰是 Vibe Coding 时代最有意思的部分</strong>——你不需要是一个科班出身的软件工程师，但你需要有一套成体系的思考框架，不管这套框架是来自法律、医学、建筑还是音乐。</p>
+<h2 id="从想法到产品一个周末的构建记录">从想法到产品：一个周末的构建记录</h2>
+<p>想法有了，方法论也理顺了，接下来就是动手。</p>
+<p>整个项目的技术栈选择，我基本遵循一个原则：<strong>选最主流、AI 最熟悉的方案</strong>。这不是炫技的时候，我是拿来主义的信徒——Next.js + Tailwind CSS + shadcn/ui，这套组合是 AI 训练数据里最充分的技术栈，意味着 AI 出错的概率最低。</p>
+<h3 id="数据层31-个省的假期政策汇编">数据层：31 个省的假期政策汇编</h3>
+<p>这其实是最耗时的部分。代码可以靠 AI 生成，但内容不行。</p>
+<p>我花了差不多两个完整的周末，逐一翻查了 31 个省级行政区的卫健委、人社厅官网，以及各地方人大发布的计划生育条例修正案。每一条规则我都在旁边标注了原文件的名称、条款号和官方链接。有些省份的规定藏得特别深——比如某个自治区的陪产假规定，写在一份 2016 年的《关于修改〈XX 自治区人口与计划生育条例〉的决定》里，要顺着修正案的指示往前翻原文才能拼出完整的规则。</p>
+<p>这件事 AI 帮不了忙，至少现在帮不了。它可能会&quot;编造&quot;一些看起来很像真的法条，但在这种事上，一个法律人的底线还是有的——<strong>数据必须可溯源</strong>。</p>
+<p>所有整理好的数据，我按照 <code>XX-pinyin.yaml</code> 的命名规范放在 <code>data/provinces/</code> 目录里，一共 31 个文件，加上一个 <code>central.yaml</code> 做基准。</p>
+<h3 id="前端svg-中国地图的三天折磨">前端：SVG 中国地图的三天折磨</h3>
+<p>整个项目里最让我头疼的部分，是中国地图。</p>
+<p>一开始我想得很简单：找个现成的 ECharts 图表库，把中国地图渲染出来就完了。结果发现 ECharts 的中国地图用的是 GeoJSON 格式，数据量巨大不说，暗黑模式下的颜色适配也很麻烦。AI 建议我用原生 SVG，但网上找到的中国地图 SVG 大多质量堪忧——边界线粗糙，有些省份的路径数据甚至不完整。</p>
+<p>最后我采取了一个折中方案：让 AI 帮我生成一个精确的 SVG 路径数据，存储为 JSON 文件，每个省份一条 path，包含 viewBox、路径坐标和省份中心的经纬度。然后自己写了一个 React 组件来做交互。</p>
+<p>这里有个细节值得一提：<strong>小省份的点击区域</strong>。北京、天津、上海这些直辖市在地图上实在太小了，鼠标根本点不到。我当时跟 AI 反复来回了好几轮，最后想到一个办法——在路径外面套一层不可见的圆形点击热区，半径放大 3 倍，覆盖周围的空白区域。这个方案 AI 没有主动提出来，但当我描述给它之后，它很快就实现了。</p>
+<p>地图的热力图配色也调了很久。我定义了一个&quot;假期热度值&quot;，把婚假天数、产假天数和陪产假天数相加，然后分成四档：</p>
+<ul>
+<li><strong>绿色（≥200）</strong>：假期福利比较到位的省份</li>
+<li><strong>黄色（190-199）</strong>：中上水平</li>
+<li><strong>红色（180-189）</strong>：中等偏下</li>
+<li><strong>深红色（&lt;180）</strong>：假期天数较少的地方</li>
+</ul>
+<p>说实话，这个&quot;热度值&quot;的算法相当粗糙，但我就是想给用户一个直观的视觉感受——一眼扫过去，大致知道哪个&quot;颜色区域&quot;假期多一些。未来如果有时间，我打算引入更多权重因素，比如育儿假、探亲假也纳入计算。</p>
+<h3 id="每个省的详情页七类假期的卡片式展示">每个省的详情页：七类假期的卡片式展示</h3>
+<p>省份详情页的设计灵感来自我手机上的健康 App 仪表盘——每一类假期是一张独立的信息卡片，顶部显示天数，中间是适用条件和工资待遇，底部折叠了资格认定和注意事项的详细说明。</p>
+<p>最有价值的设计是 <strong>&ldquo;来源标签&quot;系统</strong>。每条规则右侧都会有一个小标签：</p>
+<ul>
+<li><strong>&ldquo;中央规定&rdquo;</strong>（灰色标签）：表示这条来自国家层面的法律法规</li>
+<li><strong>&ldquo;本地特别规定&rdquo;</strong>（蓝色标签）：表示这是该省在中央基础上额外制定的政策</li>
+</ul>
+<p>两者并列展示，用户一眼就能分辨出哪些是国家给的、哪些是本省额外补充的。</p>
+<h3 id="部署github-actions--github-pages零成本上线">部署：GitHub Actions + GitHub Pages，零成本上线</h3>
+<p>部署部分反而是整个项目最简单的一环。</p>
+<p>Next.js 有个特性叫 Static Export，简单说就是把整个网站预渲染成纯静态的 HTML + CSS + JS 文件，不需要服务器。我只需要在 <code>next.config.mjs</code> 里加一行 <code>output: &quot;export&quot;</code>，然后配置 GitHub Actions 在每次 push 代码到 main 分支的时候自动 <code>npm run build</code>，把产物推到 GitHub Pages 上。</p>
+<p>CI 流水线也很干净：</p>
 <ol>
-<li><strong><code>/browser/</code> 主界面代理到 3080（容器 nginx）</strong>——处理静态资源和页面加载</li>
-<li><strong><code>/browser/webrtc/signaling/</code>、<code>/browser/turn/</code>、<code>/browser/websocket</code> 直接代理到 3082（Selkies 信令服务器）</strong>——绕过容器 nginx，避免 404</li>
-<li><strong>所有 <code>proxy_pass</code> 保留完整路径</strong>——因为容器设置了 <code>SUBFOLDER=/browser/</code>，信令服务器也会处理带前缀的路径</li>
+<li>Checkout 代码</li>
+<li><code>npm ci</code> 装依赖</li>
+<li><code>npm run validate-data</code> 校验所有 YAML 数据文件的格式</li>
+<li><code>npm run typecheck</code> TypeScript 类型检查</li>
+<li><code>npm run build</code> 构建静态产物</li>
+<li>部署到 GitHub Pages</li>
 </ol>
-<h3 id="验证">验证</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 主界面 - 应返回 200（需要认证则 401）</span>
-</span></span><span style="display:flex;"><span>$ curl -sI -u user:pass https://your-domain.com/browser/
-</span></span><span style="display:flex;"><span>HTTP/2 <span style="color:#ae81ff">200</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># WebSocket 端点 - 应返回 426 (Upgrade Required)</span>
-</span></span><span style="display:flex;"><span>$ curl -s -o /dev/null -w <span style="color:#e6db74">&#34;%{http_code}&#34;</span> https://your-domain.com/browser/websocket
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">426</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># WebRTC 信令 - 应返回 426</span>
-</span></span><span style="display:flex;"><span>$ curl -s -o /dev/null -w <span style="color:#e6db74">&#34;%{http_code}&#34;</span> https://your-domain.com/browser/webrtc/signaling/
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">426</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># TURN 凭证 - 应返回 426</span>
-</span></span><span style="display:flex;"><span>$ curl -s -o /dev/null -w <span style="color:#e6db74">&#34;%{http_code}&#34;</span> https://your-domain.com/browser/turn/
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">426</span>
-</span></span></code></pre></div><p>426 状态码表示 &ldquo;Upgrade Required&rdquo;，是 WebSocket/信令 端点的正常响应——它们期望连接升级为 WebSocket，普通 HTTP 请求返回 426 是正确的。</p>
-<h2 id="为什么不用-neko">为什么不用 Neko？</h2>
-<p>部署过程中也试过 <a href="https://github.com/m1k1o/neko" target="_blank" rel="noopener">Neko</a>，它的 WebRTC 支持更成熟。但 Neko 的官方 Docker 镜像只支持 amd64 架构。服务器是 ARM64，通过 QEMU 模拟运行 amd64 二进制时会因 SIGSEGV 崩溃。所以最终选择了原生支持 ARM64 的 webtop。</p>
-<h2 id="总结">总结</h2>
-<table>
-  <thead>
-      <tr>
-          <th>问题</th>
-          <th>解决方案</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>WebRTC 需要 HTTPS</td>
-          <td>外部 nginx 做 SSL 终端</td>
-      </tr>
-      <tr>
-          <td>子路径反代路径错乱</td>
-          <td>使用 <code>SUBFOLDER=/browser/</code> 环境变量</td>
-      </tr>
-      <tr>
-          <td>容器 nginx 缺少信令 location</td>
-          <td>暴露 8082 端口，外部 nginx 直接代理到信令服务器</td>
-      </tr>
-      <tr>
-          <td>容器 nginx 配置重启被覆盖</td>
-          <td>不修改容器内部配置，用 SUBFOLDER 机制解决</td>
-      </tr>
-      <tr>
-          <td>Selkies JS 动态构造路径</td>
-          <td>SUBFOLDER 模式下路径自然对齐</td>
-      </tr>
-  </tbody>
-</table>
-<p>核心经验：<strong>遇到容器内部的反向代理问题时，优先看有没有官方的路径前缀支持，而不是试图修改容器内部配置。</strong> webtop 的 <code>SUBFOLDER</code> 环境变量完美解决了子路径反代的问题。唯一需要额外处理的是把 Selkies 信令服务器的端口也暴露出来，因为容器 nginx 没有代理所有信令路径。</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Claude Code 源代码泄露：一个 .npmignore 引发的连锁风暴</title>
-      <link>https://masonblog.github.io/post/blog20260406/</link>
-      <pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>https://masonblog.github.io/post/blog20260406/</guid>
-      <description>深度解析 2026 年 3 月 Anthropic 意外泄露 Claude Code 全部源代码的事件始末。</description>
-      <content:encoded><![CDATA[<p>2026 年 3 月 31 日，AI 圈迎来了一场意想不到的&quot;愚人节前夕大礼&quot;：Anthropic 旗下明星产品 <strong>Claude Code</strong> 的全部源代码，因一个打包失误意外流向了互联网。</p>
-<p>这不是黑客攻击，不是内鬼泄密，而是有人忘记在 <code>.npmignore</code> 里加了一行 <code>*.map</code>。</p>
-<p>就这样，51 万行 TypeScript 代码、44 个隐藏功能开关、以及一个叫做 KAIROS 的神秘&quot;后台自主代理&quot;，在几小时内暴露在所有人面前。</p>
-<h2 id="事件经过一个-map-文件引发的雪崩">事件经过：一个 .map 文件引发的雪崩</h2>
-<h3 id="泄露是如何发生的">泄露是如何发生的？</h3>
-<p>2026 年 3 月 31 日，Anthropic 在 npm 上发布了 <code>@anthropic-ai/claude-code</code> 的 <strong>2.1.88 版本</strong>。这次更新本是例行维护，但却附带了一个巨大的&quot;彩蛋&quot;——一个 <strong>59.8 MB 的 JavaScript Source Map 文件</strong>（<code>.map</code> 后缀）。</p>
-<p>Source Map 是开发者用于调试压缩/混淆代码的工具，它能将编译后的代码映射回原始的 TypeScript 源码。正是这个本应只存在于内部的调试文件，被意外打入了公开发布的 npm 包里。</p>
-<p>更关键的是，这个 <code>.map</code> 文件还指向了一个 Anthropic 自家云存储上的 ZIP 压缩包，里面存放着<strong>完整的源代码仓库</strong>。所有人只需要顺着这条线索，就能下载到全部代码。</p>
-<p><strong>根本原因</strong>：有人忘记在 <code>.npmignore</code> 文件中添加 <code>*.map</code> 规则，导致 Source Map 文件随包一起发布。</p>
-<h3 id="传播有多快">传播有多快？</h3>
-<p>代码在公开后数小时内便被开发者社区察觉，随即被备份到 GitHub 上。根据 Layer5 的统计，相关仓库的 Fork 数量迅速突破 <strong>41,500 次</strong>，一度成为 <strong>GitHub 历史上增长最快的仓库</strong>。</p>
-<p>Anthropic 很快确认了这一事件，但表示这只是一次&quot;发布打包失误&quot;，没有泄露用户数据或凭证信息。</p>
-<h2 id="泄露的内容512000-行代码里藏着什么">泄露的内容：512,000 行代码里藏着什么？</h2>
-<p>源代码共包含 <strong>1,906 个 TypeScript 文件</strong>，整个 AI 圈的开发者和研究者们开始像考古学家一样，在代码里挖掘 Anthropic 从未公开过的秘密。</p>
-<h3 id="秘密一kairos--始终在线的自主-ai-代理">秘密一：KAIROS —— 始终在线的自主 AI 代理</h3>
-<p>这是泄露内容中最受关注的发现之一。代码中一个名为 <strong>KAIROS</strong> 的功能标志被提及超过 <strong>150 次</strong>。</p>
-<p>KAIROS 来自古希腊语，意为&quot;恰当的时机&quot;。从代码逻辑来看，它代表着 Claude Code 的一次重大范式转变：<strong>从被动响应变为主动的后台自主守护进程（Daemon）</strong>。</p>
-<p>具体来说，KAIROS 模式包含一个叫做 <strong>autoDream</strong> 的子机制：当用户处于空闲状态时，Claude 会在后台自动进行&quot;记忆整合&quot;，将分散的观察合并、消除逻辑矛盾，并将模糊的认知转化为具体的知识。</p>
-<p>这本质上是让 AI 拥有了一种<strong>持续学习和自我优化</strong>的能力——不仅是在你主动使用时，而是随时随地都在运转。</p>
-<h3 id="秘密二buddy--一只赛博电子宠物">秘密二：BUDDY —— 一只赛博电子宠物</h3>
-<p>是的，你没看错。代码里藏着一个完整的<strong>电子宠物系统</strong>，叫做 <strong>BUDDY</strong>。</p>
-<p>它有：</p>
+<p>从 push 代码到网站更新，全自动，整个过程不到两分钟。</p>
+<p>最终线上地址：<a href="https://masonblog.github.io/HolidayGO-CN" target="_blank" rel="noopener">masonblog.github.io/HolidayGO-CN</a></p>
+<h2 id="写在最后ai-时代创意才是真正的稀缺资源">写在最后：AI 时代，创意才是真正的稀缺资源</h2>
+<p>这个项目做完，我最大的感触不是&quot;AI 好厉害&rdquo;，而是——<strong>在 AI 时代，有想法的人太少了，能把想法落地的人更少。</strong></p>
+<p>你不信的话，想想看：全中国每年有多少法学生、律师、HR 从业者，每天都在查假期政策，查完之后该干嘛干嘛。有多少人会冒出&quot;我为什么不做一个查询工具&quot;这个念头？又有多少人冒出了这个念头之后，真的打开电脑，开始做了？</p>
+<p>AI 拉平了技术实现的鸿沟，但没有拉平&quot;想不想做&quot;和&quot;能不能坚持做完&quot;的鸿沟。</p>
+<p>我不是什么编程大神。在开始这个项目之前，我连 Next.js 的路由是怎么写的都不知道。但现在呢？一个可用的产品摆在这里，31 个省的数据覆盖齐全，有暗黑模式、有交互地图、有来源溯源，CI/CD 全自动部署。这些东西，<strong>放在两年前，是我一个文科生想都不敢想的事情</strong>。而在 2026 年，我用业余时间，借助 AI，做到了。</p>
+<p>所以我想说的是：如果你的脑子里一直有一个&quot;要是能有个什么东西就好了&quot;的想法，别犹豫，现在就动手。不需要等到你&quot;学会了编程&quot;才开始——那个时代已经过去了。你只需要：</p>
 <ul>
-<li><strong>18 个物种</strong>可供选择</li>
-<li><strong>稀有度分级</strong>：普通（60%）→ 稀有 → 史诗 → 传说（1%）</li>
-<li><strong>闪光变体</strong>（类似宝可梦的色违）</li>
-<li><strong>专属属性值</strong>，包括 <code>DEBUGGING</code>（调试力）、<code>PATIENCE</code>（耐心）、<code>CHAOS</code>（混乱值）、<code>WISDOM</code>（智慧）和 <code>SNARK</code>（毒舌度）</li>
+<li><strong>一个清晰的想法</strong>（这是你最独特的资产，AI 抢不走）</li>
+<li><strong>一套成体系的思维框架</strong>（不管来自哪个学科）</li>
+<li><strong>愿意花时间去打磨细节的耐心</strong>（AI 能帮你写代码，但打磨产品只能靠你自己）</li>
 </ul>
-<p>根据代码注释，BUDDY 原本计划作为<strong>愚人节彩蛋</strong>于 4 月 1 日悄悄上线预告，并在 5 月正式发布。结果，在 3 月 31 日就被这次意外泄露提前&quot;剧透&quot;了——时机不可谓不讽刺。</p>
-<h3 id="秘密三隐身模式--anthropic-员工的马甲">秘密三：隐身模式 —— Anthropic 员工的&quot;马甲&quot;</h3>
-<p>代码中还发现了一个被称为&quot;隐身模式&quot;（Stealth Mode）的功能，其设计目的是<strong>隐藏 Anthropic 员工对开源项目的贡献</strong>。</p>
-<p>简单来说，当 Anthropic 工程师使用 Claude Code 向开源社区提交代码时，该模式会对外屏蔽其 Anthropic 员工的身份。这一发现在开源社区引发了一定的讨论和争议。</p>
-<h3 id="秘密四反蒸馏机制--给竞争对手的毒药">秘密四：反蒸馏机制 —— 给竞争对手的&quot;毒药&quot;</h3>
-<p>代码中的 <code>ANTI_DISTILLATION_CC</code> 功能标志揭示了一个更具攻击性的策略：<strong>向 API 请求中注入虚假的工具定义</strong>。</p>
-<p>其目的在于污染那些监听 API 流量、试图通过&quot;知识蒸馏&quot;来学习和复制 Claude 能力的竞争对手的训练数据。此外，代码还会对 AI 的推理过程进行摘要并附上加密签名，使得窃听者只能获取摘要，而非完整的思维链输出。</p>
-<h2 id="安全警告趁火打劫的黑客">安全警告：趁火打劫的黑客</h2>
-<p>意外泄露事件本身危害有限，但随之而来的安全风险不可小觑。</p>
-<h3 id="axios-npm-遭投毒北朝鲜黑客的精准狙击">Axios npm 遭投毒：北朝鲜黑客的精准狙击</h3>
-<p>就在同一天（3 月 31 日），黑客攻陷了流行 HTTP 库 <strong>Axios 的 npm 账号</strong>，发布了两个恶意版本（<code>1.14.1</code> 和 <code>0.30.4</code>）。这些版本通过一个名为 <code>plain-crypto-js</code> 的隐藏依赖，植入了一个<strong>跨平台远程访问木马（RAT）</strong>。</p>
-<p>恶意版本在被 npm 下架前存活了约 <strong>2-3 小时</strong>。</p>
-<p>Google 威胁情报团队将此次攻击归因于 <strong>UNC1069</strong>——一个具有朝鲜背景的、以经济利益为驱动的威胁行为者，所使用的恶意软件为 <strong>WAVESHAPER.V2</strong>。</p>
-<p><strong>高危时间窗口</strong>：如果你在 <strong>3 月 31 日 00:21 UTC 至 03:29 UTC</strong> 之间通过 npm 安装或更新了 Claude Code，你的机器可能已被植入恶意代码。</p>
-<h3 id="github-上的假冒仓库">GitHub 上的假冒仓库</h3>
-<p>除了 npm 投毒，威胁行为者还在 GitHub 上散布了伪装成&quot;Claude Code 源代码镜像&quot;的恶意仓库。这些仓库诱骗用户运行一个 Rust 编写的投放程序，最终部署 <strong>Vidar Stealer</strong>（信息窃取木马）和 <strong>GhostSocks</strong>（代理恶意软件）。</p>
-<h3 id="应急自查步骤">应急自查步骤</h3>
-<p>如果你是开发者，请立即执行以下检查：</p>
-<ol>
-<li>检查你的项目 <code>lockfile</code>（<code>package-lock.json</code> 或 <code>yarn.lock</code>），查找 <code>axios</code> 版本 <code>1.14.1</code> 或 <code>0.30.4</code>。</li>
-<li>检查是否存在 <code>plain-crypto-js</code> 依赖项。</li>
-<li>如果发现上述任一情况，<strong>立即将该主机视为已完全沦陷</strong>：轮换所有密钥和凭证，并考虑重装操作系统。</li>
-</ol>
-<h2 id="影响与反思">影响与反思</h2>
-<h3 id="对-anthropic-的影响">对 Anthropic 的影响</h3>
-<p>这次事件对 Anthropic 的直接损失是<strong>竞争情报的泄露</strong>。KAIROS、反蒸馏机制等未发布的战略功能，已被竞争对手和研究者提前看到。</p>
-<p>但从另一个角度看，Anthropic 的处理方式——快速承认、如实说明原因——在一定程度上维护了公众信任。</p>
-<h3 id="对供应链安全的警示">对供应链安全的警示</h3>
-<p>这次事件是一个关于 <strong>软件供应链安全</strong> 的经典案例：</p>
-<ul>
-<li><strong>开发侧</strong>：一个被遗忘的打包规则（<code>.npmignore</code>）可以造成灾难性的信息泄露。</li>
-<li><strong>攻击侧</strong>：黑客能够以惊人的速度（同日）利用高关注度事件实施供应链攻击。</li>
-<li><strong>用户侧</strong>：在重大事件发酵期间，来自&quot;官方渠道&quot;之外的任何下载都极度危险。</li>
-</ul>
-<p>这提醒每一个维护开源项目的团队：<strong>发布流程的审计和自动化检查，与代码本身的质量同等重要。</strong></p>
-<h2 id="结语">结语</h2>
-<p>Claude Code 源代码泄露事件，是 2026 年 AI 领域最戏剧性的事故之一。它以一种意想不到的方式，让公众得以一窥顶尖 AI 工具背后的工程逻辑与产品野心——从重塑人机交互范式的 KAIROS，到充满极客趣味的电子宠物 BUDDY。</p>
-<p>然而，伴随着这场意外透明化而来的，是供应链攻击的真实威胁。它再次提醒我们：在这个软件高度依赖开源生态的时代，安全从来不只是代码里的事，更是发布流程、依赖管理和应急响应能力的综合体现。</p>
+<p>剩下的，交给 AI 和时间。</p>
 <hr>
-<p><strong>延伸阅读：</strong></p>
-<ul>
-<li><a href="https://venturebeat.com/technology/claude-codes-source-code-appears-to-have-leaked-heres-what-we-know" target="_blank" rel="noopener">Claude Code 源代码泄露事件详情 - VentureBeat</a></li>
-<li><a href="https://thehackernews.com/2026/04/claude-code-tleaked-via-npm-packaging.html" target="_blank" rel="noopener">Anthropic 确认 npm 打包失误 - The Hacker News</a></li>
-<li><a href="https://decodethefuture.org/en/axios-npm-attack-rat-claude-code/" target="_blank" rel="noopener">Axios npm 投毒与 RAT 事件 - Decode the Future</a></li>
-<li><a href="https://www.theregister.com/2026/04/02/trojanized_claude_code_leak_github/" target="_blank" rel="noopener">伪造 Claude Code 下载传播恶意软件 - The Register</a></li>
-<li><a href="https://wavespeed.ai/blog/posts/claude-code-leaked-source-hidden-features/" target="_blank" rel="noopener">KAIROS 与隐藏功能完整分析 - WaveSpeed AI</a></li>
-<li><a href="https://coder.com/blog/what-the-claude-code-leak-tells-us-about-supply-chain-security" target="_blank" rel="noopener">供应链安全的启示 - Coder Blog</a></li>
-</ul>
+<p><em>这个项目的所有代码开源在 GitHub：<a href="https://github.com/masonblog/HolidayGO-CN" target="_blank" rel="noopener">masonblog/HolidayGO-CN</a>。如果你对假期政策数据有补充或纠错，欢迎提 PR。</em></p>
+<p><em>如果你也是一个非技术背景、但用 AI 做出了自己作品的&quot;野生开发者&quot;，欢迎在评论区聊聊你的故事——我很想听听。</em></p>
 ]]></content:encoded>
     </item>
     <item>
@@ -445,18 +227,18 @@ webtop 容器
 <p>如果你是技术党，或者你想获取最新的实时数据（毕竟地址库会更新），你也可以把代码下载到本地自己运行。</p>
 <h3 id="1-准备工作">1. 准备工作</h3>
 <p>首先，你需要确保电脑上安装了 Python 3.x 环境，并安装必要的依赖库。在终端中运行以下命令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install requests beautifulsoup4
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install requests beautifulsoup4
 </span></span></code></pre></div><p>其次，这个工具最核心的“验证”功能依赖于 <strong>Smarty API</strong>。你需要去 <a href="https://www.smarty.com/" target="_blank" rel="noopener">Smarty.com</a> 注册一个账号（它提供免费1000条地址验证的试用额度，够我们跑很多数据了）。注册好后，获取你的 <code>Auth ID</code> 和 <code>Auth Token</code>，把它们保存好，后面会用到。</p>
 <p>然后，访问我的 GitHub 仓库：<a href="https://github.com/masonblog/ATMB-Addresses" target="_blank" rel="noopener">https://github.com/masonblog/ATMB-Addresses</a>，点击<strong>Code</strong>按钮，再点击<strong>Download ZIP</strong>打包下载代码。</p>
 <p><img alt="Download_ZIP" loading="lazy" src="/images/blog20260214/download_zip.png"></p>
 <p>在代码**根目录（解压后的文件夹）**下创建一个名为 <code>smarty_api_key.txt</code> 的文件，将刚刚保存的 Smarty API 的 <code>Auth ID</code> 和 <code>Auth Token</code> 填入这个文件并保存：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>auth_id=你的AUTH_ID
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>auth_id=你的AUTH_ID
 </span></span><span style="display:flex;"><span>auth_token=你的AUTH_TOKEN
 </span></span></code></pre></div><h3 id="2-开始运行">2. 开始运行</h3>
 <p>整个流程分为三步：爬取 -&gt; 补充详情（可选） -&gt; 验证。</p>
 <h4 id="第一步爬取基本地址信息">第一步：爬取基本地址信息</h4>
 <p>在代码文件夹右键单击，选择“在终端中打开”，然后输入以下命令运行 <code>ATMB_scrape.py</code>。你可以指定爬取某个州，或者直接爬取全美所有地址。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 爬取纽约州</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 爬取纽约州</span>
 </span></span><span style="display:flex;"><span>python ATMB_scrape.py --input new-york
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 爬取全美（耗时较长）</span>
@@ -464,11 +246,11 @@ webtop 容器
 </span></span></code></pre></div><p>程序运行后，会在 <code>Public</code> 文件夹下生成一个 CSV 文件，比如 <code>Public/new-york.csv</code>，里面包含了 ATMB 上最新爬取的地址信息，包括街道地址、城市、州、邮编等。</p>
 <h4 id="第二步补充单元号信息可选">第二步：补充单元号信息（可选）</h4>
 <p>ATMB 的列表页通常只显示街道地址，但很多时候我们需要知道具体的<strong>单元号信息</strong>，比如 <code>Suite #</code> 或 <code>Unit #</code>。这一步就要在终端中输入以下命令，程序会访问每个地址的详情页，把这些信息抓取下来：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python ATMB_detail.py --input Public/new-york.csv
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python ATMB_detail.py --input Public/new-york.csv
 </span></span></code></pre></div><p>运行完成后，会生成一个新的文件 <code>Public/new-york_detailed.csv</code>。</p>
 <h4 id="第三步验证地址性质关键步骤">第三步：验证地址性质（关键步骤）</h4>
 <p>最后，我们使用 Smarty API 来验证这些地址是<strong>住宅</strong>还是<strong>商业</strong>。在终端中运行以下命令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python ATMB_verify.py --input Public/new-york_detailed.csv
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python ATMB_verify.py --input Public/new-york_detailed.csv
 </span></span></code></pre></div><p>程序会逐行验证，并生成最终的文件 <code>Public/new-york_detailed_verified.csv</code>。</p>
 <p>打开这个最终文件，查看 <strong><code>rdi</code></strong> 列：</p>
 <ul>
@@ -596,7 +378,7 @@ webtop 容器
 </li>
 <li>
 <p>输入以下命令并回车：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>wsl --install
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>wsl --install
 </span></span></code></pre></div></li>
 <li>
 <p><strong>重启你的电脑。</strong></p>
@@ -616,26 +398,26 @@ webtop 容器
 <ol>
 <li>
 <p><strong>下载并安装 NVM：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 </span></span></code></pre></div></li>
 <li>
 <p><strong>刷新环境变量</strong> (让系统识别 NVM)：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source ~/.bashrc
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source ~/.bashrc
 </span></span></code></pre></div></li>
 <li>
 <p><strong>安装 Node.js 最新版：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nvm install --lts
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nvm install --lts
 </span></span></code></pre></div></li>
 <li>
 <p><strong>验证安装是否成功：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>node -v
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>node -v
 </span></span><span style="display:flex;"><span>npm -v
 </span></span></code></pre></div></li>
 </ol>
 <p>只要这两个命令能打印出版本号，就说明安装成功了！</p>
 <h2 id="第三步安装并配置-clawdbot">第三步：安装并配置 ClawdBot</h2>
 <p>最简单的部分来了。ClawdBot 提供了一键安装脚本。在你的 Ubuntu 终端中运行：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://clawd.bot/install.sh | bash
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://clawd.bot/install.sh | bash
 </span></span></code></pre></div><p>脚本会自动下载必要的文件，并将 ClawdBot 全局安装到你的虚拟 Linux 系统中。</p>
 <p>安装完成后，看到如下界面，说明已经安装成功了：</p>
 <p><img alt="Clawdbot 初始化界面" loading="lazy" src="/images/blog20260127/cli_setup.png"></p>
@@ -643,7 +425,7 @@ webtop 容器
 <ol>
 <li>
 <p><strong>启动设置向导的命令如下：</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>clawdbot onboard
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>clawdbot onboard
 </span></span></code></pre></div></li>
 <li>
 <p><strong>按照提示操作：</strong></p>
@@ -762,25 +544,25 @@ webtop 容器
 <p>要让博客被搜索引擎高效索引并吸引自然流量，SEO 优化是至关重要的一步。对于 Hugo 而言，需要重点关注 <strong>sitemap（站点地图）</strong> 和 <strong>robots.txt（爬虫索引）</strong> 的配置。</p>
 <h3 id="配置-sitemap-站点地图">配置 sitemap 站点地图</h3>
 <p>站点地图是一个重要的网站文件，它为搜索引擎和用户提供了网站结构的概览。要为 Hugo 站点创建站点地图，在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">sitemap</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">sitemap</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">changefreq</span>: <span style="color:#ae81ff">weekly</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">filename</span>: <span style="color:#ae81ff">sitemap.xml</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">priority</span>: <span style="color:#ae81ff">0.5</span>
 </span></span></code></pre></div><p>其中，<code>changefreq</code>表示更新频率，<code>filename</code>表示生成的站点地图文件名，<code>priority</code>表示页面的默认优先级。这样，Hugo 会在博客根目录下生成一个<code>sitemap.xml</code>文件，以便搜索引擎了解网站结构。</p>
 <p>某些主题的 sitemap 模板会自动包含标签页或分类页，但这些页面可能对搜索引擎价值不高。通过自定义模板，可以移除冗余条目。具体操作方法为：在 Hugo 项目的 <code>layouts/</code> 目录下创建名为 <code>sitemap.xml</code> 的文件，覆盖主题默认的 sitemap 模板。例如，屏蔽标签页的代码示例如下：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>{{- $pages := where .Site.Pages &#34;Type&#34; &#34;not in&#34; (slice &#34;tags&#34;) -}}
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span>{{- $pages := where .Site.Pages &#34;Type&#34; &#34;not in&#34; (slice &#34;tags&#34;) -}}
 </span></span><span style="display:flex;"><span>{{- $pages = $pages | union (where .Site.RegularPages &#34;Permalink&#34; &#34;!=&#34; &#34;&#34;) -}}
 </span></span></code></pre></div><p>通过上述调整，能确保 sitemap 仅包含核心内容页面，提升搜索引擎抓取效率 。</p>
 <h3 id="生成-robotstxt-爬虫索引">生成 robots.txt 爬虫索引</h3>
 <p><code>Robots.txt</code>是一个位于网站根目录的纯文本文件，用于将站点地图提交给搜索引擎，指导搜索引擎如何访问和索引网站内容。要为 Hugo 站点创建<code>robots.txt</code>，在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableRobotsTXT</span>: <span style="color:#66d9ef">true</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableRobotsTXT</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><p>这允许所有搜索引擎爬虫访问网站，并明确指定 sitemap 路径，确保内容被快速索引。</p>
 <p>完成这两步后，可通过 Google Search Console 提交 sitemap，实时监测索引状态。稳定的搜索引擎流量是申请 Google Adsense 的基础条件之一，通常需积累至少每日数十次的有效访问。</p>
 <h2 id="google-adsense-接入博客变现的开始">Google Adsense 接入：博客变现的开始</h2>
 <p>当博客的 SEO 优化初见成效后，即可着手接入 <a href="https://adsense.google.com/start/" target="_blank" rel="noopener">Google Adsense</a>。</p>
 <h3 id="adsense-账户申请与博客绑定">Adsense 账户申请与博客绑定</h3>
 <p>进入 <a href="https://adsense.google.com/" target="_blank" rel="noopener">Google Adsense 官网</a>，使用 Google 账号登录后，点击 <strong>站点 &gt; 新增网站</strong>，填写博客的完整 URL。提交后，系统会生成一段验证代码，一般都会包含一段以<code>pub-xxx</code>开头的识别码。用户可以通过两种方式（任选其一）将验证代码加入到自己的网页中，以证明自己对网页的所有权。</p>
-<h4 id="方式一将验证代码嵌入全部网页头部-head">方式一：将验证代码嵌入全部网页头部 <head></h4>
+<h4 id="方式一将验证代码嵌入全部网页头部">方式一：将验证代码嵌入全部网页头部 <head></h4>
 <p>Hugo 允许用户自定义任何所生成网页的头部内容，即 HTML 文件的<code>&lt;head&gt;&lt;/head&gt;</code>之间的内容。我们需要将 Google Adsense 验证代码添加到 Hugo 生成的每个网页的头部中。具体有以下三种方式（推荐使用第三种方式）：</p>
 <ol>
 <li>
@@ -1194,7 +976,7 @@ webtop 容器
 <p>Hugo 同时支持3钟配置文件语法，分别为 <code>YAML</code>、<code>TOML</code>和<code>JSON</code>。它们都是常用的数据序列化和配置文件格式，且各有特点和适用场景。</p>
 <h2 id="yaml-yaml-aint-markup-language">YAML (YAML Ain&rsquo;t Markup Language)</h2>
 <p><code>YAML</code>是一种人类可读的数据序列化格式，常用于配置文件和数据交换，它的语法格式为：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">John Doe</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">John Doe</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">age</span>: <span style="color:#ae81ff">30</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">city</span>: <span style="color:#ae81ff">New York</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">hobbies</span>:
@@ -1214,7 +996,7 @@ webtop 容器
 </ul>
 <h2 id="toml-toms-obvious-minimal-language">TOML (Tom&rsquo;s Obvious, Minimal Language)</h2>
 <p><code>TOML</code>是一种旨在成为最小配置文件格式的语言，设计目标是易于阅读和编写，它的语法格式为：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">person</span>]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">person</span>]
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;John Doe&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">age</span> = <span style="color:#ae81ff">30</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">city</span> = <span style="color:#e6db74">&#34;New York&#34;</span>
@@ -1238,7 +1020,7 @@ webtop 容器
 </ul>
 <h2 id="json-javascript-object-notation">JSON (JavaScript Object Notation)</h2>
 <p>JSON是一种轻量级的数据交换格式，最初源于JavaScript，但现在已广泛应用于各种编程语言，它的语法格式为：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;John Doe&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;age&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">30</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;city&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;New York&#34;</span>
@@ -1261,7 +1043,7 @@ webtop 容器
 <p>综合考虑易读性及与当前主题的兼容性，我选择的配置文件语法为<code>YAML</code>，以下所有配置命令，都将以<code>YAML</code>格式呈现。值得注意的是，<strong>YAML对缩进非常敏感，在利用 Hugo 进行渲染时，哪怕某一行少了一个空格，都会渲染失败，所以要特别注意</strong>。</p>
 <h1 id="添加文章时间轴页面archives">添加文章时间轴页面（Archives）</h1>
 <p>在<code>/Content/</code>目录下新建<code>archieves.md</code>，写入以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>title: &#34;Archive&#34;
 </span></span><span style="display:flex;"><span>layout: &#34;archives&#34;
@@ -1271,13 +1053,13 @@ webtop 容器
 </span></span><span style="display:flex;"><span>---
 </span></span></code></pre></div><h1 id="添加搜索页面search">添加搜索页面（Search）</h1>
 <p>第1步：在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">outputs</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">outputs</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">home</span>:
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">HTML</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">RSS</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">JSON</span> <span style="color:#75715e"># 搜索页所必需</span>
 </span></span></code></pre></div><p>第2步：在<code>/Content/</code>目录下新建<code>archieves.md</code>，写入以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
 </span></span><span style="display:flex;"><span><span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;Search&#34;</span> <span style="color:#75715e"># 以你想要的任何语言</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">layout</span>: <span style="color:#e6db74">&#34;search&#34;</span> <span style="color:#75715e"># 搜索页所必需</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># url: &#34;/archive&#34;</span>
@@ -1287,7 +1069,7 @@ webtop 容器
 </span></span><span style="display:flex;"><span>---
 </span></span></code></pre></div><h1 id="添加菜单">添加菜单</h1>
 <p>在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">menu</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">menu</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">main</span>:
 </span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">文章</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">url</span>: <span style="color:#ae81ff">archives</span>
@@ -1303,12 +1085,12 @@ webtop 容器
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">10</span>
 </span></span></code></pre></div><h1 id="启用-emoji-white_check_mark">启用 Emoji &#x2705;</h1>
 <p>Hugo 原生支持 Emoji 渲染，只要在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableEmoji</span>: <span style="color:#66d9ef">true</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableEmoji</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><p>这样，只要在<code>.md</code>文件中输入符合 Markdown 语法的<code>:emojiname:</code>（两个半角冒号中间写上 Emoji 名称），即可输入一个 Emoji。你可以在<a href="https://gist.github.com/rxaviers/7360908" target="_blank" rel="noopener">这个列表</a>中查询 Markdown 语法中的 Emoji 名称。</p>
 <h1 id="添加-favicon-图标">添加 Favicon 图标</h1>
 <p>可以参考我的这篇<a href="/post/blog20210527/">文章</a>，访问<a href="https://favicon.io/" target="_blank" rel="noopener">这个网站</a>，将你喜欢的站点图标图片转换成<code>Favicon</code>专用格式，将生成的所有文件放入<code>/static/</code>目录下。</p>
 <p>可选：如果想将图标文件放入<code>/static/</code>的子目录下，例如<code>/static/favicon/</code>，则还需在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">assets</span>:
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">favicon</span>: <span style="color:#e6db74">&#34;/favicon/favicon.ico&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">favicon16x16</span>: <span style="color:#e6db74">&#34;/favicon/favicon-16x16.png&#34;</span>
@@ -1317,27 +1099,27 @@ webtop 容器
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">safari_pinned_tab</span>: <span style="color:#e6db74">&#34;/favicon/safari-pinned-tab.svg&#34;</span> 
 </span></span></code></pre></div><h1 id="启用代码复制按钮">启用代码复制按钮</h1>
 <p>在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">ShowCodeCopyButtons</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><h1 id="翻页按钮显示页数">翻页按钮显示页数</h1>
 <p>在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">ShowPageNums</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><h1 id="文章列表页面添加rss订阅按钮">文章列表页面添加RSS订阅按钮</h1>
 <p>在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">ShowRssButtonInSectionTermList</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><h1 id="rss-feed-输出全文">RSS Feed 输出全文</h1>
 <p>在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">ShowFullTextinRss</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><h1 id="以新标签页打开站外链接">以新标签页打开站外链接</h1>
 <p>在<code>/themes/主题名/layouts/_default/_markup/</code>目录下新建<code>render-link.html</code>，写入以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ .Destination | safeURL }}&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">with</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">Title</span><span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ . }}&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">end</span> <span style="color:#960050;background-color:#1e0010">}}{{</span> <span style="color:#a6e22e">if</span> <span style="color:#a6e22e">strings</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">HasPrefix</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">Destination</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">http</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_blank&#34;</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;noopener&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">end</span> <span style="color:#960050;background-color:#1e0010">}}</span>&gt;{{ .Text | safeHTML }}&lt;/<span style="color:#f92672">a</span>&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ .Destination | safeURL }}&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">with</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">Title</span><span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ . }}&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">end</span> <span style="color:#960050;background-color:#1e0010">}}{{</span> <span style="color:#a6e22e">if</span> <span style="color:#a6e22e">strings</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">HasPrefix</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">Destination</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">http</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_blank&#34;</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;noopener&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">end</span> <span style="color:#960050;background-color:#1e0010">}}</span>&gt;{{ .Text | safeHTML }}&lt;/<span style="color:#f92672">a</span>&gt;
 </span></span></code></pre></div><h1 id="自定义超链接样式">自定义超链接样式</h1>
 <p>PaperMod 主题支持自定义CSS，我们可以通过自定义CSS改变网站默认的超链接样式，如颜色、下划线，以及鼠标悬停时的变化等。</p>
 <p>在<code>/themes/主题名/assets/css/extended/</code>目录下新建<code>custom.css</code>，写入以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">post-content</span> <span style="color:#f92672">a</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">post-content</span> <span style="color:#f92672">a</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#0969da</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">box-shadow</span>: <span style="color:#66d9ef">none</span>;
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">text-decoration</span>: <span style="color:#66d9ef">none</span>;
@@ -1351,10 +1133,10 @@ webtop 容器
 <p><strong>SEO (Search Engine Optimization) 是一种通过优化网站内容和结构来提高网站在搜索引擎结果页面中自然排名的方法</strong>。SEO的目标是增加网站的有机流量，提升网站的可见度，吸引更多目标受众。要为 Hugo 站点做 SEO 优化，我们需要做好以下工作：</p>
 <h2 id="配置文件优化">配置文件优化</h2>
 <p>在配置文件<code>config.yml</code>中添加网站描述：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;您的网站描述&#34;</span>
 </span></span></code></pre></div><p>同样，我们也可以为每篇文章设置标题、关键词和描述，在<code>.md</code>文件的头部添加以下内容，来定义文章的基本信息：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
 </span></span><span style="display:flex;"><span>title: &#34;文章标题&#34;
 </span></span><span style="display:flex;"><span>keywords:
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">-</span> 关键词1
@@ -1363,14 +1145,14 @@ webtop 容器
 </span></span><span style="display:flex;"><span>---
 </span></span></code></pre></div><h2 id="创建-sitemap-站点地图">创建 sitemap 站点地图</h2>
 <p>站点地图是一个重要的网站文件，它为搜索引擎和用户提供了网站结构的概览。要为 Hugo 站点创建站点地图，在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">sitemap</span>:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">sitemap</span>:
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">changefreq</span>: <span style="color:#ae81ff">weekly</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">filename</span>: <span style="color:#ae81ff">sitemap.xml</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">priority</span>: <span style="color:#ae81ff">0.5</span>
 </span></span></code></pre></div><p>其中，<code>changefreq</code>表示更新频率，<code>filename</code>表示生成的站点地图文件名，<code>priority</code>表示页面的默认优先级。这样，Hugo 会在网站根目录下生成一个<code>sitemap.xml</code>文件，以便搜索引擎了解网站结构。</p>
 <h2 id="创建-robotstxt-爬虫索引">创建 robots.txt 爬虫索引</h2>
 <p><code>Robots.txt</code>是一个位于网站根目录的纯文本文件，用于将站点地图提交给搜索引擎，指导搜索引擎如何访问和索引网站内容。要为 Hugo 站点创建<code>robots.txt</code>，在配置文件<code>config.yml</code>中添加以下内容：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableRobotsTXT</span>: <span style="color:#66d9ef">true</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableRobotsTXT</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><p>这样，Hugo 会自动在网站根目录下生成<code>Robots.txt</code>文件。</p>
 <h1 id="参考链接">参考链接</h1>
 <p><a href="https://gohugo.io/about/introduction/" target="_blank" rel="noopener">Introduction | Hugo</a></p>
@@ -1466,7 +1248,7 @@ webtop 容器
 <p>米家官方集成有多种安装方式，其中最简单，也是最新手友好的方式，就是通过 <a href="https://www.hacs.xyz/" target="_blank" rel="noopener">HACS</a> 进行安装。HASC 的安装方法详见我的这篇文章，此处不再赘述。<strong>由于米家官方集成暂未加入 HASC 的官方库，我们需要通过添加自定义库链接的方式，将米家官方集成的库链接添加到 HASC 目录</strong>。登入 HA 后台，点击左侧的<code>HASC</code>，再点右上角的三个点，选择<code>Custom Repositories</code>，新建一个自定义库链接，如下图所示。</p>
 <p><img alt="image" loading="lazy" src="/images/blog20241227/hacs1.png"></p>
 <p>库类型（Catagory）选择<code>Integration</code>；库链接填写下面的链接：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>https://github.com/XiaoMi/ha_xiaomi_home.git
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>https://github.com/XiaoMi/ha_xiaomi_home.git
 </span></span></code></pre></div><p>最后点击ADD按钮，如果网络没有问题的话，米家官方集成的安装链接就会被添加到 HASC 的自定目录中。再依次点击设置—设备与集成—添加集成，在搜索框中输入<code>Xiaomi</code>，在弹出的结果中选择<code>XIaomi Home</code>。接下来，按照提示登录米家账号即可。</p>
 <p><img alt="image" loading="lazy" src="/images/blog20241227/hacs2.png"></p>
 <p><img loading="lazy" src="/images/blog20241227/xiaomi-home-auth1.png"></p>
@@ -1663,15 +1445,15 @@ webtop 容器
 <li>将核显驱动<strong>直通</strong>给 Docker 容器，并赋予 Docker 容器调用该驱动的权限。</li>
 </ol>
 <p>对于系统是否满足上述第一个条件，可以通过以下方式进行检验：首先用 ssh 工具连接到服务器，确保登陆 ssh 的账户拥有系统管理权限，再输入以下命令：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ls /dev/dri
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ls /dev/dri
 </span></span></code></pre></div><p>如果返回的结果为 <code>card0 renderD128</code> ，那么恭喜，核显驱动运行正常，硬件系统满足视频解码的基本条件。接下来便是将 renderD128 这个核显驱动直通给 Docker 容器的方法。</p>
 <h2 id="为什么必须用-portainer">为什么必须用 Portainer?</h2>
 <p>无论是群辉、威联通还是 <a href="https://www.unraid.net" target="_blank" rel="noopener">Unraid</a>，市场上绝大多数 NAS 系统都提供了图形化的 Docker 容器管理工具。但无论上述哪一个，都不支持核显驱动的直通功能。群辉的 Docker 套件无法编辑容器的系统资源参数，威联通的 Container Station 干脆无法编辑已经创建好的容器。</p>
 <p><strong>这里所说的“直通”，其实是将 <code>/dev/dri/renderD128</code> 这个驱动文件映射到 Docker 容器的相同位置</strong>。这一点利用命令行可以非常轻松地实现，即在 Jellyfin 容器的拉取命令中加入下列参数：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>--device<span style="color:#f92672">=</span>/dev/dri/renderD128 <span style="color:#ae81ff">\
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>--device<span style="color:#f92672">=</span>/dev/dri/renderD128 <span style="color:#ae81ff">\
 </span></span></span></code></pre></div><p>因此，要快速拉取并创建一个开启硬件解码的 Jellyfin 容器，只要在 NAS 的命令行界面输入以下命令即可：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name jellyfin <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /share/Container/Jellyfin/config:/config <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放配置文件的目录</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name jellyfin <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v /share/Container/Jellyfin/config:/config <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放配置文件的目录</span>
 </span></span><span style="display:flex;"><span>-v /share/Container/Jellyfin/cache:/cache <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放媒体缓存的目录</span>
 </span></span><span style="display:flex;"><span>-v /share/Media/:/media <span style="color:#ae81ff">\ </span><span style="color:#75715e">#冒号左边为存放电影文件的目录</span>
 </span></span><span style="display:flex;"><span>-p 8096:8096 <span style="color:#ae81ff">\ </span><span style="color:#75715e">#web界面访问端口（http）</span>
@@ -1683,8 +1465,8 @@ webtop 容器
 <p>因此，对于那些既不想用命令行，又希望对 Docker 有较为全面管控的用户来说，Portainer 几乎是唯一的选择。通过 Portainer，即使是初学者也能轻松为 Jellyfin 开启硬件解码。</p>
 <h2 id="portainer-的安装与使用">Portainer 的安装与使用</h2>
 <p>由于 Portainer 需要调用 <code>/var/run/docker.sock</code> 这个文件以实现对 Docker 的直接管理，因此 Portainer 也无法通过群辉或威联通自带的 Docker 管理界面进行安装，因为上述管理界面均不支持针对单个文件的映射。但由于 Portainer 需要配置的参数较少，且容器创建完成后不需要频繁修改，因此普通用户可以直接复制一以下命令进行安装。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name prtainer <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>-v /var/run/docker.sock:/var/run/docker.sock <span style="color:#ae81ff">\ </span><span style="color:#75715e">#关键</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name prtainer <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v /var/run/docker.sock:/var/run/docker.sock <span style="color:#ae81ff">\ </span><span style="color:#75715e">#关键</span>
 </span></span><span style="display:flex;"><span>-p 9000:9000 <span style="color:#ae81ff">\ </span><span style="color:#75715e">#web界面访问端口</span>
 </span></span><span style="display:flex;"><span>--restart<span style="color:#f92672">=</span>always <span style="color:#ae81ff">\ </span><span style="color:#75715e">#重启策略</span>
 </span></span><span style="display:flex;"><span>portainer/portainer
@@ -1742,7 +1524,7 @@ webtop 容器
 <p>之后，来到 Hugo 站点的根目录，将刚刚下载的压缩包里的所有文件解压到 <code>/static/</code> 文件夹下。</p>
 <p>用文本编辑器打开 <code>/layouts/partials/favicon.html</code> 文件，清空原有代码，将刚刚复制到代码粘贴进去，保存并退出。</p>
 <p>最后，打开 <code>/themes/正在使用的主题名/layouts/partials/head.html</code> 文件（不同主题需要编辑的文件可能不同，例如我所使用的 Fuji 主题就是直接编辑同一目录下的 favicon.html 文件），找到下列代码：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;shortcut icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;xxx&#34;</span> /&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;shortcut icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;xxx&#34;</span> /&gt;
 </span></span></code></pre></div><p>将 xxx 替换成 <code>favicon.ico</code> ，保存并退出即可。</p>
 <p>此时，我们的 favicon 图标安装工作就宣告完成了。使用 <code>hugo</code> 命令重新生成站点，不出意外的话，就能看到我们刚才上传的站点图标了。</p>
 ]]></content:encoded>
@@ -1852,12 +1634,12 @@ webtop 容器
 <p>正常情况下，只要按照 Luci 界面的提示填写相应的配置信息，即可成功运行 Openvpn 的服务器端。此时只要点击“一键下载.Ovpn 文件”按钮，再将下载下来的配置文件直接导入 Openvpn 客户端软件即可开始使用。但 luci-app-openvpn-server 的默认配置支支持同时登陆一个客户端，当有第二个客户端尝试接入时，先前接入的第一个客户端就会被强制断线。然而在日常使用的过程中，多设备同时接入的情况是十分常见的，那么怎样才能使 luci-app-openvpn-server 可以同时接入多个设备呢？</p>
 <p>其实，Openvpn 的服务端是支持多设备同时接入的。根据 Github 上<a href="https://github.com/coolsnowwolf/lede/issues/6175" target="_blank" rel="noopener">这个 Issue</a> 中的介绍，我们能够得知，只要在 Openvpn 的配置文件中加入一行代码，即可开启 Openvpn 的多设备同时接入功能：</p>
 <p>具体如何操作呢？首先，用 ssh 工具登陆你的 Openwrt 软路由。具体的工具及方法可自行搜索，我日常使用的是微软官方发布的 <a href="https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab" target="_blank" rel="noopener">Windows Terminal</a> 终端工具。成功登陆 ssh 后，输入以下命令开始编辑 Openvpn 的配置文件：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vim /etc/config/openvpn
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vim /etc/config/openvpn
 </span></span></code></pre></div><p>如果没能成功打开配置文件的编辑界面，很可能是因为你的 Openwrt 系统没有安装 vim （一款命令行文本编辑器）。至于 vim 的安装方法，还请自行搜索，本文不再赘述。</p>
 <p>进入配置文件的编辑界面后，按键盘上的 I 健进入文本编辑模式，将光标移到配置文件末尾，将以下代码复制粘贴到配置文件最后一行。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>option duplicate_cn <span style="color:#e6db74">&#39;1&#39;</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>option duplicate_cn <span style="color:#e6db74">&#39;1&#39;</span>
 </span></span></code></pre></div><p>编辑完成后，按键盘上的 ESC 健，再依次输入以下命令保存并退出编辑器：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>:qw
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>:qw
 </span></span></code></pre></div><p>完成上述步骤后，重启路由器。不出意外的话，你就可以同时使用多个客户端接入自己的局域网了。</p>
 ]]></content:encoded>
     </item>
@@ -2382,6 +2164,141 @@ Walk with everyone else.</p>
 <p>[3] 倪玉珍. 托克维尔理解民主的独特视角: 作为一种 “社会状况” 的民主[J]. 社会学研究, 2008, 3: 79-91.</p>
 <p>[4] 杨津涛. 黄炎培与毛泽东畅谈 “历史周期率”[J]. 协商论坛, 2013 (11): 56-57.</p>
 <p>[5] 汉娜, 阿伦特, 陈周旺. 论革命[J]. 当代外国文学, 2007 (3): 171-171.</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title></title>
+      <link>https://masonblog.github.io/post/blog20260426/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://masonblog.github.io/post/blog20260426/</guid>
+      <description>&lt;h1 id=&#34;做了一个中国各省假期政策查询网站&#34;&gt;做了一个中国各省假期政策查询网站&lt;/h1&gt;
+&lt;h2 id=&#34;起心动念一个法学生的不务正业&#34;&gt;起心动念：一个法学生的&amp;quot;不务正业&amp;quot;&lt;/h2&gt;
+&lt;p&gt;作为一名公司律师，我每天打交道最多的就是各种法规条文，以及来咨询各种法律条文的亲戚朋友。其中一个最常被问到的问题，就是各种劳动法规。尤其是各地假期政策，比如婚假怎么请，产假有多长……这些是每个人都会遇到的问题。&lt;/p&gt;
+&lt;p&gt;前段时间，我有个朋友跳槽到一家深圳的公司，问我：&amp;ldquo;深圳的陪产假到底是几天？网上查的乱七八糟的。&amp;ldquo;我翻了一圈，发现确实如此。国家层面有一套规定，各省又有各自补充的地方规定，信息散落在各级人社厅的官网、政府公报、地方性法规里，没有一个能一站式对比查看的地方。&lt;/p&gt;
+&lt;p&gt;我当时就想：要是有一个网站，选一个省份，所有假期政策一目了然，中央规定和地方特别规定并列展示，每条规则还附上法律出处，那该多好。&lt;/p&gt;
+&lt;p&gt;然后我脑子里蹦出另一个念头——&lt;strong&gt;我为什么不自己做一个呢？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;放在以前，这个念头冒出来三秒钟就会被我自己摁回去。我不会写前端，不会画地图，不知道怎么部署网站。但最近这一年，情况变了。&lt;/p&gt;
+&lt;h2 id=&#34;当法学撞上-vibe-coding&#34;&gt;当法学撞上 Vibe Coding&lt;/h2&gt;
+&lt;p&gt;先聊聊什么是 Vibe Coding。这个词是 Andrej Karpathy 在 2025 年初提出来的，大意是：你不再需要逐行手写代码，而是用自然语言描述你想要什么，AI 帮你写。你要做的不是&amp;quot;编程&amp;rdquo;，而是&amp;quot;指挥&amp;rdquo;。&lt;strong&gt;你负责想法和品位，AI 负责执行。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;我刚接触 Vibe Coding 的时候，也经历过一段迷茫期。看别人用 Cursor、用 Claude Code 三下五除二搞出一个项目，自己上去一试，发现根本不是那么回事。AI 确实能写代码，但写出来的东西经常有这样那样的问题：组件渲染不出来、类型报错、样式错乱、路由不对……&lt;/p&gt;
+&lt;p&gt;后来我慢慢悟出来一个道理：&lt;strong&gt;Vibe Coding 不是&amp;quot;不用动脑子&amp;quot;，而是&amp;quot;换一种方式动脑子&amp;quot;。&lt;/strong&gt; 你不能真的完全放手，你得学会审阅代码、提出精准的修改指令、在 AI 卡壳的时候指出方向。某种意义上，这和 review 一篇法学论文没什么区别——你不是从头到尾自己写每一个字，但你必须判断哪里有问题、该怎么改。&lt;/p&gt;
+&lt;p&gt;而我的法律背景，在这个项目里扮演了一个意想不到的角色。&lt;/p&gt;
+&lt;h2 id=&#34;法律思维如何重塑我的开发流程&#34;&gt;法律思维如何重塑我的开发流程&lt;/h2&gt;
+&lt;p&gt;法学的核心训练是什么？如果只让我说一点，那就是&lt;strong&gt;体系化的分类与归入&lt;/strong&gt;。面对一个案件，你要做的第一件事不是拍脑袋下结论，而是把事实拆解成若干个法律要件，逐一检视，最后得出结论。&lt;/p&gt;
+&lt;p&gt;这套思维方式，在我做这个假期政策查询网站的时候，天然地映射到了数据结构的搭建上。&lt;/p&gt;
+&lt;p&gt;假期政策说白了，就是一个多层级的规则体系：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;第一层，国家法定基准&lt;/strong&gt;。比如产假 98 天、婚假 3 天，这是写在《女职工劳动保护特别规定》和《人口与计划生育法》里的，全国通用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;第二层，各省地方补充规定&lt;/strong&gt;。比如上海在 98 天基础上再加 30 天产假，广东的陪产假是 15 天，少数民族自治地方还有特殊政策。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;第三层，兜底规则&lt;/strong&gt;。如果地方没有特别规定，就自动沿用中央标准。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这个三层结构，我用法学里&amp;quot;一般法与特别法&amp;quot;的关系来理解：特别法优先于一般法，特别法没有规定的，适用一般法。这恰恰就是代码里 &lt;code&gt;mergePolicy()&lt;/code&gt; 函数的核心逻辑——先加载中央基准数据，再用各省的覆盖字段去 merge，本地有的覆盖中央，本地没有的 fallback 到中央。&lt;/p&gt;
+&lt;p&gt;所以当 AI 问我要怎么设计数据结构的时候，我几乎没有犹豫就画出了这个 YAML schema：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;婚姻假&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;天数&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;适用条件&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;依法办理结婚登记的夫妻&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;工资待遇&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;正常发放&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;法律依据&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    - &lt;span style=&#34;color:#f92672&#34;&gt;名称&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;国家劳动总局、财政部关于国营企业职工请婚丧假和路程假问题的通知&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;条款&lt;/span&gt;: &lt;span style=&#34;color:#ae81ff&#34;&gt;第一条&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后在各省的文件里，只写和中央不同的部分。比如江苏：&lt;/p&gt;</description>
+      <content:encoded><![CDATA[<h1 id="做了一个中国各省假期政策查询网站">做了一个中国各省假期政策查询网站</h1>
+<h2 id="起心动念一个法学生的不务正业">起心动念：一个法学生的&quot;不务正业&quot;</h2>
+<p>作为一名公司律师，我每天打交道最多的就是各种法规条文，以及来咨询各种法律条文的亲戚朋友。其中一个最常被问到的问题，就是各种劳动法规。尤其是各地假期政策，比如婚假怎么请，产假有多长……这些是每个人都会遇到的问题。</p>
+<p>前段时间，我有个朋友跳槽到一家深圳的公司，问我：&ldquo;深圳的陪产假到底是几天？网上查的乱七八糟的。&ldquo;我翻了一圈，发现确实如此。国家层面有一套规定，各省又有各自补充的地方规定，信息散落在各级人社厅的官网、政府公报、地方性法规里，没有一个能一站式对比查看的地方。</p>
+<p>我当时就想：要是有一个网站，选一个省份，所有假期政策一目了然，中央规定和地方特别规定并列展示，每条规则还附上法律出处，那该多好。</p>
+<p>然后我脑子里蹦出另一个念头——<strong>我为什么不自己做一个呢？</strong></p>
+<p>放在以前，这个念头冒出来三秒钟就会被我自己摁回去。我不会写前端，不会画地图，不知道怎么部署网站。但最近这一年，情况变了。</p>
+<h2 id="当法学撞上-vibe-coding">当法学撞上 Vibe Coding</h2>
+<p>先聊聊什么是 Vibe Coding。这个词是 Andrej Karpathy 在 2025 年初提出来的，大意是：你不再需要逐行手写代码，而是用自然语言描述你想要什么，AI 帮你写。你要做的不是&quot;编程&rdquo;，而是&quot;指挥&rdquo;。<strong>你负责想法和品位，AI 负责执行。</strong></p>
+<p>我刚接触 Vibe Coding 的时候，也经历过一段迷茫期。看别人用 Cursor、用 Claude Code 三下五除二搞出一个项目，自己上去一试，发现根本不是那么回事。AI 确实能写代码，但写出来的东西经常有这样那样的问题：组件渲染不出来、类型报错、样式错乱、路由不对……</p>
+<p>后来我慢慢悟出来一个道理：<strong>Vibe Coding 不是&quot;不用动脑子&quot;，而是&quot;换一种方式动脑子&quot;。</strong> 你不能真的完全放手，你得学会审阅代码、提出精准的修改指令、在 AI 卡壳的时候指出方向。某种意义上，这和 review 一篇法学论文没什么区别——你不是从头到尾自己写每一个字，但你必须判断哪里有问题、该怎么改。</p>
+<p>而我的法律背景，在这个项目里扮演了一个意想不到的角色。</p>
+<h2 id="法律思维如何重塑我的开发流程">法律思维如何重塑我的开发流程</h2>
+<p>法学的核心训练是什么？如果只让我说一点，那就是<strong>体系化的分类与归入</strong>。面对一个案件，你要做的第一件事不是拍脑袋下结论，而是把事实拆解成若干个法律要件，逐一检视，最后得出结论。</p>
+<p>这套思维方式，在我做这个假期政策查询网站的时候，天然地映射到了数据结构的搭建上。</p>
+<p>假期政策说白了，就是一个多层级的规则体系：</p>
+<ul>
+<li><strong>第一层，国家法定基准</strong>。比如产假 98 天、婚假 3 天，这是写在《女职工劳动保护特别规定》和《人口与计划生育法》里的，全国通用。</li>
+<li><strong>第二层，各省地方补充规定</strong>。比如上海在 98 天基础上再加 30 天产假，广东的陪产假是 15 天，少数民族自治地方还有特殊政策。</li>
+<li><strong>第三层，兜底规则</strong>。如果地方没有特别规定，就自动沿用中央标准。</li>
+</ul>
+<p>这个三层结构，我用法学里&quot;一般法与特别法&quot;的关系来理解：特别法优先于一般法，特别法没有规定的，适用一般法。这恰恰就是代码里 <code>mergePolicy()</code> 函数的核心逻辑——先加载中央基准数据，再用各省的覆盖字段去 merge，本地有的覆盖中央，本地没有的 fallback 到中央。</p>
+<p>所以当 AI 问我要怎么设计数据结构的时候，我几乎没有犹豫就画出了这个 YAML schema：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">婚姻假</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">天数</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">适用条件</span>: <span style="color:#ae81ff">依法办理结婚登记的夫妻</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">工资待遇</span>: <span style="color:#ae81ff">正常发放</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">法律依据</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">名称</span>: <span style="color:#ae81ff">国家劳动总局、财政部关于国营企业职工请婚丧假和路程假问题的通知</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">条款</span>: <span style="color:#ae81ff">第一条</span>
+</span></span></code></pre></div><p>然后在各省的文件里，只写和中央不同的部分。比如江苏：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">婚姻假</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">天数</span>: <span style="color:#ae81ff">13</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">法律依据</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">名称</span>: <span style="color:#ae81ff">江苏省人口与计划生育条例</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">条款</span>: <span style="color:#ae81ff">第二十七条</span>
+</span></span></code></pre></div><p>这个设计思路，法学圈的人一眼就能看出来是&quot;特别法优于一般法&quot;的逻辑，但你要让我从头手写代码实现这个 merge 逻辑，放一年前的我绝对写不出来。现在呢？我把思路描述给 AI，半分钟代码就出来了，而且类型检查全过。</p>
+<p>Zod 数据校验也是同样的道理。法律讲究&quot;形式要件&quot;，合同缺了某个必要条款就无效。映射到项目里，就是数据文件必须有严格的 schema 验证——<code>central.yaml</code> 必须包含全部 7 类假期，省份文件里每个假期必须包含&quot;天数&quot;字段，法律依据不能为空。我把这些约束用自然语言描述给 AI，它生成了一套 Zod schema，build 之前自动跑一遍验证脚本，任何一个省份的 YAML 格式不对，整个 CI 直接报错。</p>
+<p>说起来有点好笑，我的导师要是知道我拿法律方法论去&quot;调教&quot; AI 写代码，不知道会怎么想。但说实话，<strong>这种跨学科的思维迁移，恰恰是 Vibe Coding 时代最有意思的部分</strong>——你不需要是一个科班出身的软件工程师，但你需要有一套成体系的思考框架，不管这套框架是来自法律、医学、建筑还是音乐。</p>
+<h2 id="从想法到产品一个周末的构建记录">从想法到产品：一个周末的构建记录</h2>
+<p>想法有了，方法论也理顺了，接下来就是动手。</p>
+<p>整个项目的技术栈选择，我基本遵循一个原则：<strong>选最主流、AI 最熟悉的方案</strong>。这不是炫技的时候，我是拿来主义的信徒——Next.js + Tailwind CSS + shadcn/ui，这套组合是 AI 训练数据里最充分的技术栈，意味着 AI 出错的概率最低。</p>
+<h3 id="数据层31-个省的假期政策汇编">数据层：31 个省的假期政策汇编</h3>
+<p>这其实是最耗时的部分。代码可以靠 AI 生成，但内容不行。</p>
+<p>我花了差不多两个完整的周末，逐一翻查了 31 个省级行政区的卫健委、人社厅官网，以及各地方人大发布的计划生育条例修正案。每一条规则我都在旁边标注了原文件的名称、条款号和官方链接。有些省份的规定藏得特别深——比如某个自治区的陪产假规定，写在一份 2016 年的《关于修改〈XX 自治区人口与计划生育条例〉的决定》里，要顺着修正案的指示往前翻原文才能拼出完整的规则。</p>
+<p>这件事 AI 帮不了忙，至少现在帮不了。它可能会&quot;编造&quot;一些看起来很像真的法条，但在这种事上，一个法律人的底线还是有的——<strong>数据必须可溯源</strong>。</p>
+<p>所有整理好的数据，我按照 <code>XX-pinyin.yaml</code> 的命名规范放在 <code>data/provinces/</code> 目录里，一共 31 个文件，加上一个 <code>central.yaml</code> 做基准。</p>
+<h3 id="前端svg-中国地图的三天折磨">前端：SVG 中国地图的三天折磨</h3>
+<p>整个项目里最让我头疼的部分，是中国地图。</p>
+<p>一开始我想得很简单：找个现成的 ECharts 图表库，把中国地图渲染出来就完了。结果发现 ECharts 的中国地图用的是 GeoJSON 格式，数据量巨大不说，暗黑模式下的颜色适配也很麻烦。AI 建议我用原生 SVG，但网上找到的中国地图 SVG 大多质量堪忧——边界线粗糙，有些省份的路径数据甚至不完整。</p>
+<p>最后我采取了一个折中方案：让 AI 帮我生成一个精确的 SVG 路径数据，存储为 JSON 文件，每个省份一条 path，包含 viewBox、路径坐标和省份中心的经纬度。然后自己写了一个 React 组件来做交互。</p>
+<p>这里有个细节值得一提：<strong>小省份的点击区域</strong>。北京、天津、上海这些直辖市在地图上实在太小了，鼠标根本点不到。我当时跟 AI 反复来回了好几轮，最后想到一个办法——在路径外面套一层不可见的圆形点击热区，半径放大 3 倍，覆盖周围的空白区域。这个方案 AI 没有主动提出来，但当我描述给它之后，它很快就实现了。</p>
+<p>地图的热力图配色也调了很久。我定义了一个&quot;假期热度值&quot;，把婚假天数、产假天数和陪产假天数相加，然后分成四档：</p>
+<ul>
+<li><strong>绿色（≥200）</strong>：假期福利比较到位的省份</li>
+<li><strong>黄色（190-199）</strong>：中上水平</li>
+<li><strong>红色（180-189）</strong>：中等偏下</li>
+<li><strong>深红色（&lt;180）</strong>：假期天数较少的地方</li>
+</ul>
+<p>说实话，这个&quot;热度值&quot;的算法相当粗糙，但我就是想给用户一个直观的视觉感受——一眼扫过去，大致知道哪个&quot;颜色区域&quot;假期多一些。未来如果有时间，我打算引入更多权重因素，比如育儿假、探亲假也纳入计算。</p>
+<h3 id="每个省的详情页七类假期的卡片式展示">每个省的详情页：七类假期的卡片式展示</h3>
+<p>省份详情页的设计灵感来自我手机上的健康 App 仪表盘——每一类假期是一张独立的信息卡片，顶部显示天数，中间是适用条件和工资待遇，底部折叠了资格认定和注意事项的详细说明。</p>
+<p>最有价值的设计是 <strong>&ldquo;来源标签&quot;系统</strong>。每条规则右侧都会有一个小标签：</p>
+<ul>
+<li><strong>&ldquo;中央规定&rdquo;</strong>（灰色标签）：表示这条来自国家层面的法律法规</li>
+<li><strong>&ldquo;本地特别规定&rdquo;</strong>（蓝色标签）：表示这是该省在中央基础上额外制定的政策</li>
+</ul>
+<p>两者并列展示，用户一眼就能分辨出哪些是国家给的、哪些是本省额外补充的。</p>
+<h3 id="部署github-actions--github-pages零成本上线">部署：GitHub Actions + GitHub Pages，零成本上线</h3>
+<p>部署部分反而是整个项目最简单的一环。</p>
+<p>Next.js 有个特性叫 Static Export，简单说就是把整个网站预渲染成纯静态的 HTML + CSS + JS 文件，不需要服务器。我只需要在 <code>next.config.mjs</code> 里加一行 <code>output: &quot;export&quot;</code>，然后配置 GitHub Actions 在每次 push 代码到 main 分支的时候自动 <code>npm run build</code>，把产物推到 GitHub Pages 上。</p>
+<p>CI 流水线也很干净：</p>
+<ol>
+<li>Checkout 代码</li>
+<li><code>npm ci</code> 装依赖</li>
+<li><code>npm run validate-data</code> 校验所有 YAML 数据文件的格式</li>
+<li><code>npm run typecheck</code> TypeScript 类型检查</li>
+<li><code>npm run build</code> 构建静态产物</li>
+<li>部署到 GitHub Pages</li>
+</ol>
+<p>从 push 代码到网站更新，全自动，整个过程不到两分钟。</p>
+<p>最终线上地址：<a href="https://masonblog.github.io/HolidayGO-CN" target="_blank" rel="noopener">masonblog.github.io/HolidayGO-CN</a></p>
+<h2 id="写在最后ai-时代创意才是真正的稀缺资源">写在最后：AI 时代，创意才是真正的稀缺资源</h2>
+<p>这个项目做完，我最大的感触不是&quot;AI 好厉害&rdquo;，而是——<strong>在 AI 时代，有想法的人太少了，能把想法落地的人更少。</strong></p>
+<p>你不信的话，想想看：全中国每年有多少法学生、律师、HR 从业者，每天都在查假期政策，查完之后该干嘛干嘛。有多少人会冒出&quot;我为什么不做一个查询工具&quot;这个念头？又有多少人冒出了这个念头之后，真的打开电脑，开始做了？</p>
+<p>AI 拉平了技术实现的鸿沟，但没有拉平&quot;想不想做&quot;和&quot;能不能坚持做完&quot;的鸿沟。</p>
+<p>我不是什么编程大神。在开始这个项目之前，我连 Next.js 的路由是怎么写的都不知道。但现在呢？一个可用的产品摆在这里，31 个省的数据覆盖齐全，有暗黑模式、有交互地图、有来源溯源，CI/CD 全自动部署。这些东西，<strong>放在两年前，是我一个文科生想都不敢想的事情</strong>。而在 2026 年，我用业余时间，借助 AI，做到了。</p>
+<p>所以我想说的是：如果你的脑子里一直有一个&quot;要是能有个什么东西就好了&quot;的想法，别犹豫，现在就动手。不需要等到你&quot;学会了编程&quot;才开始——那个时代已经过去了。你只需要：</p>
+<ul>
+<li><strong>一个清晰的想法</strong>（这是你最独特的资产，AI 抢不走）</li>
+<li><strong>一套成体系的思维框架</strong>（不管来自哪个学科）</li>
+<li><strong>愿意花时间去打磨细节的耐心</strong>（AI 能帮你写代码，但打磨产品只能靠你自己）</li>
+</ul>
+<p>剩下的，交给 AI 和时间。</p>
+<hr>
+<p><em>这个项目的所有代码开源在 GitHub：<a href="https://github.com/masonblog/HolidayGO-CN" target="_blank" rel="noopener">masonblog/HolidayGO-CN</a>。如果你对假期政策数据有补充或纠错，欢迎提 PR。</em></p>
+<p><em>如果你也是一个非技术背景、但用 AI 做出了自己作品的&quot;野生开发者&quot;，欢迎在评论区聊聊你的故事——我很想听听。</em></p>
 ]]></content:encoded>
     </item>
   </channel>
