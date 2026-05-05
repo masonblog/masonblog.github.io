@@ -1,3 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: https://masonblog.github.io/sitemap.xml

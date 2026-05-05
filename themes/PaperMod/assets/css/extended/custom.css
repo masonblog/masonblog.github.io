@@ -1,0 +1,9 @@
+.post-content a {
+  color: #3ad555;
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.post-content a:hover {
+  text-decoration: underline;
+}
