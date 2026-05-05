@@ -3,6 +3,9 @@
 /resources/_gen/
 /.hugo_build.lock
 
+# Local agent instructions
+/AGENTS.md
+
 # Operating system files
 .DS_Store
 Thumbs.db
