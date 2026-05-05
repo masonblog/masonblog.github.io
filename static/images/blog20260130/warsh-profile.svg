@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Kevin Warsh profile illustration</title>
+  <desc id="desc">Editorial profile card showing Kevin Warsh's path from Wall Street to the Federal Reserve.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f6f0"/>
+      <stop offset="0.48" stop-color="#eaf1ef"/>
+      <stop offset="1" stop-color="#f3ece2"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1e5b6d"/>
+      <stop offset="1" stop-color="#b4563d"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#1b2a32" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <path d="M0 780 C250 700 340 840 580 760 C850 670 980 735 1190 690 C1370 650 1495 560 1600 610 L1600 900 L0 900 Z" fill="#dfe8e3"/>
+  <g transform="translate(128 120)">
+    <text x="0" y="0" fill="#22313a" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="54" font-weight="700">Kevin Warsh</text>
+    <text x="0" y="62" fill="#51656d" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="28">从华尔街金童到美联储权力核心</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="960" y="108" width="392" height="560" rx="8" fill="#fffdf8"/>
+    <circle cx="1156" cy="282" r="112" fill="#c7d9d4"/>
+    <path d="M1050 558 C1068 456 1120 410 1156 410 C1192 410 1244 456 1262 558 Z" fill="#315463"/>
+    <circle cx="1156" cy="260" r="72" fill="#dfb58d"/>
+    <path d="M1092 236 C1110 180 1198 176 1222 232 C1190 210 1134 212 1092 236 Z" fill="#473c35"/>
+    <rect x="1092" y="575" width="128" height="12" rx="6" fill="#b4563d"/>
+  </g>
+  <g transform="translate(144 284)" font-family="Arial, 'Microsoft YaHei', sans-serif">
+    <line x1="80" y1="80" x2="740" y2="80" stroke="url(#line)" stroke-width="8" stroke-linecap="round"/>
+    <g>
+      <circle cx="80" cy="80" r="28" fill="#1e5b6d"/>
+      <text x="48" y="150" fill="#22313a" font-size="26" font-weight="700">1995</text>
+      <text x="14" y="190" fill="#51656d" font-size="23">摩根士丹利</text>
+    </g>
+    <g>
+      <circle cx="300" cy="80" r="28" fill="#517d7d"/>
+      <text x="268" y="150" fill="#22313a" font-size="26" font-weight="700">2002</text>
+      <text x="246" y="190" fill="#51656d" font-size="23">白宫经济顾问</text>
+    </g>
+    <g>
+      <circle cx="520" cy="80" r="28" fill="#8b7866"/>
+      <text x="488" y="150" fill="#22313a" font-size="26" font-weight="700">2006</text>
+      <text x="462" y="190" fill="#51656d" font-size="23">最年轻理事</text>
+    </g>
+    <g>
+      <circle cx="740" cy="80" r="28" fill="#b4563d"/>
+      <text x="708" y="150" fill="#22313a" font-size="26" font-weight="700">2026</text>
+      <text x="682" y="190" fill="#51656d" font-size="23">主席提名人</text>
+    </g>
+  </g>
+  <g transform="translate(144 610)" font-family="Arial, 'Microsoft YaHei', sans-serif">
+    <rect x="0" y="0" width="240" height="92" rx="8" fill="#ffffff" opacity="0.82"/>
+    <rect x="276" y="0" width="240" height="92" rx="8" fill="#ffffff" opacity="0.82"/>
+    <rect x="552" y="0" width="240" height="92" rx="8" fill="#ffffff" opacity="0.82"/>
+    <text x="32" y="38" font-size="24" font-weight="700" fill="#22313a">华尔街经验</text>
+    <text x="32" y="68" font-size="19" fill="#51656d">市场嗅觉与人脉</text>
+    <text x="308" y="38" font-size="24" font-weight="700" fill="#22313a">鹰派声誉</text>
+    <text x="308" y="68" font-size="19" fill="#51656d">警惕 QE 副作用</text>
+    <text x="584" y="38" font-size="24" font-weight="700" fill="#22313a">政治网络</text>
+    <text x="584" y="68" font-size="19" fill="#51656d">白宫与豪门关系</text>
+  </g>
+</svg>
