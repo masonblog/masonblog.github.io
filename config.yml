@@ -1,0 +1,77 @@
+baseURL: "https://masonblog.github.io/"
+title: Mason's Blog
+pagination:
+  pagerSize: 5
+theme: [PaperMod]
+
+enableEmoji: true
+googleAnalytics: G-5GJ7PD33N1
+enableRobotsTXT: true
+ignoreLogs: ['warning-goldmark-raw-html']
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+menu:
+  main:
+    - name: 文章
+      url: archives
+      weight: 5
+    - name: 搜索
+      url: search/
+      weight: 10
+    - name: 标签
+      url: tags/
+      weight: 10
+    - name: 关于
+      url: about/
+      weight: 10
+
+sitemap:
+  changefreq: ""
+  filename: sitemap.xml
+  priority: -1
+
+params:
+  description: "知识分享与微小叙事"
+  dateFormat: 2006-01-02
+  author: Mason
+  defaultTheme: auto # to switch between dark or light according to browser theme
+
+  homeInfoParams:
+    Title: 知识分享与微小叙事
+    Content: 本博客用于记录一些零碎的新知识，以及偶有的牢骚和絮叨。全部文章均为本人原创，如无特别说明，均禁止转载。
+
+  socialIcons: # optional
+    - name: "Github"
+      url: "https://github.com/masonblog"
+    - name: "Email"
+      url: "mailto:me@masonhu.xyz"
+    - name: "Bilibili"
+      url: "https://space.bilibili.com/492153853"
+    - name: "ApplePodcasts"
+      title: "小宇宙播客"
+      url: "https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4"
+
+  ShowShareButtons: false
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  ShowFullTextinRss: true
+  ShowAllPagesInArchive: true
+  ShowPageNums: true
+  
+  assets:
+    # images: "/images/mason.png"
+    favicon: "/favicon/favicon.ico"
+    favicon16x16: "/favicon/favicon-16x16.png"
+    favicon32x32: "/favicon/favicon-32x32.png"
+    apple_touch_icon: "/favicon/apple-touch-icon.png"
+    safari_pinned_tab: "/favicon/safari-pinned-tab.svg"
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search

@@ -1,0 +1,4 @@
+/* Override PaperMod theme's default hiding of covers on sidebar/tag list pages */
+.tag-entry .entry-cover {
+    display: block !important;
+}
