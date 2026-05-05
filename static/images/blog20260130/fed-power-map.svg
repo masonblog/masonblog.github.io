@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Federal Reserve power map</title>
+  <desc id="desc">Illustration of the Federal Reserve as the center of the global dollar system.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5f7f3"/>
+      <stop offset="1" stop-color="#e7ece8"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#243238" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity="0.34" stroke="#9aa8a0" stroke-width="2" fill="none">
+    <path d="M180 260 C360 180 480 240 640 178 C850 98 1040 160 1240 112 C1390 80 1500 128 1580 88"/>
+    <path d="M80 640 C300 540 420 660 618 570 C850 465 1040 510 1210 448 C1400 378 1490 420 1600 350"/>
+    <path d="M220 820 C470 690 660 780 840 670 C1020 560 1280 650 1500 520"/>
+  </g>
+  <g transform="translate(565 218)" filter="url(#soft)">
+    <rect x="0" y="108" width="470" height="290" rx="8" fill="#fffdfa"/>
+    <rect x="38" y="178" width="54" height="220" fill="#c9d8d0"/>
+    <rect x="118" y="178" width="54" height="220" fill="#c9d8d0"/>
+    <rect x="198" y="178" width="54" height="220" fill="#c9d8d0"/>
+    <rect x="278" y="178" width="54" height="220" fill="#c9d8d0"/>
+    <rect x="358" y="178" width="54" height="220" fill="#c9d8d0"/>
+    <path d="M24 108 L235 0 L446 108 Z" fill="#315463"/>
+    <rect x="0" y="398" width="470" height="36" fill="#315463"/>
+    <text x="235" y="500" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="36" font-weight="700" fill="#22313a">美联储</text>
+    <text x="235" y="540" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="23" fill="#51656d">全球美元体系的定价锚</text>
+  </g>
+  <g font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="27" font-weight="700">
+    <path d="M805 452 C625 372 480 330 326 254" stroke="#b4563d" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M806 458 C610 518 455 560 294 650" stroke="#1e5b6d" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M800 452 C982 350 1134 300 1300 230" stroke="#7d8d57" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M808 464 C1010 520 1172 586 1370 676" stroke="#8b7866" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <circle cx="326" cy="254" r="68" fill="#fffdfa" stroke="#b4563d" stroke-width="5"/>
+    <circle cx="294" cy="650" r="68" fill="#fffdfa" stroke="#1e5b6d" stroke-width="5"/>
+    <circle cx="1300" cy="230" r="68" fill="#fffdfa" stroke="#7d8d57" stroke-width="5"/>
+    <circle cx="1370" cy="676" r="68" fill="#fffdfa" stroke="#8b7866" stroke-width="5"/>
+    <text x="326" y="264" text-anchor="middle" fill="#22313a">股市</text>
+    <text x="294" y="660" text-anchor="middle" fill="#22313a">债券</text>
+    <text x="1300" y="240" text-anchor="middle" fill="#22313a">汇率</text>
+    <text x="1370" y="686" text-anchor="middle" fill="#22313a">信贷</text>
+  </g>
+  <text x="112" y="112" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="48" font-weight="700" fill="#22313a">一把利率，牵动全球资产</text>
+  <text x="114" y="164" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="25" fill="#51656d">联邦基金利率与资产负债表规模，决定美元流动性的松紧。</text>
+</svg>
