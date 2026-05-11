@@ -1,5 +1,5 @@
 ---
-title: "With memories（2014.4.12）"
+title: "With memories"
 date: 2014-04-12T19:28:00+08:00
 slug: "blog20140412-private-07"
 description: "身旁呼啸而过的电车卷起丝丝尘土，随着初秋的滨吹特有的温煦的海风洋洋洒洒，不一会儿便再度跌坠回地面，我不禁打了个寒噤。今天的打工比平时忙碌不少..."
