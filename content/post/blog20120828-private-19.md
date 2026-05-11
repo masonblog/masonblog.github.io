@@ -10,6 +10,7 @@ tags: ["日记"]
 math: false
 ShowToc: true
 ---
+
 注意：本文中出现的所有英语短语均遵从《汉版英语》中记载的语法！
 
 Shine of past
