@@ -35,34 +35,19 @@
 
 仓库现在保存的是 Hugo 源码，而不是预构建后的 HTML。`public/` 是构建产物目录，已被 Git 忽略。
 
-## 本地预览
-
-安装 Hugo 后，在仓库根目录运行：
-
-```powershell
-hugo server -D
-```
-
-生成静态站点：
-
-```powershell
-hugo --cleanDestinationDir
-```
-
-常用目录：
+## 目录结构
 
 - `content/post/`：博客文章
 - `content/about.md`：关于页
 - `static/images/`：图片资源
 - `layouts/`：站点级布局覆盖
 - `assets/css/extended/`：站点级 CSS 扩展
-- `themes/PaperMod/`：当前使用的主题
 
 ## 自动部署
 
 推送到 `main` 分支后，`.github/workflows/hugo.yml` 会自动：
 
-1. 安装指定版本的 Hugo。
+1. 安装指定版本的 Hugo/Go/Hugo Modules。
 2. 构建静态站点。
 3. 上传 Pages artifact。
 4. 部署到 GitHub Pages。
