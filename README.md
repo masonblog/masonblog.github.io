@@ -2,7 +2,10 @@
 
 知识分享与微小叙事。
 
-这里是 [Mason's Blog](https://masonblog.github.io/) 的源码仓库。它是一个用 Hugo 和 PaperMod 搭建的个人博客，用来记录一些零碎的新知识，也存放偶有的牢骚、絮叨和个人经历。
+这里是 [Mason's Blog](https://masonblog.github.io/) 的源码仓库。它是一个用 Hugo 搭建的个人博客，用来记录一些零碎的新知识，也存放偶有的牢骚、絮叨和个人经历。
+
+博客地址：[https://masonblog.github.io/](https://masonblog.github.io/)
+备用地址：[https://blog.masonhu.xyz/](https://blog.masonhu.xyz/)
 
 ## 关于作者
 
@@ -51,8 +54,6 @@
 2. 构建静态站点。
 3. 上传 Pages artifact。
 4. 部署到 GitHub Pages。
-
-线上地址：[https://masonblog.github.io/](https://masonblog.github.io/)
 
 ## 版权说明
 
