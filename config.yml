@@ -2,8 +2,6 @@ baseURL: "https://masonblog.github.io/"
 title: Mason's Blog
 pagination:
   pagerSize: 5
-theme: [PaperMod]
-
 enableEmoji: true
 googleAnalytics: G-5GJ7PD33N1
 enableRobotsTXT: true
@@ -13,6 +11,10 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+
+module:
+  imports:
+    - path: github.com/adityatelange/hugo-PaperMod
 
 menu:
   main:
