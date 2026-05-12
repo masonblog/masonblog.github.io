@@ -1,8 +1,8 @@
 ---
-title = "关于我及我的博客"
-description = "知识分享与微小叙事。"
-date = 2021-05-01
-noLicense = true
+title: "关于我及我的博客"
+description: "知识分享与微小叙事。"
+date: 2021-05-01
+noLicense: true
 ---
 
 # <img src="static/images/mason.png" alt="Mason's Blog Logo" width="36" height="36" /> Mason's Blog | 知识分享与微小叙事。
