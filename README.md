@@ -1,6 +1,6 @@
 # <img src="static/images/mason.png" alt="Mason's Blog Logo" width="36" height="36" /> Mason's Blog
 
-知识分享与微小叙事。
+## 知识分享与微小叙事。
 
 [![Hugo](https://img.shields.io/badge/Hugo-0.161.1-FF4088?logo=hugo&logoColor=white)](https://gohugo.io/) [![PaperMod](https://img.shields.io/badge/Theme-PaperMod-2ea44f)](https://github.com/adityatelange/hugo-PaperMod) [![GitHub Pages](https://img.shields.io/badge/Hosted_on-GitHub_Pages-222222?logo=github&logoColor=white)](https://pages.github.com/) [![GitHub Actions](https://img.shields.io/badge/Deploy-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/features/actions)
 
@@ -17,7 +17,7 @@
 
 联系邮箱：me@masonhu.xyz
 
-## 关于这个博客
+## 关于博客
 
 这个博客不追求传播学意义上的价值，更像一个长期保存个人经验和思考的树洞。内容主题比较杂，包括但不限于：
 
