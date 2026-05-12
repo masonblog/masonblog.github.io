@@ -1,6 +1,4 @@
-# <img src="static/images/mason.png" alt="Mason's Blog Logo" width="36" height="36" /> Mason's Blog
-
-## 知识分享与微小叙事。
+# <img src="static/images/mason.png" alt="Mason's Blog Logo" width="36" height="36" /> Mason's Blog：知识分享与微小叙事。
 
 [![Hugo](https://img.shields.io/badge/Hugo-0.161.1-FF4088?logo=hugo&logoColor=white)](https://gohugo.io/) [![PaperMod](https://img.shields.io/badge/Theme-PaperMod-2ea44f)](https://github.com/adityatelange/hugo-PaperMod) [![GitHub Pages](https://img.shields.io/badge/Hosted_on-GitHub_Pages-222222?logo=github&logoColor=white)](https://pages.github.com/) [![GitHub Actions](https://img.shields.io/badge/Deploy-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/features/actions) [![Cloudflare Pages](https://img.shields.io/badge/Mirror-Cloudflare_Pages-F38020?logo=cloudflarepages&logoColor=white)](https://pages.cloudflare.com/)
 
