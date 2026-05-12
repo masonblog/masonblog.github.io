@@ -33,6 +33,13 @@
 
 ## 技术栈
 
+![Hugo](https://img.shields.io/badge/Hugo-0.161.1-FF4088?style=for-the-badge&logo=hugo&logoColor=white)
+![PaperMod](https://img.shields.io/badge/Theme-PaperMod-2ea44f?style=for-the-badge&logo=github&logoColor=white)
+![Go](https://img.shields.io/badge/Go-1.24-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![Markdown](https://img.shields.io/badge/Content-Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/Deploy-GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)
+![GitHub Pages](https://img.shields.io/badge/Hosting-GitHub%20Pages-222222?style=for-the-badge&logo=githubpages&logoColor=white)
+
 - 静态站点生成器：[Hugo](https://gohugo.io/)
 - 主题：[PaperMod](https://github.com/adityatelange/hugo-PaperMod)
 - 托管：[GitHub Pages](https://pages.github.com/)
