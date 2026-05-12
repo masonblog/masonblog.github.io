@@ -11,8 +11,10 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  # Use a workflow/ref-specific group so old runs that are stuck in the previous
+  # generic "pages" group do not block newer builds, and cancel superseded runs.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 defaults:
   run:
