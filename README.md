@@ -1,6 +1,8 @@
-# Mason's Blog
+# <img src="static/images/mason.png" alt="Mason's Blog Logo" width="36" height="36" /> Mason's Blog
 
 知识分享与微小叙事。
+
+[![Hugo](https://img.shields.io/badge/Hugo-0.161.1-FF4088?logo=hugo&logoColor=white)](https://gohugo.io/) [![PaperMod](https://img.shields.io/badge/Theme-PaperMod-2ea44f)](https://github.com/adityatelange/hugo-PaperMod) [![GitHub Pages](https://img.shields.io/badge/Hosted_on-GitHub_Pages-222222?logo=github&logoColor=white)](https://pages.github.com/) [![GitHub Actions](https://img.shields.io/badge/Deploy-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/features/actions)
 
 这里是 [Mason's Blog](https://masonblog.github.io/) 的源码仓库。它是一个用 Hugo 搭建的个人博客，用来记录一些零碎的新知识，也存放偶有的牢骚、絮叨和个人经历。
 
@@ -30,15 +32,6 @@
 本博客建立于 2020 年新冠疫情期间。凡 2020 年 1 月 1 日前的文章，均为博客创建以前撰写的个人历史文章。受限于年龄和视野，该部分文章的可读性不高，且部分态度和观点已不被当前的作者所坚持或接受。
 
 本博客不接受针对文章的打赏与资助，也不希望被推荐给更多的人。若你偶然来到这里，安静阅读就很好。
-
-## 技术栈
-
-- 静态站点生成器：[Hugo](https://gohugo.io/)
-- 主题：[PaperMod](https://github.com/adityatelange/hugo-PaperMod)
-- 托管：[GitHub Pages](https://pages.github.com/)
-- 部署：GitHub Actions 自动构建并发布
-
-仓库现在保存的是 Hugo 源码，而不是预构建后的 HTML。`public/` 是构建产物目录，已被 Git 忽略。
 
 ## 目录结构
 
