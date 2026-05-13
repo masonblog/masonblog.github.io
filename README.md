@@ -38,10 +38,11 @@
 
 推送到 `main` 分支后，`.github/workflows/hugo.yml` 会自动：
 
-1. 安装指定版本的 Hugo/Go/Hugo Modules。
-2. 构建静态站点。
-3. 上传 Pages artifact。
-4. 部署到 GitHub Pages/Cloudflare Pages。
+1. 安装指定版本的 Hugo。
+2. 通过 Hugo Modules 拉取最新 PaperMod 主题。
+3. 构建静态站点。
+4. 上传 Pages artifact。
+5. 部署到 GitHub Pages/Cloudflare Pages。
 
 ## 版权说明
 
