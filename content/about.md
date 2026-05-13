@@ -1,5 +1,5 @@
 ---
-title: "关于我及我的博客"
+title: "关于我和我的博客"
 description: "知识分享与微小叙事。"
 date: 2021-05-01
 noLicense: true
@@ -7,6 +7,7 @@ noLicense: true
 
 这里是 [Mason's Blog](https://masonblog.github.io/) ，一个用 Hugo 搭建的个人博客，用来记录一些零碎的新知识，也存放偶有的牢骚、絮叨和个人经历。
 
+- Github 仓库地址：[https://github.com/masonblog/masonblog.github.io/](https://github.com/masonblog/masonblog.github.io/)
 - 博客地址：[https://masonblog.github.io/](https://masonblog.github.io/)
 - 备用地址：[https://blog.masonhu.xyz/](https://blog.masonhu.xyz/)
 
