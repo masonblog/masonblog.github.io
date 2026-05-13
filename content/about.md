@@ -7,9 +7,7 @@ noLicense: true
 
 这里是 [Mason's Blog](https://masonblog.github.io/) ，一个用 Hugo 搭建的个人博客，用来记录一些零碎的新知识，也存放偶有的牢骚、絮叨和个人经历。
 
-- Github 仓库地址：[https://github.com/masonblog/masonblog.github.io/](https://github.com/masonblog/masonblog.github.io/)
-- 博客地址：[https://masonblog.github.io/](https://masonblog.github.io/)
-- 备用地址：[https://blog.masonhu.xyz/](https://blog.masonhu.xyz/)
+[Github 仓库](https://github.com/masonblog/masonblog.github.io/) | [博客地址](https://masonblog.github.io/) | [备用地址](https://blog.masonhu.xyz/)
 
 ## 关于作者
 
@@ -42,10 +40,11 @@ noLicense: true
 
 推送到 `main` 分支后，`.github/workflows/hugo.yml` 会自动：
 
-1. 安装指定版本的 Hugo/Go/Hugo Modules。
-2. 构建静态站点。
-3. 上传 Pages artifact。
-4. 部署到 GitHub Pages/Cloudflare Pages。
+1. 安装指定版本的 Hugo。
+2. 通过 Hugo Modules 拉取最新 PaperMod 主题。
+3. 构建静态站点。
+4. 上传 Pages artifact。
+5. 部署到 GitHub Pages/Cloudflare Pages。
 
 ## 版权说明
 
