@@ -27,6 +27,9 @@ menu:
     - name: 标签
       url: tags/
       weight: 10
+    - name: 法律工具
+      url: legal-tools/
+      weight: 10
     - name: 关于
       url: about/
       weight: 10
