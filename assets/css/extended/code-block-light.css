@@ -40,11 +40,14 @@
 :root[data-theme="light"] .chroma .nb,
 :root[data-theme="light"] .chroma .bp,
 :root[data-theme="light"] .chroma .nc,
+:root[data-theme="light"] .chroma .no,
 :root[data-theme="light"] .chroma .nd,
+:root[data-theme="light"] .chroma .ni,
 :root[data-theme="light"] .chroma .ne,
 :root[data-theme="light"] .chroma .nf,
 :root[data-theme="light"] .chroma .fm,
 :root[data-theme="light"] .chroma .nl,
+:root[data-theme="light"] .chroma .nn,
 :root[data-theme="light"] .chroma .py {
     color: #8250df;
 }
