@@ -13,6 +13,6 @@ noLicense: true
 
 中国法定节假日与调休查询工具。
 
-### [SeveranceGO-CN](https://github.com/masonblog/SeveranceGO-CN)
+### [SeveranceGO-CN](https://masonblog.github.io/SeveranceGO-CN/)
 
 经济补偿金相关计算工具。
