@@ -1,0 +1,117 @@
+:root[data-theme="light"] {
+    --code-block-bg: rgb(246, 248, 250);
+}
+
+:root[data-theme="light"] .md-content .highlight:not(table),
+:root[data-theme="light"] .md-content pre code,
+:root[data-theme="light"] .chroma {
+    color: #24292f;
+    background: var(--code-block-bg) !important;
+    background-color: var(--code-block-bg) !important;
+}
+
+:root[data-theme="light"] .copy-code {
+    color: #24292f;
+    background: rgba(208, 215, 222, 0.8);
+}
+
+:root[data-theme="light"] .chroma .hl {
+    background-color: #fff8c5;
+}
+
+:root[data-theme="light"] .chroma .lnt,
+:root[data-theme="light"] .chroma .ln {
+    color: #57606a;
+}
+
+:root[data-theme="light"] .chroma .k,
+:root[data-theme="light"] .chroma .kc,
+:root[data-theme="light"] .chroma .kd,
+:root[data-theme="light"] .chroma .kn,
+:root[data-theme="light"] .chroma .kp,
+:root[data-theme="light"] .chroma .kr,
+:root[data-theme="light"] .chroma .kt,
+:root[data-theme="light"] .chroma .o,
+:root[data-theme="light"] .chroma .ow {
+    color: #cf222e;
+}
+
+:root[data-theme="light"] .chroma .na,
+:root[data-theme="light"] .chroma .nb,
+:root[data-theme="light"] .chroma .bp,
+:root[data-theme="light"] .chroma .nc,
+:root[data-theme="light"] .chroma .nd,
+:root[data-theme="light"] .chroma .ne,
+:root[data-theme="light"] .chroma .nf,
+:root[data-theme="light"] .chroma .fm,
+:root[data-theme="light"] .chroma .nl,
+:root[data-theme="light"] .chroma .py {
+    color: #8250df;
+}
+
+:root[data-theme="light"] .chroma .nt,
+:root[data-theme="light"] .chroma .nv,
+:root[data-theme="light"] .chroma .vc,
+:root[data-theme="light"] .chroma .vg,
+:root[data-theme="light"] .chroma .vi,
+:root[data-theme="light"] .chroma .vm {
+    color: #953800;
+}
+
+:root[data-theme="light"] .chroma .s,
+:root[data-theme="light"] .chroma .sa,
+:root[data-theme="light"] .chroma .sb,
+:root[data-theme="light"] .chroma .sc,
+:root[data-theme="light"] .chroma .dl,
+:root[data-theme="light"] .chroma .sd,
+:root[data-theme="light"] .chroma .s2,
+:root[data-theme="light"] .chroma .se,
+:root[data-theme="light"] .chroma .sh,
+:root[data-theme="light"] .chroma .si,
+:root[data-theme="light"] .chroma .sx,
+:root[data-theme="light"] .chroma .sr,
+:root[data-theme="light"] .chroma .s1,
+:root[data-theme="light"] .chroma .ss {
+    color: #0a3069;
+}
+
+:root[data-theme="light"] .chroma .m,
+:root[data-theme="light"] .chroma .mb,
+:root[data-theme="light"] .chroma .mf,
+:root[data-theme="light"] .chroma .mh,
+:root[data-theme="light"] .chroma .mi,
+:root[data-theme="light"] .chroma .il,
+:root[data-theme="light"] .chroma .mo {
+    color: #0550ae;
+}
+
+:root[data-theme="light"] .chroma .c,
+:root[data-theme="light"] .chroma .ch,
+:root[data-theme="light"] .chroma .cm,
+:root[data-theme="light"] .chroma .c1,
+:root[data-theme="light"] .chroma .cs,
+:root[data-theme="light"] .chroma .cp,
+:root[data-theme="light"] .chroma .cpf {
+    color: #6e7781;
+}
+
+:root[data-theme="light"] .chroma .err,
+:root[data-theme="light"] .chroma .gr,
+:root[data-theme="light"] .chroma .gt {
+    color: #cf222e;
+}
+
+:root[data-theme="light"] .chroma .gd {
+    color: #82071e;
+    background-color: #ffebe9;
+}
+
+:root[data-theme="light"] .chroma .gi {
+    color: #116329;
+    background-color: #dafbe1;
+}
+
+:root[data-theme="light"] .chroma .gh,
+:root[data-theme="light"] .chroma .gu {
+    color: #0550ae;
+}
