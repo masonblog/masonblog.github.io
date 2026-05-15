@@ -20,19 +20,19 @@ menu:
   main:
     - name: 文章
       url: archives
-      weight: 5
-    - name: 搜索
-      url: search/
-      weight: 10
-    - name: 标签
-      url: tags/
       weight: 10
     - name: 法律工具
       url: legal-tools/
-      weight: 10
+      weight: 20
+    - name: 标签
+      url: tags/
+      weight: 30
     - name: 关于
       url: about/
-      weight: 10
+      weight: 40
+    - name: 搜索
+      url: search/
+      weight: 50
 
 sitemap:
   changefreq: ""
@@ -60,7 +60,7 @@ params:
       title: "小宇宙播客"
       url: "https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4"
 
-  ShowShareButtons: false
+  ShowShareButtons: true
   ShowCodeCopyButtons: true
   ShowRssButtonInSectionTermList: true
   ShowFullTextinRss: true
