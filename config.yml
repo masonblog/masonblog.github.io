@@ -60,7 +60,7 @@ params:
       title: "小宇宙播客"
       url: "https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4"
 
-  ShowShareButtons: true
+  ShowShareButtons: false
   ShowCodeCopyButtons: true
   ShowRssButtonInSectionTermList: true
   ShowFullTextinRss: true
