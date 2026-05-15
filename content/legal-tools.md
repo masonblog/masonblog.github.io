@@ -7,17 +7,17 @@ noLicense: true
 
 这里整理我自己制作并公开上线的法律实用工具，方便集中访问与后续更新。
 
-## HolidayGO-CN
+## 中国假期查询工具
 
 ![SeveranceGO-CN.png](/images/legal-tools/HolidayGO-CN.png)
 
 本工具帮助你在几十秒内查清自己所在省份的七类法定假期权益：年休假、婚假、产假、陪产/护理假、育儿假、探亲假、病假。国家层面的统一规定与各省（自治区、直辖市）的特殊规定自动合并展示，让你不用翻遍法规文件，也能快速获得准确、可溯源的假期信息。
 
-[开始使用](https://masonblog.github.io/HolidayGO-CN)
+[开始使用](https://masonblog.github.io/HolidayGO-CN) | [备用地址](https://holiday.masonhu.xyz/)
 
 ---
 
-## SeveranceGO-CN
+## 中国离职补偿金计算工具
 
 ![SeveranceGO-CN](/images/legal-tools/SeveranceGO-CN.png)
 
