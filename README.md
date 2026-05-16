@@ -27,14 +27,7 @@
 
 ## 多语言结构
 
-站点使用 Hugo 原生多语言能力：`zh` 是默认语言并保留根路径，`en` 输出到 `/en/`。语言相关菜单和首页文案配置在 `config.yml` 的 `languages` 下；PaperMod 会根据同 basename 的内容文件识别对应翻译。
-
-- 中文文章：`content/post/blogYYYYMMDD.md`
-- 英文文章：`content/post/blogYYYYMMDD.en.md`
-- 中文独立页面：`content/about.md`、`content/search.md`、`content/legal-tools.md`、`content/archieves.md`
-- 英文独立页面：`content/about.en.md`、`content/search.en.md`、`content/legal-tools.en.md`、`content/archieves.en.md`
-
-英文译文保留原文的日期、slug、封面和结构性 front matter，以便中英文页面保持稳定的一一对应关系。
+站点使用 Hugo 原生多语言能力：`zh` 是默认语言并保留根路径，`en` 输出到 `/en/`。语言相关菜单和首页文案配置在 `config.yml` 的 `languages` 下；PaperMod 会根据同 basename 的内容文件识别对应翻译。英文译文保留原文的日期、slug、封面和结构性 front matter，以便中英文页面保持稳定的一一对应关系。
 
 ## 目录结构
 
