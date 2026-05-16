@@ -2,9 +2,9 @@
 
 [![Hugo](https://img.shields.io/badge/Hugo-0.161.1-FF4088?logo=hugo&logoColor=white)](https://gohugo.io/) [![PaperMod](https://img.shields.io/badge/Theme-PaperMod-2ea44f)](https://github.com/adityatelange/hugo-PaperMod) [![GitHub Pages](https://img.shields.io/badge/Hosted_on-GitHub_Pages-222222?logo=github&logoColor=white)](https://pages.github.com/) [![GitHub Actions](https://img.shields.io/badge/Deploy-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/features/actions) [![Cloudflare Pages](https://img.shields.io/badge/Mirror-Cloudflare_Pages-F38020?logo=cloudflarepages&logoColor=white)](https://pages.cloudflare.com/)
 
-这里是 [Mason's Blog](https://masonblog.github.io/) 的源码仓库。它是一个用 Hugo 搭建的个人博客，用来记录一些零碎的新知识，也存放偶有的牢骚、絮叨和个人经历。
+这里是 [Mason's Blog](https://masonblog.github.io/) 的源码仓库。它是一个用 Hugo 搭建的双语个人博客，用来记录一些零碎的新知识，也存放偶有的牢骚、絮叨和个人经历。中文站保留在根路径，英文站输出到 `/en/`。
 
-[博客地址](https://masonblog.github.io/) | [备份地址](https://blog.masonhu.xyz/)
+[博客地址](https://masonblog.github.io/) | [英文版](https://masonblog.github.io/en/) | [备份地址](https://blog.masonhu.xyz/)
 
 ## 关于作者
 
@@ -25,11 +25,22 @@
 
 本博客建立于 2020 年新冠疫情期间。凡 2020 年 1 月 1 日前的文章，均为博客创建以前撰写的个人历史文章。 **受限于年龄和视野，该部分文章的可读性不高，且部分态度和观点已不被当前的作者所坚持或接受**。本博客不接受针对文章的打赏与资助，也不希望被推荐给更多的人。若你偶然来到这里，安静阅读就很好。
 
+## 多语言结构
+
+站点使用 Hugo 原生多语言能力：`zh` 是默认语言并保留根路径，`en` 输出到 `/en/`。语言相关菜单和首页文案配置在 `config.yml` 的 `languages` 下；PaperMod 会根据同 basename 的内容文件识别对应翻译。
+
+- 中文文章：`content/post/blogYYYYMMDD.md`
+- 英文文章：`content/post/blogYYYYMMDD.en.md`
+- 中文独立页面：`content/about.md`、`content/search.md`、`content/legal-tools.md`、`content/archieves.md`
+- 英文独立页面：`content/about.en.md`、`content/search.en.md`、`content/legal-tools.en.md`、`content/archieves.en.md`
+
+英文译文保留原文的日期、slug、封面和结构性 front matter，以便中英文页面保持稳定的一一对应关系。
+
 ## 目录结构
 
-- `content/post/`：博客文章
-- `content/about.md`：关于页
-- `static/images/`：图片资源
+- `content/post/`：博客文章及对应英文译文
+- `content/about.md` / `content/about.en.md`：关于页
+- `static/images/`：图片资源，中英文内容共用同一套图片路径
 - `layouts/`：站点级布局覆盖
 - `assets/css/extended/`：站点级 CSS 扩展
 
@@ -39,9 +50,15 @@
 
 1. 安装指定版本的 Hugo。
 2. 通过 Hugo Modules 拉取最新 PaperMod 主题。
-3. 构建静态站点。
+3. 构建静态站点，并同时生成根路径中文页面与 `/en/` 英文页面。
 4. 上传 Pages artifact。
 5. 部署到 GitHub Pages/Cloudflare Pages。
+
+本地生产构建验证命令：
+
+```bash
+hugo --gc --minify
+```
 
 ## 版权说明
 
