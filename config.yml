@@ -99,7 +99,9 @@ params:
   ShowCodeCopyButtons: true
   ShowRssButtonInSectionTermList: true
   ShowFullTextinRss: true
-  ShowAllPagesInArchive: true
+  mainSections:
+    - post
+  ShowAllPagesInArchive: false
   ShowPageNums: true
   
   assets:
