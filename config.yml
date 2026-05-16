@@ -5,6 +5,8 @@ pagination:
 module:
   imports:
     - path: github.com/adityatelange/hugo-PaperMod
+defaultContentLanguage: zh
+defaultContentLanguageInSubdir: false
 enableEmoji: true
 googleAnalytics: G-5GJ7PD33N1
 enableRobotsTXT: true
@@ -15,24 +17,61 @@ markup:
     renderer:
       unsafe: true
 
-
-menu:
-  main:
-    - name: 文章
-      url: archives
-      weight: 10
-    - name: 法律工具
-      url: legal-tools/
-      weight: 20
-    - name: 标签
-      url: tags/
-      weight: 30
-    - name: 关于
-      url: about/
-      weight: 40
-    - name: 搜索
-      url: search/
-      weight: 50
+languages:
+  zh:
+    languageName: "中文"
+    languageCode: "zh-CN"
+    weight: 1
+    title: Mason's Blog
+    menu:
+      main:
+        - name: 文章
+          url: archives
+          weight: 10
+        - name: 法律工具
+          url: legal-tools/
+          weight: 20
+        - name: 标签
+          url: tags/
+          weight: 30
+        - name: 关于
+          url: about/
+          weight: 40
+        - name: 搜索
+          url: search/
+          weight: 50
+    params:
+      description: "知识分享与微小叙事"
+      homeInfoParams:
+        Title: 知识分享与微小叙事
+        Content: 本博客用于记录一些零碎的新知识，以及偶有的牢骚和絮叨。全部文章均为本人原创，如无特别说明，均禁止转载。
+  en:
+    languageName: "English"
+    languageCode: "en-US"
+    weight: 2
+    title: Mason's Blog
+    menu:
+      main:
+        - name: Posts
+          url: archives
+          weight: 10
+        - name: Legal Tools
+          url: legal-tools/
+          weight: 20
+        - name: Tags
+          url: tags/
+          weight: 30
+        - name: About
+          url: about/
+          weight: 40
+        - name: Search
+          url: search/
+          weight: 50
+    params:
+      description: "Notes, small stories, and things learned along the way"
+      homeInfoParams:
+        Title: Notes, small stories, and things learned along the way
+        Content: This blog is where I keep notes on things I learn, along with occasional essays, reflections, and personal stories. Unless otherwise stated, all posts are original and may not be reproduced.
 
 sitemap:
   changefreq: ""
@@ -40,14 +79,10 @@ sitemap:
   priority: -1
 
 params:
-  description: "知识分享与微小叙事"
   dateFormat: 2006-01-02
   author: Mason
   defaultTheme: auto # to switch between dark or light according to browser theme
-
-  homeInfoParams:
-    Title: 知识分享与微小叙事
-    Content: 本博客用于记录一些零碎的新知识，以及偶有的牢骚和絮叨。全部文章均为本人原创，如无特别说明，均禁止转载。
+  displayFullLangName: true
 
   socialIcons: # optional
     - name: "Github"
