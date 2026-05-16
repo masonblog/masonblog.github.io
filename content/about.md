@@ -28,23 +28,11 @@ noLicense: true
 
 本博客建立于 2020 年新冠疫情期间。凡 2020 年 1 月 1 日前的文章，均为博客创建以前撰写的个人历史文章。 **受限于年龄和视野，该部分文章的可读性不高，且部分态度和观点已不被当前的作者所坚持或接受**。本博客不接受针对文章的打赏与资助，也不希望被推荐给更多的人。若你偶然来到这里，安静阅读就很好。
 
-## 目录结构
+## 多语言结构
 
-- `content/post/`：博客文章
-- `content/about.md`：关于页
-- `static/images/`：图片资源
-- `layouts/`：站点级布局覆盖
-- `assets/css/extended/`：站点级 CSS 扩展
+站点使用 Hugo 原生多语言能力：`zh` 是默认语言并保留根路径，`en` 输出到 `/en/`。语言相关菜单和首页文案配置在 `config.yml` 的 `languages` 下；PaperMod 会根据同 basename 的内容文件识别对应翻译。英文译文保留原文的日期、slug、封面和结构性 front matter，以便中英文页面保持稳定的一一对应关系。
 
-## 自动部署
-
-推送到 `main` 分支后，`.github/workflows/hugo.yml` 会自动：
-
-1. 安装指定版本的 Hugo。
-2. 通过 Hugo Modules 拉取最新 PaperMod 主题。
-3. 构建静态站点。
-4. 上传 Pages artifact。
-5. 部署到 GitHub Pages/Cloudflare Pages。
+# 
 
 ## 版权说明
 
