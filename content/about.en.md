@@ -28,24 +28,6 @@ This blog is a place for scattered notes, occasional grumbling, and loose person
 
 The blog was created during the COVID-19 pandemic in 2020. Posts dated before January 1, 2020 were written before the blog existed and are personal historical pieces. **Because of my age and limited perspective at the time, those older posts are not always very readable, and some attitudes or views in them are no longer ones I hold or accept.** This blog does not accept tips or sponsorship for posts, and I do not particularly hope it will be recommended to more people. If you happen to arrive here, quiet reading is more than enough.
 
-## Repository Structure
-
-- `content/post/`: blog posts
-- `content/about.md`: about page
-- `static/images/`: image assets
-- `layouts/`: site-level layout overrides
-- `assets/css/extended/`: site-level CSS extensions
-
-## Automatic Deployment
-
-After changes are pushed to the `main` branch, `.github/workflows/hugo.yml` automatically:
-
-1. Installs the specified Hugo version.
-2. Fetches the latest PaperMod theme through Hugo Modules.
-3. Builds the static site.
-4. Uploads the Pages artifact.
-5. Deploys to GitHub Pages / Cloudflare Pages.
-
 ## Copyright
 
 Unless otherwise stated in a post, all written content on this blog is original and may not be reproduced, excerpted, or used commercially without permission.
