@@ -81,6 +81,9 @@ jobs:
         uses: actions/deploy-pages@v5
 
   deploy-cloudflare:
+    environment:
+      name: cloudflare-workers
+      url: https://blog.masonhu.xyz/
     runs-on: ubuntu-22.04
     needs: build
     steps:
