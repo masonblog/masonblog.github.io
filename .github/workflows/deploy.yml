@@ -1,0 +1,102 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    env:
+      HUGO_VERSION: 0.161.1
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: github-pages
+            artifact_name: github-pages
+            base_url: ""
+          - target: cloudflare-workers
+            artifact_name: cloudflare-workers
+            base_url: "https://blog.masonhu.xyz/"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Install Hugo
+        run: |
+          wget -O "$RUNNER_TEMP/hugo.deb" "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "$RUNNER_TEMP/hugo.deb"
+
+      - name: Configure Pages
+        id: pages
+        if: matrix.target == 'github-pages'
+        uses: actions/configure-pages@v5
+
+      - name: Build with Hugo
+        run: |
+          if [[ "${{ matrix.target }}" == "github-pages" ]]; then
+            base_url="${{ steps.pages.outputs.base_url }}/"
+          else
+            base_url="${{ matrix.base_url }}"
+          fi
+
+          hugo --gc --minify --baseURL "$base_url"
+
+      - name: Upload Pages artifact
+        if: matrix.target == 'github-pages'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./public
+
+      - name: Upload Cloudflare artifact
+        if: matrix.target == 'cloudflare-workers'
+        uses: actions/upload-artifact@v5
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: ./public
+
+  deploy-github:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-22.04
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+
+  deploy-cloudflare:
+    runs-on: ubuntu-22.04
+    needs: build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Download Cloudflare artifact
+        uses: actions/download-artifact@v6
+        with:
+          name: cloudflare-workers
+          path: ./public
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4"
+          command: deploy

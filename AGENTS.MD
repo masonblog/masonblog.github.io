@@ -7,7 +7,7 @@
 - 本仓库是 Mason's Blog 的 Hugo 静态站点源码，线上地址为 `https://masonblog.github.io/`，备用地址为 `https://blog.masonhu.xyz/`。
 - 站点使用 Hugo Extended `0.161.1`，主题通过 Hugo Modules 引入 `github.com/adityatelange/hugo-PaperMod`。
 - 站点已启用 Hugo 多语言：`zh` 为默认语言并保留根路径，`en` 输出到 `/en/`；语言菜单、首页描述等语言相关配置位于 `config.yml` 的 `languages` 下。
-- 主题依赖记录在 `go.mod`，部署由 `.github/workflows/hugo.yml` 在 `main` 分支推送后自动完成。
+- 主题依赖记录在 `go.mod`，部署由 `.github/workflows/deploy.yml` 在 `main` 分支推送后自动完成。
 - 这是个人博客，不是通用内容平台。文字、图片、个人材料默认不授权转载或商用。
 
 ## 目录约定
@@ -78,7 +78,7 @@ hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 
 - 不要随意升级 Hugo、PaperMod、GitHub Actions 版本；升级前应说明原因并验证构建。
 - `go.mod` 中的 PaperMod 版本是站点主题来源。修改主题行为时，优先通过 `layouts/` 覆盖或 `assets/css/extended/` 扩展，避免直接引入主题源码副本。
-- `.github/workflows/hugo.yml` 使用 Hugo Extended Debian 包，部署目标是 GitHub Pages。保持 workflow 的 Pages 权限、artifact 上传和部署步骤完整。
+- `.github/workflows/deploy.yml` 使用 Hugo Extended Debian 包，部署目标是 GitHub Pages 和 Cloudflare Workers。保持 workflow 的 Pages 权限、artifact 上传和 Workers 部署步骤完整。
 - `outputs.home` 中的 `JSON` 用于中英文搜索功能，不要移除；多语言构建应同时生成根路径中文搜索索引和 `/en/` 英文搜索索引。
 - `markup.goldmark.renderer.unsafe: true` 允许文章中的原始 HTML；删除前需检查历史文章和页面是否依赖该行为。
 
