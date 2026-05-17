@@ -1,6 +1,6 @@
 # <img src="static/images/mason.png" alt="Mason's Blog Logo" width="36" height="36" /> Mason's Blog | 知识分享与微小叙事。
 
-[![Hugo](https://img.shields.io/badge/Hugo-0.161.1-FF4088?logo=hugo&logoColor=white)](https://gohugo.io/) [![PaperMod](https://img.shields.io/badge/Theme-PaperMod-2ea44f)](https://github.com/adityatelange/hugo-PaperMod) [![GitHub Pages](https://img.shields.io/badge/Hosted_on-GitHub_Pages-222222?logo=github&logoColor=white)](https://pages.github.com/) [![GitHub Actions](https://img.shields.io/badge/Deploy-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/features/actions) [![Cloudflare Pages](https://img.shields.io/badge/Mirror-Cloudflare_Pages-F38020?logo=cloudflarepages&logoColor=white)](https://pages.cloudflare.com/)
+[![Hugo](https://img.shields.io/badge/Hugo-0.161.1-FF4088?logo=hugo&logoColor=white)](https://gohugo.io/) [![PaperMod](https://img.shields.io/badge/Theme-PaperMod-2ea44f)](https://github.com/adityatelange/hugo-PaperMod) [![GitHub Pages](https://img.shields.io/badge/Hosted_on-GitHub_Pages-222222?logo=github&logoColor=white)](https://pages.github.com/) [![GitHub Actions](https://img.shields.io/badge/Deploy-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/features/actions) [![Cloudflare Workers](https://img.shields.io/badge/Mirror-Cloudflare_Workers-F38020?logo=cloudflareworkers&logoColor=white)](https://workers.cloudflare.com/)
 
 这里是 [Mason's Blog](https://masonblog.github.io/) 的源码仓库。它是一个用 Hugo 搭建的双语个人博客，用来记录一些零碎的新知识，也存放偶有的牢骚、絮叨和个人经历。中文站保留在根路径，英文站输出到 `/en/`。
 
@@ -46,12 +46,6 @@
 3. 构建静态站点，并同时生成根路径中文页面与 `/en/` 英文页面。
 4. 上传 Pages artifact。
 5. 部署到 GitHub Pages/Cloudflare Pages。
-
-本地生产构建验证命令：
-
-```bash
-hugo --gc --minify
-```
 
 ## 版权说明
 
