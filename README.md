@@ -33,6 +33,7 @@
 
 - `content/post/`：博客文章及对应英文译文
 - `content/about.md` / `content/about.en.md`：关于页
+- `content/portfolio.md` / `content/portfolio.en.md`：作品集页
 - `static/images/`：图片资源，中英文内容共用同一套图片路径
 - `layouts/`：站点级布局覆盖
 - `assets/css/extended/`：站点级 CSS 扩展

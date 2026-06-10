@@ -28,8 +28,8 @@ languages:
         - name: 文章
           url: archives
           weight: 10
-        - name: 法律工具
-          url: legal-tools/
+        - name: 作品集
+          url: portfolio/
           weight: 20
         - name: 标签
           url: tags/
@@ -55,8 +55,8 @@ languages:
         - name: Posts
           url: archives
           weight: 10
-        - name: Legal Tools
-          url: legal-tools/
+        - name: Portfolio
+          url: portfolio/
           weight: 20
         - name: Tags
           url: tags/
