@@ -13,7 +13,7 @@
 ## 目录约定
 
 - `content/post/`：博客文章，中文文件名通常为 `blogYYYYMMDD.md`；英文译文使用同 basename 的 `.en.md`，例如 `blog20260514.en.md`；历史私密文章多带 `-private-NN` 后缀。
-- `content/about.md`、`content/search.md`、`content/legal-tools.md`、`content/archieves.md`：中文独立页面；对应英文页使用 `.en.md` 后缀，例如 `about.en.md`、`search.en.md`。
+- `content/about.md`、`content/search.md`、`content/portfolio.md`、`content/archieves.md`：中文独立页面；对应英文页使用 `.en.md` 后缀，例如 `about.en.md`、`search.en.md`。
 - `static/images/`：文章和站点图片。新文章图片优先放在 `static/images/blogYYYYMMDD/`。
 - `static/favicon/`：站点图标资源。
 - `layouts/`：对 PaperMod 的局部覆盖。
