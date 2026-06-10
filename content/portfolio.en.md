@@ -9,6 +9,8 @@ This page collects personal projects and tools I have built and published, so th
 
 ## Video Studio Skills
 
+![](/images/portfolio/Video-studio-skills.png)
+
 Video Studio Skills is an all-in-one video creation skills set for Hermes Agent. It lets you build a video studio using 7 AI Agents. From researching, scripting, narrating, animating, to packaging titles and descriptions for various video platforms, the entire workflow can be collaboratively completed by AI Agents with different characteristics. You simply provide the topic, and the AI produces videos for you in a pipeline.
 
 [GitHub repository](https://github.com/masonblog/Video-studio-skills)
