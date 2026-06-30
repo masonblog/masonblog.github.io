@@ -1,11 +1,21 @@
 ---
 title: "Portfolio"
 description: "An index of personal projects and tools built and published by Mason."
-date: 2026-05-14
+date: 2026-06-30
 noLicense: true
 ---
 
 This page collects personal projects and tools I have built and published, so they are easier to find and update later.
+
+## Novel Studio Skills
+
+![](/images/portfolio/Novel-studio-skills.png)
+
+Novel Studio Skills is a multi-agent collaborative skills set for web-novel writing, built for AI agent tools such as Claude Code, Codex, and Hermes Agent. You only need to provide a rough story concept, and six role agents—Chief Editor, Architect, Lore Master, Writer, Editor, and Designer—each play their part to handle the full pipeline: project planning, worldbuilding, outlines, setting cards, manuscript, and cover illustrations. Long novels are produced in mandatory batches, with the Chief Editor reporting back in stages for your confirmation, and the workflow can be resumed at any time after an interruption.
+
+[GitHub repository](https://github.com/masonblog/Novel-studio-skills)
+
+---
 
 ## Video Studio Skills
 
