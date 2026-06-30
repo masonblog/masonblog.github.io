@@ -1,11 +1,21 @@
 ---
 title: "作品集"
 description: "Mason 个人作品与工具项目索引。"
-date: 2026-05-14
+date: 2026-06-30
 noLicense: true
 ---
 
 这里整理我自己制作并公开上线的个人作品与工具项目，方便集中访问与后续更新。
+
+## 多 Agent 网络小说创作技能集
+
+![](/images/portfolio/Novel-studio-skills.png)
+
+Novel Studio Skills 是一套面向 Claude Code、Codex、Hermes Agent 等 AI Agent 工具的多 Agent 协作网络小说创作技能集。你只需提供一个大致的梗概创意，六个角色 Agent（总编、架构师、设定师、写手、编辑、设计师）便各司其职，完成从立项、世界观、大纲、设定卡、正文到封面插画的全流程批量创作。长篇小说会强制分批实施，由总编分段向你汇报成果并确认，中断后随时可恢复。
+
+[Github 仓库](https://github.com/masonblog/Novel-studio-skills)
+
+---
 
 ## 多 Agent 视频创作技能集
 
