@@ -11,6 +11,8 @@ This is [Mason's Blog](https://masonblog.github.io/), a personal site built with
 
 ## About the Author
 
+![Profile image](/images/mason.png)
+
 I am Mason, a Master of Laws graduate and an investment and financing lawyer. I was born in the 1990s, am trying to make a living for myself and my family, and still carry a small amount of idealism.
 
 I love history and literature, and I have long had an interest in IT. In my spare time, I once helped produce [East Asia Observatory](https://podcasts.apple.com/us/podcast/%E4%B8%9C%E4%BA%9A%E8%A7%82%E5%AF%9F%E5%B1%80/id1508293790), mostly for the joy of finding striking ending songs. I now run a modest personal podcast, [议正言辞](https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4), and the Bilibili channel [MasonTV](https://space.bilibili.com/492153853).
