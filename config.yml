@@ -31,8 +31,8 @@ languages:
         - name: 作品集
           url: portfolio/
           weight: 20
-        - name: 标签
-          url: tags/
+        - name: 播客
+          url: podcast/
           weight: 30
         - name: 搜索
           url: search/
@@ -58,8 +58,8 @@ languages:
         - name: Portfolio
           url: portfolio/
           weight: 20
-        - name: Tags
-          url: tags/
+        - name: Podcast
+          url: podcast/
           weight: 30
         - name: Search
           url: search/
