@@ -2,13 +2,17 @@
      crossorigin="anonymous"></script>
 {{- if .Params.showAvatar }}
 <style>
+  .post-title {
+    direction: ltr;
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+  }
   .post-title::before {
     content: "";
-    display: inline-block;
+    flex: 0 0 auto;
     height: 1em;
     width: 1em;
-    margin-right: 0.4em;
-    vertical-align: -0.15em;
     background: url("/images/mason.png") center / contain no-repeat;
   }
 </style>
