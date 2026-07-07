@@ -4,6 +4,8 @@ description: "a Chinese podcast on the legal history of East and West, from anci
 noLicense: true
 ---
 
+![Cover](/images/Brights_talk.jpg)
+
 *Talking directly* (议正言辞) is a podcast I make on the legal history of East and West. It tries to hold ancient Rome and twenty-first-century China within a single thread—the long journey toward justice, and the way law is fought over, patched, and rewritten between the state and the individual, between custom and rule.
 
 Search for "议正言辞" on [Xiaoyuzhou](https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4) or [Apple Podcast](https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374), or click any episode title below to listen. Episodes are in Chinese.
