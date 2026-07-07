@@ -34,11 +34,11 @@ languages:
         - name: 标签
           url: tags/
           weight: 30
-        - name: 关于
-          url: about/
-          weight: 40
         - name: 搜索
           url: search/
+          weight: 40
+        - name: 关于
+          url: about/
           weight: 50
     params:
       description: "知识分享与微小叙事"
@@ -61,11 +61,11 @@ languages:
         - name: Tags
           url: tags/
           weight: 30
-        - name: About
-          url: about/
-          weight: 40
         - name: Search
           url: search/
+          weight: 40
+        - name: About
+          url: about/
           weight: 50
     params:
       description: "Notes, small stories, and things learned along the way"
