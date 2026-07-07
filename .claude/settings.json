@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.xiaoyuzhoufm.com)",
+      "Bash(python -c ' *)",
+      "Bash(hugo --gc --minify)",
+      "Bash(hugo version *)"
+    ]
+  }
+}
