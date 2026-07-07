@@ -4,7 +4,7 @@ description: "a Chinese podcast on the legal history of East and West, from anci
 noLicense: true
 ---
 
-![Cover](/images/Brights_talk.jpg)
+![Cover](/images/Cover_talking directly.png)
 
 *Talking directly* (议正言辞) is a podcast I make on the legal history of East and West. It tries to hold ancient Rome and twenty-first-century China within a single thread—the long journey toward justice, and the way law is fought over, patched, and rewritten between the state and the individual, between custom and rule.
 
