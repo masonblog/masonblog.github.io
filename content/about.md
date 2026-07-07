@@ -11,7 +11,7 @@ noLicense: true
 
 ## 关于作者
 
-![头像](/images/mason.png =300x)
+<img src="/images/mason.png" alt="头像" width="300">
 
 作者 Mason，法律硕士毕业，投融资律师，一个为了自己与家庭的未来努力谋生的 90 后，稍微带点理想主义。
 

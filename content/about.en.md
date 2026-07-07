@@ -11,7 +11,7 @@ This is [Mason's Blog](https://masonblog.github.io/), a personal site built with
 
 ## About the Author
 
-![Profile image](/images/mason.png =300x)
+<img src="/images/mason.png" alt="Profile image" width="300">
 
 I am Mason, a Master of Laws graduate and an investment and financing lawyer. I was born in the 1990s, am trying to make a living for myself and my family, and still carry a small amount of idealism.
 
