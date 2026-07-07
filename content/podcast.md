@@ -5,7 +5,7 @@ date: 2026-07-07
 noLicense: true
 ---
 
-![播客封面](/images/Brights_talk.jpg)
+![播客封面](/images/Cover_talking directly.png)
 
 《议正言辞》是我制作的一档聚焦东西方法律史的播客。节目试图把古罗马与二十一世纪的中国放在同一条线索里，去谈那条通往正义的漫长道路：法律如何在国家与个人、礼俗与规则之间被反复争夺、修补和重写。
 
