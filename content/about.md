@@ -3,6 +3,7 @@ title: "关于我和我的博客"
 description: "知识分享与微小叙事。"
 date: 2021-05-01
 noLicense: true
+showAvatar: true
 ---
 
 这里是 [Mason's Blog](https://masonblog.github.io/) ，一个用 Hugo 搭建的个人博客，用来记录一些零碎的新知识，也存放偶有的牢骚、絮叨和个人经历。
@@ -10,8 +11,6 @@ noLicense: true
 [Github 仓库](https://github.com/masonblog/masonblog.github.io/) | [博客地址](https://masonblog.github.io/) | [备用地址](https://blog.masonhu.xyz/)
 
 ## 关于作者
-
-<img src="/images/mason.png" alt="头像" width="300">
 
 作者 Mason，法律硕士毕业，投融资律师，一个为了自己与家庭的未来努力谋生的 90 后，稍微带点理想主义。
 

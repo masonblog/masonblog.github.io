@@ -4,7 +4,9 @@
       "WebFetch(domain:www.xiaoyuzhoufm.com)",
       "Bash(python -c ' *)",
       "Bash(hugo --gc --minify)",
-      "Bash(hugo version *)"
+      "Bash(hugo version *)",
+      "Bash(hugo --quiet --destination /tmp/hugo-test)",
+      "Read(//tmp/hugo-test/about/**)"
     ]
   }
 }

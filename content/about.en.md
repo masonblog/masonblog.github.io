@@ -3,6 +3,7 @@ title: "About Me and This Blog"
 description: "Notes, small stories, and things learned along the way."
 date: 2021-05-01
 noLicense: true
+showAvatar: true
 ---
 
 This is [Mason's Blog](https://masonblog.github.io/), a personal site built with Hugo. I use it to keep notes on things I learn, along with occasional complaints, digressions, and fragments of personal experience.
@@ -10,8 +11,6 @@ This is [Mason's Blog](https://masonblog.github.io/), a personal site built with
 [GitHub repository](https://github.com/masonblog/masonblog.github.io/) | [Blog](https://masonblog.github.io/) | [Mirror](https://blog.masonhu.xyz/)
 
 ## About the Author
-
-<img src="/images/mason.png" alt="Profile image" width="300">
 
 I am Mason, a Master of Laws graduate and an investment and financing lawyer. I was born in the 1990s, am trying to make a living for myself and my family, and still carry a small amount of idealism.
 

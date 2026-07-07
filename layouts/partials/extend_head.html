@@ -1,2 +1,15 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3746438298147903"
      crossorigin="anonymous"></script>
+{{- if .Params.showAvatar }}
+<style>
+  .post-title::before {
+    content: "";
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    margin-right: 0.4em;
+    vertical-align: -0.15em;
+    background: url("/images/mason.png") center / contain no-repeat;
+  }
+</style>
+{{- end }}
