@@ -28,7 +28,7 @@ jobs:
             base_url: ""
           - target: cloudflare-workers
             artifact_name: cloudflare-workers
-            base_url: "https://blog.masonhu.xyz/"
+            base_url: "https://blog.masonhu.cc/"
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -83,7 +83,7 @@ jobs:
   deploy-cloudflare:
     environment:
       name: cloudflare-workers
-      url: https://blog.masonhu.xyz/
+      url: https://blog.masonhu.cc/
     runs-on: ubuntu-22.04
     needs: build
     steps:
