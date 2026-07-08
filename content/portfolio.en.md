@@ -35,7 +35,7 @@ The legal tools below are mainly designed for mainland China legal and policy co
 
 This project helps estimate one-off payments related to employment termination in China, including statutory severance, damages for unlawful termination, payment in lieu of notice, and potential double-wage liability for failure to sign a written employment contract. The calculation is based on common rules under the Employment Contract Law, its implementing regulations, and judicial interpretations on labor disputes, and it evaluates the result according to the information entered by the user.
 
-[Start using it](https://masonblog.github.io/SeveranceGO-CN/) | [Mirror](https://severance.masonhu.xyz/) | [GitHub repository](https://github.com/masonblog/SeveranceGO-CN)
+[Start using it](https://masonblog.github.io/SeveranceGO-CN/) | [Mirror](https://severance.masonhu.cc/) | [GitHub repository](https://github.com/masonblog/SeveranceGO-CN)
 
 ---
 
@@ -45,4 +45,4 @@ This project helps estimate one-off payments related to employment termination i
 
 This tool helps you check seven categories of statutory leave entitlements in your province within seconds: annual leave, marriage leave, maternity leave, paternity or nursing leave, childcare leave, home leave, and sick leave. It combines national rules with special rules from each province, autonomous region, and municipality, so you can get accurate and traceable leave information without digging through regulatory documents yourself.
 
-[Start using it](https://masonblog.github.io/HolidayGO-CN) | [Mirror](https://holiday.masonhu.xyz/) | [GitHub repository](https://github.com/masonblog/HolidayGO-CN)
+[Start using it](https://masonblog.github.io/HolidayGO-CN) | [Mirror](https://holiday.masonhu.cc/) | [GitHub repository](https://github.com/masonblog/HolidayGO-CN)
