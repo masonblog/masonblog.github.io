@@ -14,9 +14,9 @@ titleImage: /images/Cover_talking_directly.png
 
 ## 单集列表
 
-### [08 夹缝中的最高法院：美国司法审查制度的诞生](https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4)
+### [08 夹缝中的最高法院：美国司法审查制度的诞生](https://www.xiaoyuzhoufm.com/episode/6a4d1e6e3fb7233cbf455776)
 
-2026-07-08 · [文字稿](/post/blog20260708/)
+2026-07-08 · 28 分钟 · [文字稿](/post/blog20260708/)
 
 美国宪法原文中没有任何一个条款写着「最高法院有权解释宪法」。回到 1803 年的马伯里诉麦迪逊案，看司法审查权如何在政治博弈的裂缝中诞生，以及围绕它的「反多数难题」之争。
 

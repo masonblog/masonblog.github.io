@@ -13,9 +13,9 @@ Search for "议正言辞" on [Xiaoyuzhou](https://www.xiaoyuzhoufm.com/podcast/6
 
 ## Episodes
 
-### [08 The Supreme Court in the Crevice: The Birth of American Judicial Review](https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4)
+### [08 The Supreme Court in the Crevice: The Birth of American Judicial Review](https://www.xiaoyuzhoufm.com/episode/6a4d1e6e3fb7233cbf455776)
 
-2026-07-08 · [Transcript (in Chinese)](/post/blog20260708/)
+2026-07-08 · 28 min · [Transcript (in Chinese)](/post/blog20260708/)
 
 Nothing in the U.S. Constitution says the Supreme Court has the power to interpret it. Returning to *Marbury v. Madison* (1803), this episode traces how judicial review was born in the cracks of a political struggle—and the "counter-majoritarian difficulty" debates that followed.
 
