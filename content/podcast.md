@@ -46,7 +46,7 @@ titleImage: /images/Cover_talking_directly.png
 
 ### [07 民国女侠与礼法之争：施剑翘刺杀孙传芳案](https://www.xiaoyuzhoufm.com/episode/6a4a7f233fb7233cbf442703)
 
-2026-07-05 · 25 分钟
+2026-07-05 · 25 分钟 · [文字稿](/post/blog20260705/)
 
 1935 年，施剑翘在天津当众枪杀军阀孙传芳，为父复仇。这一集从案件的审判到国民政府最终的特赦，谈传统复仇伦理与现代法律之间的紧张。
 
