@@ -8,7 +8,7 @@ titleImage: /images/mason.png
 
 This is [Mason's Blog](https://masonblog.github.io/), a personal site built with Hugo. I use it to keep notes on things I learn, along with occasional complaints, digressions, and fragments of personal experience.
 
-[GitHub repository](https://github.com/masonblog/masonblog.github.io/) | [Blog](https://masonblog.github.io/) | [Mirror](https://blog.masonhu.xyz/)
+[GitHub repository](https://github.com/masonblog/masonblog.github.io/) | [Blog](https://masonblog.github.io/) | [Mirror](https://blog.masonhu.cc/)
 
 ## About the Author
 
@@ -16,7 +16,7 @@ I am Mason, a Master of Laws graduate and an investment and financing lawyer. I 
 
 I love history and literature, and I have long had an interest in IT. In my spare time, I once helped produce [East Asia Observatory](https://podcasts.apple.com/us/podcast/%E4%B8%9C%E4%BA%9A%E8%A7%82%E5%AF%9F%E5%B1%80/id1508293790), mostly for the joy of finding striking ending songs. I now run a modest personal podcast, [议正言辞](https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4), and the Bilibili channel [MasonTV](https://space.bilibili.com/492153853).
 
-Email: me@masonhu.xyz
+Email: me@masonhu.cc
 
 ## About the Blog
 
