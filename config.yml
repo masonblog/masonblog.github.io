@@ -79,6 +79,8 @@ sitemap:
   priority: -1
 
 params:
+  images:
+    - "/images/mason.png"
   dateFormat: 2006-01-02
   author: Mason
   defaultTheme: auto # to switch between dark or light according to browser theme
