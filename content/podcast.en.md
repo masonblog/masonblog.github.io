@@ -47,7 +47,7 @@ Nothing in the U.S. Constitution says the Supreme Court has the power to interpr
 
 ### [07 Shi Jianqiao and the Assassination of Sun Chuanfang](https://www.xiaoyuzhoufm.com/episode/6a4a7f233fb7233cbf442703)
 
-2026-07-05 · 25 min
+2026-07-05 · 25 min · [Transcript](/en/post/blog20260705/)
 
 In 1935, Shi Jianqiao shot and killed the warlord Sun Chuanfang in Tianjin to avenge her father. From the trial to the Nationalist government's eventual pardon, this episode looks at the tension between the ethics of filial revenge and modern law.
 
