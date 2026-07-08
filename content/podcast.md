@@ -8,7 +8,17 @@ titleImage: /images/Cover_talking_directly.png
 
 《议正言辞》是我制作的一档聚焦东西方法律史的播客。节目试图把古罗马与二十一世纪的中国放在同一条线索里，去谈那条通往正义的漫长道路：法律如何在国家与个人、礼俗与规则之间被反复争夺、修补和重写。
 
-在[小宇宙](https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4)或[苹果播客](https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374)中搜索「议正言辞」，或点击下方任意单集标题即可收听。
+<p style="display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;margin:0.5rem 0;">
+  <span style="font-weight:600;">收听方式：</span>
+  <a href="https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4" target="_blank" rel="noopener" title="小宇宙" aria-label="小宇宙" style="display:inline-flex;align-items:center;gap:0.4rem;text-decoration:none;">
+    <svg width="26" height="26" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="48" height="48" rx="11" fill="#00D8C0"/><path d="M24 12c-6.6 0-12 5-12 11.6 0 3.6 1.7 6.9 4.4 9.1.5.4.7 1 .5 1.6l-.9 3c-.2.7.5 1.3 1.2 1l3.8-1.7c.4-.2.9-.2 1.3-.1 1.2.3 2.5.5 3.8.5 6.6 0 12-5 12-11.6S30.6 12 24 12z" fill="#fff"/><circle cx="19" cy="24" r="2.1" fill="#00D8C0"/><circle cx="29" cy="24" r="2.1" fill="#00D8C0"/></svg>
+    <span style="color:inherit;">小宇宙</span>
+  </a>
+  <a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" title="苹果播客" aria-label="苹果播客" style="display:inline-flex;align-items:center;gap:0.4rem;text-decoration:none;">
+    <svg width="26" height="26" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="apGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F452FF"/><stop offset="1" stop-color="#832BC1"/></linearGradient></defs><rect width="48" height="48" rx="11" fill="url(#apGrad)"/><circle cx="24" cy="18.5" r="5" fill="#fff"/><path d="M19.3 25.2c1.3-.9 2.9-1.4 4.7-1.4s3.4.5 4.7 1.4c1 .7 1.4 2 .9 3.1l-2.4 5.6c-.5 1.1-.5 2.3-.2 3.5l.3 1c.5 1.7-.8 3.4-2.6 3.4h-1.4c-1.8 0-3.1-1.7-2.6-3.4l.3-1c.3-1.2.3-2.4-.2-3.5l-2.4-5.6c-.5-1.1-.1-2.4.9-3.1z" fill="#fff"/></svg>
+    <span style="color:inherit;">苹果播客</span>
+  </a>
+</p>
 
 ---
 
