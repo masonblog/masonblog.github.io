@@ -15,7 +15,7 @@ Search for "议正言辞" on [Xiaoyuzhou](https://www.xiaoyuzhoufm.com/podcast/6
 
 ### [08 The Supreme Court in the Crevice: The Birth of American Judicial Review](https://www.xiaoyuzhoufm.com/episode/6a4d1e6e3fb7233cbf455776)
 
-2026-07-08 · 28 min · [Transcript (in Chinese)](/post/blog20260708/)
+2026-07-08 · 28 min · [Transcript](/en/post/blog20260708/)
 
 Nothing in the U.S. Constitution says the Supreme Court has the power to interpret it. Returning to *Marbury v. Madison* (1803), this episode traces how judicial review was born in the cracks of a political struggle—and the "counter-majoritarian difficulty" debates that followed.
 
@@ -27,13 +27,13 @@ In 1935, Shi Jianqiao shot and killed the warlord Sun Chuanfang in Tianjin to av
 
 ### [06 U.S. Birthright Citizenship: Total Victory or Temporary Truce?](https://www.xiaoyuzhoufm.com/episode/6a4688cb2e335a35a80d2dfa)
 
-2026-07-02 · 27 min
+2026-07-02 · 27 min · [Transcript](/en/post/blog20260703/)
 
 Around the Supreme Court's ruling on Trump's Executive Order 14160, this episode traces birthright citizenship through executive order, injunctions, and litigation—and asks how durable the victory really is given the fragile majority beneath it.
 
 ### [05 Gao Mingxuan and Chinese Criminal Law: Four Elements vs. Three Tiers](https://www.xiaoyuzhoufm.com/episode/69a1b9bede29766da9cce66b)
 
-2026-02-27 · 26 min
+2026-02-27 · 26 min · [Transcript](/en/post/blog20260310/)
 
 Starting from the life of the criminal-law scholar Gao Mingxuan, this episode examines the debate between the "four-element" and "three-tier" theories of criminal constitution, and how it shapes the line between the state's penal power and citizens' rights.
 
