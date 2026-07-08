@@ -4,7 +4,7 @@
 
 这里是 [Mason's Blog](https://masonblog.github.io/) 的源码仓库。它是一个用 Hugo 搭建的双语个人博客，用来记录一些零碎的新知识，也存放偶有的牢骚、絮叨和个人经历。中文站保留在根路径，英文站输出到 `/en/`。
 
-[博客地址](https://masonblog.github.io/) | [英文版](https://masonblog.github.io/en/) | [备份地址](https://blog.masonhu.xyz/)
+[博客地址](https://masonblog.github.io/) | [英文版](https://masonblog.github.io/en/) | [备份地址](https://blog.masonhu.cc/)
 
 ## 关于作者
 
@@ -12,7 +12,7 @@
 
 我热爱历史与文学，对 IT 也颇有兴趣，曾利用业余时间参与制作 [《东亚观察局》](https://podcasts.apple.com/us/podcast/%E4%B8%9C%E4%BA%9A%E8%A7%82%E5%AF%9F%E5%B1%80/id1508293790)，以选出令人惊艳的片尾曲为乐。目前在运营不温不火的个人播客 [《议正言辞》](https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4)和 Bilibili 频道 [MasonTV](https://space.bilibili.com/492153853)。
 
-联系邮箱：me@masonhu.xyz
+联系邮箱：me@masonhu.cc
 
 ## 关于博客
 
