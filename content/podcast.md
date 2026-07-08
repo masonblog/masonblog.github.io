@@ -8,7 +8,7 @@ titleImage: /images/Cover_talking_directly.png
 
 《议正言辞》是我制作的一档聚焦东西方法律史的播客。节目试图把古罗马与二十一世纪的中国放在同一条线索里，去谈那条通往正义的漫长道路：法律如何在国家与个人、礼俗与规则之间被反复争夺、修补和重写。
 
-在[小宇宙](https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4)或[苹果播客](https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374)中搜索「议正言辞」，或点击下方任意单集标题即可收听。
+在[小宇宙](https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4)或[苹果播客](https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374)中搜索「议正言辞」，或点击下方任意单集标题即可收听。
 
 ---
 
