@@ -2,7 +2,7 @@
 title: "Talking directly"
 description: "a Chinese podcast on the legal history of East and West, from ancient Rome to twenty-first-century China."
 noLicense: true
-titleImage: /images/Cover_talking_directly.png
+titleImage: /images/podcast/Cover_talking_directly.png
 ---
 
 *Talking directly* (议正言辞) is a podcast I make on the legal history of East and West. It tries to hold ancient Rome and twenty-first-century China within a single thread—the long journey toward justice, and the way law is fought over, patched, and rewritten between the state and the individual, between custom and rule.
@@ -24,12 +24,12 @@ titleImage: /images/Cover_talking_directly.png
 </style>
 <div class="podcast-listen">
   <a href="https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4" target="_blank" rel="noopener" aria-label="Listen on Xiaoyuzhou">
-    <img class="b-light" src="/images/badges/Xiaoyuzhou_Light.png" alt="Listen on Xiaoyuzhou">
-    <img class="b-dark" src="/images/badges/Xiaoyuzhou_Dark.png" alt="Listen on Xiaoyuzhou">
+    <img class="b-light" src="/images/podcast/Xiaoyuzhou_Light.png" alt="Listen on Xiaoyuzhou">
+    <img class="b-dark" src="/images/podcast/Xiaoyuzhou_Dark.png" alt="Listen on Xiaoyuzhou">
   </a>
   <a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Listen on Apple Podcasts">
-    <img class="b-light" src="/images/badges/Apple_Podcast_Light.png" alt="Listen on Apple Podcasts">
-    <img class="b-dark" src="/images/badges/Apple_Podcast_Dark.png" alt="Listen on Apple Podcasts">
+    <img class="b-light" src="/images/podcast/Apple_Podcast_Light.png" alt="Listen on Apple Podcasts">
+    <img class="b-dark" src="/images/podcast/Apple_Podcast_Dark.png" alt="Listen on Apple Podcasts">
   </a>
 </div>
 
