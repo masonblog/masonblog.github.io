@@ -3,7 +3,7 @@ title: "议正言辞"
 description: "一档聚焦东西方法律史的播客，从古罗马讲到二十一世纪的中国。"
 date: 2026-07-08
 noLicense: true
-titleImage: /images/Cover_talking_directly.png
+titleImage: /images/podcast/Cover_talking_directly.png
 ---
 
 《议正言辞》是我制作的一档聚焦东西方法律史的播客。节目试图把古罗马与二十一世纪的中国放在同一条线索里，去谈那条通往正义的漫长道路：法律如何在国家与个人、礼俗与规则之间被反复争夺、修补和重写。
@@ -25,12 +25,12 @@ titleImage: /images/Cover_talking_directly.png
 </style>
 <div class="podcast-listen">
   <a href="https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4" target="_blank" rel="noopener" aria-label="在小宇宙收听">
-    <img class="b-light" src="/images/badges/Xiaoyuzhou_Light.png" alt="在小宇宙收听">
-    <img class="b-dark" src="/images/badges/Xiaoyuzhou_Dark.png" alt="在小宇宙收听">
+    <img class="b-light" src="/images/podcast/Xiaoyuzhou_Light.png" alt="在小宇宙收听">
+    <img class="b-dark" src="/images/podcast/Xiaoyuzhou_Dark.png" alt="在小宇宙收听">
   </a>
   <a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="在苹果播客收听">
-    <img class="b-light" src="/images/badges/Apple_Podcast_Light.png" alt="在苹果播客收听">
-    <img class="b-dark" src="/images/badges/Apple_Podcast_Dark.png" alt="在苹果播客收听">
+    <img class="b-light" src="/images/podcast/Apple_Podcast_Light.png" alt="在苹果播客收听">
+    <img class="b-dark" src="/images/podcast/Apple_Podcast_Dark.png" alt="在苹果播客收听">
   </a>
 </div>
 
