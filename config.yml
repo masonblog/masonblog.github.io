@@ -45,7 +45,7 @@ languages:
       homeInfoParams:
         titleImage: /images/mason.png
         Title: 知识分享与微小叙事
-        Content: 本博客用于记录一些零碎的新知识，以及偶有的牢骚和絮叨。全部文章均为本人原创，如无特别说明，均禁止转载。
+        Content: 本博客用来记录一些零碎的新知识，也存放偶有的牢骚、絮叨和个人经历。
   en:
     languageName: "English"
     languageCode: "en-US"
@@ -72,7 +72,7 @@ languages:
       description: "Notes, small stories, and things learned along the way"
       homeInfoParams:
         titleImage: /images/mason.png
-        Title: Notes, small stories, and things learned along the way
+        Title: To keep notes on things I learn, along with occasional complaints, digressions, and fragments of personal experience.
         Content: This blog is where I keep notes on things I learn, along with occasional essays, reflections, and personal stories. Unless otherwise stated, all posts are original and may not be reproduced.
 
 sitemap:
