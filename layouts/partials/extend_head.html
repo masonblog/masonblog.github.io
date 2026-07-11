@@ -1,10 +1,11 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3746438298147903"
      crossorigin="anonymous"></script>
 {{- $titleImage := .Params.titleImage -}}
+{{- $titleIcon := .Params.titleIcon -}}
 {{- if and .IsHome (not $titleImage) -}}
   {{- $titleImage = site.Params.homeInfoParams.titleImage -}}
 {{- end -}}
-{{- with $titleImage }}
+{{- if or $titleImage $titleIcon }}
 <style>
   .post-title,
   .home-info .entry-header h1 {
@@ -20,7 +21,13 @@
     flex: 0 0 auto;
     height: 1em;
     width: 1em;
-    background: url("{{ . }}") center / contain no-repeat;
+    {{- if eq $titleIcon "github" }}
+    background-color: currentColor;
+    -webkit-mask: url("/images/github.svg") center / contain no-repeat;
+    mask: url("/images/github.svg") center / contain no-repeat;
+    {{- else }}
+    background: url("{{ $titleImage }}") center / contain no-repeat;
+    {{- end }}
   }
 </style>
 {{- end }}
