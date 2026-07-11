@@ -5,7 +5,7 @@ noLicense: true
 titleImage: /images/podcast/Cover_talking_directly.png
 ---
 
-《议正言辞》是我制作的一档聚焦东西方法律史的播客。节目试图把古罗马与二十一世纪的中国放在同一条线索里，去谈那条通往正义的漫长道路：法律如何在国家与个人、礼俗与规则之间被反复争夺、修补和重写。
+一档聚焦东西方法律史的播客。节目试图把古罗马与二十一世纪的中国放在同一条线索里，去谈那条通往正义的漫长道路：法律如何在国家与个人、礼俗与规则之间被反复争夺、修补和重写。
 
 <style>
 .podcast-listen{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin:.85rem 0;}

@@ -2,7 +2,6 @@
 title: "关于"
 date: 2021-05-01
 noLicense: true
-titleImage: /images/mason.png
 ---
 
 这里是 Mason Hu 的个人博客 ，用来记录一些零碎的新知识，也存放偶有的牢骚、絮叨和个人经历。
