@@ -1,8 +1,7 @@
 /* Make links inside article bodies visually distinct in both color schemes. */
 .post-content a {
     color: #dcb879;
-    text-decoration-color: currentColor;
-    text-underline-offset: 0.15em;
+    text-decoration: none;
 }
 
 .post-content a:hover,
