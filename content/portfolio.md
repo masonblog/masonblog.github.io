@@ -1,8 +1,8 @@
 ---
 title: "作品集"
-description: "Mason 个人作品与工具项目索引。"
 date: 2026-06-30
 noLicense: true
+titleImage: /images/mason.png
 ---
 
 这里整理我自己制作并公开上线的个人作品与工具项目，方便集中访问与后续更新。

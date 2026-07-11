@@ -1,12 +1,11 @@
 ---
-title: "About Me and This Blog"
-description: "Notes, small stories, and things learned along the way."
+title: "About"
 date: 2021-05-01
 noLicense: true
 titleImage: /images/mason.png
 ---
 
-This is [Mason's Blog](https://masonblog.github.io/), a personal site built with Hugo. I use it to keep notes on things I learn, along with occasional complaints, digressions, and fragments of personal experience.
+This is Mason Hu's personal site. I use it to keep notes on things I learn, along with occasional complaints, digressions, and fragments of personal experience.
 
 [GitHub repository](https://github.com/masonblog/masonblog.github.io/) | [Blog](https://masonblog.github.io/) | [Mirror](https://blog.masonhu.cc/)
 
