@@ -1,6 +1,5 @@
 ---
 title: "议正言辞"
-description: "一档聚焦东西方法律史的播客，从古罗马讲到二十一世纪的中国。"
 date: 2026-07-10
 noLicense: true
 titleImage: /images/podcast/Cover_talking_directly.png
