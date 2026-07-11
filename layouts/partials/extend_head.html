@@ -1,15 +1,21 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3746438298147903"
      crossorigin="anonymous"></script>
-{{- with .Params.titleImage }}
+{{- $titleImage := .Params.titleImage -}}
+{{- if and .IsHome (not $titleImage) -}}
+  {{- $titleImage = site.Params.homeInfoParams.titleImage -}}
+{{- end -}}
+{{- with $titleImage }}
 <style>
-  .post-title {
+  .post-title,
+  .home-info .entry-header h1 {
     display: flex;
     /* override .entry-hint-parent's space-between, which pushes the text to the right edge */
     justify-content: flex-start;
     align-items: center;
     gap: 0.4em;
   }
-  .post-title::before {
+  .post-title::before,
+  .home-info .entry-header h1::before {
     content: "";
     flex: 0 0 auto;
     height: 1em;
