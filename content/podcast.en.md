@@ -2,7 +2,7 @@
 title: "Talking directly"
 noLicense: true
 titleImage: /images/podcast/Cover_talking_directly.png
-date: 2026-07-10
+date: 2026-06-09
 ---
 
 *Talking directly* (议正言辞) is a podcast I make on the legal history of East and West. It tries to hold ancient Rome and twenty-first-century China within a single thread—the long journey toward justice, and the way law is fought over, patched, and rewritten between the state and the individual, between custom and rule.
