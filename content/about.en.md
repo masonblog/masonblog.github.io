@@ -1,5 +1,5 @@
 ---
-title: "About Me and This Blog"
+title: "About"
 description: "Notes, small stories, and things learned along the way."
 date: 2021-05-01
 noLicense: true
