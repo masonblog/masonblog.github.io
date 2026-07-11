@@ -1,5 +1,5 @@
 ---
-title: "关于我和我的博客"
+title: "关于"
 description: "知识分享与微小叙事。"
 date: 2021-05-01
 noLicense: true
