@@ -1,20 +1,20 @@
 /* Make links inside article bodies visually distinct in both color schemes. */
 .post-content a {
-    color: #0969da;
+    color: #dcb879;
     text-decoration-color: currentColor;
     text-underline-offset: 0.15em;
 }
 
 .post-content a:hover,
 .post-content a:focus {
-    color: #0756b3;
+    color: #dcb879;
 }
 
 .dark .post-content a {
-    color: #58a6ff;
+    color: #e0c189;
 }
 
 .dark .post-content a:hover,
 .dark .post-content a:focus {
-    color: #8ab4f8;
+    color: #e0c189;
 }
