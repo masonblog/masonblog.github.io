@@ -1,6 +1,5 @@
 ---
 title: "Talking directly"
-description: "a Chinese podcast on the legal history of East and West, from ancient Rome to twenty-first-century China."
 noLicense: true
 titleImage: /images/podcast/Cover_talking_directly.png
 date: 2026-07-10
