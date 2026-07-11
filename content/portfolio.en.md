@@ -2,7 +2,7 @@
 title: "Portfolio"
 date: 2026-06-30
 noLicense: true
-titleImage: /images/mason.png
+titleIcon: github
 ---
 
 This page collects personal projects and tools I have built and published, so they are easier to find and update later.
