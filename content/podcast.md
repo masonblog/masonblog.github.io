@@ -1,7 +1,7 @@
 ---
 title: "议正言辞"
 description: "一档聚焦东西方法律史的播客，从古罗马讲到二十一世纪的中国。"
-date: 2026-07-08
+date: 2026-07-10
 noLicense: true
 titleImage: /images/podcast/Cover_talking_directly.png
 ---
@@ -37,6 +37,12 @@ titleImage: /images/podcast/Cover_talking_directly.png
 ---
 
 ## 单集列表
+
+### [09 中华法系的终结：清末修律如何重塑中国法治](https://www.xiaoyuzhoufm.com/episode/6a510fb84adef2b36562062c)
+
+2026-07-10 · 32 分钟 · [文字稿](/post/blog20260710/)
+
+为什么摇摇欲坠的大清王朝，会在生命最后十年里突然翻译西方法典、废除凌迟、设立法院、起草民法？这一集回到 1902 至 1911 年的历史现场，讲清清末修律如何拆开延续数千年的中华法系，并为中国近代法治留下复杂遗产。
 
 ### [08 夹缝中的最高法院：美国司法审查制度的诞生](https://www.xiaoyuzhoufm.com/episode/6a4d1e6e3fb7233cbf455776)
 

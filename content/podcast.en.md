@@ -3,6 +3,7 @@ title: "Talking directly"
 description: "a Chinese podcast on the legal history of East and West, from ancient Rome to twenty-first-century China."
 noLicense: true
 titleImage: /images/podcast/Cover_talking_directly.png
+date: 2026-07-10
 ---
 
 *Talking directly* (议正言辞) is a podcast I make on the legal history of East and West. It tries to hold ancient Rome and twenty-first-century China within a single thread—the long journey toward justice, and the way law is fought over, patched, and rewritten between the state and the individual, between custom and rule.
@@ -38,6 +39,12 @@ Episodes are in Chinese. Click any episode title below to listen.
 ---
 
 ## Episodes
+
+### [09 The End of the Chinese Legal Tradition: How Late-Qing Reforms Reshaped the Rule of Law](https://www.xiaoyuzhoufm.com/episode/6a510fb84adef2b36562062c)
+
+2026-07-10 · 32 min · [Transcript](/en/post/blog20260710/)
+
+Why did the faltering Qing dynasty suddenly begin translating Western codes, abolishing lingchi, establishing courts, and drafting a civil code in its final decade? Returning to 1902–1911, this episode traces how the late-Qing legal reforms dismantled a legal tradition thousands of years old and left a complicated legacy for modern Chinese law.
 
 ### [08 The Supreme Court in the Crevice: The Birth of American Judicial Review](https://www.xiaoyuzhoufm.com/episode/6a4d1e6e3fb7233cbf455776)
 
