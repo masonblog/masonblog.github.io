@@ -1,0 +1,9 @@
+/* Invert PaperMod's filled Apple Podcasts mark so its glyph matches the other icons. */
+.social-icons a[href*="podcasts.apple.com"] svg {
+    background: currentColor;
+    border-radius: 22.25%;
+}
+
+.social-icons a[href*="podcasts.apple.com"] svg path {
+    fill: var(--theme);
+}
