@@ -4,9 +4,9 @@ date: 2021-05-01
 noLicense: true
 ---
 
-This is Mason Hu's personal site. I use it to keep notes on things I learn, along with occasional complaints, digressions, and fragments of personal experience.
+This is Mason Hu's personal blog, used to record some fragmented experiences and thoughts, as well as to store his personal portfolio and podcast transcripts.
 
-[GitHub repository](https://github.com/masonblog/masonblog.github.io/) | [Blog](https://masonblog.github.io/) | [Mirror](https://blog.masonhu.cc/)
+[GitHub repository](https://github.com/masonblog/masonblog.github.io/) | [Link](https://blog.masonhu.cc/) | [Mirror](https://masonblog.github.io/)
 
 ## About the Author
 
@@ -16,14 +16,9 @@ I love history and literature, and I have long had an interest in IT. In my spar
 
 Email: me@masonhu.cc
 
-## About the Blog
+## About this Blog
 
-This blog is a place for scattered notes, occasional grumbling, and loose personal writing. It is not built for reach or influence. It is closer to a long-running hollow in a tree where I store experience and thoughts. Topics are mixed, including but not limited to:
-
-- technology tools and personal projects;
-- current affairs and social observations;
-- personal life and journals;
-- history, law, and reading notes.
+This blog is used to record fragmented experiences and thoughts, as well as occasional complaints and ramblings. It will also house skills and tools I've developed, and transcripts of my personal podcast, "Eloquent Discussion." It doesn't pursue value in the sense of communication studies; rather, it's like a long-term repository for personal experiences and reflections.
 
 The blog was created during the COVID-19 pandemic in 2020. Posts dated before January 1, 2020 were written before the blog existed and are personal historical pieces. **Because of my age and limited perspective at the time, those older posts are not always very readable, and some attitudes or views in them are no longer ones I hold or accept.** This blog does not accept tips or sponsorship for posts, and I do not particularly hope it will be recommended to more people. If you happen to arrive here, quiet reading is more than enough.
 
@@ -31,4 +26,4 @@ The blog was created during the COVID-19 pandemic in 2020. Posts dated before Ja
 
 Unless otherwise stated in a post, all written content on this blog is original and may not be reproduced, excerpted, or used commercially without permission.
 
-The theme code in this repository follows the license of its upstream project. Blog posts, images, and personal materials are not automatically licensed for reuse simply because this repository is public.
+Code published in a Github repository follows its original project license; blog posts, images, and personal content are not automatically licensed for reuse simply because the repository is publicly available.

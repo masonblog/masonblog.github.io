@@ -4,26 +4,21 @@ date: 2021-05-01
 noLicense: true
 ---
 
-这里是 Mason Hu 的个人博客 ，用来记录一些零碎的新知识，也存放偶有的牢骚、絮叨和个人经历。
+这里是 Mason Hu 的个人博客 ，用来记录一些零碎的经历和想法，也存放个人作品集和播客文稿。
 
-[Github 仓库](https://github.com/masonblog/masonblog.github.io/) | [博客地址](https://masonblog.github.io/) | [备用地址](https://blog.masonhu.cc/)
+[Github 仓库](https://github.com/masonblog/masonblog.github.io/) | [博客地址](https://blog.masonhu.cc/) | [备用地址](https://masonblog.github.io/)
 
 ## 关于作者
 
 作者 Mason Hu，法律硕士毕业，投融资律师，一个为了自己与家庭的未来努力谋生的 90 后，稍微带点理想主义。
 
-我热爱历史与文学，对 IT 也颇有兴趣，曾利用业余时间参与制作 [《东亚观察局》](https://podcasts.apple.com/us/podcast/%E4%B8%9C%E4%BA%9A%E8%A7%82%E5%AF%9F%E5%B1%80/id1508293790)，以选出令人惊艳的片尾曲为乐。目前在运营不温不火的个人播客 [《议正言辞》](https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4)和 Bilibili 频道 [MasonTV](https://space.bilibili.com/492153853)。
+我热爱历史与文学，对 AI 也颇有兴趣，曾利用业余时间参与制作 [《东亚观察局》](https://podcasts.apple.com/us/podcast/%E4%B8%9C%E4%BA%9A%E8%A7%82%E5%AF%9F%E5%B1%80/id1508293790)，以选出令人惊艳的片尾曲为乐。目前在运营不温不火的个人播客 [《议正言辞》](https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4)和 Bilibili 频道 [MasonTV](https://space.bilibili.com/492153853)。
 
 联系邮箱：me@masonhu.cc
 
-## 关于博客
+## 关于本博客
 
-本博客用于记录一些零碎的新知识，以及偶有的牢骚和絮叨。它不追求传播学意义上的价值，更像一个长期保存个人经验和思考的树洞。内容主题比较杂，包括但不限于：
-
-- 科技工具与个人项目实践
-- 时事评论和社会观察
-- 个人生活和日记
-- 历史、法学与读书笔记
+本博客用于记录一些零碎的经历和想法，以及偶有的牢骚和絮叨。同时，这里还会存放我自己开发的技能和小工具，以及个人播客《议正言辞》的文稿等。它不追求传播学意义上的价值，更像一个长期保存个人经验和思考的树洞。
 
 本博客建立于 2020 年新冠疫情期间。凡 2020 年 1 月 1 日前的文章，均为博客创建以前撰写的个人历史文章。 **受限于年龄和视野，该部分文章的可读性不高，且部分态度和观点已不被当前的作者所坚持或接受**。本博客不接受针对文章的打赏与资助，也不希望被推荐给更多的人。若你偶然来到这里，安静阅读就很好。
 
@@ -31,4 +26,4 @@ noLicense: true
 
 除非文章内另有说明，本博客文字内容均为作者原创，禁止未经许可转载、摘编或用于商业用途。
 
-仓库中的主题代码遵循其原项目许可证；博客文章、图片和个人内容不因仓库公开而自动授权复用。
+发布于 Github 仓库中的代码遵循其原项目许可证；博客文章、图片和个人内容不因仓库公开而自动授权复用。
