@@ -45,7 +45,7 @@ languages:
       homeInfoParams:
         titleImage: /images/mason.png
         Title: 知识分享与微小叙事
-        Content: 本博客用来记录一些零碎的新知识，也存放偶有的牢骚、絮叨和个人经历。
+        Content: 本博客用来记录一些零碎的经历和想法，也存放个人作品集和播客文稿。
   en:
     languageName: "English"
     languageCode: "en-US"
@@ -73,7 +73,7 @@ languages:
       homeInfoParams:
         titleImage: /images/mason.png
         Title: To keep notes on things I learn, along with occasional complaints, digressions, and fragments of personal experience.
-        Content: This blog is where I keep notes on things I learn, along with occasional essays, reflections, and personal stories. Unless otherwise stated, all posts are original and may not be reproduced.
+        Content: This blog is used to record some fragmented experiences and thoughts, as well as to store his personal portfolio and podcast transcripts.
 
 sitemap:
   changefreq: ""
@@ -96,8 +96,8 @@ params:
     - name: "Bilibili"
       url: "https://space.bilibili.com/492153853"
     - name: "ApplePodcasts"
-      title: "小宇宙播客"
-      url: "https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4"
+      title: "苹果播客"
+      url: "https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374"
 
   ShowShareButtons: false
   ShowCodeCopyButtons: true
