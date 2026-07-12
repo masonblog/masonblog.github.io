@@ -71,7 +71,7 @@ Starting from the life of the criminal-law scholar Gao Mingxuan, this episode ex
 
 ### [04 How Did the Japanese Come to Terms with Defeat? A 32-Year Fight Against the Government](https://www.xiaoyuzhoufm.com/episode/69a062c3de29766da9ab7164)
 
-2026-02-26 · 33 min
+2026-02-26 · 33 min · [Transcript](/en/post/blog20260226/)
 
 The historian Ienaga Saburō's thirty-two-year lawsuits against Japan's Ministry of Education over textbook revisions. When a state tries to rewrite the memory of its own war, how does an individual defend academic freedom and the historical record?
 
