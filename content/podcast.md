@@ -69,7 +69,7 @@ titleImage: /images/podcast/Cover_talking_directly.png
 
 ### [04 日本人如何接受战败？与日本政府的32年战斗](https://www.xiaoyuzhoufm.com/episode/69a062c3de29766da9ab7164)
 
-2026-02-26 · 33 分钟
+2026-02-26 · 33 分钟 · [文字稿](/post/blog20260226/)
 
 历史学家家永三郎与日本文部省之间长达三十二年的教科书诉讼。当国家试图改写自己的战争记忆，个人如何以一己之力守住学术自由与历史真相。
 
