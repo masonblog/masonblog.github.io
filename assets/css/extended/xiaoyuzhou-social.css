@@ -1,39 +1,39 @@
-.social-icons .xiaoyuzhou-social-icon {
+.social-icons .podcast-social-icon {
   display: block;
   width: 24px;
   height: 24px;
   margin: 0;
-  object-fit: cover;
-  object-position: left center;
+  object-fit: contain;
+  object-position: center;
   border-radius: 5px;
 }
 
-.social-icons .xiaoyuzhou-social-icon-dark {
+.social-icons .podcast-social-icon-dark {
   display: none;
 }
 
 @media (prefers-color-scheme: dark) {
-  .social-icons .xiaoyuzhou-social-icon-light {
+  .social-icons .podcast-social-icon-light {
     display: none;
   }
 
-  .social-icons .xiaoyuzhou-social-icon-dark {
+  .social-icons .podcast-social-icon-dark {
     display: block;
   }
 }
 
-:root[data-theme="light"] .social-icons .xiaoyuzhou-social-icon-light {
+:root[data-theme="light"] .social-icons .podcast-social-icon-light {
   display: block;
 }
 
-:root[data-theme="light"] .social-icons .xiaoyuzhou-social-icon-dark {
+:root[data-theme="light"] .social-icons .podcast-social-icon-dark {
   display: none;
 }
 
-:root[data-theme="dark"] .social-icons .xiaoyuzhou-social-icon-light {
+:root[data-theme="dark"] .social-icons .podcast-social-icon-light {
   display: none;
 }
 
-:root[data-theme="dark"] .social-icons .xiaoyuzhou-social-icon-dark {
+:root[data-theme="dark"] .social-icons .podcast-social-icon-dark {
   display: block;
 }
