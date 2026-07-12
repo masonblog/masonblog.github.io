@@ -4,8 +4,10 @@
     <a href="{{ trim .url " " | safeURL }}" target="_blank" rel="noopener noreferrer me"
         title="{{ (.title | default .name) | title }}">
         {{- if eq $iconName "xiaoyuzhou" }}
-        <img class="xiaoyuzhou-social-icon xiaoyuzhou-social-icon-light" src="/images/podcast/Xiaoyuzhou_Light.png" alt="{{ (.title | default .name) }}">
-        <img class="xiaoyuzhou-social-icon xiaoyuzhou-social-icon-dark" src="/images/podcast/Xiaoyuzhou_Dark.png" alt="{{ (.title | default .name) }}">
+        <img class="podcast-social-icon" src="/images/podcast/Xiaoyuzhou_Square.svg" alt="{{ (.title | default .name) }}">
+        {{- else if eq $iconName "applepodcasts" }}
+        <img class="podcast-social-icon podcast-social-icon-light" src="/images/podcast/Apple_Podcast_Dark.png" alt="{{ (.title | default .name) }}">
+        <img class="podcast-social-icon podcast-social-icon-dark" src="/images/podcast/Apple_Podcast_Light.png" alt="{{ (.title | default .name) }}">
         {{- else }}
         {{ partial "svg.html" . }}
         {{- end }}
