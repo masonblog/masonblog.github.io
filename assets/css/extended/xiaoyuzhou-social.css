@@ -1,0 +1,17 @@
+.social-icons .xiaoyuzhou-social-icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  border-radius: 5px;
+}
+
+:root[data-theme="dark"] .social-icons .xiaoyuzhou-social-icon {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .social-icons .xiaoyuzhou-social-icon {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+  }
+}

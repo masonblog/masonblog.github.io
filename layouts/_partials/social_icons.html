@@ -1,0 +1,13 @@
+<div class="social-icons" {{ with .align}}align="{{.}}" {{- end }}>
+    {{- range site.Params.socialIcons }}
+    {{- $iconName := (trim .name " " | lower) }}
+    <a href="{{ trim .url " " | safeURL }}" target="_blank" rel="noopener noreferrer me"
+        title="{{ (.title | default .name) | title }}">
+        {{- if eq $iconName "xiaoyuzhou" }}
+        <img class="xiaoyuzhou-social-icon" src="/images/xiaoyuzhou-app-icon.svg" alt="{{ (.title | default .name) }}">
+        {{- else }}
+        {{ partial "svg.html" . }}
+        {{- end }}
+    </a>
+    {{- end }}
+</div>

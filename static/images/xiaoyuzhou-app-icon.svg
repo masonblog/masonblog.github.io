@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">小宇宙 App Icon</title>
+  <desc id="desc">小宇宙官方正方形 App Icon 风格图标。</desc>
+  <defs>
+    <radialGradient id="app-bg" cx="50%" cy="46%" r="72%">
+      <stop offset="0" stop-color="#fffefd"/>
+      <stop offset="0.72" stop-color="#fbf7f5"/>
+      <stop offset="1" stop-color="#f3ece9"/>
+    </radialGradient>
+    <linearGradient id="planet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22afe6"/>
+      <stop offset="1" stop-color="#8ed0c9"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#app-bg)"/>
+  <ellipse cx="256" cy="256" rx="232" ry="47" transform="rotate(-35 256 256)" fill="none" stroke="#050505" stroke-width="24"/>
+  <circle cx="256" cy="256" r="144" fill="url(#planet)"/>
+  <path d="M139.2 340.1C107.8 345.4 88 341 82.7 329.4c-11.8-26.1 61.5-98.2 163.8-161.1 102.3-63 194.8-92.8 206.6-66.7 5.2 11.5-6.3 31.1-31.5 55.2" fill="none" stroke="#050505" stroke-width="24" stroke-linecap="round"/>
+</svg>
