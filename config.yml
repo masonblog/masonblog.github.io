@@ -44,7 +44,7 @@ languages:
       description: "知识分享与微小叙事"
       homeInfoParams:
         titleImage: /images/mason.png
-        Title: 知识分享与微小叙事
+        Title: 分享知识与个人叙事
         Content: 本博客用来记录一些零碎的经历和想法，也存放个人作品集和播客文稿。
   en:
     languageName: "English"
@@ -72,8 +72,8 @@ languages:
       description: "Notes, small stories, and things learned along the way"
       homeInfoParams:
         titleImage: /images/mason.png
-        Title: To keep notes on things I learn, along with occasional complaints, digressions, and fragments of personal experience.
-        Content: This blog is used to record some fragmented experiences and thoughts, as well as to store his personal portfolio and podcast transcripts.
+        Title: Knoledge & personal stories.
+        Content: This blog is used to record some fragmented experiences and thoughts, as well as to store my personal portfolio and podcast transcripts.
 
 sitemap:
   changefreq: ""
