@@ -41,7 +41,7 @@ languages:
           url: about/
           weight: 50
     params:
-      description: "知识分享与微小叙事"
+      description: "分享知识与个人叙事"
       homeInfoParams:
         titleImage: /images/mason.png
         Title: 分享知识与个人叙事
@@ -69,7 +69,7 @@ languages:
           url: about/
           weight: 50
     params:
-      description: "Notes, small stories, and things learned along the way"
+      description: "Knoledge & personal stories."
       homeInfoParams:
         titleImage: /images/mason.png
         Title: Knoledge & personal stories.
