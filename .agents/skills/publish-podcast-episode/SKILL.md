@@ -116,15 +116,39 @@ Check all of the following:
 - Both podcast pages link back to the correct language transcript.
 - Hugo recognizes the two posts as translations and renders language switching.
 - `/post/blogYYYYMMDD/`, `/en/post/blogYYYYMMDD/`, `/podcast/`, and `/en/podcast/` render.
+- The local Hugo Extended binary exactly matches `.github/workflows/deploy.yml` → `env.HUGO_VERSION`.
 - `git diff --check` passes and `git status --short` contains only intended changes.
 
-Run the production build with Hugo Extended `0.161.1`:
+Read the required Hugo version from the deployment workflow; do not duplicate a version number in this skill. Resolve the intended Hugo executable, compare its reported version, and only then run the production build:
 
 ```powershell
-hugo --gc --minify
+$workflow = Get-Content -Raw ".github/workflows/deploy.yml"
+$match = [regex]::Match(
+  $workflow,
+  '(?m)^\s*HUGO_VERSION:\s*["'']?([0-9]+\.[0-9]+\.[0-9]+)["'']?\s*$'
+)
+if (-not $match.Success) {
+  throw "Cannot determine env.HUGO_VERSION from .github/workflows/deploy.yml"
+}
+$requiredHugoVersion = $match.Groups[1].Value
+
+$hugo = (Get-Command hugo -ErrorAction SilentlyContinue).Source
+if (-not $hugo) {
+  throw "Hugo Extended $requiredHugoVersion is not on PATH; locate or install that exact version before building"
+}
+
+$actualHugoVersion = & $hugo version
+if ($actualHugoVersion -notmatch "^hugo v$([regex]::Escape($requiredHugoVersion))\b") {
+  throw "Hugo version mismatch: project requires $requiredHugoVersion; found $actualHugoVersion"
+}
+if ($actualHugoVersion -notmatch "\+extended\b") {
+  throw "The project requires Hugo Extended; found $actualHugoVersion"
+}
+
+& $hugo --gc --minify
 ```
 
-If Hugo is not on `PATH`, locate an exact-version local binary before downloading anything. Do not validate with a different Hugo version or upgrade project dependencies. Prefer an output/cache directory outside the repository when the environment permits. Remove only verification artifacts created during this run; never delete pre-existing `public/`, `resources/`, or `go.sum` blindly.
+Treat `.github/workflows/deploy.yml` as the executable source of truth for the build version. If Hugo is not on `PATH`, locate an exact-version local binary before downloading anything, set `$hugo` to that executable, and run the same comparison. Do not validate with a different Hugo version or upgrade project dependencies. If README or `AGENTS.MD` names a different version, report the documentation drift instead of silently choosing it for the build. Prefer an output/cache directory outside the repository when the environment permits. Remove only verification artifacts created during this run; never delete pre-existing `public/`, `resources/`, or `go.sum` blindly.
 
 ## Finish safely
 
