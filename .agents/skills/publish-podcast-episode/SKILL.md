@@ -83,7 +83,7 @@ Create `content/post/blogYYYYMMDD.en.md` with the same basename and the same str
 Use the installed `imagegen` skill and its built-in image generation path unless the user explicitly requests another method.
 
 1. Inspect the newest podcast covers to match the site’s visual language.
-2. Generate one polished 3:2 landscape image suitable for a Hugo cover, normally without embedded text, logos, or watermarks.
+2. Generate one polished 16:9 landscape image suitable for a Hugo cover, normally without embedded text, logos, or watermarks.
 3. Base the scene on the episode’s central historical or legal conflict. Avoid sensationalism and avoid presenting a generated face as an exact historical likeness unless requested.
 4. Inspect the result and iterate only when a specific defect matters.
 5. Save the final file as `static/images/blogYYYYMMDD/cover.png` and reference it with `/images/blogYYYYMMDD/cover.png` in both posts.
