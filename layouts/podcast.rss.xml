@@ -1,0 +1,47 @@
+{{- printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" | safeHTML }}
+{{- $cfg := site.Params.podcast -}}
+{{- $episodes := where site.RegularPages "Params.podcast" "ne" nil -}}
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>{{ $cfg.title }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ $cfg.description }}</description>
+    <language>{{ $cfg.language }}</language>
+    <atom:link
+      href="{{ (.OutputFormats.Get "RSS").Permalink }}"
+      rel="self"
+      type="application/rss+xml" />
+    <itunes:author>{{ $cfg.author }}</itunes:author>
+    <itunes:type>{{ $cfg.type }}</itunes:type>
+    <itunes:explicit>{{ $cfg.explicit }}</itunes:explicit>
+    <itunes:owner>
+      <itunes:name>{{ $cfg.author }}</itunes:name>
+      <itunes:email>{{ $cfg.ownerEmail }}</itunes:email>
+    </itunes:owner>
+    <itunes:image href="{{ $cfg.image | safeURL }}" />
+    <itunes:category text="{{ $cfg.category }}" />
+
+    {{- range sort $episodes "Params.podcast.episode" "desc" }}
+    {{- $p := .Params.podcast }}
+    <item>
+      <title>{{ printf "%02d %s" (int $p.episode) .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <guid isPermaLink="false">{{ $p.guid }}</guid>
+      <pubDate>{{ $p.published }}</pubDate>
+      <description>{{ .Description }}</description>
+      <content:encoded>{{ printf "<![CDATA[%s]]>" .Content | safeHTML }}</content:encoded>
+      <enclosure
+        url="{{ $p.audioURL | safeURL }}"
+        length="{{ $p.audioLength }}"
+        type="{{ $p.audioType }}" />
+      <itunes:duration>{{ $p.duration }}</itunes:duration>
+      <itunes:episode>{{ $p.episode }}</itunes:episode>
+      <itunes:episodeType>full</itunes:episodeType>
+      <itunes:explicit>{{ $cfg.explicit }}</itunes:explicit>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

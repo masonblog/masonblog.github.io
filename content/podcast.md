@@ -3,6 +3,10 @@ title: "议正言辞"
 date: 2025-06-09
 noLicense: true
 titleImage: /images/podcast/Cover_talking_directly.png
+layout: podcast
+outputs:
+  - HTML
+  - RSS
 ---
 
 一档聚焦东西方法律史的播客。节目试图把古罗马与二十一世纪的中国放在同一条线索里，去谈那条通往正义的漫长道路：法律如何在国家与个人、礼俗与规则之间被反复争夺、修补和重写。
