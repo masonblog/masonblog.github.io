@@ -1,0 +1,17 @@
+{{- with .Page.Params.podcast -}}
+<div class="podcast-player" role="region" aria-label="播客播放器">
+  <audio controls preload="metadata">
+    <source
+      src="{{ .audioURL | safeURL }}"
+      type="{{ .audioType | default "audio/mpeg" }}">
+    您的浏览器不支持音频播放。
+  </audio>
+  <div class="podcast-player__meta">
+    <span>第 {{ printf "%02d" (int .episode) }} 期</span>
+    {{- with .duration }}<span>{{ . }}</span>{{ end -}}
+    <a href="{{ .audioURL | safeURL }}">打开音频</a>
+  </div>
+</div>
+{{- else -}}
+  {{- errorf "podcast-player shortcode requires podcast front matter: %s" .Page.File.Path -}}
+{{- end -}}
