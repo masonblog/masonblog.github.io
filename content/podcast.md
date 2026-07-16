@@ -37,6 +37,12 @@ titleImage: /images/podcast/Cover_talking_directly.png
 
 ## 单集列表
 
+### [10 你有权保持沉默：米兰达警告如何改变美国司法](https://www.xiaoyuzhoufm.com/episode/6a57b160016dcc7e0542cb88)
+
+2026-07-16 · 27 分钟 · [文字稿](/post/blog20260716/)
+
+为什么一个初中辍学的强奸嫌犯，能够惊动美国最高法院，进而改变全美几十万警察的执法方式？这一集从米兰达诉亚利桑那州案出发，讲述那句警匪片里熟悉的权利警告，如何从一个囚犯的绝望签名变成写入全美警员手册的宪法规则。
+
 ### [09 中华法系的终结：清末修律如何重塑中国法治](https://www.xiaoyuzhoufm.com/episode/6a510fb84adef2b36562062c)
 
 2026-07-10 · 32 分钟 · [文字稿](/post/blog20260710/)
