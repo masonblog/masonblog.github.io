@@ -5,7 +5,7 @@
 ## 项目概况
 
 - 本仓库是 Mason's Blog 的 Hugo 静态站点源码，线上地址为 `https://masonblog.github.io/`，备用地址为 `https://blog.masonhu.cc/`。
-- 站点使用 Hugo Extended `0.161.1`，主题通过 Hugo Modules 引入 `github.com/adityatelange/hugo-PaperMod`。
+- 站点使用 Hugo Extended `0.164.0`，主题通过 Hugo Modules 引入 `github.com/adityatelange/hugo-PaperMod`。
 - 站点已启用 Hugo 多语言：`zh` 为默认语言并保留根路径，`en` 输出到 `/en/`；语言菜单、首页描述等语言相关配置位于 `config.yml` 的 `languages` 下。
 - 主题依赖记录在 `go.mod`，部署由 `.github/workflows/deploy.yml` 在 `main` 分支推送后自动完成。
 - 这是个人博客，不是通用内容平台。文字、图片、个人材料默认不授权转载或商用。

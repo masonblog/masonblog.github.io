@@ -38,7 +38,7 @@
 推送到 `main` 分支后，`.github/workflows/deploy.yml` 会自动：
 
 1. 安装指定版本的 Hugo。
-2. 通过 Hugo Modules 拉取最新 PaperMod 主题。
+2. 通过 Hugo Modules 拉取 `go.mod` 中固定版本的 PaperMod 主题。
 3. 构建静态站点，并同时生成根路径中文页面与 `/en/` 英文页面。
 4. 上传 Pages artifact。
 5. 部署到 GitHub Pages 和 Cloudflare Workers。

@@ -81,20 +81,20 @@ Starting from the life of the criminal-law scholar Gao Mingxuan, this episode ex
 
 The historian Ienaga Saburō's thirty-two-year lawsuits against Japan's Ministry of Education over textbook revisions. When a state tries to rewrite the memory of its own war, how does an individual defend academic freedom and the historical record?
 
-### [03 How Trump Challenges the Constitution: The Legal Battle over Citizenship](https://www.xiaoyuzhoufm.com/episode/6867b4e293fd2d72b889f266)
+### [03 How Trump Challenges the Constitution: The Legal Battle over Birthright Citizenship](https://www.xiaoyuzhoufm.com/episode/6867b4e293fd2d72b889f266)
 
-2025-07-04 · 26 min
+2025-07-04 · 26 min · [Transcript](/en/post/blog20250704/)
 
 Beginning with the Fourteenth Amendment and *Wong Kim Ark*, this episode walks through the constitutional dispute over the Trump administration's challenge to birthright citizenship, and the doctrinal contest between territorial and personal jurisdiction.
 
 ### [02 A Survival Manual for Tang-Dynasty Justice: A Case that Sparked the Rites-vs-Law Debate](https://www.xiaoyuzhoufm.com/episode/68499fd6096eb0bc7954b588)
 
-2025-06-11 · 22 min
+2025-06-11 · 22 min · [Transcript](/en/post/blog20250611/)
 
 A revenge case under Empress Wu Zetian brings out the dilemma between Confucian filial duty and state law. The episode covers the Tang judicial system, its appeals mechanisms, and the debate between Liu Zongyuan and Chen Zi'ang over rites and law.
 
 ### [01 From the First Emperor to the Revival of Roman Law: State-Building Meets the Rule of Law](https://www.xiaoyuzhoufm.com/episode/684660cb79e285b9b8f22ea4)
 
-2025-06-09 · 14 min
+2025-06-09 · 14 min · [Transcript](/en/post/blog20250609/)
 
 Drawing on Fukuyama's *The Origins of Political Order*, this episode asks why China built a strong centralized state so early yet never moved toward the rule of law and accountability, while Europe, starting later, went further down that road.
