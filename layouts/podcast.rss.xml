@@ -32,7 +32,7 @@
       <guid isPermaLink="false">{{ $p.guid }}</guid>
       <pubDate>{{ $p.published }}</pubDate>
       <description>{{ .Description }}</description>
-      <content:encoded>{{ printf "<![CDATA[%s]]>" .Content | safeHTML }}</content:encoded>
+      <content:encoded>{{ printf "<![CDATA[%s]]>" .Description | safeHTML }}</content:encoded>
       <enclosure
         url="{{ $p.audioURL | safeURL }}"
         length="{{ $p.audioLength }}"
