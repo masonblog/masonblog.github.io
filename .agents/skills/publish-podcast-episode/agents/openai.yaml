@@ -1,0 +1,4 @@
+interface:
+  display_name: "发布播客单集"
+  short_description: "将新播客文稿发布为中英文博文，并同步更新中英文播客页面与链接"
+  default_prompt: "使用 $publish-podcast-episode 将这篇新播客文稿发布为中英文博文、生成封面，并更新双语播客页。"

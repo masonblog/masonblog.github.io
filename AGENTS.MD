@@ -18,7 +18,15 @@
 - `static/favicon/`：站点图标资源。
 - `layouts/`：对 PaperMod 的局部覆盖。
 - `assets/css/extended/`：站点级 CSS 扩展。
+- `.agents/skills/`：仓库级 Codex 技能。用于固化仅适用于本项目的可复用工作流。
 - `config.yml`：站点菜单、参数、输出格式、Hugo Module 等全局配置。
+
+## 项目级技能
+
+- 新一期《议正言辞》的文稿发布与播客页同步使用 `.agents/skills/publish-podcast-episode/SKILL.md`。
+- 当用户提出「按老规矩发布播客文稿」、发布或补发播客单集、生成单集封面、更新中英文播客页，或修复单集与文字稿之间的链接时，必须调用 `publish-podcast-episode` 技能。
+- 该技能是本文件的播客专项扩展。执行技能前仍须遵守本文件；若两者冲突，以本文件和用户的当次明确要求为准。
+- 若播客平台 ID、内容目录、双语字段、封面规则或构建命令发生变化，应同时更新本节与该技能，避免项目约定分叉。
 
 ## 内容编辑规则
 
