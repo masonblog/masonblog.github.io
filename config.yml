@@ -19,8 +19,8 @@ markup:
 
 languages:
   zh:
-    languageName: "中文"
-    languageCode: "zh-CN"
+    label: "中文"
+    locale: "zh-CN"
     weight: 1
     title: Mason's Blog
     menu:
@@ -47,8 +47,8 @@ languages:
         Title: 分享知识与个人叙事
         Content: 本博客用来记录一些零碎的经历和想法，也存放个人作品集和播客文稿。
   en:
-    languageName: "English"
-    languageCode: "en-US"
+    label: "English"
+    locale: "en-US"
     weight: 2
     title: Mason's Blog
     menu:
