@@ -1,6 +1,6 @@
 ---
 name: publish-podcast-episode
-description: "Publish a new episode of the 议正言辞 podcast from a Markdown transcript into this Hugo repository by verifying current Xiaoyuzhou and Apple episode metadata, creating paired Chinese and English blog posts, generating and saving a GPT cover, updating both podcast pages, connecting episode and transcript links, and validating the multilingual build. Use when the user asks to 按老规矩发布播客文稿, publish or backfill a new 议正言辞 episode, update the bilingual podcast pages, generate an episode cover, or repair links between an episode and its transcript."
+description: "Publish a new episode of the 议正言辞 podcast from a Markdown transcript into this Hugo repository by verifying current Xiaoyuzhou and Apple episode metadata, freezing the Xiaoyuzhou RSS fields for the backup feed, creating paired Chinese and English blog posts, embedding the Chinese audio player, generating and saving a GPT cover, updating both podcast pages, connecting episode and transcript links, and validating the multilingual build and podcast RSS. Use when the user asks to 按老规矩发布播客文稿, publish or backfill a new 议正言辞 episode, update the bilingual podcast pages, generate an episode cover, repair links between an episode and its transcript, or synchronize the blog backup podcast feed."
 ---
 
 # Publish Podcast Episode
@@ -24,16 +24,19 @@ Run `git status --short`. Do not overwrite an existing `blogYYYYMMDD` pair or im
 
 Use the latest public episode metadata, not a related-episode link found inside the transcript.
 
-1. Check the Xiaoyuzhou show page at `https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4`.
-2. Resolve the Apple RSS feed, when needed, through `https://itunes.apple.com/lookup?id=6787849374&entity=podcast`, then inspect its `feedUrl`.
+1. Read the Xiaoyuzhou main RSS at `https://feed.xyzfm.space/fnejgl98kbk6` with an XML parser. Do not parse XML with regular expressions.
+2. Check the Xiaoyuzhou show page at `https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4`. Resolve the Apple RSS feed, when needed, through `https://itunes.apple.com/lookup?id=6787849374&entity=podcast`, then inspect its `feedUrl`.
 3. Match the episode by its exact title and capture:
    - Canonical Xiaoyuzhou episode URL without tracking parameters
-   - Published timestamp
+   - RSS `guid` without modification
+   - Full RSS `pubDate` string
+   - Enclosure `url`, `type`, and integer `length`
+   - Exact `itunes:duration`
    - Displayed duration in rounded minutes
    - Public episode description
 4. Convert UTC timestamps to `Asia/Shanghai` before choosing `YYYY-MM-DD`.
 
-If the episode is not publicly available or its identity is ambiguous, do not invent an ID, date, or duration. Report the missing fact and request the episode link.
+If the episode is not publicly available or its identity is ambiguous, do not invent an ID, date, duration, or enclosure field. Report the missing fact and request the episode link.
 
 ## Create the Chinese post
 
@@ -52,10 +55,20 @@ math: false
 ShowToc: true
 cover:
   image: "/images/blogYYYYMMDD/cover.png"
+podcast:
+  episode: NN
+  guid: "RSS guid"
+  published: "Full RSS pubDate"
+  duration: "Exact itunes:duration"
+  audioURL: "Full enclosure URL"
+  audioType: "Enclosure MIME type"
+  audioLength: 12345678
 ---
 ```
 
-Immediately after the front matter, link the podcast hub, the canonical Xiaoyuzhou episode, and Apple Podcasts. Follow the wording used by the newest transcript.
+Use integers for `episode` and `audioLength`; quote all other podcast fields. Preserve the enclosure URL exactly as published by Xiaoyuzhou. Do not copy the `podcast` block to the English post.
+
+Immediately after the front matter, link the podcast hub, the canonical Xiaoyuzhou episode, and Apple Podcasts. Follow the wording used by the newest transcript, then insert `{{< podcast-player >}}` before the article body.
 
 Turn the spoken transcript into a readable post without changing the author’s position:
 
@@ -73,6 +86,7 @@ Create `content/post/blogYYYYMMDD.en.md` with the same basename and the same str
 
 - Translate `title`, `description`, `keywords`, `tags`, headings, body, and Shownotes into natural English.
 - Preserve the Chinese post’s structure and substance.
+- Do not add podcast front matter or the podcast player shortcode; the English translation must not become a duplicate RSS episode.
 - Use the podcast name and capitalization already established in the repository.
 - State that the episode audio is in Chinese and the transcript is translated.
 - Link the English podcast hub at `/en/podcast/`.
@@ -114,8 +128,12 @@ Check all of the following:
 - Cover file exists and both posts reference it.
 - Both posts link to the canonical episode.
 - Both podcast pages link back to the correct language transcript.
+- The Chinese post contains one `podcast` block and one `podcast-player` shortcode; the English post contains neither.
 - Hugo recognizes the two posts as translations and renders language switching.
 - `/post/blogYYYYMMDD/`, `/en/post/blogYYYYMMDD/`, `/podcast/`, and `/en/podcast/` render.
+- `/podcast/index.xml` parses as RSS 2.0 and contains the new episode exactly once.
+- The backup item’s GUID, `pubDate`, enclosure URL/type/length, and duration exactly match the Xiaoyuzhou main RSS.
+- `/index.xml` remains the blog RSS, and `/en/podcast/index.xml` does not exist.
 - The local Hugo Extended binary exactly matches `.github/workflows/deploy.yml` → `env.HUGO_VERSION`.
 - `git diff --check` passes and `git status --short` contains only intended changes.
 
@@ -155,9 +173,9 @@ Treat `.github/workflows/deploy.yml` as the executable source of truth for the b
 Report:
 
 - Created and updated file paths
-- Verified episode date, duration, and canonical URL
+- Verified episode date, duration, canonical URL, GUID, and enclosure metadata
 - Cover generation method, final prompt, and saved path
-- Build and rendered-link results
+- Build, rendered-link, player, and backup RSS results
 - Any source corrections or unresolved factual caveats
 
 Do not commit, push, or trigger deployment unless the user explicitly asks. A live release occurs only after the resulting changes reach `main` through the repository’s normal Git workflow.
