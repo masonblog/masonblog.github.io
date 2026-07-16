@@ -1,4 +1,4 @@
-baseURL: "https://masonblog.github.io/"
+baseURL: "https://blog.masonhu.cc/"
 title: Mason's Blog
 pagination:
   pagerSize: 5
