@@ -39,6 +39,12 @@ Episodes are in Chinese. Click any episode title below to listen.
 
 ## Episodes
 
+### [10 You Have the Right to Remain Silent: How the Miranda Warning Changed American Justice](https://www.xiaoyuzhoufm.com/episode/6a57b160016dcc7e0542cb88)
+
+2026-07-16 · 27 min · [Transcript](/en/post/blog20260716/)
+
+How did a rape suspect who had dropped out of school reach the U.S. Supreme Court and change the way hundreds of thousands of police officers conduct interrogations? Beginning with *Miranda v. Arizona*, this episode traces how the familiar warning from police dramas grew from a prisoner’s desperate signature into a constitutional rule printed in police manuals across the country.
+
 ### [09 The End of the Chinese Legal Tradition: How Late-Qing Reforms Reshaped the Rule of Law](https://www.xiaoyuzhoufm.com/episode/6a510fb84adef2b36562062c)
 
 2026-07-10 · 32 min · [Transcript](/en/post/blog20260710/)
