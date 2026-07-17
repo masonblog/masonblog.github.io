@@ -35,8 +35,6 @@ A podcast on the legal history of East and West. It tries to hold ancient Rome a
 
 Backup RSS feed: [https://blog.masonhu.cc/podcast/index.xml](https://blog.masonhu.cc/podcast/index.xml)
 
-Episodes are in Chinese. Click any episode title below to listen.
-
 ---
 
 ## Episodes
