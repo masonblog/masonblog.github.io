@@ -25,10 +25,6 @@
 
 《议正言辞》是一档聚焦东西方法律史的中文播客，主题围绕法律如何在国家与个人、礼俗与规则之间被反复争夺、修补和重写。站点提供中英文播客入口：中文播客页位于 `content/podcast.md`，英文介绍页位于 `content/podcast.en.md`；中文页同时启用 `layout: podcast` 与 `RSS` 输出，用于生成播客备份订阅源。
 
-播客单集文字稿作为普通博客文章存放在 `content/post/`，中文稿在 front matter 中使用 `podcast` 字段记录单集编号、GUID、发布时间、音频地址、音频类型和长度，并在正文顶部通过 `{{< podcast-player >}}` 嵌入播放器。英文稿使用同 basename 的 `.en.md` 文件，保留原始日期、slug、封面等结构字段，并在开头说明音频为中文、正文为英文译文。
-
-播客元数据集中配置在 `config.yml` 的 `params.podcast`；RSS 模板位于 `layouts/podcast.rss.xml`，播放器 shortcode 位于 `layouts/shortcodes/podcast-player.html`，样式位于 `assets/css/extended/podcast.css`，播客图片与平台按钮位于 `static/images/podcast/`。发布新单集时，需要同步更新中英文播客页的单集列表，并验证 Hugo 构建与播客 RSS。
-
 ## 多语言结构
 
 站点使用 Hugo 原生多语言能力：`zh` 是默认语言并保留根路径，`en` 输出到 `/en/`。语言相关菜单和首页文案配置在 `config.yml` 的 `languages` 下；PaperMod 会根据同 basename 的内容文件识别对应翻译。英文译文保留原文的日期、slug、封面和结构性 front matter，以便中英文页面保持稳定的一一对应关系。
