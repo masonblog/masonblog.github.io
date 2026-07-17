@@ -37,6 +37,8 @@ outputs:
   </a>
 </div>
 
+备用 RSS 地址：[https://blog.masonhu.cc/podcast/index.xml](https://blog.masonhu.cc/podcast/index.xml)
+
 ---
 
 ## 单集列表
