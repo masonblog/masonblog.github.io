@@ -47,7 +47,7 @@ Create `content/post/blogYYYYMMDD.md` with:
 title: "不含期数前缀的标题"
 date: YYYY-MM-DD
 slug: "blogYYYYMMDD"
-description: "自然摘要，并注明这是《议正言辞》第 NN 期文字稿。"
+description: "自然摘要，不重复说明其为第 NN 期文字稿。"
 keywords: ["关键词"]
 draft: false
 tags: ["读书笔记"]
@@ -59,7 +59,7 @@ podcast:
   episode: NN
   title: "小宇宙 RSS 中的完整单集标题"
   description: >-
-    小宇宙 RSS 中的完整单集简介
+    本站播客页中的单集简介，并附本站文字稿链接
   guid: "RSS guid"
   published: "Full RSS pubDate"
   duration: "Exact itunes:duration"
@@ -68,7 +68,7 @@ podcast:
 ---
 ```
 
-Use integers for `episode` and `audioLength`; quote the scalar podcast fields and use a folded scalar for `description`. Preserve the Xiaoyuzhou RSS title and description exactly. The on-page player and backup RSS enclosure URL are both generated from `site.Params.podcast.audioURLPattern`. Do not copy the `podcast` block to the English post.
+Use integers for `episode` and `audioLength`; quote the scalar podcast fields and use a folded scalar for `description`. Preserve the Xiaoyuzhou RSS title exactly. Use the local podcast page summary for `podcast.description`, followed by `本期文字稿` and the absolute local transcript URL. The on-page player and backup RSS enclosure URL are both generated from `site.Params.podcast.audioURLPattern`. Do not copy the `podcast` block to the English post.
 
 Immediately after the front matter, link the podcast hub, the canonical Xiaoyuzhou episode, and Apple Podcasts. Follow the wording used by the newest transcript, then insert `{{< podcast-player >}}` before the article body.
 
@@ -134,7 +134,7 @@ Check all of the following:
 - Hugo recognizes the two posts as translations and renders language switching.
 - `/post/blogYYYYMMDD/`, `/en/post/blogYYYYMMDD/`, `/podcast/`, and `/en/podcast/` render.
 - `/podcast/index.xml` parses as RSS 2.0 and contains the new episode exactly once.
-- The backup item’s title, description, GUID, `pubDate`, enclosure type/length, and duration exactly match the Xiaoyuzhou main RSS.
+- The backup item’s title, GUID, `pubDate`, enclosure type/length, and duration exactly match the Xiaoyuzhou main RSS; its description matches the local podcast page summary and links to the local transcript.
 - The on-page player and backup enclosure URLs match `site.Params.podcast.audioURLPattern`; requesting that R2 object succeeds and returns the same content length as the Xiaoyuzhou enclosure.
 - `/index.xml` remains the blog RSS, and `/en/podcast/index.xml` does not exist.
 - The local Hugo Extended binary exactly matches `.github/workflows/deploy.yml` → `env.HUGO_VERSION`.
