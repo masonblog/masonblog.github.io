@@ -22,17 +22,17 @@ languages:
     label: "中文"
     locale: "zh-CN"
     weight: 1
-    title: Mason's Blog
+    title: Mason 博客
     menu:
       main:
         - name: 文章
           url: archives
           weight: 10
+          name: 播客
+          url: podcast/
+          weight: 20
         - name: 作品集
           url: portfolio/
-          weight: 20
-        - name: 播客
-          url: podcast/
           weight: 30
         - name: 搜索
           url: search/
@@ -56,11 +56,11 @@ languages:
         - name: Posts
           url: archives
           weight: 10
+          name: Podcast
+          url: podcast/
+          weight: 20
         - name: Portfolio
           url: portfolio/
-          weight: 20
-        - name: Podcast
-          url: podcast/
           weight: 30
         - name: Search
           url: search/
@@ -90,7 +90,7 @@ params:
     title: "议正言辞"
     description: "一档聚焦东西方法律史的播客。节目试图把古罗马与二十一世纪的中国放在同一条线索里，去谈那条通往正义的漫长道路：法律如何在国家与个人、礼俗与规则之间被反复争夺、修补和重写。"
     author: "Mason Hu"
-    ownerEmail: "me@masonhu.cc"
+    ownerEmail: "masonhu2026@gmail.com"
     language: "zh-cn"
     category: "Society & Culture"
     explicit: false
@@ -118,7 +118,7 @@ params:
   ShowFullTextinRss: true
   mainSections:
     - post
-  ShowAllPagesInArchive: false
+  ShowAllPagesInArchive: true
   ShowPageNums: true
   
   assets:
