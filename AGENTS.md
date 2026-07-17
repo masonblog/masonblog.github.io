@@ -1,4 +1,4 @@
-# AGENTS.MD
+# AGENTS.md
 
 本文件为后续在本仓库工作的 AI 代理提供项目约定。修改前请先阅读根目录 `README.md`、`config.yml`，以及与任务相关的内容文件。
 
@@ -27,6 +27,16 @@
 - 当用户提出「按老规矩发布播客文稿」、发布或补发播客单集、生成单集封面、更新中英文播客页，或修复单集与文字稿之间的链接时，必须调用 `publish-podcast-episode` 技能。
 - 该技能是本文件的播客专项扩展。执行技能前仍须遵守本文件；若两者冲突，以本文件和用户的当次明确要求为准。
 - 若播客平台 ID、内容目录、双语字段、封面规则或构建命令发生变化，应同时更新本节与该技能，避免项目约定分叉。
+
+## 播客维护约定
+
+- 《议正言辞》是一档聚焦东西方法律史的中文播客。中文入口为 `content/podcast.md`，英文入口为 `content/podcast.en.md`；中文页使用 `layout: podcast` 并声明 `outputs: [HTML, RSS]`，用于生成独立播客页与备份 RSS。
+- 播客全局元数据维护在 `config.yml` 的 `params.podcast`，包括标题、简介、作者、邮箱、语言、分类、封面和 explicit/type 等 RSS 字段。平台收听入口目前包括小宇宙和 Apple Podcasts，页面按钮图片位于 `static/images/podcast/`。
+- 单集中文文字稿存放在 `content/post/`，文件名沿用 `blogYYYYMMDD.md`；对应英文译文使用同 basename 的 `.en.md`。中文稿 front matter 必须包含 `podcast:` 子字段：`episode`、`guid`、`published`、`duration`、`audioURL`、`audioType`、`audioLength`，并在正文顶部放置 `{{< podcast-player >}}`。
+- `podcast.guid` 使用小宇宙单集 ID；`podcast.published` 使用平台 RSS 中的 GMT 时间；`audioURL`、`audioType`、`audioLength` 应与小宇宙 RSS/enclosure 保持一致，用于冻结本站备份 RSS。不要凭记忆改写这些字段。
+- 英文稿通常不携带 `podcast:` 字段，以免重复进入播客 RSS；开头需说明这是《议正言辞》对应单集的英文译文，音频为中文，并链接到英文播客页、小宇宙单集和 Apple Podcasts。
+- 每次发布或补录单集，需要同步更新 `content/podcast.md` 与 `content/podcast.en.md` 的列表项，保持编号、标题、日期、时长、摘要、站内链接一致；中文链接指向 `/post/blogYYYYMMDD/`，英文链接指向 `/en/post/blogYYYYMMDD/`。
+- 播客 RSS 模板在 `layouts/podcast.rss.xml`，播放器 shortcode 在 `layouts/shortcodes/podcast-player.html`，播放器样式在 `assets/css/extended/podcast.css`。修改这些文件后必须运行生产构建，并检查 `/podcast/index.xml` 是否仍包含 enclosure、itunes 字段和按集数倒序排列的条目。
 
 ## 内容编辑规则
 
