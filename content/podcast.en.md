@@ -3,6 +3,7 @@ title: "Talking directly"
 noLicense: true
 titleImage: /images/podcast/Cover_talking_directly.png
 date: 2026-06-09
+layout: podcast
 ---
 
 A podcast on the legal history of East and West. It tries to hold ancient Rome and twenty-first-century China within a single thread—the long journey toward justice, and the way law is fought over, patched, and rewritten between the state and the individual, between custom and rule.
@@ -32,8 +33,6 @@ A podcast on the legal history of East and West. It tries to hold ancient Rome a
     <img class="b-dark" src="/images/podcast/Apple_Podcast_Dark.png" alt="Listen on Apple Podcasts">
   </a>
 </div>
-
-Backup RSS feed: [https://blog.masonhu.cc/podcast/index.xml](https://blog.masonhu.cc/podcast/index.xml)
 
 ---
 
