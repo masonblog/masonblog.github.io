@@ -96,6 +96,7 @@ params:
     explicit: false
     type: "episodic"
     image: "https://blog.masonhu.cc/images/podcast/Cover_talking_directly.png"
+    audioURLPattern: "https://podcast.masonhu.cc/talking-directly-%02d.m4a"
 
   defaultTheme: auto # to switch between dark or light according to browser theme
   displayFullLangName: true

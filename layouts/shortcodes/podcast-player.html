@@ -1,9 +1,10 @@
 {{- with .Page.Params.podcast -}}
+{{- $audioURL := printf site.Params.podcast.audioURLPattern (int .episode) -}}
 <div class="podcast-player" role="region" aria-label="播客播放器：{{ $.Page.Title }}">
   <div class="podcast-player__title">{{ $.Page.Title }}</div>
   <audio controls preload="metadata">
     <source
-      src="{{ .audioURL | safeURL }}"
+      src="{{ $audioURL | safeURL }}"
       type="{{ .audioType | default "audio/mpeg" }}">
     您的浏览器不支持音频播放。
   </audio>
