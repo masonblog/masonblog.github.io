@@ -26,15 +26,16 @@
 
     {{- range sort $episodes "Params.podcast.episode" "desc" }}
     {{- $p := .Params.podcast }}
+    {{- $audioURL := printf $cfg.audioURLPattern (int $p.episode) }}
     <item>
-      <title>{{ printf "%02d %s" (int $p.episode) .Title }}</title>
+      <title>{{ $p.title }}</title>
       <link>{{ .Permalink }}</link>
       <guid isPermaLink="false">{{ $p.guid }}</guid>
       <pubDate>{{ $p.published }}</pubDate>
-      <description>{{ .Description }}</description>
-      <content:encoded>{{ printf "<![CDATA[%s]]>" .Description | safeHTML }}</content:encoded>
+      <description>{{ printf "<![CDATA[%s]]>" $p.description | safeHTML }}</description>
+      <content:encoded>{{ printf "<![CDATA[%s]]>" $p.description | safeHTML }}</content:encoded>
       <enclosure
-        url="{{ $p.audioURL | safeURL }}"
+        url="{{ $audioURL | safeURL }}"
         length="{{ $p.audioLength }}"
         type="{{ $p.audioType }}" />
       <itunes:duration>{{ $p.duration }}</itunes:duration>
