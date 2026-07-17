@@ -17,13 +17,3 @@
   display: block;
   width: 100%;
 }
-
-.podcast-player__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1rem;
-  align-items: center;
-  margin-top: 0.65rem;
-  font-size: 0.9rem;
-  color: var(--secondary);
-}
