@@ -111,6 +111,8 @@ params:
     - name: "ApplePodcasts"
       title: "苹果播客"
       url: "https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374"
+    - name: "RSS"
+      url: "index.xml"
 
   ShowShareButtons: false
   ShowCodeCopyButtons: true
