@@ -31,12 +31,22 @@
 
 ## 目录结构
 
-- `content/post/`：博客文章及对应英文译文
-- `content/about.md` / `content/about.en.md`：关于页
-- `content/portfolio.md` / `content/portfolio.en.md`：作品集页
-- `static/images/`：图片资源，中英文内容共用同一套图片路径
-- `layouts/`：站点级布局覆盖
-- `assets/css/extended/`：站点级 CSS 扩展
+- `.github/workflows/`：GitHub Actions 部署流程，包含 Cloudflare Workers 主站部署与 GitHub Pages 备份部署。
+- `.agents/skills/`：仓库级 Codex 技能，目前用于固化《议正言辞》发布与维护工作流。
+- `archetypes/`：Hugo 内容原型模板。
+- `content/post/`：博客文章、播客文字稿及对应英文译文；中文文章通常使用 `blogYYYYMMDD.md`，英文译文使用同 basename 的 `.en.md`。
+- `content/about.md` / `content/about.en.md`：中英文关于页。
+- `content/portfolio.md` / `content/portfolio.en.md`：中英文作品集页。
+- `content/podcast.md` / `content/podcast.en.md`：中英文播客入口；中文页同时负责生成播客备份 RSS。
+- `content/search.md` / `content/search.en.md`：中英文搜索页，依赖 `outputs.home` 中的 `JSON` 输出。
+- `content/archieves.md` / `content/archieves.en.md`：中英文归档页（沿用现有文件名拼写）。
+- `static/images/`：图片资源，中英文内容共用同一套站点绝对路径。
+- `static/favicon/`：站点图标资源。
+- `layouts/`：PaperMod 的站点级布局覆盖、局部模板、shortcode 与播客 RSS 模板。
+- `assets/css/extended/`：站点级 CSS 扩展。
+- `config.yml`：站点全局配置、多语言菜单、参数、输出格式与 Hugo Module 配置。
+- `go.mod` / `go.sum`：Hugo Module 依赖记录，用于固定 PaperMod 主题来源。
+- `wrangler.jsonc`：Cloudflare Workers 部署配置。
 
 ## 自动部署
 
