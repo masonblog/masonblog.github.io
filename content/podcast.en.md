@@ -23,9 +23,9 @@ A podcast on the legal history of East and West. It tries to hold ancient Rome a
 :root[data-theme="dark"] .podcast-listen .b-dark{display:block;}
 :root[data-theme="dark"] .podcast-listen .b-light{display:none;}
 
-.episode-listen{display:inline-flex;align-items:center;gap:.35rem;vertical-align:middle;}
-.episode-listen a{display:inline-flex;align-items:center;justify-content:center;width:1.65rem;height:1.65rem;border-radius:.45rem;text-decoration:none;background:rgba(0,0,0,.04);}
-.episode-listen img{width:1.35rem;height:1.35rem;display:block;margin:0;object-fit:contain;}
+.episode-listen{display:inline-flex;align-items:center;gap:.3em;vertical-align:middle;transform:translateY(-.16em);}
+.episode-listen a{display:inline-flex;align-items:center;justify-content:center;width:1em;height:1em;border-radius:.22em;text-decoration:none;background:rgba(0,0,0,.04);}
+.episode-listen img{width:1em;height:1em;display:block;margin:0;object-fit:contain;}
 @media (prefers-color-scheme:dark){
   .episode-listen a{background:rgba(255,255,255,.10);}
 }
