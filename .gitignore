@@ -3,6 +3,9 @@
 /resources/_gen/
 /.hugo_build.lock
 
+# Node.js deployment dependencies
+/node_modules/
+
 # Operating system files
 .DS_Store
 Thumbs.db
