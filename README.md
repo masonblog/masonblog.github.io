@@ -46,17 +46,20 @@
 - `assets/css/extended/`：站点级 CSS 扩展。
 - `config.yml`：站点全局配置、多语言菜单、参数、输出格式与 Hugo Module 配置。
 - `go.mod` / `go.sum`：Hugo Module 依赖记录，用于固定 PaperMod 主题来源。
+- `package.json` / `package-lock.json`：部署工具依赖，当前用于固定 Cloudflare Wrangler 版本并启用 npm 缓存。
 - `wrangler.jsonc`：Cloudflare Workers 部署配置。
 
 ## 自动部署
 
-推送到 `main` 分支后，`.github/workflows/deploy.yml` 会自动：
+向 `main` 分支推送站点内容、资源、配置或部署文件后，`.github/workflows/deploy.yml` 会自动运行；也可以通过 `workflow_dispatch` 手动触发。部署流程会：
 
-1. 安装指定版本的 Hugo。
-2. 通过 Hugo Modules 拉取 `go.mod` 中固定版本的 PaperMod 主题。
-3. 构建静态站点，并同时生成根路径中文页面与 `/en/` 英文页面。
-4. 上传 Pages artifact。
-5. 将主站部署到 Cloudflare Workers，并部署 GitHub Pages 备份站。
+1. 并行执行 GitHub Pages 与 Cloudflare Workers 两条独立任务，并使用浅克隆减少仓库下载量。
+2. 两条任务分别安装指定版本的 Hugo，通过 Hugo Modules 加载固定版本的 PaperMod，并使用各自的 `baseURL` 构建中英文站点。
+3. GitHub Pages 将完整站点打包为 Pages artifact，部署到 `https://masonblog.github.io/`。
+4. Cloudflare 使用 lockfile 固定的 Wrangler 直接部署 `public/`，由 Workers 静态资源清单只上传新增或变化的文件，不再通过 GitHub artifact 中转。
+5. 相同分支短时间内连续推送时取消旧任务，避免过期版本继续占用构建和部署时间。
+
+仅修改 `README.md`、`AGENTS.md` 或 `.agents/` 等不参与站点生成的文件时，不会自动触发部署；如需验证，可以手动运行工作流。
 
 ## 版权说明
 
