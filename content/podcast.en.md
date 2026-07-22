@@ -1,5 +1,5 @@
 ---
-title: "Talking directly"
+title: "Reasoned Talk"
 noLicense: true
 titleImage: /images/podcast/Cover_talking_directly.png
 date: 2026-06-09
