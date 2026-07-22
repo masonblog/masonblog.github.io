@@ -3,7 +3,23 @@ name: Build and Deploy
 on:
   push:
     branches: ["main"]
+    paths:
+      - ".github/workflows/deploy.yml"
+      - "assets/**"
+      - "config.yml"
+      - "content/**"
+      - "go.mod"
+      - "go.sum"
+      - "layouts/**"
+      - "package-lock.json"
+      - "package.json"
+      - "static/**"
+      - "wrangler.jsonc"
   workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -15,26 +31,15 @@ defaults:
     shell: bash
 
 jobs:
-  build:
+  build-github:
     runs-on: ubuntu-22.04
     env:
       HUGO_VERSION: 0.164.0
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - target: github-pages
-            artifact_name: github-pages
-            base_url: ""
-          - target: cloudflare-workers
-            artifact_name: cloudflare-workers
-            base_url: "https://blog.masonhu.cc/"
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          fetch-depth: 0
-          submodules: recursive
+          fetch-depth: 1
 
       - name: Install Hugo
         run: |
@@ -43,30 +48,14 @@ jobs:
 
       - name: Configure Pages
         id: pages
-        if: matrix.target == 'github-pages'
         uses: actions/configure-pages@v5
 
       - name: Build with Hugo
-        run: |
-          if [[ "${{ matrix.target }}" == "github-pages" ]]; then
-            base_url="${{ steps.pages.outputs.base_url }}/"
-          else
-            base_url="${{ matrix.base_url }}"
-          fi
-
-          hugo --gc --minify --baseURL "$base_url"
+        run: hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload Pages artifact
-        if: matrix.target == 'github-pages'
         uses: actions/upload-pages-artifact@v5
         with:
-          path: ./public
-
-      - name: Upload Cloudflare artifact
-        if: matrix.target == 'cloudflare-workers'
-        uses: actions/upload-artifact@v5
-        with:
-          name: ${{ matrix.artifact_name }}
           path: ./public
 
   deploy-github:
@@ -74,7 +63,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-22.04
-    needs: build
+    needs: build-github
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
@@ -85,21 +74,35 @@ jobs:
       name: cloudflare-workers
       url: https://blog.masonhu.cc/
     runs-on: ubuntu-22.04
-    needs: build
+    env:
+      HUGO_VERSION: 0.164.0
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-
-      - name: Download Cloudflare artifact
-        uses: actions/download-artifact@v6
         with:
-          name: cloudflare-workers
-          path: ./public
+          fetch-depth: 1
+
+      - name: Install Hugo
+        run: |
+          wget -O "$RUNNER_TEMP/hugo.deb" "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "$RUNNER_TEMP/hugo.deb"
+
+      - name: Build with Hugo
+        run: hugo --gc --minify --baseURL "https://blog.masonhu.cc/"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install Wrangler
+        run: npm ci --prefer-offline --no-audit --no-fund
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          wranglerVersion: "4"
+          wranglerVersion: "4.113.0"
           command: deploy

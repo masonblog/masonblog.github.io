@@ -1,0 +1,7 @@
+{
+  "name": "masonblog-deploy",
+  "private": true,
+  "devDependencies": {
+    "wrangler": "4.113.0"
+  }
+}
