@@ -1,7 +1,7 @@
 ---
 title: "Reasoned Talk"
 noLicense: true
-titleImage: /images/podcast/Cover_talking_directly.png
+titleImage: /images/podcast/Cover_reasoned_talk.png
 date: 2026-06-09
 layout: podcast
 ---

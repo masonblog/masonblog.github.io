@@ -2,7 +2,7 @@
 title: "议正言辞"
 date: 2025-06-09
 noLicense: true
-titleImage: /images/podcast/Cover_talking_directly.png
+titleImage: /images/podcast/Cover_reasoned_talk.png
 layout: podcast
 outputs:
   - HTML
