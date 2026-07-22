@@ -7,7 +7,7 @@
 - 本仓库是 Mason's Blog 的 Hugo 静态站点源码，主要地址为 `https://blog.masonhu.cc/`，备用地址为 `https://masonblog.github.io/`。
 - 站点使用 Hugo Extended `0.164.0`，主题通过 Hugo Modules 引入 `github.com/adityatelange/hugo-PaperMod`。
 - 站点已启用 Hugo 多语言：`zh` 为默认语言并保留根路径，`en` 输出到 `/en/`；语言菜单、首页描述等语言相关配置位于 `config.yml` 的 `languages` 下。
-- 主题依赖记录在 `go.mod`，部署由 `.github/workflows/deploy.yml` 在 `main` 分支推送后自动完成。
+- 主题依赖记录在 `go.mod`。向 `main` 分支推送站点内容、资源、配置或部署文件时，`.github/workflows/deploy.yml` 会自动部署；其他变更可按需通过 `workflow_dispatch` 手动触发。
 - 这是个人博客，不是通用内容平台。文字、图片、个人材料默认不授权转载或商用。
 
 ## 目录约定
@@ -20,6 +20,8 @@
 - `assets/css/extended/`：站点级 CSS 扩展。
 - `.agents/skills/`：仓库级 Codex 技能。用于固化仅适用于本项目的可复用工作流。
 - `config.yml`：站点菜单、参数、输出格式、Hugo Module 等全局配置。
+- `package.json`、`package-lock.json`：Cloudflare 部署工具依赖；Wrangler 版本必须由二者共同固定。
+- `wrangler.jsonc`：Cloudflare Workers 静态资源目录、路由和兼容日期配置。
 
 ## 项目级技能
 
@@ -90,6 +92,19 @@ hugo --gc --minify
 hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 ```
 
+- Cloudflare Workers 部署构建使用：
+
+```bash
+hugo --gc --minify --baseURL "https://blog.masonhu.cc/"
+```
+
+- 修改 `package.json`、`package-lock.json`、`wrangler.jsonc` 或 Cloudflare 部署步骤后，还应验证部署依赖和 Wrangler 配置：
+
+```bash
+npm ci --prefer-offline --no-audit --no-fund
+npx --no-install wrangler deploy --dry-run
+```
+
 - 修改 `config.yml`、`layouts/`、`assets/css/extended/` 或 Hugo Module 版本后，务必至少运行一次生产构建。
 - 修改文章内容时，至少确认 front matter 语法有效，图片路径存在，站内链接没有明显拼写错误；新增英文页时还要抽查 `/en/` 路径、语言切换和对应中文页的翻译关系。
 - 不要提交 `public/`、`resources/` 等 Hugo 本地构建产物，除非任务明确要求。
@@ -98,7 +113,10 @@ hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 
 - 不要随意升级 Hugo、PaperMod、GitHub Actions 版本；升级前应说明原因并验证构建。
 - `go.mod` 中的 PaperMod 版本是站点主题来源。修改主题行为时，优先通过 `layouts/` 覆盖或 `assets/css/extended/` 扩展，避免直接引入主题源码副本。
-- `.github/workflows/deploy.yml` 使用 Hugo Extended Debian 包，主站部署到 Cloudflare Workers，并保留 GitHub Pages 作为备份。保持 workflow 的 Pages 权限、artifact 上传和 Workers 部署步骤完整。
+- `.github/workflows/deploy.yml` 使用 Hugo Extended Debian 包。GitHub Pages 与 Cloudflare Workers 必须保持为互不依赖的并行任务，并分别使用备份站和主站的 `baseURL`。
+- GitHub Pages 需要上传完整 Pages artifact；Cloudflare 应在同一任务中完成 checkout、Hugo 构建和 Wrangler 直接部署，不要重新引入 Cloudflare artifact 上传、下载或第二次 checkout。
+- Wrangler 作为 devDependency 固定在 `package.json` 和 `package-lock.json` 中，并通过 `actions/setup-node` 缓存 npm 下载。升级 Wrangler 时必须同步更新 lockfile，运行 `npm ci` 和 `wrangler deploy --dry-run`。
+- workflow 的 `paths` 过滤必须覆盖所有站点输入和部署配置；保留按分支划分的 `concurrency` 与 `cancel-in-progress`，避免连续推送部署旧版本。
 - `outputs.home` 中的 `JSON` 用于中英文搜索功能，不要移除；多语言构建应同时生成根路径中文搜索索引和 `/en/` 英文搜索索引。
 - `markup.goldmark.renderer.unsafe: true` 允许文章中的原始 HTML；删除前需检查历史文章和页面是否依赖该行为。
 
