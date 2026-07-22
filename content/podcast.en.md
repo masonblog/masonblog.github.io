@@ -47,6 +47,12 @@ A podcast on the legal history of East and West. It tries to hold ancient Rome a
 
 ## Episodes
 
+### [11 Yang Naiwu and Little Cabbage: The Systemic Collapse of Late-Qing Justice](/en/post/blog20260722/)
+
+2026-07-22 · 25 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a5f9a0ba3fec224d5a1392b" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
+
+How could a manifestly defective death investigation survive layer after layer of review and nearly send two innocent people to execution? Beginning with an uncleaned silver test needle, this episode traces how a botched autopsy, torture, fabricated corroboration, and five levels of review turned prejudice into an “iron case”—and how gentry networks, newspapers, and imperial power finally reopened it.
+
 ### [10 You Have the Right to Remain Silent: How the Miranda Warning Changed American Justice](/en/post/blog20260716/)
 
 2026-07-16 · 27 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a57b160016dcc7e0542cb88" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
