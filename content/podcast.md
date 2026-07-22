@@ -50,6 +50,12 @@ outputs:
 
 ## 单集列表
 
+### [11 杨乃武与小白菜：晚清司法的系统性崩溃](/post/blog20260722/)
+
+2026-07-22 · 25 分钟 · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a5f9a0ba3fec224d5a1392b" target="_blank" rel="noopener" aria-label="小宇宙"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="小宇宙"></a><a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
+
+一桩漏洞百出的命案，为什么能在层层复审中反复维持，差点把两个无辜的人送上刑场？本期从一根未经规范处理的银针讲起，拆解验尸失误、刑讯逼供、伪证补强与五级复核如何把偏见加工成一桩「铁案」，以及士绅网络、媒体舆论与最高权力的介入如何使案件沉冤昭雪。
+
 ### [10 你有权保持沉默：米兰达警告如何改变美国司法](/post/blog20260716/)
 
 2026-07-16 · 27 分钟 · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a57b160016dcc7e0542cb88" target="_blank" rel="noopener" aria-label="小宇宙"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="小宇宙"></a><a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
