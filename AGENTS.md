@@ -34,10 +34,10 @@
 
 ## 播客维护约定
 
-- 《议正言辞》是一档聚焦东西方法律史的中文播客。中文入口为 `content/podcast.md`，英文入口为 `content/podcast.en.md`；中文页使用 `layout: podcast` 并声明 `outputs: [HTML, RSS]`，用于生成独立播客页与备份 RSS。
+- 《议正言辞》（英文名 `Reasoned Talk`）是一档聚焦东西方法律史的中文播客。中文入口为 `content/podcast.md`，英文入口为 `content/podcast.en.md`；中文页使用 `layout: podcast` 并声明 `outputs: [HTML, RSS]`，用于生成独立播客页与备份 RSS。
 - 播客全局元数据维护在 `config.yml` 的 `params.podcast`，包括标题、简介、作者、邮箱、语言、分类、封面、R2 音频 URL 规则和 explicit/type 等 RSS 字段。平台收听入口目前包括小宇宙和 Apple Podcasts，页面按钮图片位于 `static/images/podcast/`。
 - 单集中文文字稿存放在 `content/post/`，文件名沿用 `blogYYYYMMDD.md`；对应英文译文使用同 basename 的 `.en.md`。中文稿 front matter 必须包含 `podcast:` 子字段：`episode`、`title`、`description`、`guid`、`published`、`duration`、`audioType`、`audioLength`，并在正文顶部放置 `{{< podcast-player >}}`。
-- `podcast.title`、`podcast.description`、`podcast.guid`、`podcast.published`、`podcast.duration`、`podcast.audioType`、`podcast.audioLength` 应与小宇宙主 RSS 保持一致，不要凭记忆改写。站内播放器与备用 RSS 的音频地址统一由 `params.podcast.audioURLPattern` 按期数生成，当前指向 R2 的 `https://podcast.masonhu.cc/talking-directly-NN.m4a`。
+- `podcast.title`、`podcast.description`、`podcast.guid`、`podcast.published`、`podcast.duration`、`podcast.audioType`、`podcast.audioLength` 应与小宇宙主 RSS 保持一致，不要凭记忆改写。站内播放器与备用 RSS 的音频地址统一由 `params.podcast.audioURLPattern` 按期数生成，当前指向 R2 的 `https://podcast.masonhu.cc/reasoned-talk-NN.m4a`。
 - 英文稿通常不携带 `podcast:` 字段，以免重复进入播客 RSS；开头需说明这是《议正言辞》对应单集的英文译文，音频为中文，并链接到英文播客页、小宇宙单集和 Apple Podcasts。
 - 每次发布或补录单集，需要同步更新 `content/podcast.md` 与 `content/podcast.en.md` 的列表项，保持编号、标题、日期、时长、摘要、站内链接一致；中文链接指向 `/post/blogYYYYMMDD/`，英文链接指向 `/en/post/blogYYYYMMDD/`。
 - 播客 RSS 模板在 `layouts/podcast.rss.xml`，播放器 shortcode 在 `layouts/shortcodes/podcast-player.html`，播放器样式在 `assets/css/extended/podcast.css`。修改这些文件后必须运行生产构建，并检查 `/podcast/index.xml` 是否仍包含 R2 enclosure、与小宇宙一致的单集标题和简介、itunes 字段，以及按集数倒序排列的条目。

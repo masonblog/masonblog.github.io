@@ -89,7 +89,7 @@ Create `content/post/blogYYYYMMDD.en.md` with the same basename and the same str
 - Translate `title`, `description`, `keywords`, `tags`, headings, body, and Shownotes into natural English.
 - Preserve the Chinese post’s structure and substance.
 - Do not add podcast front matter or the podcast player shortcode; the English translation must not become a duplicate RSS episode.
-- Use the podcast name and capitalization already established in the repository.
+- Use `Reasoned Talk` with exactly this capitalization as the established English podcast name.
 - State that the episode audio is in Chinese and the transcript is translated.
 - Link the English podcast hub at `/en/podcast/`.
 - Keep case names, citations, product names, and URLs technically accurate.
