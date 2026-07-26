@@ -12,7 +12,9 @@ noLicense: true
 
 作者 Mason，华政法学硕士，专职律师，一个为了自己与家庭的未来努力谋生的 90 后，稍微带点理想主义。
 
-我热爱历史与文学，对 AI 也颇有兴趣，曾利用业余时间参与制作 [《东亚观察局》](https://podcasts.apple.com/us/podcast/%E4%B8%9C%E4%BA%9A%E8%A7%82%E5%AF%9F%E5%B1%80/id1508293790)，以选出令人惊艳的片尾曲为乐。目前在运营不温不火的个人播客 [《议正言辞》](https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4)和 Bilibili 频道 [MasonTV](https://space.bilibili.com/492153853)。
+热爱历史与文学，对 AI 也颇有兴趣。目前在运营不温不火的个人播客 [《议正言辞》](/podcast)，你可以在[小宇宙](https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4)、[苹果播客](https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374)，以及 [Spotify](https://open.spotify.com/show/033N8EeYaxKaf8Xdd7yHSF) 等平台收听。
+
+微信公众号：议正言辞。
 
 联系邮箱：blog@masonhu.cc
 
