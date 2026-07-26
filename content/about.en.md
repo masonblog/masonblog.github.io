@@ -14,9 +14,11 @@ I am Mason, a Master of Laws graduate and an investment and financing lawyer. I 
 
 I love history and literature, and I have long had an interest in AI. I now run a modest personal podcast, [Reasoned Talk](/en/podcast) (议正言辞).
 
+Email: blog@masonhu.cc
+
 WeChat official account: 议正言辞.
 
-Email: blog@masonhu.cc
+![WeChat official account](/images/wechat_official_account.jpg)
 
 ## About this Blog
 
