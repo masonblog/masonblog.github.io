@@ -18,7 +18,7 @@ Email: blog@masonhu.cc
 
 WeChat official account: 议正言辞.
 
-<img src="/images/wechat_official_account.jpg" width="300" alt="WeChat official account">
+<img src="/images/wechat_official_account.jpg" width="200" alt="WeChat official account">
 
 ## About this Blog
 
