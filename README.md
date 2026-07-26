@@ -16,7 +16,7 @@
 
 微信公众号：议正言辞。
 
-<img src="/images/wechat_official_account.jpg" width="200" alt="微信公众号">
+<img src="/static/images/wechat_official_account.jpg" width="200" alt="微信公众号">
 
 ## 关于博客
 
