@@ -9,15 +9,28 @@ description: "为《议正言辞》策划下一期播客选题：逐篇盘点全
 
 先阅读仓库根目录的 `AGENTS.md`、`README.md`、`config.yml`，再运行 `git status --short`。保留用户未提交的改动。
 
-本技能只做选题策划并返回文本，不创建或修改节目文稿、播客页、封面及其他仓库文件。用户明确要求落盘时再编辑指定文件；发布单集时改用 `publish-podcast-episode` 技能。
+本技能只做选题策划，不修改节目文稿、播客页、封面及其他站点内容。可维护本技能自己的派生覆盖索引 `references/episode-coverage.json`；只有完整阅读对应版本的源文字稿后才能更新索引。发布单集时改用 `publish-podcast-episode` 技能。
 
-## 盘点全部既有内容
+## 增量盘点既有内容
 
-1. 读取 `content/podcast.md`，取得听众可见的单集顺序、标题与简介。
-2. 在 `content/post/` 中找出含顶层 `podcast:` front matter、`draft: false` 且未设 `hidden: true` 的中文 Markdown 文件。排除 `.en.md`，避免把译文当成另一集。
-3. **逐篇完整阅读所有已发布中文文字稿**，不要只看标题、简介或目录。即使单集数量增加，也要分批读完后再选题。
-4. 在内部建立覆盖图，至少记录：期数、年代、法域、案件或人物、法律部门、制度机制、核心冲突、叙事钩子、主要史料类型和与当下的连接点。
-5. 将只存在于本地、尚未公开但已经写入播客页或带有 `podcast:` 字段的内容标为“已规划”；完整阅读并纳入覆盖图，同样从候选题中排除，避免与正在发布的节目撞题。
+先运行：
+
+```powershell
+python .agents/skills/select-podcast-topic/scripts/check_episode_index.py --pretty
+```
+
+脚本只解析 front matter、文件哈希和播客页链接，不把文字稿正文送入上下文。按输出状态处理：
+
+1. `missing`、`changed` 或 `incomplete`：读取 `references/episode-index-schema.md`，逐篇完整阅读这些源文字稿，再新增或重写对应索引条目。**不得只根据标题、简介、目录或旧摘要更新哈希。**
+2. 索引缺失、schema 失效或 `audit.due: true`：完整阅读全部中文源文字稿，重建或审计索引。全量审计至少每新增 5 集或每 180 天进行一次。
+3. `orphaned`、`podcast_page_only` 或 `duplicate_episodes`：核对文件改名、删除、期数冲突、front matter 和播客页差异；不擅自删除内容或索引记录，期数仍有歧义时请用户确认。
+4. 全部为 `current` 且审计未到期：直接读取紧凑覆盖索引，不再完整重读所有历史文字稿。
+
+索引必须覆盖：期数、发布状态、年代、法域、案件或人物、法律部门、制度机制、核心问题、主要结论、叙事钩子、主要史料类型、与当下的连接点和易重复之处。排除 `.en.md`，避免把译文当成另一集。将 `draft: false` 且未设 `hidden: true` 的内容标为“已发布”；其他带有 `podcast:` 字段的中文内容标为“已规划”，同样排除出候选题。
+
+索引更新后再次运行检查脚本。只有文件哈希和必填语义字段都通过检查，才把条目视为可复用。覆盖索引是导航和检索层，不是原文证据；发现摘要与原文冲突时以原文为准并修正索引。
+
+形成候选池后，根据核心问题、制度机制、人物案件、史料和预期结论，从索引中找出与领先候选最相似的 2 至 4 集并完整回读。若回读发现新的重叠或索引不足，扩大回读范围。最终去重不得仅依赖摘要或关键词。
 
 需要确认“已发布”边界或发现本地落后于公开平台时，核对小宇宙主 RSS 和节目页；当前核对入口以 `publish-podcast-episode` 技能所列来源为准。若平台、本地播客页和文字稿互相冲突，说明差异，不要擅自删改内容。以已发布和已规划内容中的最高期数加一得到下一期编号，并使用两位数字；编号仍有歧义时先请用户确认。
 
@@ -26,7 +39,7 @@ description: "为《议正言辞》策划下一期播客选题：逐篇盘点全
 从仓库根目录运行：
 
 ```powershell
-python .agents/skills/select-podcast-topic/scripts/fetch_xiaoyuzhou_metrics.py --pretty
+python .agents/skills/select-podcast-topic/scripts/fetch_xiaoyuzhou_metrics.py
 ```
 
 脚本先读取《议正言辞》的小宇宙官方节目链接，再汇总 `content/podcast.md` 中的全部小宇宙官方单集链接，以覆盖节目页近期列表之外的旧单集。它直接解析 `xiaoyuzhoufm.com` 官方页面内嵌数据，记录抓取时间和每集的：

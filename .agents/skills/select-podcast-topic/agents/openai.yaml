@@ -1,4 +1,4 @@
 interface:
   display_name: "策划播客选题"
-  short_description: "结合全部文字稿与小宇宙官方互动数据，筛选下一期法律史选题"
-  default_prompt: "使用 $select-podcast-topic 结合《议正言辞》全部文字稿和小宇宙官方往期表现，策划下一期标题、简介和深度研究报告提示词。"
+  short_description: "结合增量覆盖索引与小宇宙数据，筛选下一期法律史选题"
+  default_prompt: "使用 $select-podcast-topic 结合增量覆盖索引和小宇宙官方往期表现，策划下一期标题、简介和深度研究报告提示词。"
