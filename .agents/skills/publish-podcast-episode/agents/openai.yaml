@@ -1,4 +1,4 @@
 interface:
   display_name: "发布播客单集"
-  short_description: "发布双语播客文稿、播放器与备用RSS"
-  default_prompt: "使用 $publish-podcast-episode 将这篇新播客文稿发布为中英文博文、生成封面，并同步播放器、双语播客页与备用 RSS。"
+  short_description: "发布双语播客文稿、上传 R2 音频并同步备用 RSS"
+  default_prompt: "使用 $publish-podcast-episode 将这篇新播客文稿发布为中英文博文、上传 R2 音频、生成封面，并同步播放器、双语播客页与备用 RSS。"

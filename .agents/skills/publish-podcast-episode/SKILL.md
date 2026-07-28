@@ -1,6 +1,6 @@
 ---
 name: publish-podcast-episode
-description: "Publish a new episode of the 议正言辞 podcast from a Markdown transcript into this Hugo repository by verifying current Xiaoyuzhou and Apple episode metadata, freezing the Xiaoyuzhou RSS fields for the backup feed, creating paired Chinese and English blog posts, embedding the Chinese audio player, generating and saving a GPT cover, updating both podcast pages, connecting episode and transcript links, and validating the multilingual build and podcast RSS. Use when the user asks to 按老规矩发布播客文稿, publish or backfill a new 议正言辞 episode, update the bilingual podcast pages, generate an episode cover, repair links between an episode and its transcript, or synchronize the blog backup podcast feed."
+description: "Publish a new episode of the 议正言辞 podcast from a Markdown transcript into this Hugo repository by verifying current Xiaoyuzhou and Apple episode metadata, mirroring the Xiaoyuzhou RSS audio enclosure to the masonhu Cloudflare R2 bucket, freezing the Xiaoyuzhou RSS fields for the backup feed, creating paired Chinese and English blog posts, embedding the Chinese audio player, generating and saving a GPT cover, updating both podcast pages, connecting episode and transcript links, and validating the multilingual build and podcast RSS. Use when the user asks to 按老规矩发布播客文稿, publish or backfill a new 议正言辞 episode, update the bilingual podcast pages, generate an episode cover, repair links between an episode and its transcript, or synchronize the blog backup podcast feed."
 ---
 
 # Publish Podcast Episode
@@ -37,6 +37,28 @@ Use the latest public episode metadata, not a related-episode link found inside 
 4. Convert UTC timestamps to `Asia/Shanghai` before choosing `YYYY-MM-DD`.
 
 If the episode is not publicly available or its identity is ambiguous, do not invent an ID, date, duration, or enclosure field. Report the missing fact and request the episode link.
+
+## Mirror the episode audio to Cloudflare R2
+
+After verifying the episode, download its RSS enclosure to a temporary file outside the repository and upload it to the `masonhu` R2 bucket. This is a required release step.
+
+1. Format `site.Params.podcast.audioURLPattern` with the episode number to obtain the public R2 URL. Use that URL path without the leading slash as the object key; with the current configuration, episode `NN` maps to `reasoned-talk-NN.m4a`.
+2. Download the exact Xiaoyuzhou RSS enclosure URL. Confirm the temporary file length exactly equals the enclosure `length` before uploading.
+3. If project dependencies are absent, run `npm ci --prefer-offline --no-audit --no-fund`. Use the repository-locked Wrangler and explicitly target remote storage:
+
+```powershell
+npx --no-install wrangler r2 object put "masonhu/$objectKey" `
+  --file $audioFile `
+  --content-type $audioType `
+  --remote
+if ($LASTEXITCODE -ne 0) {
+  throw "R2 audio upload failed"
+}
+```
+
+Here `$objectKey` comes from the configured public R2 URL, `$audioFile` is the temporary download, and `$audioType` is the enclosure MIME type. Do not substitute a related-episode asset, commit the audio file, omit `--remote`, expose Cloudflare credentials, or change the object naming convention independently of `audioURLPattern`.
+
+4. Request the public R2 URL and confirm success, the expected MIME type, and a `Content-Length` equal to the enclosure `length`. Only then remove the temporary file. Treat download, authentication, upload, or verification failure as a release blocker; never report the episode as fully published while the R2 object is missing or mismatched.
 
 ## Create the Chinese post
 
@@ -135,7 +157,8 @@ Check all of the following:
 - `/post/blogYYYYMMDD/`, `/en/post/blogYYYYMMDD/`, `/podcast/`, and `/en/podcast/` render.
 - `/podcast/index.xml` parses as RSS 2.0 and contains the new episode exactly once.
 - The backup item’s title, GUID, `pubDate`, enclosure type/length, and duration exactly match the Xiaoyuzhou main RSS; its description matches the local podcast page summary and links to the local transcript.
-- The on-page player and backup enclosure URLs match `site.Params.podcast.audioURLPattern`; requesting that R2 object succeeds and returns the same content length as the Xiaoyuzhou enclosure.
+- The Xiaoyuzhou enclosure download and the uploaded `masonhu` R2 object both have the RSS enclosure’s exact byte length.
+- The on-page player and backup enclosure URLs match `site.Params.podcast.audioURLPattern`; requesting that public R2 object succeeds and returns the expected MIME type and content length.
 - `/index.xml` remains the blog RSS, and `/en/podcast/index.xml` does not exist.
 - The local Hugo Extended binary exactly matches `.github/workflows/deploy.yml` → `env.HUGO_VERSION`.
 - `git diff --check` passes and `git status --short` contains only intended changes.
@@ -177,6 +200,7 @@ Report:
 
 - Created and updated file paths
 - Verified episode date, duration, canonical URL, GUID, and enclosure metadata
+- R2 bucket, object key, public URL, MIME type, and verified byte length
 - Cover generation method, final prompt, and saved path
 - Build, rendered-link, player, and backup RSS results
 - Any source corrections or unresolved factual caveats
