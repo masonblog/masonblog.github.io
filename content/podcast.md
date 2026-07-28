@@ -50,6 +50,12 @@ outputs:
 
 ## 单集列表
 
+### [12 焚烧国旗是否有罪？美国宪法第一修正案的司法博弈](https://www.xiaoyuzhoufm.com/episode/6a68c928b581962ce2bcf821)
+
+2026-07-28 · 26 分钟 · [文字稿](/post/blog20260728/)
+
+1984 年，共和党全国代表大会期间，抗议者格雷戈里·约翰逊当众焚烧美国国旗并被判刑。本期从德克萨斯诉约翰逊案出发，拆解焚旗为何构成受第一修正案保护的象征性言论，以及政府能否只因一种政治表达冒犯公众便动用刑罚。
+
 ### [11 杨乃武与小白菜：晚清司法的系统性崩溃](/post/blog20260722/)
 
 2026-07-22 · 25 分钟 · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a5f9a0ba3fec224d5a1392b" target="_blank" rel="noopener" aria-label="小宇宙"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="小宇宙"></a><a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>

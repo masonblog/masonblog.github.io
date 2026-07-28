@@ -47,6 +47,12 @@ A podcast on the legal history of East and West. It tries to hold ancient Rome a
 
 ## Episodes
 
+### [12 Is Burning the American Flag a Crime? The Judicial Battle over the First Amendment](https://www.xiaoyuzhoufm.com/episode/6a68c928b581962ce2bcf821)
+
+2026-07-28 · 26 min · [Transcript](/en/post/blog20260728/)
+
+In 1984, protester Gregory Lee Johnson burned an American flag during the Republican National Convention and was convicted of a crime. Beginning with *Texas v. Johnson*, this episode explains why political flag burning became expressive conduct protected by the First Amendment—and whether the government may impose criminal punishment simply because a political message offends the public.
+
 ### [11 Yang Naiwu and Little Cabbage: The Systemic Collapse of Late-Qing Justice](/en/post/blog20260722/)
 
 2026-07-22 · 25 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a5f9a0ba3fec224d5a1392b" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
