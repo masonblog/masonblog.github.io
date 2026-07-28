@@ -51,7 +51,7 @@ A podcast on the legal history of East and West. It tries to hold ancient Rome a
 
 2026-07-28 · 26 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a68c928b581962ce2bcf821" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
 
-In 1984, protester Gregory Lee Johnson burned an American flag during the Republican National Convention and was convicted of a crime. Beginning with *Texas v. Johnson*, this episode explains why political flag burning became expressive conduct protected by the First Amendment—and whether the government may impose criminal punishment simply because a political message offends the public.
+In 1984, protester Gregory Lee Johnson burned an American flag during the Republican National Convention and was convicted of a crime. Beginning with Texas v. Johnson, this episode explains why political flag burning became expressive conduct protected by the First Amendment—and whether the government may impose criminal punishment simply because a political message offends the public.
 
 ### [11 Yang Naiwu and Little Cabbage: The Systemic Collapse of Late-Qing Justice](/en/post/blog20260722/)
 
@@ -63,19 +63,19 @@ How could a manifestly defective death investigation survive layer after layer o
 
 2026-07-16 · 27 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a57b160016dcc7e0542cb88" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
 
-How did “You have the right to remain silent” move from a line in police dramas to a rule officers across America must follow? Beginning with *Miranda v. Arizona*, this episode explains how a rape suspect with little education reached the Supreme Court, and why a confession may be excluded even without physical coercion when police fail to advise a suspect of his rights.
+How did “You have the right to remain silent” move from a line in police dramas to a rule officers across America must follow? Beginning with Miranda v. Arizona, this episode explains how a rape suspect with little education reached the Supreme Court, and why a confession may be excluded even without physical coercion when police fail to advise a suspect of his rights.
 
 ### [09 The End of the Chinese Legal Tradition: How Late-Qing Reforms Reshaped the Rule of Law](/en/post/blog20260710/)
 
 2026-07-10 · 32 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a510fb84adef2b36562062c" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
 
-Why did a faltering Qing dynasty spend its final decade translating foreign codes, abolishing *lingchi*, building courts, and drafting a civil code? Returning to 1902–1911, this episode traces how foreign legal pressure, imperial self-preservation, conflict over ritual, and provincial resistance converged in reforms that failed to save the dynasty but dismantled the old Chinese legal tradition and seeded modern law.
+Why did a faltering Qing dynasty spend its final decade translating foreign codes, abolishing lingchi, building courts, and drafting a civil code? Returning to 1902–1911, this episode traces how foreign legal pressure, imperial self-preservation, conflict over ritual, and provincial resistance converged in reforms that failed to save the dynasty but dismantled the old Chinese legal tradition and seeded modern law.
 
 ### [08 The Supreme Court in the Crevice: The Birth of American Judicial Review](/en/post/blog20260708/)
 
 2026-07-08 · 28 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a4d1e6e3fb7233cbf455776" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
 
-The U.S. Constitution never expressly gives the Supreme Court power to interpret it. Returning to *Marbury v. Madison* (1803), this episode shows how an undelivered commission and a political struggle enabled the Court to claim judicial review and make it a cornerstone of the separation of powers.
+The U.S. Constitution never expressly gives the Supreme Court power to interpret it. Returning to Marbury v. Madison (1803), this episode shows how an undelivered commission and a political struggle enabled the Court to claim judicial review and make it a cornerstone of the separation of powers.
 
 ### [07 Shi Jianqiao and the Assassination of Sun Chuanfang](/en/post/blog20260705/)
 
@@ -105,7 +105,7 @@ What can one person do when the state uses textbooks to reshape memory of war? T
 
 2025-07-04 · 26 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6867b4e293fd2d72b889f266" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
 
-Focusing on birthright citizenship under the Fourteenth Amendment, this episode starts from the Supreme Court's then-recent procedural ruling, *Wong Kim Ark*, and the doctrine's history. It traces how the Trump administration challenged the principle through an executive order and litigation, and examines the contest between *jus soli* and *jus sanguinis*.
+Focusing on birthright citizenship under the Fourteenth Amendment, this episode starts from the Supreme Court's then-recent procedural ruling, Wong Kim Ark, and the doctrine's history. It traces how the Trump administration challenged the principle through an executive order and litigation, and examines the contest between jus soli and jus sanguinis.
 
 ### [02 A Survival Manual for Tang-Dynasty Justice: A Case that Sparked the Rites-vs-Law Debate](/en/post/blog20250611/)
 
@@ -117,4 +117,4 @@ Under Wu Zetian, an act of filial revenge brought Confucian duty into direct con
 
 2025-06-09 · 14 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/684660cb79e285b9b8f22ea4" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
 
-Drawing on Francis Fukuyama's *The Origins of Political Order*, this episode moves from Qin unification and the Qin legal system to the revival of Roman law, Bologna, and natural law. It compares China's early centralized state with Europe's later development of law and accountable government, asking how state power, the rule of law, and accountability together make modern political order.
+Drawing on Francis Fukuyama's The Origins of Political Order, this episode moves from Qin unification and the Qin legal system to the revival of Roman law, Bologna, and natural law. It compares China's early centralized state with Europe's later development of law and accountable government, asking how state power, the rule of law, and accountability together make modern political order.

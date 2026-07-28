@@ -72,7 +72,7 @@ Create `content/post/blogYYYYMMDD.md` with:
 title: "议正言辞 NN｜不含期数前缀的标题"
 date: YYYY-MM-DD
 slug: "blogYYYYMMDD"
-description: "自然摘要，不重复说明其为第 NN 期文字稿。"
+description: "与 content/podcast.md 对应列表项完全一致的纯文本单集简介。"
 keywords: ["关键词"]
 draft: false
 tags: ["读书笔记", "播客"]
@@ -93,7 +93,7 @@ podcast:
 ---
 ```
 
-Use integers for `episode` and `audioLength`; quote the scalar podcast fields and use a folded scalar for `description`. Preserve the Xiaoyuzhou RSS title exactly. Use the local podcast page summary for `podcast.description`, followed by `本期文字稿` and the absolute local transcript URL. The on-page player and backup RSS enclosure URL are both generated from `site.Params.podcast.audioURLPattern`. Do not copy the `podcast` block to the English post.
+Use integers for `episode` and `audioLength`; quote the scalar podcast fields and use a folded scalar for `description`. Preserve the Xiaoyuzhou RSS title exactly. The top-level `description` must exactly match the corresponding summary in `content/podcast.md`. Use that same local podcast page summary for `podcast.description`, followed by `本期文字稿` and the absolute local transcript URL. The on-page player and backup RSS enclosure URL are both generated from `site.Params.podcast.audioURLPattern`. Do not copy the `podcast` block to the English post.
 
 Immediately after the front matter, insert exactly one `{{< podcast-player >}}`, followed by any episode-specific correction note and then the article body. Do not add a podcast-hub or external-listening preamble to the Chinese post; episode 11 establishes the player-first Chinese layout.
 
@@ -112,7 +112,7 @@ Turn the spoken transcript into a readable post without changing the author’s 
 Create `content/post/blogYYYYMMDD.en.md` with the same basename and the same structural fields: `date`, `slug`, `draft`, `math`, `ShowToc`, and `cover`.
 
 - Use the title pattern `Podcast NN｜Natural English episode title`.
-- End the front-matter description with `This is the transcript of episode NN of Reasoned Talk.`
+- Make the front-matter `description` exactly match the corresponding plain-text summary in `content/podcast.en.md`. Do not append transcript boilerplate there; the fixed body preamble supplies that context.
 - Translate `title`, `description`, `keywords`, `tags`, headings, body, and Shownotes into natural English.
 - Preserve the Chinese post’s structure and substance.
 - Do not add podcast front matter or the podcast player shortcode; the English translation must not become a duplicate RSS episode.
@@ -158,8 +158,10 @@ For English:
 
 YYYY-MM-DD · NN min · <span class="episode-listen"><a href="CANONICAL_XIAOYUZHOU_URL" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
 
-Concise natural-English episode summary.
+Concise natural-English episode summary, exactly matching the English post's top-level `description`.
 ```
+
+Keep both language summaries in plain text without Markdown emphasis so the same text renders cleanly in post-header descriptions.
 
 The heading link is the transcript link. Put Xiaoyuzhou and Apple listening links only in the icon row; do not link the heading to Xiaoyuzhou or add a separate text transcript link.
 
@@ -168,6 +170,7 @@ The heading link is the transcript link. Put Xiaoyuzhou and Apple listening link
 Check all of the following:
 
 - Chinese and English front matter parses.
+- Each post's top-level `description` exactly matches the corresponding summary on its language's podcast page.
 - Cover file exists and both posts reference it.
 - The Chinese post title begins `议正言辞 NN｜`; the English title begins `Podcast NN｜`.
 - The Chinese post begins with the player and does not add an external-listening preamble.
