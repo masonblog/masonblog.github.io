@@ -25,21 +25,18 @@ languages:
     title: Mason 博客
     menu:
       main:
-        - name: 文章
-          url: archives
-          weight: 10
         - name: 播客
           url: podcast/
-          weight: 20
+          weight: 10
         - name: 作品集
           url: portfolio/
-          weight: 30
+          weight: 20
         - name: 搜索
           url: search/
-          weight: 40
+          weight: 30
         - name: 关于
           url: about/
-          weight: 50
+          weight: 40
     params:
       description: "分享知识与个人叙事"
       homeInfoParams:
@@ -53,21 +50,18 @@ languages:
     title: Mason's Blog
     menu:
       main:
-        - name: Posts
-          url: archives
-          weight: 10
         - name: Podcast
           url: podcast/
-          weight: 20
+          weight: 10
         - name: Portfolio
           url: portfolio/
-          weight: 30
+          weight: 20
         - name: Search
           url: search/
-          weight: 40
+          weight: 30
         - name: About
           url: about/
-          weight: 50
+          weight: 40
     params:
       description: "Knoledge & personal stories."
       homeInfoParams:
