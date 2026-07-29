@@ -6,6 +6,11 @@
 # Node.js deployment dependencies
 /node_modules/
 
+# Cloudflare Wrangler local state and secrets
+/.wrangler/
+/.dev.vars*
+/.env*
+
 # Operating system files
 .DS_Store
 Thumbs.db
