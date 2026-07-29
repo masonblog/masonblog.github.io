@@ -28,9 +28,10 @@ Run `git status --short`. Do not overwrite an existing `blogYYYYMMDD` pair or im
 Use the latest public episode metadata, not a related-episode link found inside the transcript.
 
 1. Read the Xiaoyuzhou main RSS at `https://feed.xyzfm.space/fnejgl98kbk6` with an XML parser. Do not parse XML with regular expressions.
-2. Check the Xiaoyuzhou show page at `https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4`. Resolve the Apple RSS feed, when needed, through `https://itunes.apple.com/lookup?id=6787849374&entity=podcast`, then inspect its `feedUrl`.
+2. Check the Xiaoyuzhou show page at `https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4`. Resolve the Apple RSS feed, when needed, through `https://itunes.apple.com/lookup?id=6787849374&entity=podcast`, then inspect its `feedUrl`. Query `https://itunes.apple.com/lookup?id=6787849374&entity=podcastEpisode&limit=200`, match the exact episode title, and confirm that the result belongs to collection ID `6787849374`.
 3. Match the episode by its exact title and capture:
    - Canonical Xiaoyuzhou episode URL without tracking parameters
+   - Apple Podcasts episode `trackId` and `trackViewUrl`; preserve the `i=TRACK_ID` parameter when creating the Chinese `/cn/` and English `/us/` links
    - RSS `guid` without modification
    - Full RSS `pubDate` string
    - Enclosure `url`, `type`, and integer `length`
@@ -120,7 +121,7 @@ Create `content/post/blogYYYYMMDD.en.md` with the same basename and the same str
 - Immediately after the front matter, use this fixed preamble:
 
 ```markdown
-> This is the transcript of episode NN of my podcast [*Reasoned Talk*](/en/podcast/) (议正言辞). Listen on [Xiaoyuzhou](CANONICAL_XIAOYUZHOU_URL) or [Apple Podcasts](APPLE_PODCASTS_URL). The episode is in Chinese; this transcript has been translated into English.
+> This is the transcript of episode NN of my podcast [*Reasoned Talk*](/en/podcast/) (议正言辞). Listen on [Xiaoyuzhou](CANONICAL_XIAOYUZHOU_URL) or [Apple Podcasts](APPLE_PODCASTS_EPISODE_URL_US). The episode is in Chinese; this transcript has been translated into English.
 ```
 
 - Keep case names, citations, product names, and URLs technically accurate.
@@ -146,7 +147,7 @@ Keep the existing `.episode-listen` CSS and use these exact entry shells. For Ch
 ```markdown
 ### [NN 中文单集标题](/post/blogYYYYMMDD/)
 
-YYYY-MM-DD · NN 分钟 · <span class="episode-listen"><a href="CANONICAL_XIAOYUZHOU_URL" target="_blank" rel="noopener" aria-label="小宇宙"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="小宇宙"></a><a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
+YYYY-MM-DD · NN 分钟 · <span class="episode-listen"><a href="CANONICAL_XIAOYUZHOU_URL" target="_blank" rel="noopener" aria-label="小宇宙"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="小宇宙"></a><a href="APPLE_PODCASTS_EPISODE_URL_CN" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
 
 简洁的中文单集简介。
 ```
@@ -156,7 +157,7 @@ For English:
 ```markdown
 ### [NN Natural English episode title](/en/post/blogYYYYMMDD/)
 
-YYYY-MM-DD · NN min · <span class="episode-listen"><a href="CANONICAL_XIAOYUZHOU_URL" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
+YYYY-MM-DD · NN min · <span class="episode-listen"><a href="CANONICAL_XIAOYUZHOU_URL" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="Xiaoyuzhou"></a><a href="APPLE_PODCASTS_EPISODE_URL_US" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
 
 Concise natural-English episode summary, exactly matching the English post's top-level `description`.
 ```
@@ -176,7 +177,7 @@ Check all of the following:
 - The Chinese post begins with the player and does not add an external-listening preamble.
 - The English post contains the fixed `Reasoned Talk` preamble linking the English podcast hub, canonical Xiaoyuzhou episode, and Apple Podcasts.
 - Each podcast-page heading links to the correct-language local transcript.
-- Each podcast-page metadata row contains the canonical Xiaoyuzhou link and the language-appropriate Apple Podcasts link in the existing inline icon shell.
+- Each podcast-page metadata row contains the canonical Xiaoyuzhou link and the language-appropriate Apple Podcasts episode link with the matched `i=TRACK_ID` parameter in the existing inline icon shell; neither row may fall back to the show page.
 - The Chinese post contains one `podcast` block and one `podcast-player` shortcode; the English post contains neither.
 - Hugo recognizes the two posts as translations and renders language switching.
 - `/post/blogYYYYMMDD/`, `/en/post/blogYYYYMMDD/`, `/podcast/`, and `/en/podcast/` render.
