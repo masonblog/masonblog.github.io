@@ -28,10 +28,11 @@ Run `git status --short`. Do not overwrite an existing `blogYYYYMMDD` pair or im
 Use the latest public episode metadata, not a related-episode link found inside the transcript.
 
 1. Read the Xiaoyuzhou main RSS at `https://feed.xyzfm.space/fnejgl98kbk6` with an XML parser. Do not parse XML with regular expressions.
-2. Check the Xiaoyuzhou show page at `https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4`. Resolve the Apple RSS feed, when needed, through `https://itunes.apple.com/lookup?id=6787849374&entity=podcast`, then inspect its `feedUrl`. Query `https://itunes.apple.com/lookup?id=6787849374&entity=podcastEpisode&limit=200`, match the exact episode title, and confirm that the result belongs to collection ID `6787849374`.
+2. Check the Xiaoyuzhou show page at `https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4`. Resolve the Apple RSS feed, when needed, through `https://itunes.apple.com/lookup?id=6787849374&entity=podcast`, then inspect its `feedUrl`. Query `https://itunes.apple.com/lookup?id=6787849374&entity=podcastEpisode&limit=200`, match the exact episode title, and confirm that the result belongs to collection ID `6787849374`. Check the Spotify show page at `https://open.spotify.com/show/033N8EeYaxKaf8Xdd7yHSF`, match the exact episode title, and confirm that its link is an independent `/episode/` URL.
 3. Match the episode by its exact title and capture:
    - Canonical Xiaoyuzhou episode URL without tracking parameters
    - Apple Podcasts episode `trackId` and `trackViewUrl`; preserve the `i=TRACK_ID` parameter when creating the Chinese `/cn/` and English `/us/` links
+   - Canonical Spotify episode URL in the form `https://open.spotify.com/episode/EPISODE_ID`
    - RSS `guid` without modification
    - Full RSS `pubDate` string
    - Enclosure `url`, `type`, and integer `length`
@@ -147,7 +148,7 @@ Keep the existing `.episode-listen` CSS and use these exact entry shells. For Ch
 ```markdown
 ### [NN 中文单集标题](/post/blogYYYYMMDD/)
 
-YYYY-MM-DD · NN 分钟 · <span class="episode-listen"><a href="CANONICAL_XIAOYUZHOU_URL" target="_blank" rel="noopener" aria-label="小宇宙"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="小宇宙"></a><a href="APPLE_PODCASTS_EPISODE_URL_CN" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
+YYYY-MM-DD · NN 分钟 · <span class="episode-listen"><a href="CANONICAL_XIAOYUZHOU_URL" target="_blank" rel="noopener" aria-label="小宇宙"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="小宇宙"></a><a href="APPLE_PODCASTS_EPISODE_URL_CN" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="SPOTIFY_EPISODE_URL" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
 
 简洁的中文单集简介。
 ```
@@ -157,14 +158,14 @@ For English:
 ```markdown
 ### [NN Natural English episode title](/en/post/blogYYYYMMDD/)
 
-YYYY-MM-DD · NN min · <span class="episode-listen"><a href="CANONICAL_XIAOYUZHOU_URL" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="https://static.xiaoyuzhoufm.com/brand-xyz/_next/static/images/cosmos-logo-rect-379861a906c5b6c6d8c9d0131fbd5cdd.png" alt="Xiaoyuzhou"></a><a href="APPLE_PODCASTS_EPISODE_URL_US" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="https://www.apple.com/v/apple-podcasts/c/images/overview/hero_icon__c135x5gz14mu_large.png" alt="Apple Podcasts"></a></span>
+YYYY-MM-DD · NN min · <span class="episode-listen"><a href="CANONICAL_XIAOYUZHOU_URL" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="Xiaoyuzhou"></a><a href="APPLE_PODCASTS_EPISODE_URL_US" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="SPOTIFY_EPISODE_URL" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
 
 Concise natural-English episode summary, exactly matching the English post's top-level `description`.
 ```
 
 Keep both language summaries in plain text without Markdown emphasis so the same text renders cleanly in post-header descriptions.
 
-The heading link is the transcript link. Put Xiaoyuzhou and Apple listening links only in the icon row; do not link the heading to Xiaoyuzhou or add a separate text transcript link.
+The heading link is the transcript link. Put Xiaoyuzhou, Apple, and Spotify listening links only in the icon row; do not link the heading to a listening platform or add a separate text transcript link.
 
 ## Validate the release
 
@@ -177,7 +178,7 @@ Check all of the following:
 - The Chinese post begins with the player and does not add an external-listening preamble.
 - The English post contains the fixed `Reasoned Talk` preamble linking the English podcast hub, canonical Xiaoyuzhou episode, and Apple Podcasts.
 - Each podcast-page heading links to the correct-language local transcript.
-- Each podcast-page metadata row contains the canonical Xiaoyuzhou link and the language-appropriate Apple Podcasts episode link with the matched `i=TRACK_ID` parameter in the existing inline icon shell; neither row may fall back to the show page.
+- Each podcast-page metadata row contains the canonical Xiaoyuzhou link, the language-appropriate Apple Podcasts episode link with the matched `i=TRACK_ID` parameter, and the canonical Spotify `/episode/` link in the existing inline icon shell; no platform may fall back to its show page.
 - The Chinese post contains one `podcast` block and one `podcast-player` shortcode; the English post contains neither.
 - Hugo recognizes the two posts as translations and renders language switching.
 - `/post/blogYYYYMMDD/`, `/en/post/blogYYYYMMDD/`, `/podcast/`, and `/en/podcast/` render.
@@ -228,7 +229,7 @@ Report:
 - Verified episode date, duration, canonical URL, GUID, and enclosure metadata
 - R2 bucket, object key, public URL, MIME type, and verified byte length
 - Cover generation method, final prompt, and saved path
-- Build, rendered-link, player, and backup RSS results
+- Build, rendered-link (including Spotify show and episode links), player, and backup RSS results
 - Any source corrections or unresolved factual caveats
 
 Do not commit, push, or trigger deployment unless the user explicitly asks. A live release occurs only after the resulting changes reach `main` through the repository’s normal Git workflow.
