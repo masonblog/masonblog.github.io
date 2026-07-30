@@ -1,0 +1,6 @@
+/* Show a little more of each article preview on every list page. */
+.post-entry .entry-content,
+.first-entry .entry-content {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
