@@ -1,16 +1,16 @@
 {
   "schema_version": 1,
   "full_audit": {
-    "completed_at": "2026-07-26",
-    "through_episode": 11
+    "completed_at": "2026-07-31",
+    "through_episode": 12
   },
   "episodes": [
     {
       "episode": 1,
       "path": "content/post/blog20250609.md",
-      "source_sha256": "346d684be14164b06320df240c69811304a8abf94ab84996e42e5441c6952441",
+      "source_sha256": "ed8eaa0d337c7d6f6ab58471beda7623f44f2e66ff97084d2ad2beb00d2adf77",
       "publication_state": "published",
-      "indexed_at": "2026-07-26",
+      "indexed_at": "2026-07-31",
       "title": "01 从秦王扫六合到罗马法复兴：国家建构与法治的碰撞",
       "date": "2025-06-09",
       "coverage": {
@@ -32,9 +32,9 @@
     {
       "episode": 2,
       "path": "content/post/blog20250611.md",
-      "source_sha256": "84a2666d9a2823fb93655403b49929c7469d01d6d0e382a3a407502b9763482e",
+      "source_sha256": "2fbe011a36ce8e3fa0eea132c083f466c4b7b80dfe214e2881dbcea0be5ce78c",
       "publication_state": "published",
-      "indexed_at": "2026-07-26",
+      "indexed_at": "2026-07-31",
       "title": "02 唐代司法生存手册：一桩司法案件引发的礼法之争",
       "date": "2025-06-11",
       "coverage": {
@@ -56,9 +56,9 @@
     {
       "episode": 3,
       "path": "content/post/blog20250704.md",
-      "source_sha256": "97ac7bdb87cdad54873ff2c1951e38abb17815926d9f25b51b8afd0b50a0e002",
+      "source_sha256": "21c3e4e74b06fe4e3830b41514811db7c244e30a37086b1aaf5937cf9a996493",
       "publication_state": "published",
-      "indexed_at": "2026-07-26",
+      "indexed_at": "2026-07-31",
       "title": "03 特朗普如何挑战宪法：围绕出生公民权的司法博弈",
       "date": "2025-07-04",
       "coverage": {
@@ -80,9 +80,9 @@
     {
       "episode": 4,
       "path": "content/post/blog20260226.md",
-      "source_sha256": "c280c8251ff50910de494fe6faca054874745689350b2e6d04d11595f9312317",
+      "source_sha256": "410a8dd5f4cdaf0e7183614f34abdd992a2cbc0d806f599f566f17c16537ae94",
       "publication_state": "published",
-      "indexed_at": "2026-07-26",
+      "indexed_at": "2026-07-31",
       "title": "04 日本人如何接受战败？与日本政府的32年战斗",
       "date": "2026-02-26",
       "coverage": {
@@ -104,9 +104,9 @@
     {
       "episode": 5,
       "path": "content/post/blog20260310.md",
-      "source_sha256": "d18717a6b67487eead5c051b3d1c3c80198de8c6badd43d982dcf7d7de03f5c3",
+      "source_sha256": "1213048265a2b02f0cfcd2b39a970f940d772758daba14584de41d7c0a20a95b",
       "publication_state": "published",
-      "indexed_at": "2026-07-26",
+      "indexed_at": "2026-07-31",
       "title": "05 高铭暄与中国刑法：四要件与三阶层的论争",
       "date": "2026-03-10",
       "coverage": {
@@ -128,9 +128,9 @@
     {
       "episode": 6,
       "path": "content/post/blog20260703.md",
-      "source_sha256": "ed1363377860afb2c821c8e2507b6a4920f596cfe0897cfe22b25ea6009cf610",
+      "source_sha256": "2222047176075c2a18de804c0ca497eb368be91326c17fc557827981cbcfb4c3",
       "publication_state": "published",
-      "indexed_at": "2026-07-26",
+      "indexed_at": "2026-07-31",
       "title": "06 美国出生公民权：完全胜利 or 暂时休战？",
       "date": "2026-07-03",
       "coverage": {
@@ -152,9 +152,9 @@
     {
       "episode": 7,
       "path": "content/post/blog20260705.md",
-      "source_sha256": "688ff0e095ef7dfb5717f6a03a2a922b9b02b578286649435a8865c392629bf7",
+      "source_sha256": "525b6d11303b383f8d37f1cf6b519bb7ff8a215285f285f67cdf64b3157f68f3",
       "publication_state": "published",
-      "indexed_at": "2026-07-26",
+      "indexed_at": "2026-07-31",
       "title": "07 民国女侠与礼法之争：施剑翘刺杀孙传芳案",
       "date": "2026-07-05",
       "coverage": {
@@ -176,9 +176,9 @@
     {
       "episode": 8,
       "path": "content/post/blog20260708.md",
-      "source_sha256": "bb948e40c94bb1f3dd60cb4e0e323841377a048291991946e668b0536766cd79",
+      "source_sha256": "d38645099540b367c07a2d3c024ef0db6f907f5c8c53dd75b9d5534abfdbeb64",
       "publication_state": "published",
-      "indexed_at": "2026-07-26",
+      "indexed_at": "2026-07-31",
       "title": "08 夹缝中的最高法院：美国司法审查制度的诞生",
       "date": "2026-07-08",
       "coverage": {
@@ -200,9 +200,9 @@
     {
       "episode": 9,
       "path": "content/post/blog20260710.md",
-      "source_sha256": "081c9e8d53a2433a82d66a3697e11d47514e56115a5127fbacd97d3120cdb974",
+      "source_sha256": "4fbc09aa3c74d0f7a1a908a72d4fc54d587392e3bcf256c06129c6def799d978",
       "publication_state": "published",
-      "indexed_at": "2026-07-26",
+      "indexed_at": "2026-07-31",
       "title": "09 中华法系的终结：清末修律如何重塑中国法治",
       "date": "2026-07-10",
       "coverage": {
@@ -224,9 +224,9 @@
     {
       "episode": 10,
       "path": "content/post/blog20260716.md",
-      "source_sha256": "b5ddb870b6110069365579f2c3bb899d2fc40410b5b7e09fb237af5054c8dc4f",
+      "source_sha256": "72ae273cce2f39f36c9de4bb5f1cbbaf5b93895f6476b4e1ecabbb49519f9947",
       "publication_state": "published",
-      "indexed_at": "2026-07-26",
+      "indexed_at": "2026-07-31",
       "title": "10 你有权保持沉默：米兰达警告如何改变美国司法",
       "date": "2026-07-16",
       "coverage": {
@@ -248,9 +248,9 @@
     {
       "episode": 11,
       "path": "content/post/blog20260722.md",
-      "source_sha256": "b3c36f6814a725e39cdb8f0fcbba03de003f2cee3473b0da9d4dfcaad63b87b2",
+      "source_sha256": "9925ae497f82b38f9f777b20c143c8e369214a48e9876c941002796bb16f9039",
       "publication_state": "published",
-      "indexed_at": "2026-07-26",
+      "indexed_at": "2026-07-31",
       "title": "11 杨乃武与小白菜：晚清司法的系统性崩溃",
       "date": "2026-07-22",
       "coverage": {
@@ -267,6 +267,30 @@
         "present_connection": "连接现代错案治理中的口供依赖、书面复核、问责逆向激励和弱势当事人申诉能力。",
         "overlap_notes": ["与第 09 集直接构成修律前旧司法失灵与其后制度改革的因果背景", "与第 10 集都讨论口供和强制讯问，本集增加官僚问责、案卷复核和社会资源不平等", "与第 02 集都出现地方救济失效和向中央申诉，但本集集中于错案机制"],
         "expected_conclusion": "程序层级越多不等于纠错能力越强；如果证据生产、复核信息和责任激励共享同一偏差，多级审查只会放大错误，而真正的权利保障必须让独立检验、有效申诉和纠错激励进入制度内部。"
+      }
+    },
+    {
+      "episode": 12,
+      "path": "content/post/blog20260728.md",
+      "source_sha256": "d8db11b72c983cbfa524b7a356ae1a24f55bb2a2c176a77feba6ff4640e904b8",
+      "publication_state": "published",
+      "indexed_at": "2026-07-31",
+      "title": "12 焚烧国旗是否有罪？美国宪法第一修正案的司法博弈",
+      "date": "2026-07-28",
+      "coverage": {
+        "summary": "以格雷戈里·约翰逊在 1984 年共和党全国代表大会期间焚烧美国国旗并被定罪为起点，梳理德克萨斯诉约翰逊案如何把焚旗认定为象征性言论，并以内容审查、冒犯者否决和强制正统等理由推翻定罪。后续追踪国旗保护法、艾克曼案、修宪尝试及 2025 年行政命令，说明政府转向用火、财产和移民规则间接规制时仍可能面对选择性执法问题。",
+        "eras": ["1984 至 1990 年美国焚旗诉讼与立法", "1990 年代至 2006 年修宪争议", "2025 至 2026 年行政执法争议"],
+        "jurisdictions": ["美国联邦宪法", "德克萨斯州刑法", "美国联邦刑法与行政执法"],
+        "people_or_cases": ["格雷戈里·约翰逊", "德克萨斯诉约翰逊案", "西弗吉尼亚州教育委员会诉巴内特案", "合众国诉艾克曼案", "第 14341 号行政命令", "杰伊·凯里案"],
+        "legal_fields": ["宪法", "刑法", "言论自由与行政执法"],
+        "mechanisms": ["象征性言论", "基于内容的审查", "冒犯者否决", "内容中立规制", "国会立法与宪法修正", "选择性执法"],
+        "core_question": "政府能否仅因政治性焚旗冒犯公众、损害国家象征的尊严，就以刑罚或其他行政手段限制这种表达？",
+        "central_claims": ["政治语境中的焚旗能够传递可理解的信息，属于第一修正案保护的象征性言论", "德州法律和联邦国旗保护法真正针对的是不敬信息而非一般物理损坏，因而构成内容审查", "政府可以执行真正与表达无关的用火和财产规则，但若只因焚烧对象是国旗而加重执法，仍可能受到第一修正案审查"],
+        "narrative_hook": "约翰逊在共和党全国代表大会外点燃美国国旗，现场无人受伤，却因旁观者感到严重冒犯而被判一年监禁；案件迫使法院在国家象征与最令人不适的政治表达之间选择。",
+        "source_types": ["美国宪法第一修正案", "德克萨斯诉约翰逊案及相关判例", "德克萨斯州刑法与《国旗保护法》", "国会修宪记录", "2025 年行政命令与凯里案程序材料"],
+        "present_connection": "连接 2025 年第 14341 号行政命令和 2026 年凯里案撤诉；行政部门并未直接创设焚旗罪，而是尝试依赖内容中立的既有规则，是否构成选择性执法仍取决于具体事实。",
+        "overlap_notes": ["与第 08 集都讨论最高法院的反多数角色，本集把问题落实到第一修正案和国家象征", "与第 10 集都展示法院创设或强化具体权利规则，本集关注表达内容而非刑事讯问", "后续不宜重复以美国最高法院 5 比 4 判决保护争议性个人权利的同一叙事结构"],
+        "expected_conclusion": "第一修正案的价值不在于保护令人赞同的表达，而在于阻止政府把国家象征、公众冒犯感或政治正统变成刑罚边界；内容中立规则仍可适用，但不能成为压制特定观点的借口。"
       }
     }
   ]
