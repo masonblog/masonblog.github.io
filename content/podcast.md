@@ -54,6 +54,12 @@ outputs:
 
 ## 单集列表
 
+### [13 中国宪法「第一案」：被偷走的受教育权](/post/blog20260805/)
+
+2026-08-05 · 32 分钟 · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a720d791b5e24969ce8f4cd" target="_blank" rel="noopener" aria-label="小宇宙"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="小宇宙"></a><a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374?i=1000779918915" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/67f0ZnBgDYGHpVR3QfnPQ9" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
+
+1998 年末，齐玉苓发现同学陈晓琪早在八年前冒用她的身份和录取通知书入读中专。本期从这段被偷走的人生出发，梳理最高法院如何以法释〔2001〕25 号批复将宪法受教育权引入民事纠纷，以及批复七年后被废止所留下的宪法司法化争议。
+
 ### [12 焚烧国旗是否有罪？美国宪法第一修正案的司法博弈](/post/blog20260728/)
 
 2026-07-28 · 26 分钟 · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a68c928b581962ce2bcf821" target="_blank" rel="noopener" aria-label="小宇宙"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="小宇宙"></a><a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374?i=1000778724202" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/3mwlTtVFeufGZUmKsMmAPg" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>

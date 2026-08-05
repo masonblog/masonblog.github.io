@@ -51,6 +51,12 @@ A podcast on the legal history of East and West. It tries to hold ancient Rome a
 
 ## Episodes
 
+### [13 China’s “First Constitutional Case”: The Stolen Right to Education](/en/post/blog20260805/)
+
+2026-08-05 · 32 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a720d791b5e24969ce8f4cd" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374?i=1000779918915" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/67f0ZnBgDYGHpVR3QfnPQ9" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
+
+In late 1998, Qi Yuling discovered that a former classmate had used her identity and admission notice to take her place at a technical secondary school eight years earlier. This episode traces how the Supreme People’s Court brought the constitutional right to education into a civil dispute through its 2001 Reply No. 25—and why the reply’s repeal seven years later left the debate over judicial application of the Constitution unresolved.
+
 ### [12 Is Burning the American Flag a Crime? The Judicial Battle over the First Amendment](/en/post/blog20260728/)
 
 2026-07-28 · 26 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a68c928b581962ce2bcf821" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374?i=1000778724202" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/3mwlTtVFeufGZUmKsMmAPg" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
