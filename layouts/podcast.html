@@ -1,77 +1,89 @@
 {{- define "main" }}
+{{- $isZh := eq .Language.Lang "zh" -}}
+{{- $podcast := site.Params.podcast -}}
+{{- $description := .Description | default $podcast.description -}}
 
-<article class="post-single">
-  <header class="post-header">
-    {{ partial "breadcrumbs.html" . }}
-    <h1 class="post-title entry-hint-parent">
-      {{ .Title }}
-      <a class="podcast-rss-link" href="{{ "podcast/index.xml" | absURL }}"
-        aria-label="{{ if eq .Language.Lang "zh" }}订阅备用 RSS{{ else }}Subscribe to the backup RSS feed{{ end }}"
-        title="{{ if eq .Language.Lang "zh" }}订阅备用 RSS{{ else }}Subscribe to the backup RSS feed{{ end }}">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" height="23" aria-hidden="true">
-          <path d="M4 11a9 9 0 0 1 9 9" />
-          <path d="M4 4a16 16 0 0 1 16 16" />
-          <circle cx="5" cy="19" r="1" />
-        </svg>
-      </a>
-      {{- if .Draft }}
-      <span class="entry-hint" title="Draft">
-        <svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" fill="currentColor">
-          <path
-            d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862.09-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
-        </svg>
-      </span>
-      {{- end }}
-    </h1>
-    {{- if .Description }}
-    <div class="post-description">
-      {{ .Description }}
+<article class="podcast-site">
+  <section class="podcast-hero" aria-labelledby="podcast-title">
+    <div class="podcast-hero__inner">
+      <div class="podcast-hero__art">
+        <img src="{{ .Params.titleImage | default "/images/podcast/cover_reasoned_talk.png" }}" alt="{{ .Title }} / Reasoned Talk" width="3000" height="3000">
+      </div>
+      <div class="podcast-hero__copy">
+        <p class="podcast-eyebrow">{{ if $isZh }}东西方法律史播客{{ else }}A podcast on Eastern &amp; Western legal history{{ end }}</p>
+        <div class="podcast-title-lockup{{ if not $isZh }} podcast-title-lockup--en{{ end }}">
+          <div class="podcast-title-lockup__center">
+            <h1 id="podcast-title">{{ .Title }}</h1>
+            <a class="podcast-title-rss" href="{{ "podcast/index.xml" | absURL }}"
+              aria-label="{{ if $isZh }}订阅备用 RSS{{ else }}Subscribe to the backup RSS feed{{ end }}"
+              title="{{ if $isZh }}订阅 RSS{{ else }}RSS feed{{ end }}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M5 12.5a6.5 6.5 0 0 1 6.5 6.5" />
+                <path d="M5 5a14 14 0 0 1 14 14" />
+                <circle cx="5" cy="19" r="1" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        {{- if $isZh }}
+        <p class="podcast-hero__english">Reasoned Talk</p>
+        {{- end }}
+        <p class="podcast-hero__description">{{ $description }}</p>
+        <div class="podcast-platforms" aria-label="{{ if $isZh }}选择收听平台{{ else }}Choose a listening platform{{ end }}">
+          <a href="https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4" target="_blank" rel="noopener noreferrer" aria-label="{{ if $isZh }}在小宇宙收听{{ else }}Listen on Xiaoyuzhou{{ end }}">
+            <img class="podcast-platform-badge--light" src="/images/podcast/Xiaoyuzhou_Light.png" alt="{{ if $isZh }}在小宇宙收听{{ else }}Listen on Xiaoyuzhou{{ end }}">
+            <img class="podcast-platform-badge--dark" src="/images/podcast/Xiaoyuzhou_Dark.png" alt="">
+          </a>
+          <a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener noreferrer" aria-label="Listen on Apple Podcasts">
+            <img class="podcast-platform-badge--light" src="/images/podcast/Apple_Podcast_Light.png" alt="Listen on Apple Podcasts">
+            <img class="podcast-platform-badge--dark" src="/images/podcast/Apple_Podcast_Dark.png" alt="">
+          </a>
+          <a href="https://open.spotify.com/show/033N8EeYaxKaf8Xdd7yHSF" target="_blank" rel="noopener noreferrer" aria-label="Listen on Spotify">
+            <img class="podcast-platform-badge--light" src="/images/podcast/Spotify_Light.png" alt="Listen on Spotify">
+            <img class="podcast-platform-badge--dark" src="/images/podcast/Spotify_Dark.png" alt="">
+          </a>
+        </div>
+      </div>
     </div>
-    {{- end }}
-    {{- if not (.Param "hideMeta") }}
-    <div class="post-meta">
-      {{- partial "post_meta.html" . -}}
-      {{- partial "translation_list.html" . -}}
-      {{- partial "edit_post.html" . -}}
-      {{- partial "post_canonical.html" . -}}
+  </section>
+
+  <section id="episodes" class="podcast-episodes" aria-label="{{ if $isZh }}单集列表{{ else }}Episode list{{ end }}">
+    <div class="podcast-episodes__inner md-content">
+      {{- .Content -}}
     </div>
-    {{- end }}
-  </header>
-  {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
-  {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
-  {{- if (.Param "ShowToc") }}
-  {{- partial "toc.html" . }}
-  {{- end }}
-
-  {{- if .Content }}
-  <div class="post-content md-content">
-    {{- if not (.Param "disableAnchoredHeadings") }}
-    {{- partial "anchored_headings.html" .Content -}}
-    {{- else }}{{ .Content }}{{ end }}
-  </div>
-  {{- end }}
-
-  {{- partial "extend_post_content.html" . }}
-
-  <footer class="post-footer">
-    {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
-    <ul class="post-tags">
-      {{- range ($.GetTerms $tags) }}
-      <li><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></li>
-      {{- end }}
-    </ul>
-    {{- if (.Param "ShowPostNavLinks") }}
-    {{- partial "post_nav_links.html" . }}
-    {{- end }}
-    {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
-    {{- partial "share_icons.html" . -}}
-    {{- end }}
-  </footer>
-
-  {{- if (.Param "comments") }}
-  {{- partial "comments.html" . }}
-  {{- end }}
+  </section>
 </article>
 
-{{- end }}{{/* end main */}}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var list = document.querySelector('.podcast-episodes__inner');
+    if (!list || list.dataset.enhanced === 'true') return;
+
+    var heading = list.querySelector('h2');
+    if (heading) heading.id = 'episode-list-title';
+
+    var currentCard = null;
+    Array.from(list.children).forEach(function (node) {
+      if (node.tagName === 'H3') {
+        currentCard = document.createElement('article');
+        currentCard.className = 'podcast-episode-card';
+        node.parentNode.insertBefore(currentCard, node);
+        currentCard.appendChild(node);
+      } else if (currentCard && node !== heading) {
+        currentCard.appendChild(node);
+      }
+    });
+
+    var firstCard = list.querySelector('.podcast-episode-card');
+    if (firstCard) {
+      firstCard.classList.add('podcast-episode-card--latest');
+      var label = document.createElement('span');
+      label.className = 'podcast-episode-card__label';
+      label.textContent = {{ if $isZh }}'最新单集'{{ else }}'Latest episode'{{ end }};
+      firstCard.insertBefore(label, firstCard.firstChild);
+    }
+
+    list.dataset.enhanced = 'true';
+  });
+</script>
+{{- end }}

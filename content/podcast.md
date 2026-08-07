@@ -1,55 +1,13 @@
 ---
 title: "议正言辞"
 date: 2025-06-09
+description: "一档聚焦东西方法律史的播客。节目试图把古罗马与二十一世纪的中国放在同一条线索里，去探索追求正义的漫长道路，看法律如何在国家与个人、礼俗与规则之间被反复争夺、修补和重写。"
 noLicense: true
-titleImage: /images/podcast/Cover_reasoned_talk.png
+titleImage: /images/podcast/cover_reasoned_talk.png
 layout: podcast
 outputs:
   - HTML
   - RSS
----
-
-一档聚焦东西方法律史的播客。节目试图把古罗马与二十一世纪的中国放在同一条线索里，去探索追求正义的漫长道路，看法律如何在国家与个人、礼俗与规则之间被反复争夺、修补和重写。
-
-<style>
-.podcast-listen{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin:.85rem 0;}
-.podcast-listen a{display:inline-flex;line-height:0;text-decoration:none;}
-.podcast-listen img{height:42px;display:block;width:auto;margin:0;}
-.podcast-listen .b-dark{display:none;}
-.podcast-listen .b-light{display:block;}
-@media (prefers-color-scheme:dark){
-  .podcast-listen .b-dark{display:block;}
-  .podcast-listen .b-light{display:none;}
-}
-:root[data-theme="light"] .podcast-listen .b-dark{display:none;}
-:root[data-theme="light"] .podcast-listen .b-light{display:block;}
-:root[data-theme="dark"] .podcast-listen .b-dark{display:block;}
-:root[data-theme="dark"] .podcast-listen .b-light{display:none;}
-
-.episode-listen{display:inline-flex;align-items:center;gap:.3em;vertical-align:middle;transform:translateY(-.16em);}
-.episode-listen a{display:inline-flex;align-items:center;justify-content:center;width:1em;height:1em;border-radius:.22em;text-decoration:none;background:rgba(0,0,0,.04);}
-.episode-listen img{width:1em;height:1em;display:block;margin:0;object-fit:contain;}
-@media (prefers-color-scheme:dark){
-  .episode-listen a{background:rgba(255,255,255,.10);}
-}
-:root[data-theme="light"] .episode-listen a{background:rgba(0,0,0,.04);}
-:root[data-theme="dark"] .episode-listen a{background:rgba(255,255,255,.10);}
-</style>
-<div class="podcast-listen">
-  <a href="https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4" target="_blank" rel="noopener" aria-label="在小宇宙收听">
-    <img class="b-light" src="/images/podcast/Xiaoyuzhou_Light.png" alt="在小宇宙收听">
-    <img class="b-dark" src="/images/podcast/Xiaoyuzhou_Dark.png" alt="在小宇宙收听">
-  </a>
-  <a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener" aria-label="在苹果播客收听">
-    <img class="b-light" src="/images/podcast/Apple_Podcast_Light.png" alt="在苹果播客收听">
-    <img class="b-dark" src="/images/podcast/Apple_Podcast_Dark.png" alt="在苹果播客收听">
-  </a>
-  <a href="https://open.spotify.com/show/033N8EeYaxKaf8Xdd7yHSF" target="_blank" rel="noopener" aria-label="在 Spotify 收听">
-    <img class="b-light" src="/images/podcast/Spotify_Light.png" alt="在 Spotify 收听">
-    <img class="b-dark" src="/images/podcast/Spotify_Dark.png" alt="在 Spotify 收听">
-  </a>
-</div>
-
 ---
 
 ## 单集列表

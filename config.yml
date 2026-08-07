@@ -89,7 +89,7 @@ params:
     category: "Society & Culture"
     explicit: false
     type: "episodic"
-    image: "https://masonhu.cc/images/podcast/Cover_reasoned_talk.png"
+    image: "https://masonhu.cc/images/podcast/cover_reasoned_talk.png"
     audioURLPattern: "https://api.masonhu.cc/reasoned-talk-%02d.m4a"
 
   defaultTheme: auto # to switch between dark or light according to browser theme

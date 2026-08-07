@@ -1,19 +1,18 @@
 /* Make links inside article bodies visually distinct in both color schemes. */
+:root {
+    --site-link-color: #dcb879;
+}
+
+:root[data-theme="dark"] {
+    --site-link-color: #e0c189;
+}
+
 .post-content a {
-    color: #dcb879;
+    color: var(--site-link-color);
     text-decoration: none;
 }
 
 .post-content a:hover,
 .post-content a:focus {
-    color: #dcb879;
-}
-
-.dark .post-content a {
-    color: #e0c189;
-}
-
-.dark .post-content a:hover,
-.dark .post-content a:focus {
-    color: #e0c189;
+    color: var(--site-link-color);
 }
