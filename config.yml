@@ -90,7 +90,7 @@ params:
     explicit: false
     type: "episodic"
     image: "https://masonhu.cc/images/podcast/Cover_reasoned_talk.png"
-    audioURLPattern: "https://podcast.masonhu.cc/reasoned-talk-%02d.m4a"
+    audioURLPattern: "https://api.masonhu.cc/reasoned-talk-%02d.m4a"
 
   defaultTheme: auto # to switch between dark or light according to browser theme
   displayFullLangName: true
