@@ -9,6 +9,10 @@
   },
   "routes": [
     {
+      "pattern": "masonhu.cc",
+      "custom_domain": true
+    },
+    {
       "pattern": "blog.masonhu.cc",
       "custom_domain": true
     }

@@ -72,7 +72,7 @@ jobs:
   deploy-cloudflare:
     environment:
       name: cloudflare-workers
-      url: https://blog.masonhu.cc/
+      url: https://masonhu.cc/
     runs-on: ubuntu-22.04
     env:
       HUGO_VERSION: 0.164.0
@@ -88,7 +88,7 @@ jobs:
           sudo dpkg -i "$RUNNER_TEMP/hugo.deb"
 
       - name: Build with Hugo
-        run: hugo --gc --minify --baseURL "https://blog.masonhu.cc/"
+        run: hugo --gc --minify --baseURL "https://masonhu.cc/"
 
       - name: Set up Node.js
         uses: actions/setup-node@v6

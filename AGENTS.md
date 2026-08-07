@@ -4,7 +4,7 @@
 
 ## 项目概况
 
-- 本仓库是 Mason's Blog 的 Hugo 静态站点源码，主要地址为 `https://blog.masonhu.cc/`，备用地址为 `https://masonblog.github.io/`。
+- 本仓库是 Mason's Blog 的 Hugo 静态站点源码，主要地址为 `https://masonhu.cc/`，旧地址 `https://blog.masonhu.cc/` 永久重定向到主站，备用地址为 `https://masonblog.github.io/`。
 - 站点使用 Hugo Extended `0.164.0`，主题通过 Hugo Modules 引入 `github.com/adityatelange/hugo-PaperMod`。
 - 站点已启用 Hugo 多语言：`zh` 为默认语言并保留根路径，`en` 输出到 `/en/`；语言菜单、首页描述等语言相关配置位于 `config.yml` 的 `languages` 下。
 - 主题依赖记录在 `go.mod`。向 `main` 分支推送站点内容、资源、配置或部署文件时，`.github/workflows/deploy.yml` 会自动部署；其他变更可按需通过 `workflow_dispatch` 手动触发。
@@ -96,7 +96,7 @@ hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 - Cloudflare Workers 部署构建使用：
 
 ```bash
-hugo --gc --minify --baseURL "https://blog.masonhu.cc/"
+hugo --gc --minify --baseURL "https://masonhu.cc/"
 ```
 
 - 修改 `package.json`、`package-lock.json`、`wrangler.jsonc` 或 Cloudflare 部署步骤后，还应验证部署依赖和 Wrangler 配置：

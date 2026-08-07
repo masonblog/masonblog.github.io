@@ -37,7 +37,7 @@ def fetch_page_props(url: str, timeout: float) -> dict[str, Any]:
         headers={
             "User-Agent": (
                 "Mozilla/5.0 (compatible; select-podcast-topic/1.0; "
-                "+https://blog.masonhu.cc/)"
+                "+https://masonhu.cc/)"
             )
         },
     )

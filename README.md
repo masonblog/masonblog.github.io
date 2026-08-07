@@ -2,9 +2,9 @@
 
 [![Hugo](https://img.shields.io/badge/Hugo-0.164.0-FF4088?logo=hugo&logoColor=white)](https://gohugo.io/) [![PaperMod](https://img.shields.io/badge/Theme-PaperMod-2ea44f)](https://github.com/adityatelange/hugo-PaperMod) [![Cloudflare Workers](https://img.shields.io/badge/Hosted_on-Cloudflare_Workers-F38020?logo=cloudflareworkers&logoColor=white)](https://workers.cloudflare.com/) [![GitHub Actions](https://img.shields.io/badge/Deploy-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)](https://github.com/features/actions) [![GitHub Pages](https://img.shields.io/badge/Mirror-GitHub_Pages-222222?logo=github&logoColor=white)](https://pages.github.com/)
 
-这里是 [Mason's Blog](https://blog.masonhu.cc/) 的源码仓库。它是一个用 Hugo 搭建的双语个人博客，用来记录一些零碎的经历和想法，也存放个人作品集和播客文稿。中文站保留在根路径，英文站输出到 `/en/`。
+这里是 [Mason's Blog](https://masonhu.cc/) 的源码仓库。它是一个用 Hugo 搭建的双语个人博客，用来记录一些零碎的经历和想法，也存放个人作品集和播客文稿。中文站保留在根路径，英文站输出到 `/en/`。
 
-[博客地址](https://blog.masonhu.cc/)｜[英文版](https://blog.masonhu.cc/en/)｜[备份地址](https://masonblog.github.io/)
+[博客地址](https://masonhu.cc/)｜[英文版](https://masonhu.cc/en/)｜[备份地址](https://masonblog.github.io/)
 
 ## 关于作者
 
