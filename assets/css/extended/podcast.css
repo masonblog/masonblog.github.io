@@ -35,6 +35,7 @@
   --podcast-hero-muted: #6e6e73;
   --podcast-hero-kicker: #6e6e73;
   --podcast-hero-english: #8a6d32;
+  --podcast-episode-title-size: clamp(22px, 2.2vw, 30px);
   width: 100%;
   margin: 0;
   color: var(--podcast-ink);
@@ -246,7 +247,7 @@
   margin: 0 0 30px;
   color: var(--podcast-ink);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: clamp(42px, 5.4vw, 64px);
+  font-size: var(--podcast-episode-title-size);
   font-weight: 650;
   line-height: 1.08;
   letter-spacing: -0.045em;
@@ -278,7 +279,7 @@
 .podcast-episode-card h3 {
   margin: 0;
   color: inherit;
-  font-size: clamp(22px, 2.2vw, 30px);
+  font-size: var(--podcast-episode-title-size);
   font-weight: 650;
   line-height: 1.25;
   letter-spacing: -0.035em;
@@ -319,7 +320,7 @@
 
 .podcast-episode-card--latest h3 {
   max-width: 840px;
-  font-size: clamp(32px, 4.2vw, 52px);
+  font-size: var(--podcast-episode-title-size);
   line-height: 1.12;
 }
 
@@ -505,9 +506,6 @@
     font-size: 15px;
   }
 
-  .podcast-episode-card--latest h3 {
-    font-size: 30px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
