@@ -1,0 +1,4 @@
+interface:
+  display_name: "撰写播客文稿"
+  short_description: "依据深度研究报告撰写、核查并修订《议正言辞》完整逐字稿"
+  default_prompt: "使用 $write-podcast-transcript 根据我附上的深度研究报告，撰写并修订《议正言辞》最新一期完整文稿。"
