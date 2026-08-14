@@ -9,6 +9,12 @@ layout: podcast
 
 ## Episodes
 
+### [14 Could Being Jobless Be a Crime? America’s Constitutional Reckoning with Vagrancy Laws](/en/post/blog20260814/)
+
+2026-08-14 · 33 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a7ee3be36641f136d88395c" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374?i=1000783291260" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/5jH9VPaawE3GAAKX7JJspN" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
+
+In 1969, four young people driving to a nightclub in Jacksonville, Florida, were arrested for “prowling by auto.” This episode follows Papachristou v. City of Jacksonville from medieval English vagrancy law and the post–Civil War Black Codes to modern camping bans, asking how vague laws can turn a police officer’s suspicion into arrest and conviction.
+
 ### [13 China’s “First Constitutional Case”: The Stolen Right to Education](/en/post/blog20260805/)
 
 2026-08-05 · 32 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a720d791b5e24969ce8f4cd" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374?i=1000779918915" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/67f0ZnBgDYGHpVR3QfnPQ9" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
