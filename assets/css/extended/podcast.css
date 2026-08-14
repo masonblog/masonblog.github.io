@@ -27,7 +27,10 @@
   --podcast-muted: #6e6e73;
   --podcast-canvas: var(--theme);
   --podcast-parchment: #f5f5f7;
-  --podcast-tile: #272729;
+  --podcast-tile: #f5f5f7;
+  --podcast-latest-ink: #1d1d1f;
+  --podcast-latest-muted: #6e6e73;
+  --podcast-latest-copy: #424245;
   --podcast-card-copy: #424245;
   --podcast-divider: #d2d2d7;
   --podcast-hero-bg: #f5f5f7;
@@ -48,6 +51,9 @@
   --podcast-muted: #9b9c9d;
   --podcast-parchment: #2e2e33;
   --podcast-tile: #35353b;
+  --podcast-latest-ink: #fff;
+  --podcast-latest-muted: #aaa;
+  --podcast-latest-copy: #d2d2d7;
   --podcast-card-copy: #c4c4c5;
   --podcast-divider: #414244;
   --podcast-hero-bg: #000;
@@ -313,7 +319,7 @@
   grid-column: 1 / -1;
   min-height: 390px;
   padding-right: clamp(44px, 11vw, 150px);
-  color: #fff;
+  color: var(--podcast-latest-ink);
   background: var(--podcast-tile);
   border-radius: 0;
 }
@@ -329,12 +335,12 @@
 }
 
 .podcast-episode-card--latest > p:first-of-type {
-  color: #aaa;
+  color: var(--podcast-latest-muted);
 }
 
 .podcast-episode-card--latest > p:last-of-type {
   max-width: 840px;
-  color: #d2d2d7;
+  color: var(--podcast-latest-copy);
   font-size: 18px;
 }
 
@@ -371,7 +377,7 @@
   object-fit: contain;
 }
 
-.podcast-episode-card--latest .episode-listen a {
+:root[data-theme="dark"] .podcast-episode-card--latest .episode-listen a {
   background: rgba(255, 255, 255, 0.12);
 }
 
