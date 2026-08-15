@@ -39,6 +39,7 @@
 - `.agents/skills/`：仓库级 Codex 技能，目前用于固化《议正言辞》发布与维护工作流。
 - `archetypes/`：Hugo 内容原型模板。
 - `content/post/`：博客文章、播客文字稿及对应英文译文；中文文章通常使用 `blogYYYYMMDD.md`，英文译文使用同 basename 的 `.en.md`。
+- `podcast-drafts/`：尚未发布的《议正言辞》中文文稿初稿；不参与 Hugo 构建。
 - `content/about.md` / `content/about.en.md`：中英文关于页。
 - `content/portfolio.md` / `content/portfolio.en.md`：中英文作品集页。
 - `content/podcast.md` / `content/podcast.en.md`：中英文播客入口；中文页同时负责生成播客备份 RSS。

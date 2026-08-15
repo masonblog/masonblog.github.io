@@ -11,7 +11,7 @@ description: "根据用户附件中的深度研究报告，为《议正言辞》
 
 本技能只负责研究报告到中文播客文稿的写作与修订，不发布单集，不生成封面，不修改 `content/podcast.md`、`content/podcast.en.md`、RSS、音频或英文译文。发布成品时改用 `publish-podcast-episode` 技能；策划选题和生成研究提示词时改用 `select-podcast-topic` 技能。
 
-默认在答复中交付一个完整 Markdown 文档。用户指定输出路径时写入该路径；未指定时不要自行把草稿写进 `content/post/` 或伪装成已发布单集。
+默认把完整 Markdown 文档写入仓库根目录的 `podcast-drafts/episode-NN.md`，其中 `NN` 为本次确定的两位数期号。用户明确指定输出路径时写入该路径；无论使用哪个路径，都不要自行把草稿写进 `content/post/` 或伪装成已发布单集。完成后在答复中提供文件路径和简短交付说明。
 
 ## 严格按五步执行
 
@@ -251,7 +251,7 @@ python .agents/skills/write-podcast-transcript/scripts/inspect_episode_state.py 
 
 ## 按固定格式交付
 
-严格按实际作业顺序组织最终 Markdown：
+严格按实际作业顺序组织最终 Markdown，并按“遵守项目边界”一节的路径规则写入文件：
 
 ```markdown
 # 第 NN 期播客文稿
@@ -343,3 +343,4 @@ python .agents/skills/write-podcast-transcript/scripts/inspect_episode_state.py 
 - 明显事实错误、法律错误、逻辑跳跃和重复已经在两轮修订中实际改正。
 - 不包含虚构场景、伪造引语、虚构来源或未披露的不确定结论。
 - 未执行发布、翻译、封面、音频、播客页或 RSS 操作。
+- 完整文稿已写入 `podcast-drafts/episode-NN.md` 或用户明确指定的路径，答复中已提供文件路径。

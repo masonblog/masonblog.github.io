@@ -1,4 +1,4 @@
 interface:
   display_name: "撰写播客文稿"
   short_description: "按研究报告结构提取素材，以关键大纲统领逐字稿与配套内容"
-  default_prompt: "使用 $write-podcast-transcript 按研究报告结构提取带来源锚点的素材，先规划逐字稿大纲，再依次完成逐字稿、单集简介与结尾资料，并给出 3 个备选节目标题。"
+  default_prompt: "使用 $write-podcast-transcript 按研究报告结构提取带来源锚点的素材，先规划逐字稿大纲，再依次完成逐字稿、单集简介与结尾资料，给出 3 个备选节目标题，并将完整文稿保存到 podcast-drafts/episode-NN.md。"
