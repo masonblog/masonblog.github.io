@@ -6,7 +6,7 @@ noLicense: true
 
 这里是 Mason Hu 的个人博客 ，用来记录一些零碎的经历和想法，也存放个人作品集和播客文稿。
 
-[博客地址](https://masonhu.cc/) | [备用地址](https://masonblog.github.io/)
+[博客地址](https://masonhu.cc/)｜[备用地址](https://masonblog.github.io/)
 
 ## 关于作者
 

@@ -6,7 +6,7 @@ noLicense: true
 
 This is Mason Hu's personal blog, used to record some fragmented experiences and thoughts, as well as to store his personal portfolio and podcast transcripts.
 
-[Link](https://masonhu.cc/) | [Mirror](https://masonblog.github.io/)
+[Link](https://masonhu.cc/)｜[Mirror](https://masonblog.github.io/)
 
 ## About the Author
 

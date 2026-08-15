@@ -62,11 +62,12 @@
 {{- /* Add extended css after theme style */ -}}
 {{- $stylesheet := (slice $license_css $core $extended) | resources.Concat "assets/css/stylesheet.css"  }}
 
+{{- /* AdSense preview renders the page in a sandbox; keep the stylesheet absolute and loadable without CORS. */}}
 {{- if not site.Params.assets.disableFingerprinting }}
 {{- $stylesheet := $stylesheet | fingerprint }}
-<link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" integrity="{{ $stylesheet.Data.Integrity }}" rel="preload stylesheet" as="style">
+<link href="{{ $stylesheet.Permalink }}" rel="preload stylesheet" as="style">
 {{- else }}
-<link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" rel="preload stylesheet" as="style">
+<link href="{{ $stylesheet.Permalink }}" rel="preload stylesheet" as="style">
 {{- end }}
 
 {{- /* Search */}}
