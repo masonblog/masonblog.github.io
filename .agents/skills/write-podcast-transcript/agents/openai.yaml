@@ -1,4 +1,4 @@
 interface:
   display_name: "撰写播客文稿"
-  short_description: "先提交大纲供确认，再据定稿大纲完成《议正言辞》文稿"
-  default_prompt: "使用 $write-podcast-transcript 根据我附上的深度研究报告先规划逐字稿大纲，保存并提交给我修改确认；只有我明确确认大纲定稿后，再完成逐字稿、单集简介、结尾资料和 3 个备选节目标题。"
+  short_description: "从研究报告生成标题、简介、逐字稿与 ShowNotes"
+  default_prompt: "使用 $write-podcast-transcript 根据我附上的深度研究报告，生成推荐的单集标题、单集简介、逐字稿和 ShowNotes。"
