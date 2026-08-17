@@ -14,3 +14,6 @@
 # Operating system files
 .DS_Store
 Thumbs.db
+
+# Other temp files
+/podcast-drafts/
