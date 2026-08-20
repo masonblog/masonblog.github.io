@@ -1,4 +1,4 @@
 interface:
   display_name: "撰写播客文稿"
-  short_description: "从研究报告生成标题、简介、逐字稿与 ShowNotes"
-  default_prompt: "使用 $write-podcast-transcript 根据我附上的深度研究报告，生成推荐的单集标题、单集简介、逐字稿和 ShowNotes。"
+  short_description: "从已评审选题结果生成并校对逐字稿与 ShowNotes"
+  default_prompt: "使用 $write-podcast-transcript 根据我提供的已评审标题、简介、节目大纲和参考资料，撰写并校对逐字稿与 ShowNotes。"
