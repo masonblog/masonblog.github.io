@@ -9,6 +9,12 @@ layout: podcast
 
 ## Episodes
 
+### [15 The Sun Zhigang Case: The End of Custody and Repatriation](/en/post/blog20260820/)
+
+2026-08-20 · 30 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a86a59fef65145dfcc2808c" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374?i=1000784588691" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/4R3p9vf7KdPGUweXPY4nGf" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
+
+On the night of March 17, 2003, police stopped twenty-seven-year-old Sun Zhigang on a Guangzhou street. Three days later, he died in a medical center for people held in custody and repatriation. Beginning with the night Sun was taken away, this episode traces how wrongful detention, public opinion, and administrative lawmaking converged—and how a criminal case born of an enforcement error advanced China’s system for reviewing legislation.
+
 ### [14 Could Being Jobless Be a Crime? America’s Constitutional Reckoning with Vagrancy Laws](/en/post/blog20260814/)
 
 2026-08-14 · 33 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a7ee3be36641f136d88395c" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374?i=1000783291260" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/5jH9VPaawE3GAAKX7JJspN" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>

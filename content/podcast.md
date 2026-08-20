@@ -12,6 +12,12 @@ outputs:
 
 ## 单集列表
 
+### [15 孙志刚案：收容遣送制度如何走向终结](/post/blog20260820/)
+
+2026-08-20 · 30 分钟 · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a86a59fef65145dfcc2808c" target="_blank" rel="noopener" aria-label="小宇宙"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="小宇宙"></a><a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374?i=1000784588691" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/4R3p9vf7KdPGUweXPY4nGf" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
+
+2003 年 3 月 17 日晚，27 岁的孙志刚在广州街头被警察带走，三天后死于收容人员救治站。本期从孙志刚被带走的那一晚讲起，梳理错误收容、公众舆论与行政立法如何交错推进，看一桩由执法错误导致的刑事案件，如何推动中国法律审查制度的进步。
+
 ### [14 无业游民也有罪？美国流浪法的宪法时刻](/post/blog20260814/)
 
 2026-08-14 · 33 分钟 · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a7ee3be36641f136d88395c" target="_blank" rel="noopener" aria-label="小宇宙"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="小宇宙"></a><a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374?i=1000783291260" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/5jH9VPaawE3GAAKX7JJspN" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
