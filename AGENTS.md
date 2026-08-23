@@ -13,7 +13,7 @@
 ## 目录约定
 
 - `content/post/`：博客文章，中文文件名通常为 `blogYYYYMMDD.md`；英文译文使用同 basename 的 `.en.md`，例如 `blog20260514.en.md`；历史私密文章多带 `-private-NN` 后缀。
-- `podcast-drafts/`：尚未发布的《议正言辞》中文文稿初稿；默认文件名为 `episode-NN.md`，不参与 Hugo 构建。
+- `podcast-drafts/`：尚未发布的《议正言辞》选题方案与中文文稿初稿；选题默认命名为 `episode-NN-topic.md`，逐字稿默认命名为 `episode-NN.md`，均不参与 Hugo 构建。
 - `content/about.md`、`content/search.md`、`content/portfolio.md`、`content/archieves.md`：中文独立页面；对应英文页使用 `.en.md` 后缀，例如 `about.en.md`、`search.en.md`。
 - `static/images/`：文章和站点图片。新文章图片优先放在 `static/images/blogYYYYMMDD/`。
 - `static/favicon/`：站点图标资源。
@@ -29,7 +29,7 @@
 - 新一期《议正言辞》的文稿发布与播客页同步使用 `.agents/skills/publish-podcast-episode/SKILL.md`。
 - 当用户提出「按老规矩发布播客文稿」、发布或补发播客单集、生成单集封面、更新中英文播客页，或修复单集与文字稿之间的链接时，必须调用 `publish-podcast-episode` 技能。
 - 下一期《议正言辞》的选题策划使用 `.agents/skills/select-podcast-topic/SKILL.md`。
-- 当用户询问下一期播客讲什么、要求策划播客选题，或需要生成新单集标题、简介、节目大纲和参考资料时，必须调用 `select-podcast-topic` 技能；该技能只交付选题依据和上述选题结果，不再生成深度研究提示词或研究报告。
+- 当用户询问下一期播客讲什么、要求策划播客选题，或需要生成新单集标题、简介、节目大纲和参考资料时，必须调用 `select-podcast-topic` 技能；该技能将选题依据和上述选题结果写入 `podcast-drafts/episode-NN-topic.md`，不再生成深度研究提示词、研究报告或逐字稿。
 - 选题技能交付后必须停止，不得在同一轮连续调用文稿技能。用户评审并修改选题结果后，由用户另行启动 `.agents/skills/write-podcast-transcript/SKILL.md`。
 - 当用户提供或指向已评审的标题、简介、节目大纲和参考资料，并要求撰写、补全或修订《议正言辞》最新一期逐字稿及人物、概念、案件和法条资料时，必须调用 `write-podcast-transcript` 技能；该技能以选题结果为直接输入，在完整初稿后完成事实与法律校对、口播校对，发布仍使用 `publish-podcast-episode`。
 - 上述技能是本文件的播客专项扩展。执行技能前仍须遵守本文件；若两者冲突，以本文件和用户的当次明确要求为准。
