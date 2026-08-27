@@ -9,6 +9,12 @@ layout: podcast
 
 ## Episodes
 
+### [16 Repatriation Was Not a Homecoming: Japan’s War Orphans and Their State Redress Lawsuits](/en/post/blog20260827/)
+
+2026-08-27 · 34 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a904fd01352af56ff3d1aef" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/16-%E5%BD%92%E5%9B%BD%E4%B8%8D%E7%AD%89%E4%BA%8E%E5%9B%9E%E5%AE%B6-%E6%97%A5%E6%9C%AC%E6%88%98%E4%BA%89%E9%81%97%E5%AD%A4%E7%9A%84%E5%9B%BD%E5%AE%B6%E8%B5%94%E5%81%BF%E8%AF%89%E8%AE%BC/id6787849374?i=1000786302972" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/2oHIJjkCSE1ETaxzMCuDsc" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
+
+In January 2007, forty Japanese war orphans repatriated from China lost their state redress case before the Tokyo District Court. Beginning with the three names of Sumie Ikeda, this episode traces the gaps between war responsibility, repatriation policy, state redress, and political settlement—and asks how law can respond to a generation of shattered lives.
+
 ### [15 The Sun Zhigang Case: The End of Custody and Repatriation](/en/post/blog20260820/)
 
 2026-08-20 · 30 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a86a59fef65145dfcc2808c" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374?i=1000784588691" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/4R3p9vf7KdPGUweXPY4nGf" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>

@@ -12,6 +12,12 @@ outputs:
 
 ## 单集列表
 
+### [16 归国不等于回家：日本战争遗孤的国家赔偿诉讼](/post/blog20260827/)
+
+2026-08-27 · 34 分钟 · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a904fd01352af56ff3d1aef" target="_blank" rel="noopener" aria-label="小宇宙"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="小宇宙"></a><a href="https://podcasts.apple.com/cn/podcast/16-%E5%BD%92%E5%9B%BD%E4%B8%8D%E7%AD%89%E4%BA%8E%E5%9B%9E%E5%AE%B6-%E6%97%A5%E6%9C%AC%E6%88%98%E4%BA%89%E9%81%97%E5%AD%A4%E7%9A%84%E5%9B%BD%E5%AE%B6%E8%B5%94%E5%81%BF%E8%AF%89%E8%AE%BC/id6787849374?i=1000786302972" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/2oHIJjkCSE1ETaxzMCuDsc" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
+
+2007 年 1 月，四十名从中国归来的日本战争遗孤，在东京地方法院输掉了国家赔偿诉讼。本期从池田澄江的三个名字讲起，梳理战争责任、归国政策、国家赔偿与政治解决之间的缝隙，追问法律如何回应一代人的破碎人生。
+
 ### [15 孙志刚案：收容遣送制度如何走向终结](/post/blog20260820/)
 
 2026-08-20 · 30 分钟 · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a86a59fef65145dfcc2808c" target="_blank" rel="noopener" aria-label="小宇宙"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="小宇宙"></a><a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374?i=1000784588691" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/4R3p9vf7KdPGUweXPY4nGf" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
