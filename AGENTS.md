@@ -26,6 +26,7 @@
 
 ## 项目级技能
 
+- 为本地播客音频或 RSS 最新单集生成带正确时间码的 ShowNotes 时间轴时，使用 `.agents/skills/generate-podcast-shownotes/SKILL.md`。该技能只生成草稿，不负责发布或改动播客页面；《议正言辞》的默认测试源为小宇宙主 RSS。
 - 新一期《议正言辞》的文稿发布与播客页同步使用 `.agents/skills/publish-podcast-episode/SKILL.md`。
 - 当用户提出「按老规矩发布播客文稿」、发布或补发播客单集、生成单集封面、更新中英文播客页，或修复单集与文字稿之间的链接时，必须调用 `publish-podcast-episode` 技能。
 - 下一期《议正言辞》的选题策划使用 `.agents/skills/select-podcast-topic/SKILL.md`。

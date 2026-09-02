@@ -1,0 +1,4 @@
+interface:
+  display_name: "生成播客 ShowNotes 时间轴"
+  short_description: "从本地音频或播客 RSS 生成可核对的章节时间码与内容提要"
+  default_prompt: "使用 $generate-podcast-shownotes 为我提供的播客音频或 RSS 最新一期生成准确的 ShowNotes 时间轴。"
