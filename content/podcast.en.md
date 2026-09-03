@@ -9,6 +9,12 @@ layout: podcast
 
 ## Episodes
 
+### [17 From Godber’s Escape to the Police–ICAC Confrontation: The Birth of Hong Kong’s ICAC](/en/post/blog20260903/)
+
+2026-09-03 · 26 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a9848e7f03e74ee6b041a64" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/17-%E4%BB%8E%E8%91%9B%E6%9F%8F%E5%A4%96%E9%80%83%E5%88%B0%E8%AD%A6%E5%BB%89%E5%86%B2%E7%AA%81-%E9%A6%99%E6%B8%AF%E5%BB%89%E6%94%BF%E5%85%AC%E7%BD%B2%E7%9A%84%E8%AF%9E%E7%94%9F/id6787849374?i=1000787648080" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/36X1xy1oqBAX1i3Mgj3ThD" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
+
+On October 28, 1977, more than two thousand Hong Kong police officers and family members petitioned at Police Headquarters, after which some protesters stormed the ICAC Operations Department. Beginning with Peter Godber’s escape, the creation of the ICAC, and the Yau Ma Tei Fruit Market Case, this episode examines how Hong Kong built an independent anti-corruption system—and the price that reform exacted as the government tried both to pursue old cases and preserve public order.
+
 ### [16 Repatriation Was Not a Homecoming: Japan’s War Orphans and Their State Redress Lawsuits](/en/post/blog20260827/)
 
 2026-08-27 · 34 min · <span class="episode-listen"><a href="https://www.xiaoyuzhoufm.com/episode/6a904fd01352af56ff3d1aef" target="_blank" rel="noopener" aria-label="Xiaoyuzhou"><img src="/images/podcast/Xiaoyuzhou_Icon.png" alt="Xiaoyuzhou"></a><a href="https://podcasts.apple.com/us/podcast/16-%E5%BD%92%E5%9B%BD%E4%B8%8D%E7%AD%89%E4%BA%8E%E5%9B%9E%E5%AE%B6-%E6%97%A5%E6%9C%AC%E6%88%98%E4%BA%89%E9%81%97%E5%AD%A4%E7%9A%84%E5%9B%BD%E5%AE%B6%E8%B5%94%E5%81%BF%E8%AF%89%E8%AE%BC/id6787849374?i=1000786302972" target="_blank" rel="noopener" aria-label="Apple Podcasts"><img src="/images/podcast/Apple_Podcasts_Icon.png" alt="Apple Podcasts"></a><a href="https://open.spotify.com/episode/2oHIJjkCSE1ETaxzMCuDsc" target="_blank" rel="noopener" aria-label="Spotify"><img src="/images/podcast/Spotify_Icon.png" alt="Spotify"></a></span>
