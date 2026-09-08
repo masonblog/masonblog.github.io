@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">AI as a disinflation force</title>
+  <desc id="desc">Illustration showing artificial intelligence raising productivity and pushing cost pressure down.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef5f2"/>
+      <stop offset="0.56" stop-color="#f7f3ec"/>
+      <stop offset="1" stop-color="#f1ebe2"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#243238" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g transform="translate(168 132)" font-family="Arial, 'Microsoft YaHei', sans-serif">
+    <text x="0" y="0" font-size="52" font-weight="700" fill="#22313a">AI：沃什叙事中的反通胀力量</text>
+    <text x="0" y="54" font-size="26" fill="#51656d">如果生产率足够快地上升，宽松政策的通胀压力就可能被供给侧吸收。</text>
+  </g>
+  <g transform="translate(170 272)" filter="url(#shadow)">
+    <rect x="0" y="0" width="380" height="360" rx="8" fill="#fffdfa"/>
+    <rect x="70" y="85" width="240" height="190" rx="28" fill="#315463"/>
+    <circle cx="140" cy="174" r="18" fill="#f7f4ee"/>
+    <circle cx="240" cy="174" r="18" fill="#f7f4ee"/>
+    <path d="M142 226 C176 252 218 252 250 226" fill="none" stroke="#f7f4ee" stroke-width="9" stroke-linecap="round"/>
+    <line x1="190" y1="85" x2="190" y2="44" stroke="#315463" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="190" cy="34" r="18" fill="#b4563d"/>
+    <text x="190" y="326" text-anchor="middle" font-family="Arial, 'Microsoft YaHei', sans-serif" font-size="29" font-weight="700" fill="#22313a">自动化与算法</text>
+  </g>
+  <g transform="translate(610 266)" font-family="Arial, 'Microsoft YaHei', sans-serif">
+    <path d="M28 180 H288" stroke="#1e5b6d" stroke-width="10" stroke-linecap="round"/>
+    <path d="M240 132 L312 180 L240 228" fill="none" stroke="#1e5b6d" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="360" y="0" width="470" height="370" rx="8" fill="#fffdfa" filter="url(#shadow)"/>
+    <text x="595" y="70" text-anchor="middle" font-size="32" font-weight="700" fill="#22313a">生产率上升</text>
+    <g transform="translate(438 116)">
+      <rect x="0" y="130" width="54" height="88" fill="#c9d8d0"/>
+      <rect x="88" y="90" width="54" height="128" fill="#7d8d57"/>
+      <rect x="176" y="42" width="54" height="176" fill="#1e5b6d"/>
+      <rect x="264" y="0" width="54" height="218" fill="#b4563d"/>
+      <line x1="-20" y1="218" x2="340" y2="218" stroke="#51656d" stroke-width="4"/>
+    </g>
+  </g>
+  <g transform="translate(320 692)" font-family="Arial, 'Microsoft YaHei', sans-serif">
+    <path d="M0 50 C170 10 300 92 450 50 S720 24 880 50" stroke="#b4563d" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <path d="M900 50 L842 18 M900 50 L842 82" stroke="#b4563d" stroke-width="7" fill="none" stroke-linecap="round"/>
+    <text x="452" y="122" text-anchor="middle" font-size="28" font-weight="700" fill="#22313a">单位成本下降，价格压力缓和</text>
+  </g>
+</svg>

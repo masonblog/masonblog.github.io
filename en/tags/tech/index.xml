@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Tech on Mason's Blog</title><link>https://masonblog.github.io/en/tags/tech/</link><description>Recent content in Tech on Mason's Blog</description><image><title>Mason's Blog</title><url>https://masonblog.github.io/images/mason.png</url><link>https://masonblog.github.io/images/mason.png</link></image><generator>Hugo</generator><language>en-US</language><lastBuildDate>Thu, 14 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://masonblog.github.io/en/tags/tech/index.xml" rel="self" type="application/rss+xml"/><item><title>I Launched a Severance Pay Calculator</title><link>https://masonblog.github.io/en/post/blog20260514/</link><pubDate>Thu, 14 May 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20260514/</guid><description>A note on building a China severance pay calculator with vibe coding, and on turning legal rules into a usable product.</description><content:encoded><![CDATA[<p>I recently launched a small tool: <a href="https://masonblog.github.io/SeveranceGO-CN/" target="_blank" rel="noopener noreferrer">SeveranceGO-CN: China Severance Pay Calculator</a>
+. The source code is also on GitHub: <a href="https://github.com/masonblog/SeveranceGO-CN" target="_blank" rel="noopener noreferrer">masonblog/SeveranceGO-CN</a>
+.</p>
+<p>Its purpose is straightforward. After you enter information such as the start and end dates of employment, last year&rsquo;s income, the place where the employment contract was performed, whether a written contract was signed, and the reason for departure, the tool estimates statutory severance, damages for unlawful termination, payment in lieu of notice, and the possible double-wage range for failure to sign a written employment contract.</p>
+<p>Let me put the disclaimer up front: <strong>this is only an auxiliary estimate. It cannot replace formal legal advice or a lawyer&rsquo;s judgment.</strong> In a labor dispute, the reason for termination, notice procedure, evidence, local wage standards, and the approach of the arbitration commission or court may all affect the final result. The tool is more like a first-round checkup: it gives the user a rough range, highlights key variables, and points out what should be verified next.</p>
+<h2 id="why-i-built-it">Why I Built It</h2>
+<p>In corporate work and labor dispute consultations, I often hear the same question:</p>
+<blockquote>
+<p>The company wants to terminate my employment contract. Roughly how much can I get?</p>
+</blockquote>
+<p>The question sounds simple, but it is easy to calculate incorrectly.</p>
+<p>Many people remember only one formula: one month of pay for each year of service is N, and unlawful termination is 2N. Once the formula is applied to a real case, details appear immediately. How should years of service be rounded? Does a period of more than six months but less than one year count as one year? Is the monthly wage subject to a statutory cap? What is the local average monthly wage for employees in the previous year? Is the employer relying on no-fault termination, or on an economic layoff? Was thirty days&rsquo; prior notice given? If no written contract was signed, when does the double-wage period begin and end?</p>
+<p>A lawyer can of course explain these points one by one, but many basic questions can first be handled by a form. Before a consultation, if the party already knows whether the issue may involve N, N+1, 2N, or a double-wage claim, the conversation becomes much more efficient.</p>
+<p>So I wanted to build a plain tool: one that does not create anxiety, does not promise an outcome, but lays out the rules and makes the calculation process visible.</p>
+<h2 id="legal-rules-are-not-solved-by-one-prompt">Legal Rules Are Not Solved by One Prompt</h2>
+<p>This project was largely built with vibe coding, but it also reminded me of something important: for a legal tool to be useful, the difficulty is not only in writing code. It is in translating the legal rules into structure.</p>
+<p>For example, statutory severance under China&rsquo;s Employment Contract Law seems to have a clear formula. But when implemented in software, it has to be broken down into many questions: the start and end dates of employment, whether the employee&rsquo;s monthly wage exceeds the local cap, whether the situation falls under Article 46, whether payment in lieu of notice may apply, whether double wages for the absence of a written contract should be calculated separately, and so on.</p>
+<p>If these branches are not thought through, the result will either be overly confident or overly vague.</p>
+<p>One common problem is going too far. The tool may only be making an estimate under public rules, but it presents the result as if the user will definitely receive that amount. That is dangerous. Labor disputes depend heavily on evidence and procedure. The wording of a termination notice, a recorded conversation, or the background to a job transfer or pay cut may change the legal assessment.</p>
+<p>The opposite problem is being too cautious. If everything is reduced to &ldquo;it depends,&rdquo; the user still has no idea where they stand.</p>
+<p>I wanted the tool to sit somewhere in the middle. It should calculate what can be calculated, give clear warnings where warnings are needed, and leave space where the law requires judgment. For a suspected unlawful termination, for example, it shows a possible 2N range while reminding the user to check the termination reason, company rules, delivery procedure, and evidence chain. For an Article 40 termination, it treats thirty days&rsquo; prior notice as a factor affecting N+1. For the absence of a written contract, it estimates the possible double-wage range separately instead of crudely folding it into severance.</p>
+<p>This is also one advantage lawyers have when participating in vibe coding: we are sensitive to uncertainty. Code tends to prefer definite answers. Law often produces risk ranges. A usable legal product has to admit that uncertainty.</p>
+<h2 id="data-standards-useful-first-then-keep-improving">Data Standards: Useful First, Then Keep Improving</h2>
+<p>The first version includes reference wage data for 2024 and covers prefecture-level cities, autonomous prefectures, regions, leagues, and some county-level units directly administered by provinces across mainland China&rsquo;s provincial-level administrative regions. The difficult part is that public data is not published in a fully consistent way. Some cities provide official full-caliber or urban unit average wage figures; for others, the tool can only temporarily use regional data from the National Bureau of Statistics as a cap reference. Minimum wage standards may also have multiple tiers.</p>
+<p>That is why I kept override fields on the page. If a user knows the latest local standard used by the arbitration commission, court, or human resources authority, they can enter it manually. For a legal tool, that is more honest than pretending the database will always be correct.</p>
+<p>I will continue to supplement and correct the data sources. Friends familiar with local labor dispute practice are also welcome to open issues or pull requests.</p>
+<h2 id="a-thought-for-lawyers">A Thought for Lawyers</h2>
+<p>We used to think that a lawyer&rsquo;s technological transition mainly meant learning to use legal databases, writing prompts, or asking AI to draft contracts. After building this tool, I increasingly feel that the more valuable work is not limited to &ldquo;letting AI write text for us.&rdquo; It also includes turning the structured parts of legal services into products.</p>
+<p>Of course, not every legal question needs software, and not every legal judgment is suitable for automation. But issues like severance pay have relatively clear rules, limited variables, and high consultation frequency. They are well suited to a low-barrier tool.</p>
+<p>More importantly, vibe coding lowers the cost of trying. A lawyer does not have to quit their job and spend three years learning front-end development before testing an idea. If you can explain the rules clearly, review the logic generated by AI, and point out what is wrong when the result is off, you can already start building a prototype.</p>
+]]></content:encoded></item><item><title>With AI, I Built a Provincial Leave Policy Lookup Site</title><link>https://masonblog.github.io/en/post/blog20260426/</link><pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20260426/</guid><description>How I used vibe coding to build a provincial leave policy lookup site over a weekend.</description><content:encoded><![CDATA[<h2 id="the-impulse-a-law-students-improper-side-quest">The Impulse: A Law Student&rsquo;s &ldquo;Improper Side Quest&rdquo;</h2>
+<p>As a corporate lawyer, I spend much of my day dealing with statutes, regulations, and relatives or friends who come to me with legal questions. One of the topics people ask about most often is employment law. Local leave policies in particular—how many days of marriage leave, how long maternity leave lasts, and so on—are questions almost everyone eventually runs into.</p>
+<p>A while ago, a friend moved to a company in Shenzhen and asked me, &ldquo;How many days of paternity leave does Shenzhen actually give? Everything online is a mess.&rdquo; I looked around and found that he was right. There is one set of national rules, and then every province has its own local supplements. The information is scattered across human resources department websites, government gazettes, and local regulations. There was no single place where you could compare everything at a glance.</p>
+<p>At the time I thought: it would be useful to have a website where you choose a province and immediately see all leave policies, with national rules and local special rules displayed side by side, each rule linked to its legal source.</p>
+<p>Then another thought appeared: <strong>why don&rsquo;t I build it myself?</strong></p>
+<p>In the past, I would have pushed that thought back down within three seconds. I did not know front-end development, could not draw a map, and had no idea how to deploy a website. But over the past year, things have changed.</p>
+<h2 id="when-law-meets-vibe-coding">When Law Meets Vibe Coding</h2>
+<p>First, a word about vibe coding. The term was proposed by Andrej Karpathy in early 2025. The basic idea is that you no longer need to write every line of code by hand. You describe what you want in natural language, and AI writes the code. What you do is less &ldquo;programming&rdquo; and more &ldquo;directing.&rdquo; <strong>You are responsible for the idea and taste; AI is responsible for execution.</strong></p>
+<p>When I first encountered vibe coding, I also went through a period of confusion. I watched other people use Cursor or Claude Code to spin up projects in no time. Then I tried it myself and found that it was not that simple. AI can write code, but the code often has problems: components fail to render, types break, styles go wrong, routes do not work.</p>
+<p>Later I slowly figured something out: <strong>vibe coding does not mean &ldquo;stop thinking.&rdquo; It means &ldquo;think in a different way.&rdquo;</strong> You cannot really let go completely. You have to review the code, give precise revision instructions, and point the AI in the right direction when it gets stuck. In a sense, it is not so different from reviewing a law paper. You may not write every word from beginning to end, but you must know where the problem is and how it should be fixed.</p>
+<p>My legal background ended up playing an unexpected role in this project.</p>
+<h2 id="how-legal-thinking-reshaped-my-development-process">How Legal Thinking Reshaped My Development Process</h2>
+<p>What is the core training of legal education? If I had to name one thing, it would be <strong>systematic classification and subsumption</strong>. When facing a case, the first step is not to jump to a conclusion. It is to break the facts into legal elements, examine them one by one, and then reach a conclusion.</p>
+<p>That way of thinking mapped naturally onto the data structure for this leave policy site.</p>
+<p>Leave policy is, at its core, a multi-layered rule system:</p>
+<ul>
+<li><strong>First layer: the national statutory baseline.</strong> For example, 98 days of maternity leave and 3 days of marriage leave are found in national rules such as the Special Provisions on Labor Protection for Female Employees and the Population and Family Planning Law, and apply nationwide.</li>
+<li><strong>Second layer: provincial supplements.</strong> Shanghai adds 30 days of maternity leave on top of the 98-day baseline, Guangdong gives 15 days of paternity leave, and some autonomous minority areas have special policies.</li>
+<li><strong>Third layer: fallback rules.</strong> If there is no special local rule, the national standard applies by default.</li>
+</ul>
+<p>I understood this three-layer structure through the legal relationship between general law and special law: special law prevails over general law, and where special law is silent, general law applies. That is exactly the core logic of the <code>mergePolicy()</code> function in the code: load the national baseline first, then merge in provincial override fields. Local values override the national baseline; missing local values fall back to the national rule.</p>
+<p>So when the AI asked how I wanted to design the data structure, I almost immediately sketched out this YAML schema:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">marriage_leave</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">days</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">conditions</span>: <span style="color:#ae81ff">Couples who have completed marriage registration according to law</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">pay</span>: <span style="color:#ae81ff">Normal pay</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">legal_basis</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Notice of the State Labor Administration and Ministry of Finance on Marriage Leave, Funeral Leave, and Travel Leave for Employees of State-Owned Enterprises</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">article</span>: <span style="color:#ae81ff">Article 1</span>
+</span></span></code></pre></div><p>Then each province file only records what differs from the national baseline. For example, Jiangsu:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">marriage_leave</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">days</span>: <span style="color:#ae81ff">13</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">legal_basis</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Jiangsu Province Population and Family Planning Regulations</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">article</span>: <span style="color:#ae81ff">Article 27</span>
+</span></span></code></pre></div><p>Anyone in the legal world can immediately recognize this as the logic of &ldquo;special law prevails over general law.&rdquo; But if you had asked me a year ago to write the merge logic from scratch, I absolutely could not have done it. Now I describe the idea to AI, and within half a minute the code appears, with type checks passing.</p>
+<p>Zod data validation follows the same pattern. Law cares about formal requirements: a contract missing an essential clause may be invalid. In this project, the equivalent is strict schema validation for data files. <code>central.yaml</code> must contain all seven leave categories; every leave item in a province file must include a &ldquo;days&rdquo; field; legal sources cannot be empty. I described these constraints to the AI in natural language, and it generated a Zod schema plus a validation script that runs before build. If the YAML format for any province is wrong, the entire CI pipeline fails.</p>
+<p>It is a little funny to imagine what my supervisor would think if they knew I was using legal methodology to &ldquo;train&rdquo; AI to write code. But honestly, <strong>this kind of cross-disciplinary transfer is one of the most interesting parts of the vibe coding era</strong>. You do not have to be a formally trained software engineer, but you do need a systematic way of thinking, whether it comes from law, medicine, architecture, or music.</p>
+<h2 id="from-idea-to-product-a-weekend-build-log">From Idea to Product: A Weekend Build Log</h2>
+<p>Once the idea and methodology were clear, the next step was to build.</p>
+<p>For the tech stack, I followed one principle: <strong>choose the most mainstream tools, the ones AI knows best</strong>. This was not the time to show off. I am happy to be pragmatic here. Next.js + Tailwind CSS + shadcn/ui is a stack that appears heavily in AI training data, which means the AI is less likely to make mistakes.</p>
+<h3 id="data-layer-compiling-leave-policies-for-31-provinces">Data Layer: Compiling Leave Policies for 31 Provinces</h3>
+<p>This was actually the most time-consuming part. Code can be generated with AI; content cannot.</p>
+<p>I spent almost two full weekends checking the websites of health commissions, human resources departments, and local people&rsquo;s congresses across 31 provincial-level regions, along with amendments to local population and family planning regulations. For every rule, I recorded the source document, article number, and official link. Some rules were buried very deep. A paternity leave rule in one autonomous region, for example, was hidden in a 2016 decision amending the local population and family planning regulation. To reconstruct the full rule, I had to follow the amendment back to the original text.</p>
+<p>AI cannot really help with that, at least not yet. It may fabricate legal provisions that look plausible, but on this kind of issue a legal professional still has a bottom line: <strong>the data must be traceable</strong>.</p>
+<p>All the cleaned data is stored under <code>data/provinces/</code> using the <code>XX-pinyin.yaml</code> naming convention: 31 province files, plus a <code>central.yaml</code> file as the baseline.</p>
+<h3 id="front-end-three-days-of-pain-with-an-svg-map-of-china">Front End: Three Days of Pain with an SVG Map of China</h3>
+<p>The most painful part of the project was the map of China.</p>
+<p>At first I thought it would be simple: find an existing ECharts map library and render the map. Then I discovered that the China map in ECharts uses GeoJSON, which is not only large but also annoying to adapt for dark mode. AI suggested using native SVG, but most China SVG maps I found online were poor quality: rough borders, and in some cases incomplete province paths.</p>
+<p>In the end, I used a compromise. I asked AI to help generate precise SVG path data and store it as a JSON file. Each province has one path, with a viewBox, path coordinates, and the latitude and longitude of the province center. Then I wrote a React component for interaction.</p>
+<p>One detail is worth mentioning: <strong>click areas for small provinces and municipalities</strong>. Beijing, Tianjin, and Shanghai are so small on the map that the mouse can hardly hit them. I went back and forth with the AI for several rounds before coming up with a solution: wrap an invisible circular click hotspot around the path, enlarge the radius threefold, and cover the nearby blank area. The AI did not suggest this on its own, but once I described it, it implemented the idea quickly.</p>
+<p>The heat map colors also took a long time to tune. I defined a &ldquo;leave heat score&rdquo; by adding together the days of marriage leave, maternity leave, and paternity leave, then dividing the result into four bands:</p>
+<ul>
+<li><strong>Green (≥200):</strong> provinces with relatively generous leave benefits</li>
+<li><strong>Yellow (190-199):</strong> above average</li>
+<li><strong>Red (180-189):</strong> somewhat below average</li>
+<li><strong>Dark red (&lt;180):</strong> places with fewer total leave days</li>
+</ul>
+<p>To be honest, this &ldquo;heat score&rdquo; is fairly rough. I mainly wanted to give users an immediate visual impression: at a glance, they can roughly see which color regions offer more leave. If I have time later, I plan to add more weighted factors, such as childcare leave and home leave.</p>
+<h3 id="province-detail-pages-seven-leave-categories-as-cards">Province Detail Pages: Seven Leave Categories as Cards</h3>
+<p>The province detail page was inspired by the dashboard in the health app on my phone. Each leave category is an independent card. The top shows the number of days, the middle shows eligibility and wage treatment, and the bottom folds away detailed explanations on qualification and notes.</p>
+<p>The most valuable design is the <strong>source label system</strong>. Each rule has a small label on the right:</p>
+<ul>
+<li><strong>&ldquo;National Rule&rdquo;</strong> (gray): this rule comes from national-level law or regulation.</li>
+<li><strong>&ldquo;Local Special Rule&rdquo;</strong> (blue): this is an additional policy made by the province on top of the national baseline.</li>
+</ul>
+<p>Displayed side by side, the labels let users immediately tell which benefits come from the state and which are local supplements.</p>
+<h3 id="deployment-github-actions--github-pages-online-at-zero-cost">Deployment: GitHub Actions + GitHub Pages, Online at Zero Cost</h3>
+<p>Deployment turned out to be the easiest part of the whole project.</p>
+<p>Next.js has a feature called Static Export. In simple terms, it pre-renders the entire site into static HTML, CSS, and JavaScript files, so no server is needed. I only had to add <code>output: &quot;export&quot;</code> in <code>next.config.mjs</code>, then configure GitHub Actions so that every push to the <code>main</code> branch automatically runs <code>npm run build</code> and publishes the output to GitHub Pages.</p>
+<p>The CI pipeline is also clean:</p>
+<ol>
+<li>Check out the code.</li>
+<li>Run <code>npm ci</code> to install dependencies.</li>
+<li>Run <code>npm run validate-data</code> to validate all YAML data files.</li>
+<li>Run <code>npm run typecheck</code> for TypeScript type checking.</li>
+<li>Run <code>npm run build</code> to build the static site.</li>
+<li>Deploy to GitHub Pages.</li>
+</ol>
+<p>From pushing code to seeing the site updated, everything is automatic and takes less than two minutes.</p>
+<p>Live site: <a href="https://masonblog.github.io/HolidayGO-CN" target="_blank" rel="noopener noreferrer">masonblog.github.io/HolidayGO-CN</a>
+</p>
+<h2 id="closing-thoughts-in-the-ai-era-ideas-are-the-scarce-resource">Closing Thoughts: In the AI Era, Ideas Are the Scarce Resource</h2>
+<p>After finishing this project, my strongest feeling was not &ldquo;AI is amazing.&rdquo; It was this: <strong>in the AI era, people with ideas are scarce, and people who can actually ship those ideas are even scarcer.</strong></p>
+<p>Think about it. Every year in China, countless law students, lawyers, and HR workers look up leave policies. After checking the answer, they move on. How many people think, &ldquo;Why don&rsquo;t I build a lookup tool?&rdquo; And among those who do, how many actually open a computer and start building?</p>
+<p>AI has flattened the technical implementation gap, but it has not flattened the gap between wanting to do something and being able to persist until it is done.</p>
+<p>I am not a programming expert. Before starting this project, I did not even know how routing works in Next.js. But now a usable product is here: data for all 31 provincial-level regions, dark mode, an interactive map, traceable sources, and fully automated CI/CD deployment. <strong>Two years ago, as someone trained in the humanities, I would not have dared to imagine this.</strong> In 2026, with spare time and AI, I did it.</p>
+<p>So what I want to say is this: if there is a thought in your head that keeps saying, &ldquo;It would be nice if something like this existed,&rdquo; do not hesitate. Start now. You do not need to wait until you have &ldquo;learned programming&rdquo; before beginning. That era is over. You need only:</p>
+<ul>
+<li><strong>a clear idea</strong> (your most distinctive asset, and one AI cannot take away);</li>
+<li><strong>a systematic framework for thinking</strong> (from any discipline);</li>
+<li><strong>the patience to polish details</strong> (AI can help write code, but only you can polish the product).</li>
+</ul>
+<p>Leave the rest to AI and time.</p>
+<hr>
+<p><em>All code for this project is open source on GitHub: <a href="https://github.com/masonblog/HolidayGO-CN" target="_blank" rel="noopener noreferrer">masonblog/HolidayGO-CN</a>
+. If you have additions or corrections to the leave policy data, PRs are welcome.</em></p>
+<p><em>If you also come from a non-technical background and have built something of your own with AI as a &ldquo;wild developer,&rdquo; feel free to share your story in the comments. I would love to hear it.</em></p>
+]]></content:encoded></item><item><title>Claude Code Source Leak: The Chain Reaction Caused by One .npmignore Mistake</title><link>https://masonblog.github.io/en/post/blog20260406/</link><pubDate>Mon, 06 Apr 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20260406/</guid><description>A closer look at how Anthropic accidentally exposed the full source code of Claude Code in March 2026.</description><content:encoded><![CDATA[<p>On March 31, 2026, the AI world received an unexpected &ldquo;April Fools&rsquo; Eve gift&rdquo;: the full source code of Anthropic&rsquo;s star product, <strong>Claude Code</strong>, accidentally made its way onto the internet because of a packaging mistake.</p>
+<p>This was not a hack. It was not an insider leak. Someone simply forgot to add <code>*.map</code> to <code>.npmignore</code>.</p>
+<p>Just like that, 510,000 lines of TypeScript, 44 hidden feature flags, and a mysterious background autonomous agent called KAIROS were exposed to everyone within hours.</p>
+<h2 id="what-happened-an-avalanche-started-by-a-map-file">What Happened: An Avalanche Started by a .map File</h2>
+<h3 id="how-did-the-leak-happen">How Did the Leak Happen?</h3>
+<p>On March 31, 2026, Anthropic published <strong>version 2.1.88</strong> of <code>@anthropic-ai/claude-code</code> on npm. The update was supposed to be routine maintenance, but it came with a huge &ldquo;extra&rdquo;: a <strong>59.8 MB JavaScript Source Map file</strong> with a <code>.map</code> suffix.</p>
+<p>Source maps are debugging tools that map compiled or minified code back to the original TypeScript source. This internal debugging file was accidentally bundled into the public npm package.</p>
+<p>More importantly, the <code>.map</code> file pointed to a ZIP archive hosted on Anthropic&rsquo;s own cloud storage, containing the <strong>complete source repository</strong>. Anyone who followed the clue could download the full codebase.</p>
+<p><strong>Root cause:</strong> the <code>*.map</code> rule was missing from <code>.npmignore</code>, so the source map was published along with the package.</p>
+<h3 id="how-fast-did-it-spread">How Fast Did It Spread?</h3>
+<p>Within hours of publication, the developer community noticed the code and backed it up on GitHub. According to Layer5, related repositories quickly exceeded <strong>41,500 forks</strong>, at one point becoming one of the fastest-growing repositories in GitHub history.</p>
+<p>Anthropic confirmed the incident soon afterward, but said it was only a packaging mistake and that no user data or credentials had been leaked.</p>
+<h2 id="what-was-inside-secrets-hidden-in-512000-lines-of-code">What Was Inside: Secrets Hidden in 512,000 Lines of Code</h2>
+<p>The source contained <strong>1,906 TypeScript files</strong>. Developers and researchers across the AI world began digging through it like archaeologists, looking for things Anthropic had never publicly disclosed.</p>
+<h3 id="secret-one-kairos-an-always-on-autonomous-ai-agent">Secret One: KAIROS, an Always-On Autonomous AI Agent</h3>
+<p>This was one of the most discussed discoveries. A feature flag named <strong>KAIROS</strong> appeared more than <strong>150 times</strong> in the code.</p>
+<p>KAIROS comes from ancient Greek and means &ldquo;the right moment.&rdquo; Judging from the code logic, it represents a major shift in Claude Code&rsquo;s product direction: <strong>from passive response to an active background autonomous daemon</strong>.</p>
+<p>More specifically, KAIROS mode includes a sub-mechanism called <strong>autoDream</strong>. When the user is idle, Claude can automatically perform &ldquo;memory consolidation&rdquo; in the background, merging scattered observations, resolving logical conflicts, and turning vague impressions into concrete knowledge.</p>
+<p>In essence, this gives AI a form of <strong>continuous learning and self-optimization</strong>. It is not only operating when you actively use it; it is running all the time.</p>
+<h3 id="secret-two-buddy-a-cyber-tamagotchi">Secret Two: BUDDY, a Cyber Tamagotchi</h3>
+<p>Yes, you read that correctly. Hidden in the code was a complete <strong>digital pet system</strong> called <strong>BUDDY</strong>.</p>
+<p>It included:</p>
+<ul>
+<li><strong>18 species</strong> to choose from;</li>
+<li><strong>rarity tiers:</strong> common (60%) → rare → epic → legendary (1%);</li>
+<li><strong>shiny variants</strong>, similar to shiny Pokémon;</li>
+<li><strong>unique stats</strong>, including <code>DEBUGGING</code>, <code>PATIENCE</code>, <code>CHAOS</code>, <code>WISDOM</code>, and <code>SNARK</code>.</li>
+</ul>
+<p>According to code comments, BUDDY was originally planned as an <strong>April Fools&rsquo; Easter egg</strong>, with a quiet teaser on April 1 and a formal release in May. Instead, the March 31 leak spoiled it early. The timing was almost too ironic.</p>
+<h3 id="secret-three-stealth-mode-a-mask-for-anthropic-employees">Secret Three: Stealth Mode, a Mask for Anthropic Employees</h3>
+<p>The code also revealed a feature called &ldquo;Stealth Mode,&rdquo; designed to <strong>hide Anthropic employees&rsquo; contributions to open-source projects</strong>.</p>
+<p>In simple terms, when Anthropic engineers used Claude Code to submit code to open-source communities, this mode would conceal their Anthropic employee identity from the outside. The discovery triggered discussion and controversy in the open-source community.</p>
+<h3 id="secret-four-anti-distillation-poison-for-competitors">Secret Four: Anti-Distillation, &ldquo;Poison&rdquo; for Competitors</h3>
+<p>The <code>ANTI_DISTILLATION_CC</code> feature flag revealed a more aggressive strategy: <strong>injecting fake tool definitions into API requests</strong>.</p>
+<p>The goal was to pollute the training data of competitors that monitor API traffic and try to learn or copy Claude&rsquo;s capabilities through knowledge distillation. The code also summarized the AI&rsquo;s reasoning process and attached encrypted signatures, so eavesdroppers could obtain only the summary rather than the full chain-of-thought output.</p>
+<h2 id="security-warning-attackers-moving-in-during-the-chaos">Security Warning: Attackers Moving in During the Chaos</h2>
+<p>The accidental leak itself had limited direct harm, but the security risks that followed were serious.</p>
+<h3 id="axios-npm-poisoning-a-precise-strike-by-north-korean-hackers">Axios npm Poisoning: A Precise Strike by North Korean Hackers</h3>
+<p>On the same day, March 31, attackers compromised the npm account of the popular HTTP library <strong>Axios</strong> and published two malicious versions, <code>1.14.1</code> and <code>0.30.4</code>. These versions introduced a <strong>cross-platform remote access trojan (RAT)</strong> through a hidden dependency named <code>plain-crypto-js</code>.</p>
+<p>The malicious versions remained live for about <strong>two to three hours</strong> before npm removed them.</p>
+<p>Google&rsquo;s threat intelligence team attributed the attack to <strong>UNC1069</strong>, a financially motivated threat actor with North Korean links. The malware used was <strong>WAVESHAPER.V2</strong>.</p>
+<p><strong>High-risk time window:</strong> if you installed or updated Claude Code through npm between <strong>00:21 UTC and 03:29 UTC on March 31</strong>, your machine may have been infected with malicious code.</p>
+<h3 id="fake-repositories-on-github">Fake Repositories on GitHub</h3>
+<p>In addition to npm poisoning, threat actors also spread malicious repositories on GitHub disguised as &ldquo;Claude Code source mirrors.&rdquo; These repositories tricked users into running a Rust-based dropper, which then deployed <strong>Vidar Stealer</strong> and <strong>GhostSocks</strong> proxy malware.</p>
+<h3 id="emergency-self-check-steps">Emergency Self-Check Steps</h3>
+<p>If you are a developer, run these checks immediately:</p>
+<ol>
+<li>Check your project&rsquo;s lockfile (<code>package-lock.json</code> or <code>yarn.lock</code>) for Axios versions <code>1.14.1</code> or <code>0.30.4</code>.</li>
+<li>Check whether the <code>plain-crypto-js</code> dependency is present.</li>
+<li>If either is found, <strong>treat the host as fully compromised immediately</strong>: rotate all keys and credentials, and consider reinstalling the operating system.</li>
+</ol>
+<h2 id="impact-and-reflection">Impact and Reflection</h2>
+<h3 id="impact-on-anthropic">Impact on Anthropic</h3>
+<p>The direct loss for Anthropic was <strong>competitive intelligence exposure</strong>. Unreleased strategic features such as KAIROS and the anti-distillation mechanism were seen by competitors and researchers ahead of time.</p>
+<p>From another angle, however, Anthropic&rsquo;s response—acknowledging the issue quickly and explaining the cause plainly—helped preserve some degree of public trust.</p>
+<h3 id="a-warning-for-supply-chain-security">A Warning for Supply Chain Security</h3>
+<p>This incident is a classic case study in <strong>software supply chain security</strong>:</p>
+<ul>
+<li><strong>On the development side:</strong> one forgotten packaging rule (<code>.npmignore</code>) can cause a serious information leak.</li>
+<li><strong>On the attacker side:</strong> hackers can exploit a high-profile event with astonishing speed, even on the same day.</li>
+<li><strong>On the user side:</strong> during a major incident, any download outside official channels is extremely dangerous.</li>
+</ul>
+<p>It reminds every team maintaining an open-source project that <strong>release process audits and automated checks are just as important as code quality itself</strong>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>The Claude Code source leak was one of the most dramatic AI incidents of 2026. In an unexpected way, it gave the public a glimpse into the engineering logic and product ambitions behind a top-tier AI tool, from KAIROS, which points toward a new human-machine interaction paradigm, to BUDDY, a delightfully geeky digital pet.</p>
+<p>Yet alongside this accidental transparency came the very real threat of supply chain attacks. The incident once again reminds us that in an era where software depends heavily on the open-source ecosystem, security is never only about code. It is also about release processes, dependency management, and emergency response.</p>
+<hr>
+<p><strong>Further reading:</strong></p>
+<ul>
+<li><a href="https://venturebeat.com/technology/claude-codes-source-code-appears-to-have-leaked-heres-what-we-know" target="_blank" rel="noopener noreferrer">Details of the Claude Code source leak - VentureBeat</a>
+</li>
+<li><a href="https://thehackernews.com/2026/04/claude-code-tleaked-via-npm-packaging.html" target="_blank" rel="noopener noreferrer">Anthropic confirms npm packaging mistake - The Hacker News</a>
+</li>
+<li><a href="https://decodethefuture.org/en/axios-npm-attack-rat-claude-code/" target="_blank" rel="noopener noreferrer">Axios npm poisoning and RAT incident - Decode the Future</a>
+</li>
+<li><a href="https://www.theregister.com/2026/04/02/trojanized_claude_code_leak_github/" target="_blank" rel="noopener noreferrer">Fake Claude Code downloads spreading malware - The Register</a>
+</li>
+<li><a href="https://wavespeed.ai/blog/posts/claude-code-leaked-source-hidden-features/" target="_blank" rel="noopener noreferrer">Full analysis of KAIROS and hidden features - WaveSpeed AI</a>
+</li>
+<li><a href="https://coder.com/blog/what-the-claude-code-leak-tells-us-about-supply-chain-security" target="_blank" rel="noopener noreferrer">Supply chain security lessons - Coder Blog</a>
+</li>
+</ul>
+]]></content:encoded></item><item><title>How to Use ClawdBot on Windows: Build a Personal AI Assistant with Gemini and Telegram</title><link>https://masonblog.github.io/en/post/blog20260127/</link><pubDate>Tue, 27 Jan 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20260127/</guid><description>A detailed guide to installing ClawdBot on Windows.</description><content:encoded><![CDATA[<p>Have you heard of <strong>ClawdBot</strong>? It is a very popular open-source personal AI assistant. Unlike traditional chatbots that simply wait for instructions, ClawdBot has a degree of <strong>initiative</strong>: it can message you proactively, manage tasks, and run on your own local device.</p>
+<p>Many tutorials recommend running it on a Mac Mini or a Linux server, but <strong>running it on Windows is perfectly fine too</strong>.</p>
+<p>In this post, I will walk you through installing ClawdBot on <strong>Windows</strong>, configuring it to use Google&rsquo;s <strong>Gemini API</strong> (currently one of the best AI model options, with a free quota), and connecting it to <strong>Telegram</strong>, so you can chat with your AI assistant anywhere.</p>
+<hr>
+<h2 id="-preparation">🛠️ Preparation</h2>
+<p>Before starting, make sure you have the following:</p>
+<ol>
+<li>A computer running <strong>Windows 11</strong>.</li>
+<li><strong>A Google Gemini API key:</strong> you can get one for free from <a href="https://aistudio.google.com/" target="_blank" rel="noopener noreferrer">Google AI Studio</a>
+.</li>
+<li><strong>A Telegram account:</strong> you will use it to create your bot.</li>
+</ol>
+<h2 id="step-1-install-wsl2-windows-subsystem-for-linux">Step 1: Install WSL2 (Windows Subsystem for Linux)</h2>
+<p><strong>Key point:</strong> ClawdBot cannot run natively in Windows PowerShell or CMD. It needs a Linux environment. Fortunately, Windows already provides a very good tool for this: <strong>WSL2</strong>.</p>
+<ol>
+<li>
+<p>Open the Windows Start menu, find <strong>PowerShell</strong>, right-click it, and choose <strong>Run as administrator</strong>.</p>
+</li>
+<li>
+<p>Enter the following command and press Enter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>wsl --install
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Restart your computer.</strong></p>
+</li>
+<li>
+<p>After rebooting, open the Microsoft Store, search for &ldquo;Ubuntu,&rdquo; and download and install <strong>Ubuntu 24.04.1 LTS</strong>.</p>
+</li>
+<li>
+<p>Open Ubuntu. It will ask you to create a <strong>username and password</strong>.
+<em>Tip: when entering the password, nothing will appear on the screen. This is normal. Type it and press Enter.</em></p>
+</li>
+</ol>
+<p>Once you are inside the Ubuntu terminal window, we can continue.</p>
+<h2 id="step-2-install-nodejs-the-right-way">Step 2: Install Node.js the Right Way</h2>
+<p>ClawdBot needs a relatively recent version of <strong>Node.js (v22+)</strong>. The version bundled with Ubuntu is usually too old, so we will use <strong>NVM</strong> (Node Version Manager) to install the latest version.</p>
+<p><strong>Run the following commands in the Ubuntu terminal you just opened:</strong></p>
+<ol>
+<li>
+<p><strong>Download and install NVM:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Reload environment variables</strong> so the system recognizes NVM:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source ~/.bashrc
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Install the latest Node.js:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nvm install --lts
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Verify the installation:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>node -v
+</span></span><span style="display:flex;"><span>npm -v
+</span></span></code></pre></div></li>
+</ol>
+<p>If both commands print version numbers, the installation succeeded.</p>
+<h2 id="step-3-install-and-configure-clawdbot">Step 3: Install and Configure ClawdBot</h2>
+<p>Now comes the easiest part. ClawdBot provides a one-line installation script. Run this in your Ubuntu terminal:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://clawd.bot/install.sh | bash
+</span></span></code></pre></div><p>The script will automatically download the required files and install ClawdBot globally inside your virtual Linux system.</p>
+<p>After installation, if you see the following screen, it means ClawdBot has been installed successfully:</p>
+<p><img alt="Clawdbot initialization screen" loading="lazy" src="/images/blog20260127/cli_setup.png"></p>
+<p>After installation, we need to do a quick setup.</p>
+<ol>
+<li>
+<p><strong>Start the setup wizard with:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>clawdbot onboard
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Follow the prompts:</strong></p>
+<ul>
+<li>Understand this is risky: choose <strong>Yes</strong>.</li>
+<li>Onboarding mode: choose <strong>QuickStart</strong>.</li>
+<li>Model provider: choose as needed; here we choose Google Gemini.</li>
+<li>API key: paste the Google AI <strong>key</strong> you created earlier.</li>
+<li>Default model: choose as needed. I recommend <code>gemini-2.0-flash</code> (fast and low-cost) or <code>gemini-2.0-pro</code> (smarter).</li>
+<li>Select channel: choose as needed. I recommend Telegram.</li>
+</ul>
+</li>
+</ol>
+<h2 id="step-4-configure-the-telegram-bot">Step 4: Configure the Telegram Bot</h2>
+<p>After choosing Telegram, ClawdBot will ask you for a <strong>Bot Token</strong>. Open Telegram on your phone or computer and search for <a href="https://t.me/BotFather" target="_blank" rel="noopener noreferrer"><strong>@BotFather</strong></a>
+.</p>
+<p>Send <code>/newbot</code> to BotFather. It will ask you to give your bot a display name, such as &ldquo;My Jarvis,&rdquo; and a username, such as <code>my_private_clawd_bot</code>. BotFather will then give you an API token that looks like <code>123456:ABC-DEF...</code>. <strong>Paste this token back into the Ubuntu terminal window.</strong></p>
+<p>Continue configuring ClawdBot. <strong>Skills and Hooks can be skipped for now.</strong> For the monitoring method (how to hatch your bot), choose according to your needs. I recommend monitoring it directly in the <strong>command-line TUI</strong>.</p>
+<p>Once the above steps are complete, your ClawdBot is officially running.</p>
+<h2 id="step-5-pair-your-device">Step 5: Pair Your Device</h2>
+<p>For security reasons, your bot will not respond to strangers by default. You need to pair it with <em>your</em> Telegram account.</p>
+<ol>
+<li>Make sure ClawdBot is running in the terminal. Open the bot you just created in Telegram and tap <strong>Start</strong> (or send <code>/start</code>).</li>
+<li>The bot will reply with a <strong>pairing code</strong>.</li>
+<li>Go back to your Ubuntu terminal. You should see a prompt asking for approval.</li>
+<li>Follow the on-screen instructions and enter the approval command with the pairing code.</li>
+</ol>
+<p><strong>🎉 Done! Your bot is online and ready.</strong></p>
+<h2 id="step-6-how-to-use-it">Step 6: How to Use It</h2>
+<p>Now you can chat with your bot directly in Telegram. Try prompts like:</p>
+<ul>
+<li><strong>&ldquo;Summarize this article for me:&rdquo;</strong> followed by a link.</li>
+<li><strong>&ldquo;Remind me to turn off the oven in 20 minutes.&rdquo;</strong> It will message you proactively when the time comes.</li>
+<li><strong>&ldquo;What&rsquo;s the weather in Tokyo right now?&rdquo;</strong></li>
+</ul>
+<p><img alt="how to use" loading="lazy" src="/images/blog20260127/bot_chat.jpg"></p>
+<h3 id="keeping-it-running-in-the-background">Keeping It Running in the Background</h3>
+<p>Because this program runs on your own computer, the bot will go offline if you close the Ubuntu window or shut down the machine. To keep it running in the background while using Windows, you can:</p>
+<ol>
+<li>Simply <strong>minimize</strong> the Ubuntu terminal window instead of closing it.</li>
+<li>Or learn to use tools such as <code>tmux</code> or <code>screen</code> inside Ubuntu to keep the session alive.</li>
+</ol>
+<h3 id="common-troubleshooting">Common Troubleshooting</h3>
+<ul>
+<li><strong>Error: &ldquo;Command not found&rdquo;:</strong> make sure you are entering commands in the Ubuntu (WSL) terminal, not Windows PowerShell.</li>
+<li><strong>The bot does not reply:</strong> check the logs in the terminal. If you see Gemini API errors, your key may be invalid, or you may have hit rate limits due to heavy usage. In that case, you may need to enable pay-as-you-go billing in Google Cloud.</li>
+</ul>
+<p><strong>Enjoy your new AI companion.</strong> Unlike ChatGPT, it lives on your hard drive, understands your context, and can contact you proactively when <em>it</em> thinks you need to know something.</p>
+]]></content:encoded></item><item><title>Building AI-Assisted Apps with a Third-Party DeepSeek API</title><link>https://masonblog.github.io/en/post/blog20250207/</link><pubDate>Fri, 07 Feb 2025 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20250207/</guid><description>Using third-party API providers such as SiliconFlow as an alternative to DeepSeek&amp;#39;s official service.</description><content:encoded><![CDATA[<p>Recently, the hottest topic in the AI world has been <a href="https://www.deepseek.com/" target="_blank" rel="noopener noreferrer">DeepSeek</a>
+. As a typical example of a Chinese team overtaking on a different track, it has been praised and criticized by groups with very different positions.</p>
+<p>Leaving aside the political and technical arguments, DeepSeek has genuinely made AI more accessible when viewed from the perspective of ordinary users and cost. Compared with overseas large-model providers such as OpenAI, DeepSeek is extremely cheap. For people who want to learn AI applications but have limited budgets, it is indeed one of the best choices.</p>
+<p>However, <strong>because of capacity limits and large-scale hacker attacks, DeepSeek&rsquo;s official servers have often been unstable recently</strong>. That has caused plenty of inconvenience. <strong>Fortunately, the open-source nature of DeepSeek&rsquo;s large models means they can be deployed on third-party servers.</strong> <a href="https://siliconflow.cn/zh-cn/" target="_blank" rel="noopener noreferrer">SiliconFlow</a>
+ is one such provider. In cooperation with <a href="https://www.huaweicloud.com/intl/zh-cn/" target="_blank" rel="noopener noreferrer">Huawei Cloud</a>
+, it offers API access to DeepSeek R1 at a low price, allowing users to use DeepSeek&rsquo;s model capabilities through its interface.</p>
+<p><img loading="lazy" src="/images/blog20250207/SiliconFlow.png"></p>
+<h2 id="getting-a-third-party-deepseek-api">Getting a Third-Party DeepSeek API</h2>
+<p>First, register an account on SiliconFlow&rsquo;s <a href="https://cloud.siliconflow.cn/i/1MwHUt0X" target="_blank" rel="noopener noreferrer">website</a>
+. You can use my referral code <code>1MwHUt0X</code>; <strong>both you and I will receive 14 CNY in free credit</strong>, which can be used to try different models. <strong>If the free credit runs out and you want to top up, real-name verification is required</strong>, which is part of the local regulatory environment.</p>
+<p>After logging in to the SiliconFlow dashboard, you can see the large models it supports, including the popular DeepSeek R1.</p>
+<p><img loading="lazy" src="/images/blog20250207/SiliconFlow2.png"></p>
+<p>To call these models, you first need to create your own API key. In the dashboard, click <code>API Keys</code> on the left, then click <code>Create API Key</code> in the upper-right corner.</p>
+<p><img loading="lazy" src="/images/blog20250207/SiliconFlow3.png"></p>
+<h2 id="using-deepseek-r1-with-chatbox">Using DeepSeek R1 with Chatbox</h2>
+<p><a href="https://chatboxai.app/zh" target="_blank" rel="noopener noreferrer">Chatbox</a>
+ is an open-source AI chatbot client. It supports almost all major platforms, including desktop, mobile, and web. It can call different AI models for conversation, image generation, coding, copywriting, and many other tasks.</p>
+<p><img loading="lazy" src="/images/blog20250207/Chatbox.png"></p>
+<p>For data security and privacy, all Chatbox runtime data is stored locally. In other words, Chatbox itself is only a tool that passes data to large models. It does not store your data on its own servers. Because of this, if you use Chatbox on multiple devices, settings and chat history do not automatically sync across them.</p>
+<p>SiliconFlow&rsquo;s <a href="https://docs.siliconflow.cn/usercases/use-siliconcloud-in-chatbox" target="_blank" rel="noopener noreferrer">official documentation</a>
+ explains how to connect its API to Chatbox. Here are the key points.</p>
+<p>After installation, Chatbox opens the settings page on first launch. Older versions required adding a custom provider and setting the API domain to <code>https://api.siliconflow.cn</code>. <strong>Newer versions of Chatbox now support SiliconFlow natively.</strong> Just choose <code>SILICONFLOW API</code> as the model provider, enter your API key, and select the model you want to use.</p>
+<p><img loading="lazy" src="/images/blog20250207/Chatbox2.png"></p>
+<p>One thing to note: SiliconFlow provides both <code>Pro/deepseek-ai/DeepSeek-R1</code> and <code>deepseek-ai/DeepSeek-R1</code>. Only the model without <code>Pro</code> can use the platform&rsquo;s free credit. The <code>Pro</code> version requires paid balance. Do not choose the wrong one.</p>
+<p>After saving the configuration, you can start chatting with the model. Chatbox also includes many useful preset prompt scenarios, and they are worth trying.</p>
+<p><img loading="lazy" src="/images/blog20250207/Chatbox3.png"></p>
+<h2 id="using-deepseek-r1-with-the-cline-extension-in-vs-code">Using DeepSeek R1 with the Cline Extension in VS Code</h2>
+<p>For developers, <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">Visual Studio Code</a>
+ is a very popular code editor, and it supports many AI extensions. With these extensions, VS Code can call SiliconFlow&rsquo;s DeepSeek R1 API for AI-assisted programming.</p>
+<p>After downloading and installing VS Code, search for AI-related extensions in the marketplace. One example is <a href="https://github.com/cline/cline" target="_blank" rel="noopener noreferrer">Cline</a>
+, a plugin that can call different large models to help users write code. It goes beyond simple code completion or technical Q&amp;A. Cline supports OpenRouter, DeepSeek, OpenAI, Google Gemini, GCP Vertex, and other API providers. You can also configure any OpenAI-compatible API, or use local models through LM Studio or Ollama.</p>
+<p><img loading="lazy" src="/images/blog20250207/Cline.png"></p>
+<p>Open VS Code, click the extensions button on the left, search for <code>Cline</code>, and click <code>Install</code> on the Cline page.</p>
+<p><img loading="lazy" src="/images/blog20250207/Cline2.png"></p>
+<p>After installation, click the Cline icon on the left to open the plugin. Then click the settings button in the upper-right corner and configure the API:</p>
+<ul>
+<li>API Provider: <code>OpenAI Compatible</code></li>
+<li>Base URL: <code>https://api.siliconflow.cn/</code></li>
+<li>API Key: <code>your SiliconFlow API key</code></li>
+<li>Model ID: <code>deepseek-ai/DeepSeek-R1</code></li>
+</ul>
+<p><img loading="lazy" src="/images/blog20250207/Cline3.png"></p>
+<p>Finally, click save. You can now write code by chatting with the model. Cline supports one-click creation of folders and files. Used properly, even someone with no programming background can build small programs based on their needs.</p>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>When DeepSeek&rsquo;s official servers occasionally fail to connect, SiliconFlow&rsquo;s third-party API can still provide smooth access to DeepSeek R1. Combined with Chatbox and VS Code, it can support both everyday AI conversations and professional coding assistance.</p>
+]]></content:encoded></item><item><title>Technical Notes on Building a Site with Hugo and PaperMod</title><link>https://masonblog.github.io/en/post/blog20241230/</link><pubDate>Mon, 30 Dec 2024 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20241230/</guid><description>This page records some of the technical details of how I used Hugo to build this website.</description><content:encoded><![CDATA[<p>When I first started building this blog 4 years ago, I wrote a short <a href="/post/blog20200310/" target="_blank" rel="noopener noreferrer">article</a>
+ introducing some of the tools I used when building the website. Today, many of the tools mentioned in that article are obsolete. In addition to the overall migration of this blog and the use of the new <a href="https://github.com/adityatelange/hugo-PaperMod" target="_blank" rel="noopener noreferrer">PaperMod</a>
+ theme, the configuration methods of many functions have changed. So I decided to write another article to record some of the technical details of my tossing around with this new topic.</p>
+<p>#Configuration file syntax</p>
+<p>Hugo also supports three configuration file syntaxes, namely <code>YAML</code>, <code>TOML</code> and <code>JSON</code>. They are all commonly used data serialization and configuration file formats, and each has its own characteristics and applicable scenarios.</p>
+<h2 id="yaml-yaml-aint-markup-language">YAML (YAML Ain&rsquo;t Markup Language)</h2>
+<p><code>YAML</code> is a human-readable data serialization format commonly used for configuration files and data exchange. Its syntax format is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">John Doe</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">age</span>: <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">city</span>: <span style="color:#ae81ff">New York</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">hobbies</span>:
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">reading</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#ae81ff">traveling</span>
+</span></span></code></pre></div><p>Its characteristics are:</p>
+<ul>
+<li>
+<p>Concise syntax, easy to read and write</p>
+</li>
+<li>
+<p>Supports comments, multi-line strings and complex data structures</p>
+</li>
+<li>
+<p>Use indentation to indicate hierarchical relationships</p>
+</li>
+</ul>
+<h2 id="toml-toms-obvious-minimal-language">TOML (Tom&rsquo;s Obvious, Minimal Language)</h2>
+<p><code>TOML</code> is a language designed to be a minimal configuration file format, designed to be easy to read and write. Its syntax is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">person</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">name</span> = <span style="color:#e6db74">&#34;John Doe&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">age</span> = <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">city</span> = <span style="color:#e6db74">&#34;New York&#34;</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">person</span>.<span style="color:#a6e22e">hobbies</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">favorite</span> = <span style="color:#e6db74">&#34;reading&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">others</span> = [<span style="color:#e6db74">&#34;traveling&#34;</span>, <span style="color:#e6db74">&#34;photography&#34;</span>]
+</span></span></code></pre></div><p>Its characteristics are:</p>
+<ul>
+<li>
+<p>The syntax is intuitive and easy to understand</p>
+</li>
+<li>
+<p>Support comments</p>
+</li>
+<li>
+<p>Supports multiple data types, including date and time</p>
+</li>
+<li>
+<p>Allows creation of nested data structures</p>
+</li>
+</ul>
+<h2 id="json-javascript-object-notation">JSON (JavaScript Object Notation)</h2>
+<p>JSON is a lightweight data exchange format, originally derived from JavaScript, but now widely used in various programming languages. Its syntax format is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;John Doe&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;age&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;city&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;New York&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Its characteristics are:</p>
+<ul>
+<li>
+<p>Concise and easy to read</p>
+</li>
+<li>
+<p>Fast parsing speed</p>
+</li>
+<li>
+<p>Highly compatible with JavaScript</p>
+</li>
+<li>
+<p>Support basic data types: string, number, boolean, null, object and array</p>
+</li>
+</ul>
+<p>Considering the readability and compatibility with the current theme, the configuration file syntax I chose is <code>YAML</code>. All the following configuration commands will be presented in <code>YAML</code> format. It is worth noting that <strong>YAML is very sensitive to indentation. When rendering with Hugo, even if a line is missing a space, the rendering will fail, so pay special attention</strong>.</p>
+<h1 id="add-article-timeline-page-archives">Add article timeline page (Archives)</h1>
+<p>Create a new <code>archieves.md</code> in the <code>/Content/</code> directory and write the following content:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;Archive&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">layout</span>: <span style="color:#e6db74">&#34;archives&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">url</span>: <span style="color:#e6db74">&#34;/archives/&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">summary</span>: <span style="color:#ae81ff">archives</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div><p>#Add search page (Search)</p>
+<p>Step 1: Add the following content in the configuration file <code>config.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">outputs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">home</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">HTML</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">RSS</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">JSON</span> <span style="color:#75715e"># required for the search page</span>
+</span></span></code></pre></div><p>Step 2: Create a new <code>archieves.md</code> in the <code>/Content/</code> directory and write the following content:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;Search&#34;</span> <span style="color:#75715e"># use any language you prefer</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">layout</span>: <span style="color:#e6db74">&#34;search&#34;</span> <span style="color:#75715e"># required for the search page</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># url: &#34;/archive&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># description: &#34;Description for Search&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">summary</span>: <span style="color:#e6db74">&#34;search&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">placeholder</span>: <span style="color:#e6db74">&#34;Enter search keywords here&#34;</span>
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div><p>#Add menu</p>
+<p>Add the following content to the configuration file <code>config.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">menu</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">main</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Posts</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">url</span>: <span style="color:#ae81ff">archives</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Search</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">url</span>: <span style="color:#ae81ff">search/</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Tags</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">url</span>: <span style="color:#ae81ff">tags/</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">About</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">url</span>: <span style="color:#ae81ff">about/</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">10</span>
+</span></span></code></pre></div><h1 id="enable-emoji-white_check_mark">Enable Emoji &#x2705;</h1>
+<p>Hugo natively supports Emoji rendering, just add the following content to the configuration file <code>config.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableEmoji</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p>In this way, as long as you enter <code>:emojiname:</code> ​​that conforms to Markdown syntax in the <code>.md</code> file (write the Emoji name between two half-width colons), you can enter an Emoji. You can query the Emoji names in Markdown syntax in <a href="https://gist.github.com/rxaviers/7360908" target="_blank" rel="noopener noreferrer">this list</a>
+.</p>
+<h1 id="add-favicon-icon">Add Favicon icon</h1>
+<p>You can refer to my <a href="/post/blog20210527/" target="_blank" rel="noopener noreferrer">article</a>
+, visit <a href="https://favicon.io/" target="_blank" rel="noopener noreferrer">this website</a>
+, convert your favorite site icon image into <code>Favicon</code> special format, and put all the generated files in the <code>/static/</code> directory.</p>
+<p>Optional: If you want to put the icon file into a subdirectory of <code>/static/</code>, such as <code>/static/favicon/</code>, you also need to add the following content to the configuration file <code>config.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">assets</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">favicon</span>: <span style="color:#e6db74">&#34;/favicon/favicon.ico&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">favicon16x16</span>: <span style="color:#e6db74">&#34;/favicon/favicon-16x16.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">favicon32x32</span>: <span style="color:#e6db74">&#34;/favicon/favicon-32x32.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">apple_touch_icon</span>: <span style="color:#e6db74">&#34;/favicon/apple-touch-icon.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">safari_pinned_tab</span>: <span style="color:#e6db74">&#34;/favicon/safari-pinned-tab.svg&#34;</span> 
+</span></span></code></pre></div><h1 id="enable-code-copy-button">Enable code copy button</h1>
+<p>Add the following content to the configuration file <code>config.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ShowCodeCopyButtons</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><h1 id="the-page-turn-button-displays-the-page-number">The page turn button displays the page number</h1>
+<p>Add the following content to the configuration file <code>config.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ShowPageNums</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><h1 id="add-an-rss-subscription-button-to-the-article-list-page">Add an RSS subscription button to the article list page</h1>
+<p>Add the following content to the configuration file <code>config.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ShowRssButtonInSectionTermList</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><h1 id="rss-feed-output-full-text">RSS Feed output full text</h1>
+<p>Add the following content to the configuration file <code>config.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ShowFullTextinRss</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><h1 id="open-external-links-in-new-tabs">Open external links in new tabs</h1>
+<p>Create a new <code>render-link.html</code> in the <code>/themes/theme name/layouts/_default/_markup/</code> directory and write the following content:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ .Destination | safeURL }}&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">with</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">Title</span><span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ . }}&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">end</span> <span style="color:#960050;background-color:#1e0010">}}{{</span> <span style="color:#a6e22e">if</span> <span style="color:#a6e22e">strings</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">HasPrefix</span> <span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">Destination</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">http</span><span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#960050;background-color:#1e0010">}}</span> <span style="color:#a6e22e">target</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;_blank&#34;</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;noopener&#34;</span><span style="color:#960050;background-color:#1e0010">{{</span> <span style="color:#a6e22e">end</span> <span style="color:#960050;background-color:#1e0010">}}</span>&gt;{{ .Text | safeHTML }}&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span></code></pre></div><h1 id="customize-hyperlink-style">Customize hyperlink style</h1>
+<p>PaperMod theme supports custom CSS. We can change the default hyperlink style of the website through custom CSS, such as color, underline, and changes when the mouse is hovered.</p>
+<p>Create a new <code>custom.css</code> in the <code>/themes/theme name/assets/css/extended/</code> directory and write the following content:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-css" data-lang="css"><span style="display:flex;"><span>.<span style="color:#a6e22e">post-content</span> <span style="color:#f92672">a</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">color</span>: <span style="color:#ae81ff">#0969da</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">box-shadow</span>: <span style="color:#66d9ef">none</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">text-decoration</span>: <span style="color:#66d9ef">none</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">post-content</span> <span style="color:#f92672">a</span>:<span style="color:#a6e22e">hover</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">text-decoration</span>: <span style="color:#66d9ef">underline</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>This code will set the hyperlink color in the article content to blue (#0969da) and add an underline on mouseover.</p>
+<h1 id="seo-optimization-related">SEO optimization related</h1>
+<p><strong>SEO (Search Engine Optimization) is a method of improving a website&rsquo;s natural ranking in search engine results pages by optimizing its content and structure</strong>. The goal of SEO is to increase the organic traffic of the website, improve the visibility of the website, and attract more target audiences. To do SEO optimization for Hugo site, we need to do the following:</p>
+<h2 id="configuration-file-optimization">Configuration file optimization</h2>
+<p>Add the website description in the configuration file <code>config.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">params</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Your site description&#34;</span>
+</span></span></code></pre></div><p>Similarly, we can also set the title, keywords and description for each article, and add the following content at the head of the <code>.md</code> file to define the basic information of the article:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;Post Title&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">keywords</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">keyword1</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">keyword2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Post description&#34;</span>
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre></div><h2 id="create-sitemap-sitemap">Create sitemap sitemap</h2>
+<p>A sitemap is an important website document that provides search engines and users with an overview of your website&rsquo;s structure. To create a sitemap for a Hugo site, add the following content to the configuration file <code>config.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">sitemap</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">changefreq</span>: <span style="color:#ae81ff">weekly</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">filename</span>: <span style="color:#ae81ff">sitemap.xml</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">priority</span>: <span style="color:#ae81ff">0.5</span>
+</span></span></code></pre></div><p>Among them, <code>changefreq</code> represents the update frequency, <code>filename</code> represents the generated site map file name, and <code>priority</code> represents the default priority of the page. In this way, Hugo will generate a <code>sitemap.xml</code> file in the root directory of the website so that search engines can understand the website structure.</p>
+<h2 id="create-robotstxt-crawler-index">Create robots.txt crawler index</h2>
+<p><code>Robots.txt</code> is a plain text file located in the root directory of the website. It is used to submit the sitemap to search engines and instruct search engines how to access and index the website content. To create a <code>robots.txt</code> for a Hugo site, add the following content to the configuration file <code>config.yml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">enableRobotsTXT</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p>In this way, Hugo will automatically generate the <code>Robots.txt</code> file in the root directory of the website.</p>
+<h1 id="reference-link">Reference link</h1>
+<p><a href="https://gohugo.io/about/introduction/" target="_blank" rel="noopener noreferrer">Introduction | Hugo</a>
+</p>
+<p><a href="https://github.com/adityatelange/hugo-PaperMod/wiki" target="_blank" rel="noopener noreferrer">Home · adityatelange/hugo-PaperMod Wiki</a>
+</p>
+<p><a href="https://dvel.me/posts/hugo-papermod-config/" target="_blank" rel="noopener noreferrer">Tossing Hugo &amp; PaperMod Theme - Dvel&rsquo;s Blog</a>
+</p>
+<p><a href="https://eddy.lu/posts/hugo/" target="_blank" rel="noopener noreferrer">Build Hugo’s personal website | PaperMod theme | ed</a>
+</p>
+<p><a href="https://www.shaohanyun.top/posts/env/blog_build2/" target="_blank" rel="noopener noreferrer">PaperMod theme configuration | 🚀 Tian Shaohan’s personal blog</a>
+</p>
+]]></content:encoded></item><item><title>Installing and Using Home Assistant's Official Mi Home Integration</title><link>https://masonblog.github.io/en/post/blog20241227/</link><pubDate>Fri, 27 Dec 2024 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20241227/</guid><description>Daily technical records</description><content:encoded><![CDATA[<h2 id="background">Background</h2>
+<p>I introduced the installation and configuration method of <a href="https://www.home-assistant.io/" target="_blank" rel="noopener noreferrer">Home Assistant</a>
+ in <a href="/post/blog20220409/" target="_blank" rel="noopener noreferrer">an article</a>
+ in April 2022. At that time, to connect Xiaomi&rsquo;s many smart homes to HA, we had to install a third-party HA integration, namely <a href="https://github.com/al-one/hass-xiaomi-miot" target="_blank" rel="noopener noreferrer">Hass-Xiaomi-Miot</a>
+. It is released on GitHub by an individual developer <a href="https://github.com/al-one" target="_blank" rel="noopener noreferrer">al-one</a>
+ and has always been our only choice to connect Mijia to HA. Until recently, <a href="https://github.com/XiaoMi" target="_blank" rel="noopener noreferrer">Xiaomi</a>
+ released the official HA integration on GitHub: <a href="https://github.com/XiaoMi/ha_xiaomi_home" target="_blank" rel="noopener noreferrer">HA_Xiaomi_Home</a>
+, filling the gap of Mijia access to HA.</p>
+<p>Although this is another story of &ldquo;officials forcing a fan to death&rdquo;, Xiaomi&rsquo;s open source spirit is still worthy of praise. Compared with third-party integration, Xiaomi&rsquo;s official integration has better support for its own products and can help us connect Mijia to HA more easily, thereby realizing the interconnection between Mijia and the Homekit ecosystem. Today, we will follow the <a href="https://github.com/XiaoMi/ha_xiaomi_home/blob/main/doc/README_zh.md" target="_blank" rel="noopener noreferrer">official document</a>
+ of HA_Xiaomi_Home to introduce in detail the installation and use of this integration.</p>
+<h2 id="install-mijia-official-integration-through-hasc">Install Mijia official integration through HASC</h2>
+<p>Mijia officially integrates a variety of installation methods, among which the simplest and most novice-friendly method is to install through <a href="https://www.hacs.xyz/" target="_blank" rel="noopener noreferrer">HACS</a>
+. For details on the installation method of HASC, please refer to my article, and I will not go into details here. <strong>Since Mijia official integration has not yet been added to the official library of HASC, we need to add the Mijia official integrated library link to the HASC directory by adding a custom library link</strong>. Log in to the HA backend, click <code>HASC</code> on the left, then click the three dots in the upper right corner, select <code>Custom Repositories</code>, and create a new custom library link, as shown in the figure below.
+<img alt="image" loading="lazy" src="/images/blog20241227/hacs1.png">
+Select <code>Integration</code> for the library type (Catagory); fill in the following link for the library link:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>https://github.com/XiaoMi/ha_xiaomi_home.git
+</span></span></code></pre></div><p>Finally, click the ADD button. If there is no problem with the network, the Mijia officially integrated installation link will be added to the HASC custom directory. Then click Settings - Devices and Integration - Add Integration, enter <code>Xiaomi</code> in the search box, and select <code>XIaomi Home</code> in the pop-up results. Next, follow the prompts to log in to your Mijia account.
+<img alt="image" loading="lazy" src="/images/blog20241227/hacs2.png"></p>
+<p><img loading="lazy" src="/images/blog20241227/xiaomi-home-auth1.png">
+Note: warning:: <strong>If you are like me and use Docker as the HA installation environment, then there is a high probability that you will encounter the problem of being unable to jump during Mijia account verification</strong>. The core reason why it cannot jump is that the Mijia official integration uses the local domain name <code>homeassistant.local:8123</code> by default to jump back to the HA page, and the HA in the Docker container cannot broadcast the <code>.local</code> local domain name in the local LAN. Therefore, when verifying the Mijia account and jumping back to the HA page, we need to manually change <code>homeassistant.local:8123</code> in the browser address bar to <code>IP:8123</code>. This will complete the verification of Mijia account. The above method refers to <a href="https://github.com/XiaoMi/ha_xiaomi_home/issues/8" target="_blank" rel="noopener noreferrer">Issue#8</a>
+ from the Mijia integrated warehouse.
+<img loading="lazy" src="/images/blog20241227/xiaomi-home-auth.png"></p>
+<h1 id="disable-redundant-mijia-entities">Disable redundant Mijia entities</h1>
+<p>After we install Mijia official integration and complete account verification, HA will automatically search and add various Mijia devices. At the same time, a tangle of entities will appear in our homes. <strong>The so-called entity (Unit) is a concept used by HA to define the smallest sub-functional unit of the device</strong>. Usually a device corresponds to multiple entities. For example, a &ldquo;water heater&rdquo; device can have multiple entities such as &ldquo;current water temperature&rdquo;, &ldquo;target water temperature&rdquo;, &ldquo;preheating switch&rdquo;, and &ldquo;boost switch&rdquo; at the same time.</p>
+<p>However, in daily use, we do not need to split each device into many fragmented sub-functional units. This is not only confusing, but also makes our home interface extremely cumbersome. Therefore, before linking HA to Homekit, we need to filter the many entities added by Mijia integration and only retain the switches and values ​​we need most in our daily use.</p>
+<p>Click Settings - Devices and Integration - Entities, click the entity we don&rsquo;t need in the list, close the entity in the pop-up dialog box, and finally click Save. In this way, we deactivate an entity that is not needed.
+<img loading="lazy" src="/images/blog20241227/ha-unit.png"></p>
+<h1 id="bridge-ha-to-homekit">Bridge HA to Homekit</h1>
+<p>After filtering out unnecessary Mijia entities, we can bridge HA to Homekit. For most people, the only purpose of connecting Mijia to HA is to connect Mijia and Homekit. Homekit is Apple&rsquo;s native smart home protocol, which allows users to directly control home appliances on Apple devices such as iOS, Mac and Apple Watch without resorting to third-party apps. As we all know, the Homekit home ecosystem is far less prosperous than Mijia, and most products that support the Homekit protocol are expensive. Therefore, if you connect Mijia Ecosystem to Homekit, you can achieve both convenience and cost-effectiveness. HA is the best bridge between Mijia and Homekit.</p>
+<p>To bridge the HA entity to Homekit, we need to install another integration: <a href="https://www.home-assistant.io/integrations/homekit/" target="_blank" rel="noopener noreferrer">Homekit Bridge</a>
+. Click Settings - Devices and Integration - Add Integration, enter <code>Homekit Bridge</code> in the search box, and then follow the prompts to install. After the installation is complete, a QR code will pop up in the HA notification bar. Open the Home APP of the Apple device, click the plus sign in the upper right corner - Add Accessories, and scan the QR code in the notification to bridge all existing entities on the HA to the Home APP.</p>
+]]></content:encoded></item><item><title>How to configure DHCP on your router?</title><link>https://masonblog.github.io/en/post/blog20220518/</link><pubDate>Wed, 18 May 2022 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20220518/</guid><description>Daily technical records</description><content:encoded><![CDATA[<h2 id="opening">Opening</h2>
+<hr>
+<p>If you often mess with your home network, you must often encounter these problems:</p>
+<ol>
+<li>Why can’t I open the backend of the router even though the network cable is plugged in?</li>
+<li>Why does the NAS’s IP address often <strong>change</strong>?</li>
+<li>Why does the speed of opening web pages become <strong>slower</strong> when using expensive soft routing?</li>
+<li>Why can’t I play the <strong>bypass route</strong> even after following the boss’s video configuration?</li>
+</ol>
+<p>The above problems are actually related to DHCP.</p>
+<h2 id="what-is-dhcp">What is DHCP?</h2>
+<hr>
+<p>DHCP is the abbreviation of Dynamic Host Configuration Protocol, which means <strong>Dynamic Host Configuration Protocol</strong>. Its function is to automatically assign an IP address to each device connected to the LAN and automatically configure the default gateway and DNS server for these devices.</p>
+<h3 id="glossary">Glossary</h3>
+<p>It’s okay if you don’t understand what gateways and DNS mean. You can think of <strong>gateway</strong> as a transfer station. All devices in the LAN must communicate with the outside world through this transfer station. However, there is usually only one gateway for home networks, which is the router. <strong>DNS</strong> is a little more complicated. I will make a separate video to explain it later. Here you just need to understand it as a &ldquo;phone book&rdquo;.</p>
+<h2 id="how-dhcp-works">How DHCP works</h2>
+<hr>
+<p>The DHCP protocol consists of a server and multiple clients. The <strong>server</strong> is generally your router, and the <strong>client</strong> is the device you use to access the Internet.</p>
+<h3 id="discoer">Discoer</h3>
+<p>Whenever a <strong>new device</strong> connects to a LAN for the first time, it broadcasts its MAC address to the entire network. The so-called <strong>MAC address</strong> is the hardware address of each device. It is written on the device&rsquo;s network card and cannot be changed under normal circumstances. It is equivalent to the &ldquo;ID card number&rdquo; of the device. When a new device connects for the first time, it broadcasts its MAC address to the LAN, which is equivalent to the new employee&rsquo;s self-introduction. This self-introduction has a very foreign name, called <strong>Discover</strong>.</p>
+<h3 id="offer">Offer</h3>
+<p>When the router receives the broadcast of a new device, it will select a vacant address among the existing IP addresses that has not been occupied by other devices, and package this address and other configuration information (such as default gateway and DNS) and send it to the device, which is equivalent to the leader assigning a workstation to a new employee. This arrangement also has a very foreign name, called <strong>Offer</strong>.</p>
+<h3 id="request">Request</h3>
+<p>The next thing is very simple. When the device receives the configuration information sent by the router and decides to apply these configurations, it will reply to the router again, which is equivalent to accepting the arrangement of the leader. This reply also has a very foreign name, called <strong>Request</strong>.</p>
+<p>One thing to note here is that if there are more than two routers in the LAN, and these routes have the DHCP service enabled, then after receiving the broadcast of the new device, they will send configuration information to the device at the same time. When the device receives multiple configuration information at the same time, it will reply to the one received first. Therefore, in order to avoid network chaos, even if you have multiple routers at home, it is best to only enable one DHCP service.</p>
+<p>###ACKBack to the topic, when the router receives a positive reply from the device, it will reply to the device to indicate that the space occupation is successful. At this time, the device will automatically configure its own network based on the IP address, default gateway and DNS server issued by the router to achieve successful networking. This reply from the router is called <strong>ACK</strong>.</p>
+<h4 id="answer-question-1">Answer question 1</h4>
+<p>Having said that, we have solved the first problem mentioned at the beginning of the video:</p>
+<ul>
+<li>Why can&rsquo;t I open the backend of the router even though I have plugged in the network cable?</li>
+</ul>
+<p>There are two possibilities here:
+1. Your router does not have the DHCP service enabled, and your computer does not receive the IP address issued by the router.
+2. Your router has the DHCP service enabled, but your computer has been previously set with a static IP address, and this static address and the address of the router are not in the same network segment.</p>
+<p>To solve the problem of &ldquo;cannot open the background&rdquo;, the method is also very simple:
+1. If it is the first case, then we need to manually configure a static IP address on the computer first, and this address must be in the same network segment as the router. For example, if the IP address of the router is 192.168.31.1, then the static address of the computer must be set to 192.168.31.x. The x here can be any number from 2 to 255, but be careful not to overlap with other devices.
+2. If it is the second case, then we need to clear the static IP address of the computer and change the IP address acquisition method to &ldquo;obtain an IP address automatically&rdquo;. In this way, our computer will accept the assignment of DHCP service again.</p>
+<h3 id="nak-message">NAK message</h3>
+<p>Back to the topic again, the entire process mentioned above is the process for a new device to connect to the LAN for the first time. If it is not a new device that is connected for the first time, but an old device that has been connected before. If you disconnect and reconnect, you will skip the first two steps and start directly from Request. This is equivalent to an old employee returning after leaving the company, directly omitting the polite process and asking the leader to give you a workstation.</p>
+<p>At this time, the router will check the previous <strong>DHCP lease table</strong>. If the device&rsquo;s previously corresponding IP address is still vacant, an ACK will be returned as usual. The lease continues to be valid and the device continues to use its previous IP address. If the device&rsquo;s previous corresponding IP address has been occupied by another device, the device&rsquo;s request can only be rejected. Then this action of rejection is called <strong>NAK</strong>.</p>
+<h4 id="answer-question-2">Answer question 2</h4>
+<p>Speaking of which, we have solved the second problem mentioned at the beginning of the video:</p>
+<ul>
+<li>Why does the NAS&rsquo;s IP address keep <strong>changing</strong>?</li>
+</ul>
+<p>The reason is that when the NAS is shut down and offline, the IP address originally occupied becomes vacant and occupied by other devices. When the NAS is turned back on and online, the router can only reassign it a new IP address. At this time, we will not be able to find the backend of the NAS, and we need to use software such as Synology finder to search for the new address of the NAS again.</p>
+<p>It is also very simple to solve this problem, that is, turn on the <strong>IP/MAC binding</strong> of the router, assign a fixed IP address to a specific MAC address, and achieve &ldquo;one carrot and one pit&rdquo;, so that there will be no confusion.</p>
+<h2 id="dhcp-application">DHCP application</h2>
+<p>***Knowing how DHCP works, we can solve many problems during the Internet access process.</p>
+<h3 id="answer-question-three">Answer question three</h3>
+<ul>
+<li>Why does the speed of opening web pages become <strong>slower</strong> when using expensive soft routing?</li>
+</ul>
+<p>If the speed of opening web pages is very slow, or if QQ can connect to the Internet, but the web pages cannot be opened, it is probably because there is a problem with the DNS server. The DNS server of our home network is usually obtained from the operator through the optical modem, and then delivered layer by layer through the DHCP service of the router. If we do not specify a DNS server in the router&rsquo;s DHCP service, the router will default to the operator&rsquo;s DNS. As we all know, the operator&rsquo;s DNS is often hijacked and is neither safe nor stable to use.</p>
+<p>Therefore, to solve the problem of &ldquo;slow web browsing&rdquo;, we can manually specify a stable DNS server address in the router&rsquo;s DHCP service, so that all devices in the LAN can apply the DNS issued by the router&rsquo;s DHCP. As for the useful public DNS servers, you can search a lot on the Internet. The more common ones include the famous Google 8.8.8.8 in foreign countries, and Alibaba 223.5.5.5 in China.</p>
+]]></content:encoded></item><item><title>Building a Smart Home Hub with Home Assistant</title><link>https://masonblog.github.io/en/post/blog20220409/</link><pubDate>Sat, 09 Apr 2022 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20220409/</guid><description>Daily technical records</description><content:encoded><![CDATA[<h2 id="background">Background</h2>
+<p>With the increasing popularity of smart homes, major Internet giants have entered the market one after another, resulting in more and more smart home platforms and brands, and the products of various platforms and brands cannot be interoperable. For example, you cannot use Mijia smart switches to control homekit smart lights unless your product supports dual platforms, but currently there are very few smart homes that support more than two platforms at the same time.</p>
+<p><a href="https://www.home-assistant.io/" target="_blank" rel="noopener noreferrer">Home Assistant</a>
+ (hereinafter referred to as HA) solves the problem of non-interoperability between smart home platforms. It is an open source smart home integration platform that can connect products from various common platforms and control them uniformly through various clients such as web pages and <a href="https://apps.apple.com/us/app/home-assistant/id1099568401" target="_blank" rel="noopener noreferrer">mobile app</a>
+ to achieve the true &ldquo;Internet of Everything&rdquo;. And the most important thing is that such a useful tool not only supports multiple operating systems such as Windows, MacOS, Linux, etc., it is also open source and free, and its extremely high scalability also provides a new research object for digital enthusiasts who love tossing.</p>
+<h2 id="deploy-ha-container-via-docker">Deploy HA container via Docker</h2>
+<p>As mentioned earlier, HA supports multiple operating systems, but if we plan to use it as a 7x24-hour standby smart home hub, the best choice is the Linux system, because it can run on low-power devices such as <a href="https://www.raspberrypi.org/" target="_blank" rel="noopener noreferrer">Raspberry Pi</a>
+, ready to provide services to us at any time.</p>
+<p>When it comes to Linux, we have to mention Docker. It is a highly compatible container system that can adapt to almost all Linux environments and can be installed and used out of the box. Today, we will focus on deploying HA through Docker containers.</p>
+<p>My <a href="/post/blog20210909/" target="_blank" rel="noopener noreferrer">this article</a>
+ introduces in detail <a href="https://hub.docker.com/r/portainer/portainer-ce" target="_blank" rel="noopener noreferrer">Portainer</a>
+, a very easy-to-use Docker management container. <strong>Since the system environment of each reader is different, all Docker container installations introduced in this blog will no longer be limited to Synology, QNAP or Unraid, but will be unified through Portainer</strong>.</p>
+<p>For the installation of Portainer itself, you can refer to the article mentioned above, and I will not go into details here. To install HA, we first need to log in to the Portainer backend, then enter the local terminal interface, which is Local, and then click Containers on the left to enter the local container management interface.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20220409/portainer01.png">
+Click Add container to create a new container, fill in the Name as you like, and enter the image index <code>homeassistant/home-assistant:latest</code> officially provided by HA as Image. Always pull the image can be turned on, so that every time the container configuration is modified in the future, the latest image will be re-pulled from the server.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20220409/portainer02.png">
+Then click Volumes in Advanced container settings below, enter the directory mapping tab, click the map additional volume button to add a directory mapping, and select bind for the mapping method on the right. The directory in the container can only be written to <code>/config</code>, which is the directory where the HA configuration file is located. The directory on the host can be filled in according to your own needs.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20220409/portainer03.png">
+Continue to click Env in Advanced container settings, enter the environment variable tab, click the add environment variable button to add an environment variable, fill in <code>TZ</code> for the name on the left, and fill in <code>Asia/Shanghai</code> for the value on the right. This sets the default time zone (Time Zone) of HA to Asia/Shanghai.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20220409/portainer04.png">
+The remaining advanced settings are relatively simple. Set Network to host and Restart policy to Always. Finally, click Deploy the container and wait for a while. If the network connection is smooth, the deployment of the HA container can be completed.</p>
+<p>The default backend port of HA is 8123, so as long as we access the <code>ip address: 8123</code> of the HA running device in the LAN, we can log in to the HA web page. When opening the HA web page for the first time, you need to perform some basic initialization configuration, such as user name and password, which will not be described here. It should be noted that the password of the <strong>HA administrator account cannot be retrieved. If we forget the password set here, we can only solve it by reinstalling the container</strong>.</p>
+<h2 id="install-hacs-integration">Install HACS integration</h2>
+<p>The full name of <a href="https://hacs.xyz" target="_blank" rel="noopener noreferrer">HACS</a>
+ is Home Assistant Community Store, which is a HA community store that provides various appearance themes and third-party integrated downloads. It is very easy to use and is recommended for all HA users to install.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20220409/hacs.png">
+To install HACS, you first need to put its installation package into the HA container. Create two new directories in the /config directory mapped by HA, named <code>www</code> and <code>custom components</code> respectively. Click <a href="/resources/blog20220409/hacs.zip" target="_blank" rel="noopener noreferrer">here</a>
+ to download the HACS installation package. Unzip the hacs directory in the compressed package to the <code>personal components</code> directory just created, and then restart the HA container. Log in to the HA web page, click Configuration - Devices and Services - Integration in the lower left corner to enter the Integration tab.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20220409/ha01.png">
+Click the Add Integration button in the lower right corner, search for HACS, click Install HACS Integration, and then follow the prompts to install it smoothly. During the installation process, you need to log in to GitHub once. If you do not have an account, you need to register one. In addition, the installation process requires a scientific network environment, which can only be solved by yourself. After the installation is complete, restart the HA container again. If nothing else, there will be an additional HACS button on the left side of the web page. Click it to enter the HACS store interface.</p>
+<h1 id="connect-mijia-to-ha">Connect Mijia to HA</h1>
+<p>In the past, to connect Xiaomi&rsquo;s many smart homes to HA, we had to install a third-party HA integration, namely <a href="https://github.com/al-one/hass-xiaomi-miot" target="_blank" rel="noopener noreferrer">Hass-Xiaomi-Miot</a>
+. It is released on GitHub by an individual developer <a href="https://github.com/al-one" target="_blank" rel="noopener noreferrer">al-one</a>
+ and has always been our only choice to connect Mijia to HA. Until December 2024, <a href="https://github.com/XiaoMi" target="_blank" rel="noopener noreferrer">Xiaomi</a>
+ released the official HA integration on GitHub: <a href="https://github.com/XiaoMi/ha_xiaomi_home" target="_blank" rel="noopener noreferrer">HA_Xiaomi_Home</a>
+, filling the gap of Mijia access to HA.</p>
+<p>Although this is another story of &ldquo;officials forcing a fan to death&rdquo;, Xiaomi&rsquo;s open source spirit is still worthy of praise. Compared with third-party integration, Xiaomi&rsquo;s official integration has better support for its own products and can help us connect Mijia to HA more easily, thereby realizing the interconnection between Mijia and the Homekit ecosystem. For details on how to install and use Xiaomi&rsquo;s official integration, please see my <a href="/post/blog20241227/" target="_blank" rel="noopener noreferrer">latest article</a>
+, which will not be updated here.</p>
+]]></content:encoded></item><item><title>Using Portainer to Enable Jellyfin Hardware Decoding in Docker</title><link>https://masonblog.github.io/en/post/blog20210909/</link><pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20210909/</guid><description>Daily technical records</description><content:encoded><![CDATA[<h2 id="principle-and-environment-detection">Principle and environment detection</h2>
+<p>With the continuous iteration of versions, <a href="https://jellyfin.org" target="_blank" rel="noopener noreferrer">Jellyfin</a>
+ has gradually surpassed <a href="https://www.plex.tv" target="_blank" rel="noopener noreferrer">Plex</a>
+ and its brother <a href="https://emby.media" target="_blank" rel="noopener noreferrer">Emby</a>
+ to become the personal media management solution with the largest number of users. This is not only because all its functions are free, but also because its source code is completely open source and has extremely high room for maintenance and expansion.</p>
+<p>Regardless of the specific operating system used to run Jellyfin, as long as the system is based on Linux, we can achieve extremely simple and consistent deployment through Docker containers. <strong>But compared with the native package, Docker has an obvious shortcoming, that is, it cannot directly call various system resources</strong>, and the integrated GPU driver is one of them.</p>
+<p>In order for Jellyfin&rsquo;s Docker container to call the integrated GPU driver in real time (which is often called turning on the hardware decoding), two conditions must be met:</p>
+<ol>
+<li>Have a integrated GPU that supports video decoding, and the <strong>driver</strong> of the integrated GPU is running normally;</li>
+<li>Pass-through the integrated GPU driver to the Docker container and grant the Docker container the permission to call the driver.</li>
+</ol>
+<p>Whether the system meets the first condition above can be checked in the following way: first use the ssh tool to connect to the server, ensure that the account logged in to ssh has system management rights, and then enter the following command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>ls /dev/dri
+</span></span></code></pre></div><p>If the returned result is <code>card0 renderD128</code>, then congratulations, the integrated GPU driver is running normally and the hardware system meets the basic conditions for video decoding. The next step is to pass renderD128, the integrated graphics driver, directly to the Docker container.</p>
+<h2 id="why-must-i-use-portainer">Why must I use Portainer?</h2>
+<p>Whether it is Synology, QNAP or <a href="https://www.unraid.net" target="_blank" rel="noopener noreferrer">Unraid</a>
+, most NAS systems on the market provide graphical Docker container management tools. But no matter which one of the above, it does not support the pass-through function of the integrated GPU driver. Synology&rsquo;s Docker suite cannot edit the system resource parameters of the container, and QNAP&rsquo;s Container Station simply cannot edit the created container.</p>
+<p><strong>The &ldquo;pass-through&rdquo; mentioned here actually maps the driver file <code>/dev/dri/renderD128</code> to the same location of the Docker container</strong>. This can be achieved very easily using the command line, by adding the following parameters to the pull command of the Jellyfin container:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>--device<span style="color:#f92672">=</span>/dev/dri/renderD128 <span style="color:#ae81ff">\
+</span></span></span></code></pre></div><p>Therefore, to quickly pull and create a Jellyfin container with hardware decoding enabled, just enter the following command in the command line interface of the NAS:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name jellyfin <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v /share/Container/Jellyfin/config:/config <span style="color:#ae81ff">\ </span><span style="color:#75715e"># directory for config files on the host</span>
+</span></span><span style="display:flex;"><span>-v /share/Container/Jellyfin/cache:/cache <span style="color:#ae81ff">\ </span><span style="color:#75715e"># directory for media cache on the host</span>
+</span></span><span style="display:flex;"><span>-v /share/Media/:/media <span style="color:#ae81ff">\ </span><span style="color:#75715e"># directory for movie files on the host</span>
+</span></span><span style="display:flex;"><span>-p 8096:8096 <span style="color:#ae81ff">\ </span><span style="color:#75715e"># web UI access port (HTTP)</span>
+</span></span><span style="display:flex;"><span>-p 8920:8920 <span style="color:#ae81ff">\ </span><span style="color:#75715e"># web UI access port (HTTPS)</span>
+</span></span><span style="display:flex;"><span>--device<span style="color:#f92672">=</span>/dev/dri/renderD128 <span style="color:#ae81ff">\ </span><span style="color:#75715e"># map the integrated GPU driver</span>
+</span></span><span style="display:flex;"><span>--restart<span style="color:#f92672">=</span>always <span style="color:#ae81ff">\ </span><span style="color:#75715e"># restart policy</span>
+</span></span><span style="display:flex;"><span>jellyfin/jellyfin
+</span></span></code></pre></div><p>However, for many light users, the command line is not only inconvenient to understand, but also cuts off the space for subsequent modification and customization of the container. Therefore, for the vast majority of daily users, I personally strongly recommend using <a href="https://hub.docker.com/r/portainer/portainer-ce" target="_blank" rel="noopener noreferrer">Portainer</a>
+. It itself is also a program running in a Docker container, but it has powerful Docker management functions and is currently the most complete web-based Docker container management interface on the market.</p>
+<p>Therefore, for those users who do not want to use the command line but also want to have more comprehensive control over Docker, Portainer is almost the only choice. With Portainer, even beginners can easily enable hardware decoding for Jellyfin.</p>
+<h2 id="installation-and-use-of-portainer">Installation and use of Portainer</h2>
+<p>Since Portainer needs to call the <code>/var/run/docker.sock</code> file to achieve direct management of Docker, Portainer cannot be installed through the Docker management interface provided by QNAP or QNAP, because the above management interfaces do not support mapping of a single file. However, since Portainer requires fewer parameters to be configured and frequent modifications are not required after the container is created, ordinary users can directly copy the following command for installation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>sudo docker run -d --name portainer <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>-v /var/run/docker.sock:/var/run/docker.sock <span style="color:#ae81ff">\ </span><span style="color:#75715e"># key setting</span>
+</span></span><span style="display:flex;"><span>-p 9000:9000 <span style="color:#ae81ff">\ </span><span style="color:#75715e"># web UI access port</span>
+</span></span><span style="display:flex;"><span>--restart<span style="color:#f92672">=</span>always <span style="color:#ae81ff">\ </span><span style="color:#75715e"># restart policy</span>
+</span></span><span style="display:flex;"><span>portainer/portainer
+</span></span></code></pre></div><p>After the container is created, you can access Portainer&rsquo;s management interface through IP:port. Portainer&rsquo;s default access port is 9000. The first time you log in, you need to set up an administrator account and password.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-1.png">
+Because it is used on a single machine, select &ldquo;local&rdquo; as the connection mode, and then click &ldquo;Connect&rdquo; to connect to docker on the server.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-2.png">
+After the configuration is completed, click local again and select Container on the left to use Portainer to manage all existing Docker containers on the system.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-3.png"></p>
+<h2 id="install-jellyfin-and-pass-through-the-integrated-gpu-driver-enable-hard-decoding">Install Jellyfin and pass through the integrated GPU driver (enable hard decoding)</h2>
+<p>Subsequent installation and configuration processes will be completed on the Portainer interface. First click the &ldquo;Add container&rdquo; button on the &ldquo;Containers&rdquo; tab to add a new container and enter the container creation interface.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-4.png">
+Just write &ldquo;Name&rdquo; casually, and fill in &ldquo;Image&rdquo; with Jellyfin&rsquo;s official Docker Hub image path <code>jellyfin/jellyfin</code>. &ldquo;Always pull the image&rdquo; can be turned on, so that when we complete the configuration and create the container, Portainer will automatically pull the latest official image from Docker Hub.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-5.png">
+Select &ldquo;Manual network port publishing&rdquo; under &ldquo;Network ports configuration&rdquo; and click &ldquo;publish a new network port&rdquo; to create two port mappings, 8096 and 8920, as access ports for the Jellyfin web interface.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-6.png">
+Then click the &ldquo;volumes&rdquo; tab to map the directories within the container. The default directories that Jellyfin needs to map are <code>/media</code>, <code>/cache</code> and <code>/config</code>. Click the &ldquo;bind&rdquo; button to select the corresponding directory on the server for mapping.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-7.png">
+Select &ldquo;host&rdquo; for &ldquo;Network&rdquo; and &ldquo;always&rdquo; for &ldquo;Restart policy&rdquo;. The most important thing is that you must click &ldquo;add device&rdquo; in &ldquo;Runtime &amp; Resources&rdquo; and enter <code>/dev/dri/renderD128</code> on both sides. This is a key step to enable hard decoding.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210909/portainer-8.png">
+After the above configuration is completed, you can click the &ldquo;Deploy the container&rdquo; button to create the container. If the network environment is good, wait for about half a minute to complete the creation of the container. At this point, we have not only manually configured the Docker container of jellyfin, but also passed the driver file of the integrated GPU directly to the container. Finally, as long as you enter the Jellyfin console, in the &ldquo;Playback&rdquo; tab, select the &ldquo;Hardware Acceleration&rdquo; type as &ldquo;Video Acceleration API (VAAPI)&rdquo;, and fill in <code>/dev/dri/renderD128</code> in the &ldquo;VA API Device&rdquo;, you can call the server&rsquo;s integrated GPU driver for hardware decoding.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210909/jellyfin-config.png"></p>
+]]></content:encoded></item><item><title>Adding a Favicon to a Hugo Static Site</title><link>https://masonblog.github.io/en/post/blog20210527/</link><pubDate>Thu, 27 May 2021 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20210527/</guid><description>A quick technical note.</description><content:encoded><![CDATA[<p>When using <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a>
+ to generate a static site, we often run into small problems that are not fatal but still annoying. One example is not having a custom site icon. If we simply follow the default configuration of a theme, the generated site usually has no icon, or it uses the theme&rsquo;s built-in icon. That obviously cannot satisfy my strong DIY impulse.</p>
+<p>Readers who visit this blog often may have noticed that the Hugo theme I use is a third-party theme that supports automatic switching between light and dark mode: <a href="https://github.com/dsrkafuu/hugo-theme-fuji" target="_blank" rel="noopener noreferrer">AutoFuji</a>
+. While reading its documentation today, I discovered that it supports <a href="https://baike.baidu.com/item/favicon" target="_blank" rel="noopener noreferrer">Favicon</a>
+ code. After a few simple steps, my blog finally had its own icon.</p>
+<p>Adding Favicon code to a Hugo site is very simple. First, visit <a href="https://realfavicongenerator.net" target="_blank" rel="noopener noreferrer">this website</a>
+ and upload an image as the source for your site icon. There are many similar favicon generators, and you can choose whichever you prefer. Their basic functions are more or less the same.</p>
+<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210527/favicon-generator.png"></p>
+<p>After the image is uploaded, the site will automatically move to a configuration page. If you do not have special requirements, the default settings are fine. Click the generate button at the bottom of the page to generate the icons and code.</p>
+<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210527/favicon-generator2.png"></p>
+<p>After generation, click the button shown in the screenshot to download the icon package in different formats, and copy the automatically generated HTML code to your clipboard.</p>
+<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210527/favicon-generator3.png"></p>
+<p>Next, go to the root directory of your Hugo site and extract all files from the downloaded archive into the <code>/static/</code> folder.</p>
+<p>Open <code>/layouts/partials/favicon.html</code> with a text editor, clear the original code, paste in the code you just copied, save, and exit.</p>
+<p>Finally, open <code>/themes/current-theme-name/layouts/partials/head.html</code>. The exact file may vary by theme. For example, with the Fuji theme I used, I edited <code>favicon.html</code> in the same directory directly. Find the following line:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;shortcut icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;xxx&#34;</span> /&gt;
+</span></span></code></pre></div><p>Replace <code>xxx</code> with <code>favicon.ico</code>, then save and exit.</p>
+<p>At this point, the favicon setup is complete. Regenerate the site with the <code>hugo</code> command, and if nothing unexpected happens, you should see the site icon you uploaded.</p>
+]]></content:encoded></item><item><title>Accessing the Optical Modem Admin Page from an OpenWrt Router in Bridge Mode</title><link>https://masonblog.github.io/en/post/blog20210505/</link><pubDate>Wed, 05 May 2021 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20210505/</guid><description>A quick technical note.</description><content:encoded><![CDATA[<p>After an optical modem is switched to bridge mode, the OpenWrt router becomes the default gateway and handles dialing and NAT. As a result, client devices cannot obtain IP addresses on the same subnet as the modem, and therefore cannot log in to the modem&rsquo;s admin page.</p>
+<p>In everyday use, modem configuration is almost a one-time thing, so the admin page is rarely needed. Still, it is annoying to connect a device directly to the modem by cable or Wi-Fi every time you want to log in. With a few simple settings, you can access the modem admin page at any time while still connected to the OpenWrt router.</p>
+<p>The principle is simple: <strong>while the existing DHCP server continues working normally, assign the router&rsquo;s WAN port another IP address on the same subnet as the optical modem</strong>. This assumes your router supports multiple WAN interfaces.</p>
+<p>Using OpenWrt as an example, go to <code>Network -&gt; Interfaces</code> and click <code>Add new interface</code>.</p>
+<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210505/wan-config-1.png"></p>
+<p>The interface name can be anything. Set the protocol to <code>Static address</code>, and choose the physical interface currently bound to the WAN port. <strong>Do not choose DHCP if possible, because a modem in bridge mode usually disables its own DHCP function and will not automatically assign an IP address to the new interface. You need to use <code>Static address</code> and manually specify the new interface&rsquo;s IP address.</strong></p>
+<p>After these settings, click <code>Submit</code> to enter the detailed configuration page.</p>
+<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210505/wan-config-2.png"></p>
+<p><strong>The IPv4 address must be on the same subnet as the modem.</strong> For example, if the modem&rsquo;s LAN address, which is also the modem admin address, is <code>192.168.1.1</code>, then the static IP address of the new interface should be <code>192.168.1.x</code>. Set the subnet mask to <code>255.255.255.0</code>, and set the default gateway to the modem&rsquo;s LAN IP address. For background on IP subnets and subnet masks, you can refer to <a href="https://www.zhihu.com/question/56895036" target="_blank" rel="noopener noreferrer">this article</a>
+.</p>
+<p>After finishing the settings, click <code>Save &amp; Apply</code>.</p>
+<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210505/wan-config-3.png"></p>
+<p>After the new interface is configured, DNS cache delay may temporarily prevent normal browsing. Restarting the router should fix it. If you previously configured port forwarding, <strong>all port forwarding rules will stop working after the new interface is created. Additional firewall settings are needed to restore them.</strong></p>
+<p>Go back to the detailed settings page for the new interface. Under <code>Firewall Settings</code>, bind the original WAN firewall zone to the new interface.</p>
+<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210505/wan-config-4.png"></p>
+<p>Then go to <code>Network -&gt; Firewall -&gt; Port Forwards</code>, and simply save and apply the existing port forwarding rules again.</p>
+<p>That should be it. If nothing goes wrong, you can now access the optical modem admin page at any time while the modem remains in bridge mode.</p>
+]]></content:encoded></item><item><title>Remote Game Streaming with Parsec</title><link>https://masonblog.github.io/en/post/blog20210502/</link><pubDate>Sun, 02 May 2021 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20210502/</guid><description>Daily technical records</description><content:encoded><![CDATA[<p>Recently, I finally gave up the buy-out game model on platforms such as Steam or Epic Games, and switched to a subscription model like <a href="https://www.xbox.com/zh-HK/xbox-game-pass" target="_blank" rel="noopener noreferrer">Xbox Game Pass (XGP)</a>
+. Although the buyout system can greatly satisfy the &ldquo;like plus one&rdquo; style of collecting, since I started my internship, it has been difficult for me to spare a whole block of time to clear various stand-alone games. As a result, my game library contains a large number of purchased but unfinished games. This not only reduces my desire to buy and try the latest games, but also causes a huge waste of funds. I don’t know since when, playing games has become a “task” to be completed, and the original intention of relaxing after work has been lost.</p>
+<p>Therefore, I struggled for a long time and finally decided not to buy any stand-alone games in the future. If I am not so busy for a certain period of time (for example, I quit my job and am at home now), I will subscribe to XGP for one month and experience the latest stand-alone games. In fact, Xbox accounts can switch regions at any time. Therefore, we can simply switch the system region of Win10 to Hong Kong to enjoy the preferential price of Hong Kong XGP of HK$79 per month (HK$10 for the first month). At a time when a single-player game can easily cost more than 300 yuan, XGP is indeed a very cost-effective solution. After all, one month is enough for me to finish a medium-sized stand-alone game, and the price of buying this game is far more than 79 Hong Kong dollars.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210502/xgp-price.png">
+After activating XGP, I started thinking about how to use my &ldquo;fragmented time&rdquo; to play games while traveling on business. For example, after getting off work every day during my stay, I only had a MacBook with weak performance when I stayed in the hotel. How can I use the existing equipment to play stand-alone games on XGP in the hotel? In fact, there is only one solution: remote desktop. As long as I <a href="https://zhuanlan.zhihu.com/p/302835122" target="_blank" rel="noopener noreferrer">turn on the wake-on-LAN function</a>
+ on my PC at home and set a certain remote desktop software to start automatically at boot, I can play games on my home computer anytime, anywhere through wake-on-LAN + remote control.</p>
+<p>Although the idea is very simple, it really took me a lot of effort to find suitable remote desktop software. After careful searching, I found a remote desktop software called <a href="https://parsec.app/" target="_blank" rel="noopener noreferrer">Parsec</a>
+. It not only supports both Windows and macOS dual platforms, but is also optimized for remote gaming. Not only that, Parsec also supports <a href="https://baike.baidu.com/item/HEVC" target="_blank" rel="noopener noreferrer">Hevc encoding</a>
+. As long as the client device supports Hevc decoding, it can greatly reduce the volume of streaming data, reduce the consumption of network bandwidth and traffic, and improve the remote gaming experience.</p>
+<p>The use of Parsec is very simple. Just go to the official website to register an account and download and install the Parsec client on the server (device used to run the game) and client (device used for remote control). After installing and logging in to the software on both devices at the same time, the software interface should look like this:
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210502/parsec-interface.png">
+At this point, just click the Connect button on the corresponding device to establish a remote connection. But in order to improve our gaming experience, some simple settings need to be made before official use. Click the gear icon on the left to enter the settings interface, and turn on the &ldquo;Hardware Decoding&rdquo; and &ldquo;Hevc Encoding&rdquo; functions of the client device.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210502/parsec-settings.png">
+After the connection is successful, the software will automatically mute the controlled device and transfer all system sounds to the controlled device for playback. This detail is very user-friendly. After testing, in a local area network (gigabit bandwidth) environment, the two devices can basically achieve zero-latency remote control. However, in a wide area network environment, due to bandwidth and delay limitations, the remote control is slightly delayed and stuck, but it can still satisfy some games that do not have such high operational requirements. For example, I am currently completing &ldquo;Walker on the Wrong Road&rdquo;. This is a &ldquo;HD Mosaic&rdquo; game, and all battles are turn-based, making it ideal for remote play.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210502/IMG_2477.JPG">
+Since macOS natively supports the Xbox and Switch Pro controllers, and Parsec can also directly recognize all the buttons of the above two controllers, during remote gaming, you can directly control the server-side game by connecting the controller to the client device. When the network condition is good, the experience of remote gaming is almost the same as that of local gaming.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210502/controller.png"></p>
+]]></content:encoded></item><item><title>Fixing the Xpenology 'File May Be Corrupted (13)' Error on a Snail Star B Dual</title><link>https://masonblog.github.io/en/post/blog20210423/</link><pubDate>Fri, 23 Apr 2021 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20210423/</guid><description>A quick technical note.</description><content:encoded><![CDATA[<p>During last year&rsquo;s pandemic, I was bored at home and started tinkering with soft routers and DIY NAS devices. The system I played with the most was Xpenology, the unofficial <a href="https://www.synology.com/en-us/dsm" target="_blank" rel="noopener noreferrer">Synology</a>
+ setup.</p>
+<p>For that purpose, I bought two Snail Star machines, a B Dual and a C. The B Dual became a soft router, while the C was used for Xpenology. A year later, work has left me with little time to tinker, and for data safety and convenience I bought a QNAP NAS earlier this year. As the saying goes, after enough Xpenology tinkering, you eventually move to real Synology. But QNAP is simply much better value for money, so I shamelessly defected.</p>
+<p>Yesterday, on a whim, I wanted to flash the Snail Star B Dual that had been gathering dust in the corner into an Xpenology machine, to use as cold backup storage for important data. It would stay powered off most of the time and only be turned on for backup. Since my B Dual had always been used as a soft router, I had never installed Xpenology on it. But because Snail Star machines have similar hardware, I naively assumed that the existing Xpenology boot USB from the C machine would work directly.</p>
+<p>Of course, I ran into trouble.</p>
+<p>During the new system installation, the progress would always reach 56% and then throw error 13: &ldquo;System installation failed. The file may be corrupted (13).&rdquo; To solve it, I tried many methods, including formatting all drives, including the SSD, and switching between different official and unofficial DSM installation packages. None of them worked. Error 13 remained.</p>
+<p>In the end, with advice from someone in a Telegram group, I finally solved it. The cause was simple: the motherboard BIOS settings were wrong. Connect a keyboard and monitor, enter the BIOS during boot, usually by pressing <code>DEL</code> when the motherboard logo appears, then go to <strong>Advanced -&gt; Miscellaneous Configuration -&gt; OS Selection</strong> and change <code>Win 7</code> to <code>Win 8.x</code>.</p>
+<p><img loading="lazy" src="https://masonblog.github.io/images/blog20210423/bios.jpeg"></p>
+<p>After half a day of work, the solution turned out to be this simple. I am recording it here so later beginners do not waste time the way I did. This is not really much of a tutorial, just a note.</p>
+]]></content:encoded></item><item><title>Building a Trilium Notes Server with Docker</title><link>https://masonblog.github.io/en/post/blog20210320/</link><pubDate>Sat, 20 Mar 2021 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20210320/</guid><description>Daily technical records</description><content:encoded><![CDATA[<p>Since I usually need to deal with a large amount of content with a complex structure, and there are cross-reference relationships between various content sections, I have been looking for a content management tool that can not only meet my needs, but is also simple and easy to use. Note-taking services such as Evernote or OneNote seem to be the most common, but firstly, storing all private content on the servers of commercial companies always makes me feel insecure; secondly, these software are either not lightweight enough or charge extra for important functions, so I have never been very satisfied.</p>
+<p>Two years ago, I came across a cross-platform software called <a href="https://www.notion.so/" target="_blank" rel="noopener noreferrer">Notion</a>
+. I was very satisfied with both its functions and interface, but its price was not cheap. After all, I am not a professional creator who relies on content, and I was not willing to pay monthly for a note-taking software. In addition, Notion still cannot achieve convenient multi-end synchronization while firmly controlling content data, which is also a big regret.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210320/Notion.png">
+Until today, I accidentally learned about a GitHub open source project called <a href="https://github.com/zadam/trilium" target="_blank" rel="noopener noreferrer">Trilium</a>
+ through the introduction of <a href="https://sspai.com/post/59739" target="_blank" rel="noopener noreferrer">Minority article</a>
+, which almost perfectly meets all my needs. First of all, it is an open source project that supports self-built note servers, which allows me to achieve multi-end synchronization while firmly controlling the control of notes; secondly, its interface is simple and very lightweight, and you can even discard the client and fully realize web access; finally, it is completely free, which is very important.</p>
+<p>Since buying QNAP (<a href="https://www.qnap.com/zh-cn/" target="_blank" rel="noopener noreferrer">https://www.qnap.com/zh-cn/</a>
+) NAS, I have become more and more inclined to save all kinds of my data on the NAS, and then use various open source software to achieve multi-end synchronization. This not only ensures data security and personal privacy, but also allows you to conveniently manage your files and data. <strong>I think it is worth it to have complete control over personal data at a cost of several thousand yuan and a small electricity bill</strong>. Therefore, after realizing that Trilium provided open source server software, I immediately started setting up a local server.</p>
+<p>Trilium&rsquo;s official documentation provides specific methods for installing Trilium Server through <a href="https://hub.docker.com/r/zadam/trilium" target="_blank" rel="noopener noreferrer">Docker</a>
+. However, since the document is in English and only provides the SSH command installation method, it may be difficult for some novices to read it. Therefore, this article will briefly describe the installation method of Trilium Server in a graphical manner.</p>
+<p>First, install the Docker suite (called Container Station in QNAP’s QTS) on your NAS and open it.
+<img alt="Container Station intro page" loading="lazy" src="https://masonblog.github.io/images/blog20210320/Container-Station.png">
+Enter &ldquo;Create&rdquo; and search for Trilium in the search box, find zadam/trilium, and click &ldquo;Install&rdquo; on the right.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210320/Docker-Trilium.png">
+In the pop-up creation window, click &ldquo;Advanced Settings&rdquo; and first set Trilium&rsquo;s port forwarding in the &ldquo;Network&rdquo; tab. Trilium&rsquo;s default web interface default port is 8080, so the Container&rsquo;s port must be written as 8080, and the mapped host port can be filled in according to your own needs. For the convenience of memory, I prefer to have consistent settings for the internal and external ports, that is, the host port is also set to 8080, but if your NAS&rsquo;s 8080 port is already occupied by other programs, please fill in other ports.
+<img loading="lazy" src="/images/blog20210320/Docker-Trilium2.png">
+Next, in the Shared Folders tab, mount a shared folder in the container to Trilium. The mounting path in the container must be written as /trilium-data, and the local shared folder can be selected according to your own needs. Note that the permissions for mounting the shared folder must be both read and write.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20210320/Docker-Trilium3.png">
+After the above settings are completed, click the &ldquo;Create&rdquo; button, and the system will automatically download the image file and install the container according to your configuration. Once the container is installed, you can access Trilium&rsquo;s web interface by entering the NAS IP/port in your browser. When using Trilium for the first time, you need to perform some simple initialization settings, such as creating a username and password. Although the interface is only in English, it is very simple and I won’t go into details here.</p>
+<p>At this point, we have completed setting up our own note server. Regarding the specific usage of Trilium, you can explore or search by yourself. Generally speaking, the threshold for using this tool is not high. This article of mine is written in Trilium. Trilium supports Markdown syntax, so there is almost no barrier to use for me. In addition, Trilium&rsquo;s web interface supports mobile layout. As long as DDNS and router port mapping are done, you can access your notes anywhere and anytime, whether using a computer or mobile phone.</p>
+]]></content:encoded></item><item><title>Building a Personal Online Library with NAS, Docker, and Calibre Web</title><link>https://masonblog.github.io/en/post/blog20200512/</link><pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20200512/</guid><description>Daily technical records</description><content:encoded><![CDATA[<p>Anyone who reads e-books frequently and has used a Kindle must have experienced the pain of organizing e-books. Especially for people like me who often download e-book files and then import them to Kindle for reading (either to save money or because there are no books we want to read in the Kindle store), there is a lack of an effective management solution for those complicated e-books with different titles, authors, covers, and file formats to fully manage their reading progress and time.</p>
+<p>For a long time, <a href="https://calibre-ebook.com/" title="Calibre official website" target="_blank" rel="noopener noreferrer">Calibre</a>
+ on PC and Mac has been a unsatisfactory e-book management solution. It not only supports multiple platforms and has powerful functions (supporting e-book organization, editing, format conversion, one-click push to Kindle, etc.), but it is also completely free. So why do I describe such a powerful software as &ldquo;unsatisfactory&rdquo;? Because Calibre has not had major functional updates for many years, as an e-book management software, it can no longer adapt to the needs that people are accustomed to today. Specifically, Calibre has the following disadvantages:</p>
+<ol>
+<li>The interface is old (or primitive?) and looks like software from ten years ago;</li>
+<li>The startup and operation speed are slow and the operation is cumbersome;</li>
+<li>Does not support multi-device synchronization and does not provide cloud storage services (this is the most important point).</li>
+</ol>
+<p>For people like me who are busy studying or working and rarely use the same terminal device for a fixed period of time, multi-terminal synchronization and cloud storage are almost indispensable functions. And today, as web programs and WeChat applets become increasingly popular, sometimes even downloading a specialized application seems cumbersome (perhaps because of the technological advancements in recent years). Therefore, it is best to have an e-book management server application similar to <a href="https://www.plex.tv/" title="Plex Official Website" target="_blank" rel="noopener noreferrer">Plex</a>
+ Movie and TV Library, which allows me to manage and read my own e-books anytime and anywhere by opening a web page. Fortunately, such software does exist, and it is Calibre&rsquo;s successor - <a href="https://github.com/janeczku/calibre-web" title="Calibre Web&#39;s GitHub page" target="_blank" rel="noopener noreferrer">Calibre Web</a>
+.</p>
+<p>The picture below is a personal e-book management website (or personal electronic library?) that I built on my <a href="https://baike.baidu.com/item/NAS/3465615" title="NAS&#39;s Baidu Encyclopedia Page" target="_blank" rel="noopener noreferrer">NAS</a>
+ using Calibre Web. Through this website, I can easily upload, modify, organize, and push e-books in various formats on various terminal devices. Since it is a web version, I don’t have to worry about massive e-books taking up the hard drive capacity of my phone or computer, nor do I have to worry about multi-end synchronization. What&rsquo;s even more commendable is that because Calibre Web was developed relatively recently, its interface is also in line with the current mainstream aesthetic standards.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_10-29-50.jpeg">
+Regarding how to build Calibre Web, there are many tutorials written by seniors on the Internet, and they have explained it in great detail. First of all, you must have a server or NAS that can run stably (in fact, any ordinary computer will do, as long as you are willing to let it run 24/7). Then, you need to set up a <a href="https://www.docker.com/" title="docker official website" target="_blank" rel="noopener noreferrer">docker</a>
+ environment on your device, because Calibre Web requires docker as a running carrier. Finally, after simple installation and configuration, you can have your own e-book management website.</p>
+<p>Here we take <a href="https://www.synology.cn/zh-cn" title="Synology Official Website" target="_blank" rel="noopener noreferrer">Synology</a>
+ as an example. First create a new shared folder in the &ldquo;Control Panel&rdquo; to store Calibre Web&rsquo;s database and e-book resources. I&rsquo;ll name it &ldquo;Books&rdquo; here. After creation, remember to open the folder to read and write permissions for all users, otherwise Calibre Web will not function properly.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_10-59-19.jpeg">
+After the shared folder configuration is completed, choose to install docker in Synology&rsquo;s package center and open it. Then search for &ldquo;Calibre-web&rdquo; in the &ldquo;Registry&rdquo; page. The three images selected in the box here can all be downloaded. There is not much difference between them. Here we mainly recommend linuxserver/calibre-web. In the dialog box that pops up after double-clicking, select &ldquo;latest&rdquo; and click &ldquo;OK&rdquo; to start the download.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_10-47-03.jpeg">
+After the image is downloaded successfully (a prompt will pop up in the upper right corner of the system), enter the &ldquo;Image&rdquo; page of docker, select the linuxserver/calibre-web image you just downloaded, and click to start. In the pop-up dialog box, click &ldquo;Advanced Settings&rdquo; and then make settings as shown below.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_10-53-51.jpeg"></p>
+<p><img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_10-54-25.jpeg">
+After that, start Calibre Web and enter Synology’s intranet IP address + half-width colon + the port number set in the picture above (default is 8083) in the browser address bar. For example, my intranet IP address of Synology is 10.10.10.34, and the port number of Calibre Web is 3096, then the address I enter is:
+http:10.10.10.34:3096
+When entering Calibre Web for the first time, you need to perform some simple configurations, such as specifying the database directory (must match the &ldquo;load path&rdquo; set in the picture above), creating a user, and configuring email push. Regarding the configuration and use of Calibre Web, I won’t go into details here. There are a lot of online tutorials. By the way, if you want to continue using Calibre Web in a non-home intranet environment (such as a 4G network when traveling), you also need to configure intranet penetration or dynamic DDNS. As for these contents, they are beyond the scope of today’s article. We will have the opportunity to talk about them in the future.</p>
+<p>Finally, I would like to recommend a book I am reading recently - &ldquo;Once Upon a Time in Budapest&rdquo; from the Utopia Translation Series. I hope you will like it.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200512/Snipaste_2020-05-13_11-13-44.jpeg"></p>
+]]></content:encoded></item><item><title>Anki May Be the Best Memory Aid Around</title><link>https://masonblog.github.io/en/post/blog20200326/</link><pubDate>Thu, 26 Mar 2020 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20200326/</guid><description>Daily science and technology news</description><content:encoded><![CDATA[<p>For quite a few people, including me, memorizing words has almost become a necessity. Whether it is to prepare for exams, obtain various levels of certificates, or simply improve language skills, vocabulary is a challenge that we have to face head-on. In today&rsquo;s Internet age, the method of memorizing heavy vocabulary books or dictionaries has been abandoned by most people, because it is boring and inefficient. It not only kills our enthusiasm for learning a language, but is also not conducive to cultivating a sense of language and putting it into practical use.</p>
+<p>In this context, a number of &ldquo;vocabulary memorization&rdquo; software came into being. These include Kaixin Ci Chang (<a href="https://cichang.hujiang.com/" target="_blank" rel="noopener noreferrer">https://cichang.hujiang.com/</a>
+ &ldquo;Xichang Ci Chang Official Website&rdquo;), [Scallop English] (<a href="https://www.shanbay.com/" target="_blank" rel="noopener noreferrer">https://www.shanbay.com/</a>
+ &ldquo;Scallop English Official Website&rdquo;) and [Baicizhan] (<a href="https://www.baicizhan.com/" target="_blank" rel="noopener noreferrer">https://www.baicizhan.com/</a>
+ &ldquo;Baicizhan Official Website&rdquo;) and other relatively excellent products. However, these software more or less have the following irreparable flaws:</p>
+<ul>
+<li>Thesauruses are mostly pre-made by manufacturers and lack room for customization according to personal circumstances, and are not very flexible.</li>
+<li>Most of the supported languages ​​are English, Japanese, Korean and other popular languages, which cannot meet the needs of learners of minor languages ​​(such as Hebrew).</li>
+<li>For profit-making purposes, it integrates many fancy functions that are not commonly used, and cleansing is not concise enough.</li>
+<li>Also for profit purposes, some functions are only available to paying users, and free users have limited experience.</li>
+</ul>
+<p>All these are the reasons why I have been unable to find a vocabulary memorization software that suits me for a long time. However, just nearly two years ago, when I was preparing for the graduate exam, I encountered <a href="https://apps.ankiweb.net/" target="_blank" rel="noopener noreferrer">Anki</a>
+, a god-like memory software. The reason why it is called &ldquo;memory software&rdquo; rather than &ldquo;word memorization software&rdquo; is because it supports almost all content formats that need to be memorized, unlike many of the &ldquo;professional software&rdquo; mentioned above that can only be used to memorize words in specific languages. In fact, if you want, Anki Can be used to memorize Tang poetry, idioms, and even [Navajo](<a href="https://baike.baidu.com/item/%E7%BA%B3%E7%93%A6%E9%9C%8D%E5%AF%86" target="_blank" rel="noopener noreferrer">https://baike.baidu.com/item/%E7%BA%B3%E7%93%A6%E9%9C%8D%E5%AF%86</a>
+ %E7%A0%81/9482868?fromtitle=%E7%BA%B3%E7%93%A6%E8%8D%B7%E5%AF%86%E7%A0%81&amp;fromid=6646373 &ldquo;Baidu Encyclopedia entry for the Navajo Code&rdquo;).</p>
+<p>Simply put, Anki is a tool that uses a card mechanism similar to Flash Cards to assist memory and supports high customization. So far, I have found that it has the following advantages that traditional word memorization software does not have:* Supports almost all content forms, there is nothing that Anki does not support except what you can’t think of.</p>
+<ul>
+<li>Not only supports traditional flip-up word cards, but also supports various answer forms such as fill-in-the-blank questions, multiple-choice questions, etc. to meet various needs.</li>
+<li>According to the [Ebbinghaus forgetting curve](<a href="https://baike.baidu.com/item/%E9%81%97%E5%BF%98%E6%9B%B2%E7%BA%BF/7278665?fromt" target="_blank" rel="noopener noreferrer">https://baike.baidu.com/item/%E9%81%97%E5%BF%98%E6%9B%B2%E7%BA%BF/7278665?fromt</a>
+ itle=%E8%89%BE%E5%AE%BE%E6%B5%A9%E6%96%AF%E9%81%97%E5%BF%98%E6%9B%B2%E7%BA%BF&amp;fromid=3905802 &ldquo;Baidu Encyclopedia entry on Ebbinghaus&rsquo; forgetting curve&rdquo;) scientifically customizes learning and review plans to ensure efficient use of energy and time.</li>
+<li>The cloud backs up the vocabulary and learning progress in real time, and supports operating systems including PC, Mac, iOS, Android, etc., allowing users to easily synchronize learning progress across platforms and study anytime and anywhere.</li>
+<li>Supports the export and import of decks, combined with active communities and various resource sharing channels, so that users who are unwilling to make their own decks can efficiently enter the learning state by downloading and importing decks made by predecessors.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200326/anki3.png">
+Anki&rsquo;s desktop version (including Windows and Mac) and mobile version (including iOS and Android) have almost identical functions, but the former is completely free and the latter must be paid. If you are neither willing to pay nor use a pirated version, then just use the desktop version. In this way, apart from not being able to obtain the experience of multi-platform synchronous learning, there will not be any specific functional restrictions.</li>
+</ul>
+<p>Anki&rsquo;s desktop interface is very simple. You can click &ldquo;New Memory&rdquo; to customize your own deck, or click &ldquo;Get Deck&rdquo; to enter the Anki official website to browse and download ready-made decks uploaded by other users. In addition, there are sellers on trading websites such as Taobao or Xianyu who sell their own Anki decks for a fee. If you purchase those decks, you can easily import the purchased decks by clicking the &ldquo;Import File&rdquo; button.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200326/anki2.png">
+Taking the mobile phone as an example, during the process of learning decks, we can click on the buttons of different colors below according to our own answering conditions. In this way, Anki will add the corresponding cards to the corresponding review sequence, and dynamically arrange the learning plan based on the Ebbinghaus forgetting curve and our subsequent recall status. It can be said that Anki’s characteristic of dynamically customizing learning plans based on personal memory conditions is the most fundamental reason why it stands out from many “vocabulary memorizing software”.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200326/anki4.jpg">
+This time last year, I was preparing for the postgraduate re-examination of the school I was applying for. If I can say that the ideal score in my postgraduate foreign language examination is &ldquo;mostly&rdquo; the result of my own efforts, then Anki is &ldquo;less than half&rdquo; the reason.</p>
+]]></content:encoded></item><item><title>macOS 10.15.4 Adds iCloud Folder Sharing</title><link>https://masonblog.github.io/en/post/blog20200325/</link><pubDate>Wed, 25 Mar 2020 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20200325/</guid><description>Daily science and technology news</description><content:encoded><![CDATA[<p>Compared with foreign countries, the public network disk ecology in China is like a pool of stagnant water. Of course, this is due to manufacturers not wanting to make progress, but more importantly, the government&rsquo;s strict review of network information makes it difficult for public network disk service providers to strike a balance between maintaining their own survival and improving user experience.</p>
+<p>After a bloody storm a few years ago, the only public network disks that are famous in China are [Baidu Network Disk] (<a href="https://pan.baidu.com/" target="_blank" rel="noopener noreferrer">https://pan.baidu.com/</a>
+ &ldquo;Baidu Network Disk Official Website&rdquo;), [Yutong Network Disk] (<a href="https://union.ctfile.com/" target="_blank" rel="noopener noreferrer">https://union.ctfile.com/</a>
+ &ldquo;Yutong Network Disk Official Website&rdquo;) and [Nutt Cloud] (<a href="https://www.jianguoyun.com/" target="_blank" rel="noopener noreferrer">https://www.jianguoyun.com/</a>
+ &ldquo;Nutt Cloud Official Website&rdquo;). The most notorious among them is Baidu, which not only has harsh functional restrictions on non-member users (land capacity + download speed limit), but is also extremely bloated and has many redundant functions that most users cannot use at all. In contrast, Nut Cloud is much better. It only limits monthly traffic for free users. In addition, it neither limits speed nor redundant content. It can be said to be very conscientious.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200325/jianguoyun.png">
+However, compared with the convenience of Baidu Netdisk generating links for direct sharing, Nut Cloud is slightly insufficient in file sharing. Therefore, in the current domestic public network disk ecosystem, it is almost impossible to use a network disk product with simple functions, convenient sharing, and unlimited speed for free. In this case, many users began to turn to the <a href="https://baike.baidu.com/item/NAS/3465615" title="NAS Baidu Encyclopedia Entry" target="_blank" rel="noopener noreferrer">Private Cloud (NAS)</a>
+ solution, that is, to establish a private network storage server, such as purchasing <a href="https://www.synology.cn/zh-cn" title="Synology Official Website" target="_blank" rel="noopener noreferrer">Synology</a>
+ or <a href="https://www.qnap.com.cn/" target="_blank" rel="noopener noreferrer">QNAP</a>
+ NAS host or build a DIY host yourself. However, both the former and the latter have certain technical thresholds and are not suitable for all users.</p>
+<p>As a basic service in the Apple product ecosystem, <a href="https://www.icloud.com/" title="iCloud official website" target="_blank" rel="noopener noreferrer">iCloud</a>
+ is used by almost all Apple device users. Whether you realize it or not, whenever you take a photo with your iPhone, your photos are automatically stored in your iCloud. Regardless of whether you pay or not, as long as you sign up for an Apple ID, you&rsquo;ll get 5GB of iCloud storage. Although this capacity is not large, it is completely sufficient for storing daily photos and office documents. For years, iCloud has been criticized for its closed nature. Perhaps for data security reasons, Apple does not allow users to share files in their iCloud drives with others. But the good news is that this situation has been completely changed in the latest MacOS system update.</p>
+<p>This morning, when I turned on my computer and prepared to start today&rsquo;s work, I found that Apple had pushed the latest version of MacOS 10.15.4 system update, and the update description contained a paragraph of envy:
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200325/mac-update-10.15.4.png">
+In other words, <strong>iCloud finally supports external file sharing</strong>! So I immediately updated the system and wanted to experience the feeling of sharing files with icloud as soon as possible. In the new version of the system, just right-click on the icloud file, select &ldquo;Share&rdquo;, and then click &ldquo;Add User&rdquo; to generate a sharing link for the file.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200325/icloud-share-0.png">
+After opening the &ldquo;Add User&rdquo; dialog box, we can set the shared link accordingly. If we only want to share files with invited users, we must not only set the &ldquo;Users with access&rdquo; to &ldquo;Invited users only&rdquo; below, but also fill in the email addresses of the users we invite above. Note that the &ldquo;Invited User&rdquo; function is currently only open to other Apple IDs, and the email address filled in must also be the login email address of the Apple ID.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200325/icloud-share-1.png">
+If we want to create a publicly shared link, rather than making it viewable only to specific users, then we can select &ldquo;Anyone with the link.&rdquo; In this way, as long as the shared link we created is sent to others, the users who own the link can open the corresponding link to browse the file at any time.</p>
+<p>In addition, we can set the access permissions for shared files in the options below. Among them, &ldquo;View Only&rdquo; is read-only permission; &ldquo;Can Change&rdquo; is read-write permission.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200325/icloud-share-2.png">
+After the settings are completed, by clicking the &ldquo;Share&rdquo; button below, we create a sharing link for the specified file. After the shared link is created, it will be automatically copied to our clipboard, and the words &ldquo;Shared by me&rdquo; will appear after the name of the corresponding iCloud file, making it easier for us to find it later.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200325/icloud-share-3.png">
+Now, we can send the copied shared link to other users, and let them open the shared link through their browser to read or change the corresponding file. It is worth mentioning that if the shared file is in a format such as PDF, you can directly preview its content by opening the shared link without having to download and view it first, which is very convenient.
+<img loading="lazy" src="https://masonblog.github.io/images/blog20200325/icloud-share-4.jpg"></p>
+]]></content:encoded></item><item><title>Building a Personal Blog with Hugo and GitHub Pages</title><link>https://masonblog.github.io/en/post/blog20200310/</link><pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20200310/</guid><description>A record of how I built this site with Hugo and GitHub Pages.</description><content:encoded><![CDATA[<p>As you can see, this blog is a completely static HTML site. Compared with dynamic sites written in PHP, static sites load faster and are easier to deploy. Even a complete beginner who cannot program can build a site of their own by spending a little time learning a few tools.</p>
+<p>This site is rendered with <a href="https://gohugo.io/" title="Hugo official website" target="_blank" rel="noopener noreferrer">Hugo</a>
+. Hugo is very simple to use. If you want to learn it yourself, you can read the <a href="https://gohugo.io/documentation/" title="Hugo documentation" target="_blank" rel="noopener noreferrer">official documentation</a>
+. Like other blogging systems, Hugo has many clean and attractive <a href="https://themes.gohugo.io/" title="Hugo themes" target="_blank" rel="noopener noreferrer">themes</a>
+. The theme originally used by this site was <a href="https://github.com/flysnow-org/maupassant-hugo" title="GitHub repository" target="_blank" rel="noopener noreferrer">maupassant</a>
+. Update in 2024: after the blog migration, the current theme is <a href="https://github.com/adityatelange/hugo-PaperMod" target="_blank" rel="noopener noreferrer">PaperMod</a>
+. <del>The theme was originally developed by <a href="https://github.com/pagecho" title="GitHub profile" target="_blank" rel="noopener noreferrer">cho</a>
+ for <a href="https://typecho.org/" title="Typecho official website" target="_blank" rel="noopener noreferrer">Typecho</a>
+, then ported to many other platforms and expanded with new features.</del></p>
+<p>All Hugo pages support Markdown syntax. With Markdown, we can write posts with consistent formatting in any environment without worrying about appearance. Markdown is easy to learn; anyone can pick it up quickly. If you are interested, you can start with <a href="https://www.runoob.com/markdown/md-tutorial.html" title="Markdown tutorial" target="_blank" rel="noopener noreferrer">this tutorial</a>
+. <a href="https://typora.io/" title="Typora official website" target="_blank" rel="noopener noreferrer">Typora</a>
+ was the lightweight cross-platform Markdown editor I was using at the time. Its interface is clean and simple, <del>and it is free and open source</del>. Update in 2024: Typora became paid software in 2022, and my current editor is <a href="https://github.com/marktext/marktext" target="_blank" rel="noopener noreferrer">MarkText</a>
+.</p>
+<p><img loading="lazy" src="/images/blog20200310/marktext.png"></p>
+<p>After Hugo generates the complete HTML pages, we can put them on a server. You can buy a virtual host, or more conveniently, use a Git repository to host your site. <a href="https://git-scm.com/" title="Git official website" target="_blank" rel="noopener noreferrer">Git</a>
+ is a widely used version control tool, and a Git repository is a small server for hosting source code. The best-known Git hosting services are <a href="https://github.com/" title="GitHub website" target="_blank" rel="noopener noreferrer">GitHub</a>
+ and <a href="https://gitlab.com/" title="GitLab website" target="_blank" rel="noopener noreferrer">GitLab</a>
+. In addition to free source-code hosting, they also provide Pages hosting.</p>
+<p>Pages were originally used as documentation pages for open-source projects, but they are also small static HTML web servers. With Pages, we can easily deploy a static website for free.</p>
+<p><img loading="lazy" src="/images/blog20200310/GitHub.PNG"></p>
+<p>If you do not want to manually create pages or edit configuration files, and prefer a visual interface similar to the admin panel of a dynamic PHP blog, you can try <a href="https://forestry.io/" title="Forestry official website" target="_blank" rel="noopener noreferrer">Forestry</a>
+. It is a visual content management system that supports multiple environments. With Forestry, you can manage a static site much like a dynamic blog and push edited content directly to your Git repository, creating a truly no-code website workflow.</p>
+<p><img loading="lazy" src="/images/blog20200310/Forestry.PNG"></p>
+<p>This site was built with Hugo + <del>Forestry</del> + GitHub. From starting to learn the tools to writing this post, it took me three days in total. I am grateful to everyone who created these tools or wrote tutorials for free. Without standing on their shoulders, this site would never have come into being.</p>
+]]></content:encoded></item></channel></rss>
