@@ -2,7 +2,7 @@
   <div class="podcast-player__title">议正言辞 20｜美国诉华为案（上）：从孟晚舟事件到 RICO 共谋指控</div>
   <audio controls preload="metadata">
     <source
-      src="https://api.masonhu.cc/reasoned-talk-20.m4a"
+      src="https://api.masonhu.org/reasoned-talk-20.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
@@ -248,7 +248,7 @@
   <div class="podcast-player__title">议正言辞 06｜美国出生公民权：完全胜利 or 暂时休战？</div>
   <audio controls preload="metadata">
     <source
-      src="https://api.masonhu.cc/reasoned-talk-06.m4a"
+      src="https://api.masonhu.org/reasoned-talk-06.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
@@ -368,7 +368,7 @@
   <div class="podcast-player__title">议正言辞 05｜高铭暄与中国刑法：四要件与三阶层的论争</div>
   <audio controls preload="metadata">
     <source
-      src="https://api.masonhu.cc/reasoned-talk-05.m4a"
+      src="https://api.masonhu.org/reasoned-talk-05.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
