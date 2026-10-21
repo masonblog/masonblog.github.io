@@ -3144,7 +3144,7 @@
 <h2 id="china-severance-pay-calculator">China Severance Pay Calculator</h2>
 <p><img alt="SeveranceGO-CN" loading="lazy" src="/images/portfolio/SeveranceGO-CN.png"></p>
 <p>This project helps estimate one-off payments related to employment termination in China, including statutory severance, damages for unlawful termination, payment in lieu of notice, and potential double-wage liability for failure to sign a written employment contract. The calculation is based on common rules under the Employment Contract Law, its implementing regulations, and judicial interpretations on labor disputes, and it evaluates the result according to the information entered by the user.</p>
-<p><a href="https://severance.masonhu.cc/" target="_blank" rel="noopener noreferrer">Start using it</a>
+<p><a href="https://severance.masonhu.org/" target="_blank" rel="noopener noreferrer">Start using it</a>
 ｜<a href="https://masonblog.github.io/SeveranceGO-CN/" target="_blank" rel="noopener noreferrer">Mirror</a>
 ｜<a href="https://github.com/masonblog/SeveranceGO-CN" target="_blank" rel="noopener noreferrer">GitHub repository</a>
 </p>
@@ -3152,7 +3152,7 @@
 <h2 id="china-holiday-entitlement-lookup">China Holiday Entitlement Lookup</h2>
 <p><img alt="HolidayGO-CN" loading="lazy" src="/images/portfolio/HolidayGO-CN.png"></p>
 <p>This tool helps you check seven categories of statutory leave entitlements in your province within seconds: annual leave, marriage leave, maternity leave, paternity or nursing leave, childcare leave, home leave, and sick leave. It combines national rules with special rules from each province, autonomous region, and municipality, so you can get accurate and traceable leave information without digging through regulatory documents yourself.</p>
-<p><a href="https://holiday.masonhu.cc/" target="_blank" rel="noopener noreferrer">Start using it</a>
+<p><a href="https://holiday.masonhu.org/" target="_blank" rel="noopener noreferrer">Start using it</a>
 ｜<a href="https://masonblog.github.io/HolidayGO-CN" target="_blank" rel="noopener noreferrer">Mirror</a>
 ｜<a href="https://github.com/masonblog/HolidayGO-CN" target="_blank" rel="noopener noreferrer">GitHub repository</a>
 </p>
