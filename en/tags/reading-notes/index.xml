@@ -257,166 +257,7 @@
  and counsel&rsquo;s <a href="https://www.aclu-nh.org/cases/nathan-v-trump-birthright-citizenship-part-ii/" target="_blank" rel="noopener noreferrer">case summary</a>
  for the withdrawal of the requests in Barbara and filing of a separate action in Washington. The script identifies a recent new lawsuit and makes no claim that no other litigation activity occurred afterward.</li>
 </ul>
-]]></content:encoded></item><item><title>Podcast 01｜From China to Europe: State Power and the Rule of Law</title><link>https://masonblog.github.io/en/post/blog20261024/</link><pubDate>Sat, 24 Oct 2026 00:50:36 +0800</pubDate><guid>https://masonblog.github.io/en/post/blog20261024/</guid><description>From Qin China to medieval Europe, this episode draws on Francis Fukuyama&amp;#39;s The Origins of Political Order to explore how states gain power and how law can constrain rulers.</description><content:encoded><![CDATA[<div class="podcast-player" lang="en" role="region" aria-label="Podcast player: Podcast 01｜From China to Europe: State Power and the Rule of Law"
-  data-episode-id="en-01" data-episode-number="1"
-  data-episode-language="en" data-episode-title="01 From China to Europe: State Power and the Rule of Law">
-  <div class="podcast-player__title">Podcast 01｜From China to Europe: State Power and the Rule of Law</div>
-  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
-    <span>Play audio</span>
-  </button>
-  <audio id="podcast-audio-0"  preload="none" hidden>
-    <source
-      data-src="https://api.masonhu.org/en/reasoned-talk-01.m4a"
-      type="audio/mp4">
-    Your browser does not support audio playback.
-  </audio>
-  
-  <div class="podcast-player__controls" role="group" aria-label="Audio controls" hidden>
-    <button class="podcast-player__toggle" type="button" aria-label="Play" title="Play">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
-        <path class="podcast-player__play-icon" d="M8 5v14l11-7z" />
-        <path class="podcast-player__pause-icon" d="M6 5h4v14H6zm8 0h4v14h-4z" hidden />
-      </svg>
-    </button>
-    <span class="podcast-player__time" aria-hidden="true"><span class="podcast-player__current">0:00</span> / <span class="podcast-player__duration">0:00</span></span>
-    <input class="podcast-player__seek" type="range" min="0" max="0" step="0.1" value="0" aria-label="Seek audio" disabled>
-    <button class="podcast-player__mute" type="button" aria-label="Mute" title="Mute">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
-        <path d="M3 9v6h4l5 4V5L7 9z" />
-        <path class="podcast-player__sound-icon" d="M15 8a5 5 0 0 1 0 8v-2.5a2 2 0 0 0 0-3z" />
-        <path class="podcast-player__muted-icon" d="m16 8 6 6-1.5 1.5-6-6zm4.5 0L22 9.5l-6 6-1.5-1.5z" hidden />
-      </svg>
-    </button>
-    <div class="podcast-player__options">
-      <button class="podcast-player__more" type="button" aria-label="More options" title="More options" aria-expanded="false" aria-controls="podcast-audio-0-options">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="2" /><circle cx="12" cy="12" r="2" /><circle cx="12" cy="19" r="2" /></svg>
-      </button>
-      <div id="podcast-audio-0-options" class="podcast-player__menu" hidden>
-        <label>Playback speed
-          <select class="podcast-player__speed" aria-label="Playback speed">
-            <option value="0.5">0.5×</option>
-            <option value="0.75">0.75×</option>
-            <option value="1" selected>1× (Normal)</option>
-            <option value="1.25">1.25×</option>
-            <option value="1.5">1.5×</option>
-            <option value="1.75">1.75×</option>
-            <option value="2">2×</option>
-          </select>
-        </label>
-        <label>Volume <input class="podcast-player__volume" type="range" min="0" max="1" step="0.01" value="1"></label>
-        <a href="https://api.masonhu.org/en/reasoned-talk-01.m4a" target="_blank" rel="noopener">Open audio file <span class="podcast-player__new-tab">(new tab)</span></a>
-      </div>
-    </div>
-  </div>
-  <p class="podcast-player__status" role="status" data-error="Audio could not be played. Please try again." hidden></p>
-  <noscript><a href="https://api.masonhu.org/en/reasoned-talk-01.m4a">Play audio</a></noscript>
-</div>
-
-<h2 id="a-book-in-a-hospital-ward">A book in a hospital ward</h2>
-<p>In February 2020, a photograph from Wuhan circulated widely online. It showed a young man lying on a bed in a temporary hospital, reading a book. Around him, the city was confronting the first wave of COVID-19. The book in his hands was Francis Fukuyama&rsquo;s The Origins of Political Order.</p>
-<p>The photograph was taken on February fifth by a reporter for Hubei Daily. It brought the book to the attention of readers who might otherwise never have picked it up. A book about the development of political institutions had found an unexpected audience in the middle of a public health emergency.</p>
-<p>Its subject raises a question that reaches well beyond the pandemic. We depend on governments to organize collective action and maintain order. How do we give them enough power to do that, while making sure they remain subject to law?</p>
-<p>Today, we&rsquo;re going to follow that question from the formation of the Qin Empire to the study of Roman law in medieval Europe. Fukuyama&rsquo;s book provides the framework. The comparison will help us distinguish two developments that are easily confused: building a state capable of governing, and establishing laws that bind its rulers.</p>
-<h2 id="three-parts-of-political-order">Three parts of political order</h2>
-<p>Fukuyama organizes his account around three institutions: the state, the rule of law, and accountable government.</p>
-<p>The state exercises public authority over a territory. For it to function, it needs the capacity to carry out decisions. That includes collecting taxes, administering justice, and defending the population.</p>
-<p>The rule of law places limits on the exercise of that authority. Its central requirement, in Fukuyama&rsquo;s account, is that rulers themselves are bound by law.</p>
-<p>Accountable government concerns how rulers must answer to the people they govern. In a modern democracy, elections are one of the main ways that happens.</p>
-<p>These institutions don&rsquo;t necessarily develop together. A government may hold elections yet struggle to enforce its decisions. Another may run an effective administration while facing few legal restraints.</p>
-<p>In his book, published in 2011, Fukuyama illustrates the point with Afghanistan, Russia, and Singapore. Afghanistan had held elections, but its government could not enforce its authority across much of the country. Russia combined considerable state power with weak legal constraints on its rulers. Singapore had an effective state and a strong legal system, but more limited democratic accountability. Those are the book&rsquo;s comparisons at the time it was written.</p>
-<p>The point is that voting, administrative capacity, and legal restraint address different problems. A political order has to make them work together. In this episode, we&rsquo;ll focus mainly on state capacity and legal restraint: how a state acquires power, and how law can limit it.</p>
-<h2 id="how-war-helped-build-qin">How war helped build Qin</h2>
-<p>Fukuyama makes a striking claim about China. By the time Qin unified the country in 221 BCE, he argues, it had already developed important features of a modern state.</p>
-<p>Here, the word “modern” needs some explanation. It refers to a form of centralized administration that could reach beyond the ruler&rsquo;s own household and hereditary aristocracy. Officials governed through an administrative hierarchy, using rules intended to apply across the territory. Fukuyama draws on the sociologist Max Weber to describe this kind of state.</p>
-<p>That description concerns how government is organized. It tells us very little, by itself, about whether the government is democratic or respects individual rights.</p>
-<p>So how did such an administration emerge so early?</p>
-<p>Fukuyama gives war a central role. For centuries before unification, rival states competed for territory and survival. Historians divide these centuries into the Spring and Autumn period and the Warring States period. By the later Warring States period, seven major powers dominated the competition.</p>
-<p>Sustained warfare required much more than soldiers. Rulers needed dependable tax revenue and records of the population. They needed officials who could organize supplies and carry out orders. They also had to reduce the independence of aristocratic families whose local power could obstruct central control.</p>
-<p>In Qin, the reforms associated with Shang Yang helped meet those demands. Shang Yang was a fourth-century BCE reformer whose policies strengthened military mobilization and the state&rsquo;s control over its population. His reforms helped lay the foundations for Qin&rsquo;s later conquests.</p>
-<p>In 221 BCE, Qin defeated the last of its six major rivals. Its ruler took the title First Emperor. He is known as Qin Shi Huang.</p>
-<p>The resulting empire governed through a hierarchy of commanderies and counties. These were territorial units administered by officials appointed by the central government. That gave the emperor a way to exercise authority without depending entirely on hereditary lords.</p>
-<p>The Qin dynasty itself was short-lived. The administrative model, however, had a much longer history. Later dynasties inherited and changed it, while powerful families and personal loyalties repeatedly challenged the ideal of government through impersonal rules.</p>
-<p>This is the distinction that matters for Fukuyama&rsquo;s comparison. China developed a strong tradition of centralized administration very early. Effective legal restraints on the highest ruler were a different problem.</p>
-<h2 id="what-qins-law-could-do">What Qin&rsquo;s law could do</h2>
-<p>Ancient China certainly had law. Qin&rsquo;s administration depended on it.</p>
-<p>An earlier legal compilation, traditionally attributed to Li Kui, a minister in the state of Wei, is known as the Canon of Laws. The original text has not survived. Later accounts describe six chapters, so any discussion of its contents depends on those later sources.</p>
-<p>For Qin itself, excavated manuscripts give us a more direct view of legal administration. They preserve statutes, explanations of rules, and models for handling investigations and official paperwork. References to court practice also show officials looking beyond the bare wording of a statute when deciding how to apply it.</p>
-<p>One collection is usually translated as Answers to Questions Concerning Qin Statutes. As the title suggests, it explains legal terms and rules through questions and answers. Another, Models for Sealing and Investigating, provides procedural models for officials.</p>
-<p>These materials show an administration concerned with the details of applying law. Rules had to be interpreted. Officials needed to know how to investigate, how to record what they found, and how to process a case.</p>
-<p>But having detailed laws leaves another question open. What happens when the interests of the ruler conflict with those laws?</p>
-<p>Fukuyama uses “rule of law” to describe an order in which the law has authority over the ruler as well as the governed. That authority may be grounded in religious belief, established custom, or ideas about reason and justice. The essential point is that the ruler&rsquo;s wishes do not settle every legal question.</p>
-<p>Written laws can serve that purpose. They can also serve as instruments for carrying out the ruler&rsquo;s commands. The existence of a legal code, on its own, doesn&rsquo;t tell us which relationship prevails.</p>
-<p>In Fukuyama&rsquo;s reading of imperial China, law remained subordinate to the emperor&rsquo;s ultimate authority. That is a claim about the limits on sovereign power. It doesn&rsquo;t mean that Chinese officials lacked legal expertise, or that the legal system consisted of arbitrary decisions.</p>
-<p>To understand the alternative path he describes, we need to turn to medieval Europe. There, rulers confronted institutions and legal traditions that they did not fully control.</p>
-<h2 id="roman-law-in-medieval-europe">Roman law in medieval Europe</h2>
-<p>Europe&rsquo;s legal history was never a simple transfer of authority from Rome to the modern state. After the collapse of Roman imperial government in the West, Roman legal traditions continued alongside local customs and the law of the Christian Church. In the Eastern Roman Empire, Roman law remained part of imperial government.</p>
-<p>In the sixth century, the Eastern Roman emperor Justinian commissioned a major compilation of legal materials. We now know the collection as the Corpus Iuris Civilis, often rendered in English as the Body of Civil Law.</p>
-<p>It includes several distinct works. The Digest collects extracts from Roman jurists, while the Code brings together imperial enactments. The Institutes is an introductory textbook. The Novels bring together later legislation. For our purposes, we can refer to them together as Justinian&rsquo;s compilation.</p>
-<p>Centuries later, the renewed study of these texts helped transform legal learning in Western Europe. Bologna, in what is now Italy, became a major center of that work in the late eleventh and early twelfth centuries.</p>
-<p>Teachers and students there studied Roman law systematically. Scholars known as the glossators explained difficult passages and worked out how different parts of the texts fitted together. A gloss was an explanatory note; the scholars took their name from that practice.</p>
-<p>This legal learning developed alongside the study of canon law, the law of the Church. Bologna became a place where both traditions were taught and interpreted.</p>
-<p>The political setting mattered. Emperors, popes, and city governments made competing claims to authority. Legal scholars worked within those conflicts. They could provide arguments for rulers, while also helping articulate claims that a ruler could not simply dismiss.</p>
-<p>Their position involved negotiation and dependence as well as autonomy. Some supported imperial power. The study of Roman law could strengthen a ruler&rsquo;s claims just as it could supply arguments against another authority.</p>
-<p>The important development was a body of specialized knowledge, taught and debated in institutions that no single ruler fully controlled. Law increasingly depended on people trained to interpret it.</p>
-<h2 id="legal-expertise-and-natural-law">Legal expertise and natural law</h2>
-<p>Those trained jurists gave legal learning a practical role. Secular rulers and Church authorities needed their expertise to administer institutions and resolve disputes. Legal education helped create a profession with its own methods and shared interests.</p>
-<p>That profession could make it harder to treat every legal question as a matter of political command. A ruler might have the power to demand a particular result. Lawyers could still ask whether the demand was consistent with the legal authorities they recognized.</p>
-<p>A related intellectual question concerned the standards by which human laws should be judged. In the thirteenth century, the theologian Thomas Aquinas gave an influential account of law grounded in reason and the common good.</p>
-<p>For Aquinas, natural law was part of a Christian understanding of the world. Human beings participated in God&rsquo;s eternal law through their capacity for reason. Human legislation could therefore be assessed against standards beyond the will of whoever issued it.</p>
-<p>This gave thinkers a way to question the moral authority of an enacted rule. It did not, on its own, establish an independent court or a modern right to challenge legislation. The argument supplied a standard of judgment; institutions capable of enforcing limits on rulers had their own histories.</p>
-<p>In Fukuyama&rsquo;s account, Europe&rsquo;s divided political and religious authority helped preserve space for law outside the control of any one ruler. Legal scholarship and professional expertise helped sustain that space. Religious and philosophical ideas supplied reasons why law could claim an authority greater than a current command.</p>
-<p>These developments help explain his contrast with China. A centralized state could emerge before strong external limits on its power. Elsewhere, legal traditions and institutions could acquire authority before rulers had consolidated an equally powerful state.</p>
-<p>Neither sequence guaranteed democracy. Bringing state capacity, legal restraint, and political accountability together remained a further challenge.</p>
-<h2 id="returning-to-the-question">Returning to the question</h2>
-<p>We&rsquo;ve covered a long distance from that hospital bed in Wuhan. Qin&rsquo;s officials and Bologna&rsquo;s jurists faced very different problems, but comparing them helps clarify what we ask of a government.</p>
-<p>It needs the capacity to govern. Its exercise of power must also be subject to law, and it must answer to the people affected by its decisions. Success at one task doesn&rsquo;t automatically solve the others.</p>
-<p>Fukuyama&rsquo;s account is a broad interpretation of history. Its comparisons can be challenged, and neither China nor Europe followed a single, unchanging course. The framework is useful because it asks us to examine how these institutions developed, and what kept them apart.</p>
-<p>The photograph brought a book about political order into a moment when the workings of government affected people&rsquo;s daily lives with unusual urgency. The question we began with remains open for every political system: how can a government be powerful enough to act, while remaining bound by law?</p>
-<h2 id="shownotes">ShowNotes</h2>
-<h3 id="terms-and-names">Terms and names</h3>
-<ul>
-<li><strong>Francis Fukuyama</strong> — The political scientist whose comparative framework guides this episode. His three institutions are the state, the rule of law, and accountable government.</li>
-<li><strong>State capacity</strong> — The ability of public institutions to implement decisions. It concerns administrative effectiveness, which should be distinguished from the extent of a ruler&rsquo;s powers.</li>
-<li><strong>Rule of law</strong> — Used here in Fukuyama&rsquo;s sense of law binding rulers themselves. Possessing a written code is insufficient to establish it.</li>
-<li><strong>Accountable government</strong> — Government that must answer to the governed. Democratic elections are a major modern mechanism of accountability.</li>
-<li><strong>秦始皇</strong> — The First Emperor, whose state completed the conquest of its six major rivals in 221 BCE.</li>
-<li><strong>商鞅</strong> — The fourth-century BCE reformer associated with 秦&rsquo;s military and administrative reforms.</li>
-<li><strong>李悝；《法经》</strong> — The traditional attribution and Chinese title of the lost Canon of Laws. The account of its six chapters comes from later sources.</li>
-<li><strong>律 and 令</strong> — Commonly translated as statutes and ordinances. “Orders” is also used for 令.</li>
-<li><strong>《法律答问》</strong> — Answers to Questions Concerning Qin Statutes. English translations of the title vary.</li>
-<li><strong>《封诊式》</strong> — Models for Sealing and Investigating. A collection of procedural models, rather than a modern code of procedure.</li>
-<li><strong>廷行事</strong> — Court practice, often discussed in connection with precedents. The term should not be taken to imply the modern common-law doctrine of binding precedent.</li>
-<li><strong>Corpus Iuris Civilis</strong> — The collective name for Justinian&rsquo;s legal compilation: the Institutes, Digest, Code, and Novels. Corpus Juris Civilis is an alternative spelling. The Code is one component of the collection.</li>
-<li><strong>Glossators</strong> — Medieval scholars who studied Roman legal texts through explanatory notes called glosses.</li>
-<li><strong>Canon law</strong> — The law of the Church; distinct from Roman civil law.</li>
-<li><strong>Thomas Aquinas; natural law</strong> — The thirteenth-century theologian connected human law with reason, the common good, and a Christian account of eternal law.</li>
-</ul>
-<h3 id="sources-and-reading">Sources and reading</h3>
-<p>Links checked on October 23, 2026. Historical comparisons are attributed to Fukuyama; this episode does not present them as an uncontested account of either civilization.</p>
-<ul>
-<li><strong>Framework and the original book:</strong> Francis Fukuyama, <a href="https://us.macmillan.com/books/9781429958936/theoriginsofpoliticalorder/" target="_blank" rel="noopener noreferrer">The Origins of Political Order: From Prehuman Times to the French Revolution</a>
- (2011). The publisher&rsquo;s excerpt contains Chapter 1, including the three institutions and the contemporary examples. Afghanistan, Russia, and Singapore are discussed as examples from that publication, rather than as present-day country assessments.</li>
-<li><strong>Qin and the meaning of “modern state”:</strong> Francis Fukuyama, <a href="https://fsi-live.s3.us-west-1.amazonaws.com/s3fs-public/Patterns_of_History.pdf" target="_blank" rel="noopener noreferrer">“The Patterns of History”</a>
-, Journal of Democracy 23, no. 1 (2012), pp. 14–26, especially pp. 15–16. This is Fukuyama&rsquo;s own explanation of the distinction between centralized administration and institutions that constrain it.</li>
-<li><strong>The photograph:</strong> 柯皓, <a href="https://hb.cri.cn/2020-02-18/3a549f87-e667-e0f1-9442-fcca93d7b877.html" target="_blank" rel="noopener noreferrer">“方舱医院里 我拍下两位读书哥”</a>
-, 湖北日报, February 18, 2020, republished by CRI. The photographer identifies February 5 as the date of the photograph and names the book. No claim about the patient&rsquo;s political beliefs is made here.</li>
-<li><strong>The later account of the Canon of Laws:</strong> 《晋书》, <a href="https://zh.wikisource.org/zh/%E6%99%89%E6%9B%B8/%E5%8D%B7030#%E9%AD%8F" target="_blank" rel="noopener noreferrer">卷三十, “Treatise on Penal Law,” subsection on 魏</a>
-. This seventh-century compilation attributes the work to 李悝 and describes six chapters. It is evidence for the later tradition, rather than a surviving Warring States text.</li>
-<li><strong>Qin legal manuscripts and English terminology:</strong> Arnd Helmut Hafner, <a href="https://brill.com/downloadpdf/journals/bsms/6/1/article-p103_6.pdf" target="_blank" rel="noopener noreferrer">“The State of Research in Early Chinese Legal History: a Review of Two Important Recent Annotated Translations in English”</a>
-, Bamboo and Silk 6 (2023), pp. 103–157, opening section and note 7. The discussion identifies the 睡虎地 materials and supplies English titles following A. F. P. Hulsewé. English titles for these ancient texts are scholarly translations, with variants in use.</li>
-<li><strong>Justinian&rsquo;s compilation:</strong> Law Library of Congress, <a href="https://blogs.loc.gov/law/2015/07/the-civil-law-system-global-legal-collection-highlights/" target="_blank" rel="noopener noreferrer">“The Civil Law System — Global Legal Collection Highlights”</a>
-, July 28, 2015, section “Corpus Iuris Civilis.” This identifies the component works and explains their place in the civil-law tradition.</li>
-<li><strong>Bologna and competing authorities:</strong> University of Bologna, <a href="https://www.unibo.it/en/university/who-we-are/our-history/nine-centuries-of-history/the-birth-of-the-studium-and-the-commune" target="_blank" rel="noopener noreferrer">“The birth of the Studium and the Commune”</a>
-. The university&rsquo;s institutional history places its beginnings around the conventional date of 1088 and describes Roman and canon law, imperial support, and conflicts with the papacy and city government. The episode avoids treating medieval university autonomy as modern institutional independence.</li>
-<li><strong>Aquinas on law:</strong> Thomas Aquinas, Summa Theologiae, First Part of the Second Part, <a href="https://www.newadvent.org/summa/2090.htm" target="_blank" rel="noopener noreferrer">Question 90, especially Article 4</a>
-, and <a href="https://www.newadvent.org/summa/2091.htm" target="_blank" rel="noopener noreferrer">Question 91, especially Articles 2–3</a>
-. These are the primary texts for the account of law, reason, the common good, and natural law. The episode paraphrases them.</li>
-</ul>
-<h3 id="chinese-source-episode">Chinese source episode</h3>
-<p>This English-language episode adapts the topic of <a href="https://masonhu.org/post/blog20250609/" target="_blank" rel="noopener noreferrer">Chinese episode 01</a>
-, originally released on June 9, 2025. It has been revised for an independent English-language series. The Chinese release date, audio links, and running time do not describe a release of this English adaptation.</p>
-]]></content:encoded></item><item><title>Podcast 02｜A Son's Revenge: Filial Duty and the Law in Tang China</title><link>https://masonblog.github.io/en/post/blog20261025/</link><pubDate>Sat, 24 Oct 2026 20:12:19 +0800</pubDate><guid>https://masonblog.github.io/en/post/blog20261025/</guid><description>Xu Yuanqing killed the official who had killed his father, then surrendered. This episode follows Chen Zi&amp;#39;ang and Liu Zongyuan&amp;#39;s debate over filial duty, punishment, and the state&amp;#39;s responsibility to provide justice in Tang China.</description><content:encoded><![CDATA[<div class="podcast-player" lang="en" role="region" aria-label="Podcast player: Podcast 02｜A Son&#39;s Revenge: Filial Duty and the Law in Tang China"
+]]></content:encoded></item><item><title>Podcast 02｜A Son's Revenge: Filial Duty and the Law in Tang China</title><link>https://masonblog.github.io/en/post/blog20261025/</link><pubDate>Sun, 25 Oct 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20261025/</guid><description>Xu Yuanqing killed the official who had killed his father, then surrendered. This episode follows Chen Zi&amp;#39;ang and Liu Zongyuan&amp;#39;s debate over filial duty, punishment, and the state&amp;#39;s responsibility to provide justice in Tang China.</description><content:encoded><![CDATA[<div class="podcast-player" lang="en" role="region" aria-label="Podcast player: Podcast 02｜A Son&#39;s Revenge: Filial Duty and the Law in Tang China"
   data-episode-id="en-02" data-episode-number="2"
   data-episode-language="en" data-episode-title="02 A Son&#39;s Revenge: Filial Duty and the Law in Tang China">
   <div class="podcast-player__title">Podcast 02｜A Son&#39;s Revenge: Filial Duty and the Law in Tang China</div>
@@ -653,6 +494,165 @@
 <li><strong>Limits of the modern comparison:</strong> Leslie Green and Thomas Adams, <a href="https://plato.stanford.edu/entries/legal-positivism/" target="_blank" rel="noopener noreferrer">“Legal Positivism,” Stanford Encyclopedia of Philosophy</a>
 , introduction and section 4. Legal validity, moral evaluation, and a duty to obey are distinct questions. The comparison in the episode is an interpretive aid, not a claim that Chen or Liu belonged to a modern jurisprudential school.</li>
 </ul>
+]]></content:encoded></item><item><title>Podcast 01｜From China to Europe: State Power and the Rule of Law</title><link>https://masonblog.github.io/en/post/blog20261024/</link><pubDate>Sat, 24 Oct 2026 00:50:36 +0800</pubDate><guid>https://masonblog.github.io/en/post/blog20261024/</guid><description>From Qin China to medieval Europe, this episode draws on Francis Fukuyama&amp;#39;s The Origins of Political Order to explore how states gain power and how law can constrain rulers.</description><content:encoded><![CDATA[<div class="podcast-player" lang="en" role="region" aria-label="Podcast player: Podcast 01｜From China to Europe: State Power and the Rule of Law"
+  data-episode-id="en-01" data-episode-number="1"
+  data-episode-language="en" data-episode-title="01 From China to Europe: State Power and the Rule of Law">
+  <div class="podcast-player__title">Podcast 01｜From China to Europe: State Power and the Rule of Law</div>
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>Play audio</span>
+  </button>
+  <audio id="podcast-audio-0"  preload="none" hidden>
+    <source
+      data-src="https://api.masonhu.org/en/reasoned-talk-01.m4a"
+      type="audio/mp4">
+    Your browser does not support audio playback.
+  </audio>
+  
+  <div class="podcast-player__controls" role="group" aria-label="Audio controls" hidden>
+    <button class="podcast-player__toggle" type="button" aria-label="Play" title="Play">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+        <path class="podcast-player__play-icon" d="M8 5v14l11-7z" />
+        <path class="podcast-player__pause-icon" d="M6 5h4v14H6zm8 0h4v14h-4z" hidden />
+      </svg>
+    </button>
+    <span class="podcast-player__time" aria-hidden="true"><span class="podcast-player__current">0:00</span> / <span class="podcast-player__duration">0:00</span></span>
+    <input class="podcast-player__seek" type="range" min="0" max="0" step="0.1" value="0" aria-label="Seek audio" disabled>
+    <button class="podcast-player__mute" type="button" aria-label="Mute" title="Mute">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+        <path d="M3 9v6h4l5 4V5L7 9z" />
+        <path class="podcast-player__sound-icon" d="M15 8a5 5 0 0 1 0 8v-2.5a2 2 0 0 0 0-3z" />
+        <path class="podcast-player__muted-icon" d="m16 8 6 6-1.5 1.5-6-6zm4.5 0L22 9.5l-6 6-1.5-1.5z" hidden />
+      </svg>
+    </button>
+    <div class="podcast-player__options">
+      <button class="podcast-player__more" type="button" aria-label="More options" title="More options" aria-expanded="false" aria-controls="podcast-audio-0-options">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="2" /><circle cx="12" cy="12" r="2" /><circle cx="12" cy="19" r="2" /></svg>
+      </button>
+      <div id="podcast-audio-0-options" class="podcast-player__menu" hidden>
+        <label>Playback speed
+          <select class="podcast-player__speed" aria-label="Playback speed">
+            <option value="0.5">0.5×</option>
+            <option value="0.75">0.75×</option>
+            <option value="1" selected>1× (Normal)</option>
+            <option value="1.25">1.25×</option>
+            <option value="1.5">1.5×</option>
+            <option value="1.75">1.75×</option>
+            <option value="2">2×</option>
+          </select>
+        </label>
+        <label>Volume <input class="podcast-player__volume" type="range" min="0" max="1" step="0.01" value="1"></label>
+        <a href="https://api.masonhu.org/en/reasoned-talk-01.m4a" target="_blank" rel="noopener">Open audio file <span class="podcast-player__new-tab">(new tab)</span></a>
+      </div>
+    </div>
+  </div>
+  <p class="podcast-player__status" role="status" data-error="Audio could not be played. Please try again." hidden></p>
+  <noscript><a href="https://api.masonhu.org/en/reasoned-talk-01.m4a">Play audio</a></noscript>
+</div>
+
+<h2 id="a-book-in-a-hospital-ward">A book in a hospital ward</h2>
+<p>In February 2020, a photograph from Wuhan circulated widely online. It showed a young man lying on a bed in a temporary hospital, reading a book. Around him, the city was confronting the first wave of COVID-19. The book in his hands was Francis Fukuyama&rsquo;s The Origins of Political Order.</p>
+<p>The photograph was taken on February fifth by a reporter for Hubei Daily. It brought the book to the attention of readers who might otherwise never have picked it up. A book about the development of political institutions had found an unexpected audience in the middle of a public health emergency.</p>
+<p>Its subject raises a question that reaches well beyond the pandemic. We depend on governments to organize collective action and maintain order. How do we give them enough power to do that, while making sure they remain subject to law?</p>
+<p>Today, we&rsquo;re going to follow that question from the formation of the Qin Empire to the study of Roman law in medieval Europe. Fukuyama&rsquo;s book provides the framework. The comparison will help us distinguish two developments that are easily confused: building a state capable of governing, and establishing laws that bind its rulers.</p>
+<h2 id="three-parts-of-political-order">Three parts of political order</h2>
+<p>Fukuyama organizes his account around three institutions: the state, the rule of law, and accountable government.</p>
+<p>The state exercises public authority over a territory. For it to function, it needs the capacity to carry out decisions. That includes collecting taxes, administering justice, and defending the population.</p>
+<p>The rule of law places limits on the exercise of that authority. Its central requirement, in Fukuyama&rsquo;s account, is that rulers themselves are bound by law.</p>
+<p>Accountable government concerns how rulers must answer to the people they govern. In a modern democracy, elections are one of the main ways that happens.</p>
+<p>These institutions don&rsquo;t necessarily develop together. A government may hold elections yet struggle to enforce its decisions. Another may run an effective administration while facing few legal restraints.</p>
+<p>In his book, published in 2011, Fukuyama illustrates the point with Afghanistan, Russia, and Singapore. Afghanistan had held elections, but its government could not enforce its authority across much of the country. Russia combined considerable state power with weak legal constraints on its rulers. Singapore had an effective state and a strong legal system, but more limited democratic accountability. Those are the book&rsquo;s comparisons at the time it was written.</p>
+<p>The point is that voting, administrative capacity, and legal restraint address different problems. A political order has to make them work together. In this episode, we&rsquo;ll focus mainly on state capacity and legal restraint: how a state acquires power, and how law can limit it.</p>
+<h2 id="how-war-helped-build-qin">How war helped build Qin</h2>
+<p>Fukuyama makes a striking claim about China. By the time Qin unified the country in 221 BCE, he argues, it had already developed important features of a modern state.</p>
+<p>Here, the word “modern” needs some explanation. It refers to a form of centralized administration that could reach beyond the ruler&rsquo;s own household and hereditary aristocracy. Officials governed through an administrative hierarchy, using rules intended to apply across the territory. Fukuyama draws on the sociologist Max Weber to describe this kind of state.</p>
+<p>That description concerns how government is organized. It tells us very little, by itself, about whether the government is democratic or respects individual rights.</p>
+<p>So how did such an administration emerge so early?</p>
+<p>Fukuyama gives war a central role. For centuries before unification, rival states competed for territory and survival. Historians divide these centuries into the Spring and Autumn period and the Warring States period. By the later Warring States period, seven major powers dominated the competition.</p>
+<p>Sustained warfare required much more than soldiers. Rulers needed dependable tax revenue and records of the population. They needed officials who could organize supplies and carry out orders. They also had to reduce the independence of aristocratic families whose local power could obstruct central control.</p>
+<p>In Qin, the reforms associated with Shang Yang helped meet those demands. Shang Yang was a fourth-century BCE reformer whose policies strengthened military mobilization and the state&rsquo;s control over its population. His reforms helped lay the foundations for Qin&rsquo;s later conquests.</p>
+<p>In 221 BCE, Qin defeated the last of its six major rivals. Its ruler took the title First Emperor. He is known as Qin Shi Huang.</p>
+<p>The resulting empire governed through a hierarchy of commanderies and counties. These were territorial units administered by officials appointed by the central government. That gave the emperor a way to exercise authority without depending entirely on hereditary lords.</p>
+<p>The Qin dynasty itself was short-lived. The administrative model, however, had a much longer history. Later dynasties inherited and changed it, while powerful families and personal loyalties repeatedly challenged the ideal of government through impersonal rules.</p>
+<p>This is the distinction that matters for Fukuyama&rsquo;s comparison. China developed a strong tradition of centralized administration very early. Effective legal restraints on the highest ruler were a different problem.</p>
+<h2 id="what-qins-law-could-do">What Qin&rsquo;s law could do</h2>
+<p>Ancient China certainly had law. Qin&rsquo;s administration depended on it.</p>
+<p>An earlier legal compilation, traditionally attributed to Li Kui, a minister in the state of Wei, is known as the Canon of Laws. The original text has not survived. Later accounts describe six chapters, so any discussion of its contents depends on those later sources.</p>
+<p>For Qin itself, excavated manuscripts give us a more direct view of legal administration. They preserve statutes, explanations of rules, and models for handling investigations and official paperwork. References to court practice also show officials looking beyond the bare wording of a statute when deciding how to apply it.</p>
+<p>One collection is usually translated as Answers to Questions Concerning Qin Statutes. As the title suggests, it explains legal terms and rules through questions and answers. Another, Models for Sealing and Investigating, provides procedural models for officials.</p>
+<p>These materials show an administration concerned with the details of applying law. Rules had to be interpreted. Officials needed to know how to investigate, how to record what they found, and how to process a case.</p>
+<p>But having detailed laws leaves another question open. What happens when the interests of the ruler conflict with those laws?</p>
+<p>Fukuyama uses “rule of law” to describe an order in which the law has authority over the ruler as well as the governed. That authority may be grounded in religious belief, established custom, or ideas about reason and justice. The essential point is that the ruler&rsquo;s wishes do not settle every legal question.</p>
+<p>Written laws can serve that purpose. They can also serve as instruments for carrying out the ruler&rsquo;s commands. The existence of a legal code, on its own, doesn&rsquo;t tell us which relationship prevails.</p>
+<p>In Fukuyama&rsquo;s reading of imperial China, law remained subordinate to the emperor&rsquo;s ultimate authority. That is a claim about the limits on sovereign power. It doesn&rsquo;t mean that Chinese officials lacked legal expertise, or that the legal system consisted of arbitrary decisions.</p>
+<p>To understand the alternative path he describes, we need to turn to medieval Europe. There, rulers confronted institutions and legal traditions that they did not fully control.</p>
+<h2 id="roman-law-in-medieval-europe">Roman law in medieval Europe</h2>
+<p>Europe&rsquo;s legal history was never a simple transfer of authority from Rome to the modern state. After the collapse of Roman imperial government in the West, Roman legal traditions continued alongside local customs and the law of the Christian Church. In the Eastern Roman Empire, Roman law remained part of imperial government.</p>
+<p>In the sixth century, the Eastern Roman emperor Justinian commissioned a major compilation of legal materials. We now know the collection as the Corpus Iuris Civilis, often rendered in English as the Body of Civil Law.</p>
+<p>It includes several distinct works. The Digest collects extracts from Roman jurists, while the Code brings together imperial enactments. The Institutes is an introductory textbook. The Novels bring together later legislation. For our purposes, we can refer to them together as Justinian&rsquo;s compilation.</p>
+<p>Centuries later, the renewed study of these texts helped transform legal learning in Western Europe. Bologna, in what is now Italy, became a major center of that work in the late eleventh and early twelfth centuries.</p>
+<p>Teachers and students there studied Roman law systematically. Scholars known as the glossators explained difficult passages and worked out how different parts of the texts fitted together. A gloss was an explanatory note; the scholars took their name from that practice.</p>
+<p>This legal learning developed alongside the study of canon law, the law of the Church. Bologna became a place where both traditions were taught and interpreted.</p>
+<p>The political setting mattered. Emperors, popes, and city governments made competing claims to authority. Legal scholars worked within those conflicts. They could provide arguments for rulers, while also helping articulate claims that a ruler could not simply dismiss.</p>
+<p>Their position involved negotiation and dependence as well as autonomy. Some supported imperial power. The study of Roman law could strengthen a ruler&rsquo;s claims just as it could supply arguments against another authority.</p>
+<p>The important development was a body of specialized knowledge, taught and debated in institutions that no single ruler fully controlled. Law increasingly depended on people trained to interpret it.</p>
+<h2 id="legal-expertise-and-natural-law">Legal expertise and natural law</h2>
+<p>Those trained jurists gave legal learning a practical role. Secular rulers and Church authorities needed their expertise to administer institutions and resolve disputes. Legal education helped create a profession with its own methods and shared interests.</p>
+<p>That profession could make it harder to treat every legal question as a matter of political command. A ruler might have the power to demand a particular result. Lawyers could still ask whether the demand was consistent with the legal authorities they recognized.</p>
+<p>A related intellectual question concerned the standards by which human laws should be judged. In the thirteenth century, the theologian Thomas Aquinas gave an influential account of law grounded in reason and the common good.</p>
+<p>For Aquinas, natural law was part of a Christian understanding of the world. Human beings participated in God&rsquo;s eternal law through their capacity for reason. Human legislation could therefore be assessed against standards beyond the will of whoever issued it.</p>
+<p>This gave thinkers a way to question the moral authority of an enacted rule. It did not, on its own, establish an independent court or a modern right to challenge legislation. The argument supplied a standard of judgment; institutions capable of enforcing limits on rulers had their own histories.</p>
+<p>In Fukuyama&rsquo;s account, Europe&rsquo;s divided political and religious authority helped preserve space for law outside the control of any one ruler. Legal scholarship and professional expertise helped sustain that space. Religious and philosophical ideas supplied reasons why law could claim an authority greater than a current command.</p>
+<p>These developments help explain his contrast with China. A centralized state could emerge before strong external limits on its power. Elsewhere, legal traditions and institutions could acquire authority before rulers had consolidated an equally powerful state.</p>
+<p>Neither sequence guaranteed democracy. Bringing state capacity, legal restraint, and political accountability together remained a further challenge.</p>
+<h2 id="returning-to-the-question">Returning to the question</h2>
+<p>We&rsquo;ve covered a long distance from that hospital bed in Wuhan. Qin&rsquo;s officials and Bologna&rsquo;s jurists faced very different problems, but comparing them helps clarify what we ask of a government.</p>
+<p>It needs the capacity to govern. Its exercise of power must also be subject to law, and it must answer to the people affected by its decisions. Success at one task doesn&rsquo;t automatically solve the others.</p>
+<p>Fukuyama&rsquo;s account is a broad interpretation of history. Its comparisons can be challenged, and neither China nor Europe followed a single, unchanging course. The framework is useful because it asks us to examine how these institutions developed, and what kept them apart.</p>
+<p>The photograph brought a book about political order into a moment when the workings of government affected people&rsquo;s daily lives with unusual urgency. The question we began with remains open for every political system: how can a government be powerful enough to act, while remaining bound by law?</p>
+<h2 id="shownotes">ShowNotes</h2>
+<h3 id="terms-and-names">Terms and names</h3>
+<ul>
+<li><strong>Francis Fukuyama</strong> — The political scientist whose comparative framework guides this episode. His three institutions are the state, the rule of law, and accountable government.</li>
+<li><strong>State capacity</strong> — The ability of public institutions to implement decisions. It concerns administrative effectiveness, which should be distinguished from the extent of a ruler&rsquo;s powers.</li>
+<li><strong>Rule of law</strong> — Used here in Fukuyama&rsquo;s sense of law binding rulers themselves. Possessing a written code is insufficient to establish it.</li>
+<li><strong>Accountable government</strong> — Government that must answer to the governed. Democratic elections are a major modern mechanism of accountability.</li>
+<li><strong>秦始皇</strong> — The First Emperor, whose state completed the conquest of its six major rivals in 221 BCE.</li>
+<li><strong>商鞅</strong> — The fourth-century BCE reformer associated with 秦&rsquo;s military and administrative reforms.</li>
+<li><strong>李悝；《法经》</strong> — The traditional attribution and Chinese title of the lost Canon of Laws. The account of its six chapters comes from later sources.</li>
+<li><strong>律 and 令</strong> — Commonly translated as statutes and ordinances. “Orders” is also used for 令.</li>
+<li><strong>《法律答问》</strong> — Answers to Questions Concerning Qin Statutes. English translations of the title vary.</li>
+<li><strong>《封诊式》</strong> — Models for Sealing and Investigating. A collection of procedural models, rather than a modern code of procedure.</li>
+<li><strong>廷行事</strong> — Court practice, often discussed in connection with precedents. The term should not be taken to imply the modern common-law doctrine of binding precedent.</li>
+<li><strong>Corpus Iuris Civilis</strong> — The collective name for Justinian&rsquo;s legal compilation: the Institutes, Digest, Code, and Novels. Corpus Juris Civilis is an alternative spelling. The Code is one component of the collection.</li>
+<li><strong>Glossators</strong> — Medieval scholars who studied Roman legal texts through explanatory notes called glosses.</li>
+<li><strong>Canon law</strong> — The law of the Church; distinct from Roman civil law.</li>
+<li><strong>Thomas Aquinas; natural law</strong> — The thirteenth-century theologian connected human law with reason, the common good, and a Christian account of eternal law.</li>
+</ul>
+<h3 id="sources-and-reading">Sources and reading</h3>
+<p>Links checked on October 23, 2026. Historical comparisons are attributed to Fukuyama; this episode does not present them as an uncontested account of either civilization.</p>
+<ul>
+<li><strong>Framework and the original book:</strong> Francis Fukuyama, <a href="https://us.macmillan.com/books/9781429958936/theoriginsofpoliticalorder/" target="_blank" rel="noopener noreferrer">The Origins of Political Order: From Prehuman Times to the French Revolution</a>
+ (2011). The publisher&rsquo;s excerpt contains Chapter 1, including the three institutions and the contemporary examples. Afghanistan, Russia, and Singapore are discussed as examples from that publication, rather than as present-day country assessments.</li>
+<li><strong>Qin and the meaning of “modern state”:</strong> Francis Fukuyama, <a href="https://fsi-live.s3.us-west-1.amazonaws.com/s3fs-public/Patterns_of_History.pdf" target="_blank" rel="noopener noreferrer">“The Patterns of History”</a>
+, Journal of Democracy 23, no. 1 (2012), pp. 14–26, especially pp. 15–16. This is Fukuyama&rsquo;s own explanation of the distinction between centralized administration and institutions that constrain it.</li>
+<li><strong>The photograph:</strong> 柯皓, <a href="https://hb.cri.cn/2020-02-18/3a549f87-e667-e0f1-9442-fcca93d7b877.html" target="_blank" rel="noopener noreferrer">“方舱医院里 我拍下两位读书哥”</a>
+, 湖北日报, February 18, 2020, republished by CRI. The photographer identifies February 5 as the date of the photograph and names the book. No claim about the patient&rsquo;s political beliefs is made here.</li>
+<li><strong>The later account of the Canon of Laws:</strong> 《晋书》, <a href="https://zh.wikisource.org/zh/%E6%99%89%E6%9B%B8/%E5%8D%B7030#%E9%AD%8F" target="_blank" rel="noopener noreferrer">卷三十, “Treatise on Penal Law,” subsection on 魏</a>
+. This seventh-century compilation attributes the work to 李悝 and describes six chapters. It is evidence for the later tradition, rather than a surviving Warring States text.</li>
+<li><strong>Qin legal manuscripts and English terminology:</strong> Arnd Helmut Hafner, <a href="https://brill.com/downloadpdf/journals/bsms/6/1/article-p103_6.pdf" target="_blank" rel="noopener noreferrer">“The State of Research in Early Chinese Legal History: a Review of Two Important Recent Annotated Translations in English”</a>
+, Bamboo and Silk 6 (2023), pp. 103–157, opening section and note 7. The discussion identifies the 睡虎地 materials and supplies English titles following A. F. P. Hulsewé. English titles for these ancient texts are scholarly translations, with variants in use.</li>
+<li><strong>Justinian&rsquo;s compilation:</strong> Law Library of Congress, <a href="https://blogs.loc.gov/law/2015/07/the-civil-law-system-global-legal-collection-highlights/" target="_blank" rel="noopener noreferrer">“The Civil Law System — Global Legal Collection Highlights”</a>
+, July 28, 2015, section “Corpus Iuris Civilis.” This identifies the component works and explains their place in the civil-law tradition.</li>
+<li><strong>Bologna and competing authorities:</strong> University of Bologna, <a href="https://www.unibo.it/en/university/who-we-are/our-history/nine-centuries-of-history/the-birth-of-the-studium-and-the-commune" target="_blank" rel="noopener noreferrer">“The birth of the Studium and the Commune”</a>
+. The university&rsquo;s institutional history places its beginnings around the conventional date of 1088 and describes Roman and canon law, imperial support, and conflicts with the papacy and city government. The episode avoids treating medieval university autonomy as modern institutional independence.</li>
+<li><strong>Aquinas on law:</strong> Thomas Aquinas, Summa Theologiae, First Part of the Second Part, <a href="https://www.newadvent.org/summa/2090.htm" target="_blank" rel="noopener noreferrer">Question 90, especially Article 4</a>
+, and <a href="https://www.newadvent.org/summa/2091.htm" target="_blank" rel="noopener noreferrer">Question 91, especially Articles 2–3</a>
+. These are the primary texts for the account of law, reason, the common good, and natural law. The episode paraphrases them.</li>
+</ul>
+<h3 id="chinese-source-episode">Chinese source episode</h3>
+<p>This English-language episode adapts the topic of <a href="https://masonhu.org/post/blog20250609/" target="_blank" rel="noopener noreferrer">Chinese episode 01</a>
+, originally released on June 9, 2025. It has been revised for an independent English-language series. The Chinese release date, audio links, and running time do not describe a release of this English adaptation.</p>
 ]]></content:encoded></item><item><title>Public Forum Doctrine: Why Is the White House Press Area a Nonpublic Forum?</title><link>https://masonblog.github.io/en/post/blog20261019/</link><pubDate>Mon, 19 Oct 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/en/post/blog20261019/</guid><description>In 2026, three news organizations sued the White House. Their dispute turns in part on the legal character of the White House press area. From the language of public trust in Hague in 1939 to Perry&amp;#39;s three-category framework in 1983, the public forum doctrine defines how far the government can regulate expression within the spaces it controls.</description><content:encoded><![CDATA[<p>In episode 22, we discussed the lawsuit that three news organizations brought against the White House in September 2026. During the proceedings, lawyers on both sides treated the White House press area as a “nonpublic forum.”</p>
 <p>What does “public forum” mean here? Why is the White House press area a nonpublic forum? And why has this concept become so consequential in the three organizations&rsquo; lawsuit? This article takes a closer look at the doctrine under the First Amendment.</p>
 <hr>
