@@ -1,11 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mason's Blog</title><link>https://masonblog.github.io/en/</link><description>Recent content on Mason's Blog</description><image><title>Mason's Blog</title><url>https://masonblog.github.io/images/mason.png</url><link>https://masonblog.github.io/images/mason.png</link></image><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sat, 24 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://masonblog.github.io/en/index.xml" rel="self" type="application/rss+xml"/><item><title>Podcast 01｜From China to Europe: State Power and the Rule of Law</title><link>https://masonblog.github.io/en/post/blog20261024/</link><pubDate>Sat, 24 Oct 2026 00:50:36 +0800</pubDate><guid>https://masonblog.github.io/en/post/blog20261024/</guid><description>From Qin China to medieval Europe, this episode draws on Francis Fukuyama&amp;#39;s The Origins of Political Order to explore how states gain power and how law can constrain rulers.</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="Podcast player: Podcast 01｜From China to Europe: State Power and the Rule of Law">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Mason's Blog</title><link>https://masonblog.github.io/en/</link><description>Recent content on Mason's Blog</description><image><title>Mason's Blog</title><url>https://masonblog.github.io/images/mason.png</url><link>https://masonblog.github.io/images/mason.png</link></image><generator>Hugo</generator><language>en-US</language><lastBuildDate>Sat, 24 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://masonblog.github.io/en/index.xml" rel="self" type="application/rss+xml"/><item><title>Podcast 01｜From China to Europe: State Power and the Rule of Law</title><link>https://masonblog.github.io/en/post/blog20261024/</link><pubDate>Sat, 24 Oct 2026 00:50:36 +0800</pubDate><guid>https://masonblog.github.io/en/post/blog20261024/</guid><description>From Qin China to medieval Europe, this episode draws on Francis Fukuyama&amp;#39;s The Origins of Political Order to explore how states gain power and how law can constrain rulers.</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="Podcast player: Podcast 01｜From China to Europe: State Power and the Rule of Law"
+  data-episode-id="en-01" data-episode-number="1"
+  data-episode-language="en" data-episode-title="01 From China to Europe: State Power and the Rule of Law">
   <div class="podcast-player__title">Podcast 01｜From China to Europe: State Power and the Rule of Law</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>Play audio</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/en/reasoned-talk-01.m4a"
+      data-src="https://api.masonhu.org/en/reasoned-talk-01.m4a"
       type="audio/mp4">
     Your browser does not support audio playback.
   </audio>
+  <p class="podcast-player__status" role="status" data-error="Audio could not be played. Please try again." hidden></p>
+  <noscript><a href="https://api.masonhu.org/en/reasoned-talk-01.m4a">Play audio</a></noscript>
 </div>
 
 <h2 id="a-book-in-a-hospital-ward">A book in a hospital ward</h2>
@@ -111,14 +119,22 @@
 <h3 id="chinese-source-episode">Chinese source episode</h3>
 <p>This English-language episode adapts the topic of <a href="https://masonhu.org/post/blog20250609/" target="_blank" rel="noopener noreferrer">Chinese episode 01</a>
 , originally released on June 9, 2025. It has been revised for an independent English-language series. The Chinese release date, audio links, and running time do not describe a release of this English adaptation.</p>
-]]></content:encoded></item><item><title>Podcast 02｜A Son's Revenge: Filial Duty and the Law in Tang China</title><link>https://masonblog.github.io/en/post/blog20261025/</link><pubDate>Sat, 24 Oct 2026 20:12:19 +0800</pubDate><guid>https://masonblog.github.io/en/post/blog20261025/</guid><description>Xu Yuanqing killed the official who had killed his father, then surrendered. This episode follows Chen Zi&amp;#39;ang and Liu Zongyuan&amp;#39;s debate over filial duty, punishment, and the state&amp;#39;s responsibility to provide justice in Tang China.</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="Podcast player: Podcast 02｜A Son&#39;s Revenge: Filial Duty and the Law in Tang China">
+]]></content:encoded></item><item><title>Podcast 02｜A Son's Revenge: Filial Duty and the Law in Tang China</title><link>https://masonblog.github.io/en/post/blog20261025/</link><pubDate>Sat, 24 Oct 2026 20:12:19 +0800</pubDate><guid>https://masonblog.github.io/en/post/blog20261025/</guid><description>Xu Yuanqing killed the official who had killed his father, then surrendered. This episode follows Chen Zi&amp;#39;ang and Liu Zongyuan&amp;#39;s debate over filial duty, punishment, and the state&amp;#39;s responsibility to provide justice in Tang China.</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="Podcast player: Podcast 02｜A Son&#39;s Revenge: Filial Duty and the Law in Tang China"
+  data-episode-id="en-02" data-episode-number="2"
+  data-episode-language="en" data-episode-title="02 A Son&#39;s Revenge: Filial Duty and the Law in Tang China">
   <div class="podcast-player__title">Podcast 02｜A Son&#39;s Revenge: Filial Duty and the Law in Tang China</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>Play audio</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/en/reasoned-talk-02.m4a"
+      data-src="https://api.masonhu.org/en/reasoned-talk-02.m4a"
       type="audio/mp4">
     Your browser does not support audio playback.
   </audio>
+  <p class="podcast-player__status" role="status" data-error="Audio could not be played. Please try again." hidden></p>
+  <noscript><a href="https://api.masonhu.org/en/reasoned-talk-02.m4a">Play audio</a></noscript>
 </div>
 
 <h2 id="a-killing-followed-by-surrender">A killing followed by surrender</h2>

@@ -64,14 +64,22 @@
 <li>〔9〕First Amendment Encyclopedia, &ldquo;Public Forum Doctrine&rdquo;，<a href="https://firstamendment.mtsu.edu/article/public-forum-doctrine/" target="_blank" rel="noopener noreferrer">全文</a>
 。</li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 22｜三家媒体起诉白宫：新闻自由与记者证的司法边界</title><link>https://masonblog.github.io/post/blog20261015/</link><pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20261015/</guid><description>2026 年 9 月，特朗普以「假新闻」为由，禁止 CNN、MS NOW 和 Politico 进入白宫，三家媒体随后起诉。总统能否因为不满报道，就收走记者证？这场争议，要从半个世纪前一名记者被拒发证件的官司说起。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 22｜三家媒体起诉白宫：新闻自由与记者证的司法边界">
+]]></content:encoded></item><item><title>议正言辞 22｜三家媒体起诉白宫：新闻自由与记者证的司法边界</title><link>https://masonblog.github.io/post/blog20261015/</link><pubDate>Thu, 15 Oct 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20261015/</guid><description>2026 年 9 月，特朗普以「假新闻」为由，禁止 CNN、MS NOW 和 Politico 进入白宫，三家媒体随后起诉。总统能否因为不满报道，就收走记者证？这场争议，要从半个世纪前一名记者被拒发证件的官司说起。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 22｜三家媒体起诉白宫：新闻自由与记者证的司法边界"
+  data-episode-id="zh-22" data-episode-number="22"
+  data-episode-language="zh" data-episode-title="22 三家媒体起诉白宫：新闻自由与记者证的司法边界">
   <div class="podcast-player__title">议正言辞 22｜三家媒体起诉白宫：新闻自由与记者证的司法边界</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-22.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-22.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-22.m4a">播放音频</a></noscript>
 </div>
 
 <p>2026 年 9 月 19 日早上，CNN 记者贝齐·克莱因像往常一样来到白宫值班。她作为资深记者，跑白宫这条线已经有八年。她的白宫记者证，还有一年的有效期，要到 2027 年 8 月 31 日才过期。但在白宫门口，特勤局人员告诉她，她的记者证已经停用，随后把证件从她手里收走，让她去找白宫新闻办公室了解情况。几乎同一时间，MS NOW 和 Politico 的记者也遇到同样的事。</p>
@@ -301,14 +309,22 @@
 <li>〔10〕王汉斌：《关于〈中华人民共和国行政诉讼法（草案）〉的说明》；《中华人民共和国行政诉讼法》1989年原文本，载《全国人大常委会公报》1989年第2号，第64—79页，<a href="https://upload.wikimedia.org/wikipedia/commons/c/c0/%e4%b8%ad%e5%8d%8e%e4%ba%ba%e6%b0%91%e5%85%b1%e5%92%8c%e5%9b%bd%e5%85%a8%e5%9b%bd%e4%ba%ba%e6%b0%91%e4%bb%a3%e8%a1%a8%e5%a4%a7%e4%bc%9a%e5%b8%b8%e5%8a%a1%e5%a7%94%e5%91%98%e4%bc%9a%e5%85%ac%e6%8a%a51989%e5%b9%b4%e7%ac%ac2%e5%8f%b7.pdf" target="_blank" rel="noopener noreferrer">公报扫描</a>
 。</li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 21｜中国民告官「第一案」：包郑照诉县政府，行诉法颁布前夕的司法实践</title><link>https://masonblog.github.io/post/blog20261009/</link><pubDate>Fri, 09 Oct 2026 00:17:53 +0800</pubDate><guid>https://masonblog.github.io/post/blog20261009/</guid><description>1988 年 8 月，浙江苍南的电影院成为临时法庭，农民包郑照一家将县政府告上法庭。争议起于河堤旁房屋的部分强拆：镇城建办的建房批复，为什么没能对抗水利部门的清障要求？在统一的《行政诉讼法》尚未颁布时，法院如何受理、审理并判决这起案件？本期从包家的败诉讲起，追溯行政诉讼从零星实践走向统一立法的过程，以及让政府走进法庭的历史意义。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 21｜中国民告官「第一案」：包郑照诉县政府，行诉法颁布前夕的司法实践">
+]]></content:encoded></item><item><title>议正言辞 21｜中国民告官「第一案」：包郑照诉县政府，行诉法颁布前夕的司法实践</title><link>https://masonblog.github.io/post/blog20261009/</link><pubDate>Fri, 09 Oct 2026 00:17:53 +0800</pubDate><guid>https://masonblog.github.io/post/blog20261009/</guid><description>1988 年 8 月，浙江苍南的电影院成为临时法庭，农民包郑照一家将县政府告上法庭。争议起于河堤旁房屋的部分强拆：镇城建办的建房批复，为什么没能对抗水利部门的清障要求？在统一的《行政诉讼法》尚未颁布时，法院如何受理、审理并判决这起案件？本期从包家的败诉讲起，追溯行政诉讼从零星实践走向统一立法的过程，以及让政府走进法庭的历史意义。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 21｜中国民告官「第一案」：包郑照诉县政府，行诉法颁布前夕的司法实践"
+  data-episode-id="zh-21" data-episode-number="21"
+  data-episode-language="zh" data-episode-title="21 中国民告官「第一案」：包郑照诉县政府，行诉法颁布前夕的司法实践">
   <div class="podcast-player__title">议正言辞 21｜中国民告官「第一案」：包郑照诉县政府，行诉法颁布前夕的司法实践</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-21.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-21.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-21.m4a">播放音频</a></noscript>
 </div>
 
 <p>1988 年 8 月 25 日，浙江温州苍南县。这一天，县城的电影院被改成法庭，国徽悬挂在淡蓝色的天幕上方，舞台中间是审判席。左边的原告席上坐着 61 岁的老农民包郑照；右边的被告席上，坐着当时的苍南县县长黄德余。台下的观众席上，一千多个座位全部坐满。因为座位不够，很多人无法入场，法院不得不在场外进行广播直播。于是，电影院的门口，也聚集了大量的旁听群众。</p>
@@ -438,14 +454,22 @@
 <li>温州宣传：《改革之城的法治之光》，温州网，2024 年 2 月 8 日。</li>
 </ul>
 <p>案情与裁判理由主要依据一审判决书；庭后握手等细节来自后来的回顾材料。本期讨论《行政诉讼法》时，采用的是 1989 年原法的条文与制度背景。</p>
-]]></content:encoded></item><item><title>议正言辞 20｜美国诉华为案（上）：从孟晚舟事件到 RICO 共谋指控</title><link>https://masonblog.github.io/post/blog20260924/</link><pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260924/</guid><description>2018 年，孟晚舟在温哥华机场被捕；三年后，她签署延期起诉协议回国。虽然针对她个人的起诉被撤销，但针对华为公司的刑事诉讼并未结束。2026 年 9 月，这宗横跨二十余年的案件在纽约东区进入开庭阶段。本期节目从香港星通公司、伊朗业务与 2013 年的银行会面讲起，再回到 T-Mobile 的 Tappy 机器人和 Quintel 天线争议，梳理银行欺诈、商业秘密等线索如何被装进同一宗案件。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 20｜美国诉华为案（上）：从孟晚舟事件到 RICO 共谋指控">
+]]></content:encoded></item><item><title>议正言辞 20｜美国诉华为案（上）：从孟晚舟事件到 RICO 共谋指控</title><link>https://masonblog.github.io/post/blog20260924/</link><pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260924/</guid><description>2018 年，孟晚舟在温哥华机场被捕；三年后，她签署延期起诉协议回国。虽然针对她个人的起诉被撤销，但针对华为公司的刑事诉讼并未结束。2026 年 9 月，这宗横跨二十余年的案件在纽约东区进入开庭阶段。本期节目从香港星通公司、伊朗业务与 2013 年的银行会面讲起，再回到 T-Mobile 的 Tappy 机器人和 Quintel 天线争议，梳理银行欺诈、商业秘密等线索如何被装进同一宗案件。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 20｜美国诉华为案（上）：从孟晚舟事件到 RICO 共谋指控"
+  data-episode-id="zh-20" data-episode-number="20"
+  data-episode-language="zh" data-episode-title="20 美国诉华为案（上）：从孟晚舟事件到 RICO 共谋指控">
   <div class="podcast-player__title">议正言辞 20｜美国诉华为案（上）：从孟晚舟事件到 RICO 共谋指控</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-20.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-20.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-20.m4a">播放音频</a></noscript>
 </div>
 
 <p>2018 年 12 月 1 日，时任华为公司副董事长兼首席财务官孟晚舟，在加拿大温哥华机场转机，准备前往墨西哥。但她随后被加拿大警方逮捕，原因是受到美国政府的引渡请求。美国政府指控华为公司，利用在香港注册的星通公司，向伊朗转售美国的科技产品，进而违反了美国对伊朗的制裁法案。而孟晚舟作为华为公司的重要高管，就成了美国政府的逮捕目标。</p>
@@ -630,14 +654,22 @@
 <li>《人民日报》：《<a href="https://cn.govopendata.com/renminribao/1984/04/26/4/" target="_blank" rel="noopener noreferrer">关于上诉期限</a>
 》（1984 年 4 月 26 日第 4 版）。</li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 19｜呼格吉勒图案：「严打」行动与错案平反</title><link>https://masonblog.github.io/post/blog20260917/</link><pubDate>Thu, 17 Sep 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260917/</guid><description>1996 年 4 月 9 日晚，十八岁的呼格吉勒图发现一名女性遇害。他叫上同事前去报案，却被办案机关认定为凶手。从案件发生，到执行死刑，只有 62 天。等到案件平反，法院改判无罪，已经是 18 年后。本期节目，我们将回到「严打」的特殊历史时期，看「呼格吉勒图案」从发生到平反的全过程，探讨《刑事诉讼法》的核心精神，追问「迟到的正义」到底能为我们留下什么。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 19｜呼格吉勒图案：「严打」行动与错案平反">
+]]></content:encoded></item><item><title>议正言辞 19｜呼格吉勒图案：「严打」行动与错案平反</title><link>https://masonblog.github.io/post/blog20260917/</link><pubDate>Thu, 17 Sep 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260917/</guid><description>1996 年 4 月 9 日晚，十八岁的呼格吉勒图发现一名女性遇害。他叫上同事前去报案，却被办案机关认定为凶手。从案件发生，到执行死刑，只有 62 天。等到案件平反，法院改判无罪，已经是 18 年后。本期节目，我们将回到「严打」的特殊历史时期，看「呼格吉勒图案」从发生到平反的全过程，探讨《刑事诉讼法》的核心精神，追问「迟到的正义」到底能为我们留下什么。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 19｜呼格吉勒图案：「严打」行动与错案平反"
+  data-episode-id="zh-19" data-episode-number="19"
+  data-episode-language="zh" data-episode-title="19 呼格吉勒图案：「严打」行动与错案平反">
   <div class="podcast-player__title">议正言辞 19｜呼格吉勒图案：「严打」行动与错案平反</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-19.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-19.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-19.m4a">播放音频</a></noscript>
 </div>
 
 <p>1996 年 4 月 9 号晚上，内蒙古呼和浩特。一名年轻女子从锡林南路的一家饭店出来，说要去一趟厕所，但过了很久也没有回来。当天晚上，有两名工人也在附近吃晚饭，他们其中一位，今年刚满 18 岁，名叫呼格吉勒图。吃完晚饭后，呼格吉勒图与同事分开，各自回家。当他走到第一毛纺织厂宿舍区的一处公共厕所时，发现了开头那位女性的尸体。他立刻返回单位，叫上刚才一起吃饭的同事，跑到附近治安岗亭报了案。</p>
@@ -841,14 +873,22 @@
 <li><strong>案涉《入境条例》附表 1 第 2(a) 段及第 1(5) 段</strong> — 分别规定父母身份附加条件及「定居」的含义。这里讨论的是诉讼涉及的历史版本。</li>
 <li><strong>1996 年筹委会《实施意见》与 1999 年人大常委会解释</strong> — 理解本案立法原意争论的两份重要文件；1999 年解释直接针对第 22 条第 4 款及第 24 条第 2 款第（三）项。参见《基本法》官方文本及相关文件、1999 年解释英文文本。</li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 18｜人大释法「第一案」：香港回归以后，谁来解释基本法？</title><link>https://masonblog.github.io/post/blog20260910/</link><pubDate>Thu, 10 Sep 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260910/</guid><description>本期从吴嘉玲案讲起，经过终审法院的判决与特区政府的权衡，拆解香港第一次人大释法的来龙去脉，讨论香港回归以后，终审权与基本法最终解释权如何共存，以及制度争议如何影响关口两边的家庭。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 18｜人大释法「第一案」：香港回归以后，谁来解释基本法？">
+]]></content:encoded></item><item><title>议正言辞 18｜人大释法「第一案」：香港回归以后，谁来解释基本法？</title><link>https://masonblog.github.io/post/blog20260910/</link><pubDate>Thu, 10 Sep 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260910/</guid><description>本期从吴嘉玲案讲起，经过终审法院的判决与特区政府的权衡，拆解香港第一次人大释法的来龙去脉，讨论香港回归以后，终审权与基本法最终解释权如何共存，以及制度争议如何影响关口两边的家庭。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 18｜人大释法「第一案」：香港回归以后，谁来解释基本法？"
+  data-episode-id="zh-18" data-episode-number="18"
+  data-episode-language="zh" data-episode-title="18 人大释法「第一案」：香港回归以后，谁来解释基本法？">
   <div class="podcast-player__title">议正言辞 18｜人大释法「第一案」：香港回归以后，谁来解释基本法？</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-18.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-18.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-18.m4a">播放音频</a></noscript>
 </div>
 
 <p>1997 年 7 月 1 日，香港回归的第一天，两个在内地出生的女孩，从深圳沙头角出发，坐上一辆开往香港的巴士。她们没有经过入境管制站，就进入了香港。三天以后，她们来到入境事务处，表明自己是香港永久居民的子女，要求行使自己的香港居留权。</p>
@@ -1120,14 +1160,22 @@
 <li><strong>L 组（内部调查及监察组）</strong>：专查廉署人员的违纪与贪污指控；涉廉署人员的贪污投诉须报律政司司长决定由谁调查。</li>
 <li><strong>检控分权</strong>：廉署无起诉权；《基本法》第 63 条订明律政司主管刑事检控、不受干涉，《防止贿赂条例》第 31 条规定相关检控须获律政司司长同意。</li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 17｜从葛柏外逃到警廉冲突：香港廉政公署的诞生</title><link>https://masonblog.github.io/post/blog20260903/</link><pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260903/</guid><description>1977 年 10 月 28 日，二千多名香港警员和家属前往警察总部请愿，随后有人冲击廉政公署执行处。本期从葛柏外逃、廉署成立与油麻地果栏案讲起，讨论香港如何建立独立反贪制度，以及这场改革在追究旧案与维持社会秩序之间付出的代价。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 17｜从葛柏外逃到警廉冲突：香港廉政公署的诞生">
+]]></content:encoded></item><item><title>议正言辞 17｜从葛柏外逃到警廉冲突：香港廉政公署的诞生</title><link>https://masonblog.github.io/post/blog20260903/</link><pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260903/</guid><description>1977 年 10 月 28 日，二千多名香港警员和家属前往警察总部请愿，随后有人冲击廉政公署执行处。本期从葛柏外逃、廉署成立与油麻地果栏案讲起，讨论香港如何建立独立反贪制度，以及这场改革在追究旧案与维持社会秩序之间付出的代价。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 17｜从葛柏外逃到警廉冲突：香港廉政公署的诞生"
+  data-episode-id="zh-17" data-episode-number="17"
+  data-episode-language="zh" data-episode-title="17 从葛柏外逃到警廉冲突：香港廉政公署的诞生">
   <div class="podcast-player__title">议正言辞 17｜从葛柏外逃到警廉冲突：香港廉政公署的诞生</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-17.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-17.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-17.m4a">播放音频</a></noscript>
 </div>
 
 <p>1977 年 10 月 28 日上午，香港湾仔区，两千多名香港警员和家属，来到香港警察总部举行示威。他们递交了一份由 11000 多个警员联名签署的请愿书，要求警务处长向政府施压，停止廉政公署针对警务系统的反贪调查。</p>
@@ -1375,14 +1423,22 @@
 <p>C.M. v. M.C., 7 Cal.App.5th 1188 (2017)</p>
 <p>California Family Code §§ 7606, 7613, 7960–7962</p>
 <p>California Probate Code §§ 6450, 6453</p>
-]]></content:encoded></item><item><title>议正言辞 16｜归国不等于回家：日本战争遗孤的国家赔偿诉讼</title><link>https://masonblog.github.io/post/blog20260827/</link><pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260827/</guid><description>2007 年 1 月，四十名从中国归来的日本战争遗孤，在东京地方法院输掉了国家赔偿诉讼。本期从池田澄江的三个名字讲起，梳理战争责任、归国政策、国家赔偿与政治解决之间的缝隙，追问法律如何回应一代人的破碎人生。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 16｜归国不等于回家：日本战争遗孤的国家赔偿诉讼">
+]]></content:encoded></item><item><title>议正言辞 16｜归国不等于回家：日本战争遗孤的国家赔偿诉讼</title><link>https://masonblog.github.io/post/blog20260827/</link><pubDate>Thu, 27 Aug 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260827/</guid><description>2007 年 1 月，四十名从中国归来的日本战争遗孤，在东京地方法院输掉了国家赔偿诉讼。本期从池田澄江的三个名字讲起，梳理战争责任、归国政策、国家赔偿与政治解决之间的缝隙，追问法律如何回应一代人的破碎人生。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 16｜归国不等于回家：日本战争遗孤的国家赔偿诉讼"
+  data-episode-id="zh-16" data-episode-number="16"
+  data-episode-language="zh" data-episode-title="16 归国不等于回家：日本战争遗孤的国家赔偿诉讼">
   <div class="podcast-player__title">议正言辞 16｜归国不等于回家：日本战争遗孤的国家赔偿诉讼</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-16.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-16.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-16.m4a">播放音频</a></noscript>
 </div>
 
 <p>2007 年 1 月 31 日，日本东京。约一百名从中国归来的老人，聚集在厚生劳动省门前。他们手持标语、散发传单，强烈谴责日本政府推卸战争责任。他们中大多数人已经六十多岁，虽然在日本生活了十几、二十几年，也取得了日本的合法身份，但日语仍然不太流利。即使如此，他们仍然大声疾呼，希望得到日本社会的支持。</p>
@@ -1554,14 +1610,22 @@
 </ul>
 <hr>
 <p>本文是《议正言辞》第 15 期节目的延伸阅读。如果你还没有听过这一期，可以先从正片了解孙志刚被错误收容的经过，以及一场悲剧如何推动收容遣送制度退出历史。欢迎关注微信公众号「议正言辞」，也欢迎在评论区说说你与暂住证、居住证有关的记忆。</p>
-]]></content:encoded></item><item><title>议正言辞 15｜孙志刚案：收容遣送制度如何走向终结</title><link>https://masonblog.github.io/post/blog20260820/</link><pubDate>Thu, 20 Aug 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260820/</guid><description>2003 年 3 月 17 日晚，27 岁的孙志刚在广州街头被警察带走，三天后死于收容人员救治站。本期从孙志刚被带走的那一晚讲起，梳理错误收容、公众舆论与行政立法如何交错推进，看一桩由执法错误导致的刑事案件，如何推动中国法律审查制度的进步。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 15｜孙志刚案：收容遣送制度如何走向终结">
+]]></content:encoded></item><item><title>议正言辞 15｜孙志刚案：收容遣送制度如何走向终结</title><link>https://masonblog.github.io/post/blog20260820/</link><pubDate>Thu, 20 Aug 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260820/</guid><description>2003 年 3 月 17 日晚，27 岁的孙志刚在广州街头被警察带走，三天后死于收容人员救治站。本期从孙志刚被带走的那一晚讲起，梳理错误收容、公众舆论与行政立法如何交错推进，看一桩由执法错误导致的刑事案件，如何推动中国法律审查制度的进步。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 15｜孙志刚案：收容遣送制度如何走向终结"
+  data-episode-id="zh-15" data-episode-number="15"
+  data-episode-language="zh" data-episode-title="15 孙志刚案：收容遣送制度如何走向终结">
   <div class="podcast-player__title">议正言辞 15｜孙志刚案：收容遣送制度如何走向终结</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-15.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-15.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-15.m4a">播放音频</a></noscript>
 </div>
 
 <p>2003 年 3 月 17 日晚上十点，27 岁的孙志刚离开自己的住处，准备去附近的网吧上网。他是湖北黄冈人，两年前毕业于武汉科技学院（也就是现在的武汉纺织大学）。就在不到一个月前，也就是 2 月 24 日，孙志刚被广州市达奇服装有限公司录用。于是他从武汉来到广州，和朋友一起住在一间出租屋里，过着两点一线的普通上班族生活。</p>
@@ -1715,14 +1779,22 @@
 <hr>
 <p>本文是《议正言辞》第 14 期节目《<a href="/post/blog20260814/" target="_blank" rel="noopener noreferrer">无业游民也有罪？美国流浪法的宪法时刻</a>
 》的延伸阅读。如果你还没有听过这一期，可以先从正片了解帕帕克里斯托案，以及旧式流浪法如何把警察的主观怀疑变成逮捕与定罪。如果你对本文还有自己的观点，欢迎在评论区聊聊你的看法。</p>
-]]></content:encoded></item><item><title>议正言辞 14｜无业游民也有罪？美国流浪法的宪法时刻</title><link>https://masonblog.github.io/post/blog20260814/</link><pubDate>Fri, 14 Aug 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260814/</guid><description>1969 年一个周日凌晨，四个年轻人在佛罗里达州杰克逊维尔市开车前往夜店，却因「驾车游荡」被捕。本期从帕帕克里斯托诉杰克逊维尔市案出发，追溯流浪法从中世纪英国、美国南方黑人法典到现代露营禁令的演变，并追问模糊法律如何把警察的主观怀疑变成逮捕与定罪。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 14｜无业游民也有罪？美国流浪法的宪法时刻">
+]]></content:encoded></item><item><title>议正言辞 14｜无业游民也有罪？美国流浪法的宪法时刻</title><link>https://masonblog.github.io/post/blog20260814/</link><pubDate>Fri, 14 Aug 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260814/</guid><description>1969 年一个周日凌晨，四个年轻人在佛罗里达州杰克逊维尔市开车前往夜店，却因「驾车游荡」被捕。本期从帕帕克里斯托诉杰克逊维尔市案出发，追溯流浪法从中世纪英国、美国南方黑人法典到现代露营禁令的演变，并追问模糊法律如何把警察的主观怀疑变成逮捕与定罪。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 14｜无业游民也有罪？美国流浪法的宪法时刻"
+  data-episode-id="zh-14" data-episode-number="14"
+  data-episode-language="zh" data-episode-title="14 无业游民也有罪？美国流浪法的宪法时刻">
   <div class="podcast-player__title">议正言辞 14｜无业游民也有罪？美国流浪法的宪法时刻</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-14.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-14.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-14.m4a">播放音频</a></noscript>
 </div>
 
 <h2 id="从第-14321-号行政命令说起">从第 14321 号行政命令说起</h2>
@@ -1877,14 +1949,22 @@
 </ul>
 <hr>
 <p>本文是《议正言辞》第 13 期节目的延伸阅读。如果你还没有听过这一期，可以先从正片了解齐玉苓案的完整经过，以及那份引发二十余年法学争论的最高法院批复。如果你对本文还有自己的观点，欢迎在评论区聊聊你的看法。</p>
-]]></content:encoded></item><item><title>议正言辞 13｜中国宪法「第一案」：齐玉苓被偷走的受教育权</title><link>https://masonblog.github.io/post/blog20260805/</link><pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260805/</guid><description>1998 年末，齐玉苓发现同学陈晓琪早在八年前冒用她的身份和录取通知书入读中专。本期从这段被偷走的人生出发，梳理最高法院如何以法释〔2001〕25 号批复将宪法受教育权引入民事纠纷，以及批复七年后被废止所留下的宪法司法化争议。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 13｜中国宪法「第一案」：齐玉苓被偷走的受教育权">
+]]></content:encoded></item><item><title>议正言辞 13｜中国宪法「第一案」：齐玉苓被偷走的受教育权</title><link>https://masonblog.github.io/post/blog20260805/</link><pubDate>Wed, 05 Aug 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260805/</guid><description>1998 年末，齐玉苓发现同学陈晓琪早在八年前冒用她的身份和录取通知书入读中专。本期从这段被偷走的人生出发，梳理最高法院如何以法释〔2001〕25 号批复将宪法受教育权引入民事纠纷，以及批复七年后被废止所留下的宪法司法化争议。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 13｜中国宪法「第一案」：齐玉苓被偷走的受教育权"
+  data-episode-id="zh-13" data-episode-number="13"
+  data-episode-language="zh" data-episode-title="13 中国宪法「第一案」：齐玉苓被偷走的受教育权">
   <div class="podcast-player__title">议正言辞 13｜中国宪法「第一案」：齐玉苓被偷走的受教育权</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-13.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-13.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-13.m4a">播放音频</a></noscript>
 </div>
 
 <p>1998 年年末，山东滕州，一位名叫齐玉苓的二十多岁女生遇到了一件怪事。一名她从来不认识的银行职员突然前来向她道喜。这让她感到莫名其妙。经过追问，她才发现，这家银行里竟然还有另一个名字和她一模一样，也叫「齐玉苓」的人。</p>
@@ -2109,14 +2189,22 @@
 <li><a href="/post/blog20260708/" target="_blank" rel="noopener noreferrer">议正言辞 08｜夹缝中的最高法院：美国司法审查制度的诞生</a>
 </li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 12｜焚烧国旗是否有罪？美国宪法第一修正案的司法博弈</title><link>https://masonblog.github.io/post/blog20260728/</link><pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260728/</guid><description>1984 年，共和党全国代表大会期间，抗议者格雷戈里·约翰逊当众焚烧美国国旗并被判刑。本期从德克萨斯诉约翰逊案出发，拆解焚旗为何构成受第一修正案保护的象征性言论，以及政府能否只因一种政治表达冒犯公众便动用刑罚。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 12｜焚烧国旗是否有罪？美国宪法第一修正案的司法博弈">
+]]></content:encoded></item><item><title>议正言辞 12｜焚烧国旗是否有罪？美国宪法第一修正案的司法博弈</title><link>https://masonblog.github.io/post/blog20260728/</link><pubDate>Tue, 28 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260728/</guid><description>1984 年，共和党全国代表大会期间，抗议者格雷戈里·约翰逊当众焚烧美国国旗并被判刑。本期从德克萨斯诉约翰逊案出发，拆解焚旗为何构成受第一修正案保护的象征性言论，以及政府能否只因一种政治表达冒犯公众便动用刑罚。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 12｜焚烧国旗是否有罪？美国宪法第一修正案的司法博弈"
+  data-episode-id="zh-12" data-episode-number="12"
+  data-episode-language="zh" data-episode-title="12 焚烧国旗是否有罪？美国宪法第一修正案的司法博弈">
   <div class="podcast-player__title">议正言辞 12｜焚烧国旗是否有罪？美国宪法第一修正案的司法博弈</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-12.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-12.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-12.m4a">播放音频</a></noscript>
 </div>
 
 <p>1984 年 8 月 22 日，美国德州达拉斯市，正在召开共和党的全国代表大会。在会上，里根总统即将获得党内提名，竞选连任。与此同时，一百多名抗议者正在会场外举行示威，反对里根政府以及当地一些大企业的政策。游行途中，有人躺倒在地，模拟核战争之后的惨状；也有人在墙上写标语、推倒花盆。</p>
@@ -2376,14 +2464,22 @@
 <li><a href="/post/blog20260708/" target="_blank" rel="noopener noreferrer">08：夹缝中的最高法院：美国司法审查制度的诞生</a>
 </li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 11｜杨乃武与小白菜：晚清司法的系统性崩溃</title><link>https://masonblog.github.io/post/blog20260722/</link><pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260722/</guid><description>一桩漏洞百出的命案，为什么能在层层复审中反复维持，差点把两个无辜的人送上刑场？本期从一根未经规范处理的银针讲起，拆解验尸失误、刑讯逼供、伪证补强与五级复核如何把偏见加工成一桩「铁案」，以及士绅网络、媒体舆论与最高权力的介入如何使案件沉冤昭雪。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 11｜杨乃武与小白菜：晚清司法的系统性崩溃">
+]]></content:encoded></item><item><title>议正言辞 11｜杨乃武与小白菜：晚清司法的系统性崩溃</title><link>https://masonblog.github.io/post/blog20260722/</link><pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260722/</guid><description>一桩漏洞百出的命案，为什么能在层层复审中反复维持，差点把两个无辜的人送上刑场？本期从一根未经规范处理的银针讲起，拆解验尸失误、刑讯逼供、伪证补强与五级复核如何把偏见加工成一桩「铁案」，以及士绅网络、媒体舆论与最高权力的介入如何使案件沉冤昭雪。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 11｜杨乃武与小白菜：晚清司法的系统性崩溃"
+  data-episode-id="zh-11" data-episode-number="11"
+  data-episode-language="zh" data-episode-title="11 杨乃武与小白菜：晚清司法的系统性崩溃">
   <div class="podcast-player__title">议正言辞 11｜杨乃武与小白菜：晚清司法的系统性崩溃</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-11.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-11.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-11.m4a">播放音频</a></noscript>
 </div>
 
 <blockquote>
@@ -2470,14 +2566,22 @@
 <li><a href="/post/blog20260705/" target="_blank" rel="noopener noreferrer">07：民国女侠与礼法之争：施剑翘刺杀孙传芳案</a>
 </li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 10｜你有权保持沉默：米兰达警告如何改变美国司法</title><link>https://masonblog.github.io/post/blog20260716/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260716/</guid><description>「你有权保持沉默……」如何从警匪片台词成为全美警察必须遵守的规则？本期从米兰达诉亚利桑那州案出发，讲述一个初中辍学的强奸嫌犯如何惊动最高法院，以及在没有刑讯逼供时，口供为何仍可能因未告知权利而被排除。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 10｜你有权保持沉默：米兰达警告如何改变美国司法">
+]]></content:encoded></item><item><title>议正言辞 10｜你有权保持沉默：米兰达警告如何改变美国司法</title><link>https://masonblog.github.io/post/blog20260716/</link><pubDate>Thu, 16 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260716/</guid><description>「你有权保持沉默……」如何从警匪片台词成为全美警察必须遵守的规则？本期从米兰达诉亚利桑那州案出发，讲述一个初中辍学的强奸嫌犯如何惊动最高法院，以及在没有刑讯逼供时，口供为何仍可能因未告知权利而被排除。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 10｜你有权保持沉默：米兰达警告如何改变美国司法"
+  data-episode-id="zh-10" data-episode-number="10"
+  data-episode-language="zh" data-episode-title="10 你有权保持沉默：米兰达警告如何改变美国司法">
   <div class="podcast-player__title">议正言辞 10｜你有权保持沉默：米兰达警告如何改变美国司法</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-10.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-10.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-10.m4a">播放音频</a></noscript>
 </div>
 
 <p>1976 年 1 月 31 日傍晚，亚利桑那州凤凰城，街角的一家酒吧里烟雾缭绕，几个墨西哥裔劳工正围着一张油腻的木桌打扑克。他们因为区区三美元的赌局吵了起来。话音未落，啤酒瓶碎了一地，昏暗的灯光下一柄尖刀划过，其中一个男子应声倒下。救护车呼啸而至。那个被刺中的男人捂着胸口，在送往医院的途中停止了呼吸，年仅 34 岁。</p>
@@ -2583,14 +2687,22 @@
 <li><a href="/post/blog20260708/" target="_blank" rel="noopener noreferrer">08 夹缝中的最高法院：美国司法审查制度的诞生</a>
 ——美国最高法院如何通过马伯里诉麦迪逊案获得解释宪法的权力。米兰达案正是最高法院运用司法审查权为全美警务机关创设程序规则的经典例证。</li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 09｜中华法系的终结：清末修律如何重塑中国法治</title><link>https://masonblog.github.io/post/blog20260710/</link><pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260710/</guid><description>为什么风雨飘摇的大清会在最后十年翻译西方法典、废除凌迟、设立法院、起草民法？本期回到 1902 至 1911 年，讲述列强法权压迫、皇权自救、礼法冲突与地方抵抗如何汇成清末修律，以及这场未能救清的改革如何拆开中华法系并催生近代法治。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 09｜中华法系的终结：清末修律如何重塑中国法治">
+]]></content:encoded></item><item><title>议正言辞 09｜中华法系的终结：清末修律如何重塑中国法治</title><link>https://masonblog.github.io/post/blog20260710/</link><pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260710/</guid><description>为什么风雨飘摇的大清会在最后十年翻译西方法典、废除凌迟、设立法院、起草民法？本期回到 1902 至 1911 年，讲述列强法权压迫、皇权自救、礼法冲突与地方抵抗如何汇成清末修律，以及这场未能救清的改革如何拆开中华法系并催生近代法治。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 09｜中华法系的终结：清末修律如何重塑中国法治"
+  data-episode-id="zh-09" data-episode-number="9"
+  data-episode-language="zh" data-episode-title="09 中华法系的终结：清末修律如何重塑中国法治">
   <div class="podcast-player__title">议正言辞 09｜中华法系的终结：清末修律如何重塑中国法治</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-09.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-09.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-09.m4a">播放音频</a></noscript>
 </div>
 
 <p>我们在之前讲「施剑翘案」的节目中，提到过「清末修律」这个概念，认为它是后来民国政府制定《六法全书》的基础。今天这期节目，我们就来详细聊一下「清末修律」，它是清朝末年的一场激进的法治改革。</p>
@@ -2687,14 +2799,22 @@
 <li><a href="/post/blog20260310/" target="_blank" rel="noopener noreferrer">义正言辞05｜高铭暄与中国刑法：四要件与三阶层的论争</a>
 ：延伸到现代中国刑法理论的制度演变。</li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 08｜夹缝中的最高法院：美国司法审查制度的诞生</title><link>https://masonblog.github.io/post/blog20260708/</link><pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260708/</guid><description>美国宪法没有明文赋予最高法院解释宪法的权力。本期回到 1803 年的马伯里诉麦迪逊案，借一张未送达的任命书和一场政治博弈，讲述美国司法审查权如何被最高法院主动争取，并成为三权分立的基石。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 08｜夹缝中的最高法院：美国司法审查制度的诞生">
+]]></content:encoded></item><item><title>议正言辞 08｜夹缝中的最高法院：美国司法审查制度的诞生</title><link>https://masonblog.github.io/post/blog20260708/</link><pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260708/</guid><description>美国宪法没有明文赋予最高法院解释宪法的权力。本期回到 1803 年的马伯里诉麦迪逊案，借一张未送达的任命书和一场政治博弈，讲述美国司法审查权如何被最高法院主动争取，并成为三权分立的基石。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 08｜夹缝中的最高法院：美国司法审查制度的诞生"
+  data-episode-id="zh-08" data-episode-number="8"
+  data-episode-language="zh" data-episode-title="08 夹缝中的最高法院：美国司法审查制度的诞生">
   <div class="podcast-player__title">议正言辞 08｜夹缝中的最高法院：美国司法审查制度的诞生</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-08.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-08.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-08.m4a">播放音频</a></noscript>
 </div>
 
 <p>我在第 3 期和第 6 期节目中，我们聊过特朗普与出生公民权的问题。那两次我们都看到，美国最高法院在当代宪法争议中扮演着一个仲裁者角色——它可以解释宪法，认定总统违宪，还可以推翻国会的立法。那么，最高法院凭什么有这么大的权力？美国宪法的原文里，没有任何一个条款明确表明：“最高法院有权解释宪法”。这个权力是怎么来的？</p>
@@ -2803,14 +2923,22 @@
 <li><a href="/post/blog20260703/" target="_blank" rel="noopener noreferrer">06 美国出生公民权：完全胜利 or 暂时休战？</a>
  — 联邦地区法院叫停总统行政令的当代案例</li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 07｜民国女侠与礼法之争：施剑翘刺杀孙传芳案</title><link>https://masonblog.github.io/post/blog20260705/</link><pubDate>Sun, 05 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260705/</guid><description>1935 年，施剑翘在天津一座佛堂内枪杀孙传芳，为父报仇，随后撒下传单并当场自首。本期从她十年隐忍的复仇讲到民国三级法院与国民政府特赦，看传统孝道如何在现代刑法与法治之间接受审判。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 07｜民国女侠与礼法之争：施剑翘刺杀孙传芳案">
+]]></content:encoded></item><item><title>议正言辞 07｜民国女侠与礼法之争：施剑翘刺杀孙传芳案</title><link>https://masonblog.github.io/post/blog20260705/</link><pubDate>Sun, 05 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260705/</guid><description>1935 年，施剑翘在天津一座佛堂内枪杀孙传芳，为父报仇，随后撒下传单并当场自首。本期从她十年隐忍的复仇讲到民国三级法院与国民政府特赦，看传统孝道如何在现代刑法与法治之间接受审判。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 07｜民国女侠与礼法之争：施剑翘刺杀孙传芳案"
+  data-episode-id="zh-07" data-episode-number="7"
+  data-episode-language="zh" data-episode-title="07 民国女侠与礼法之争：施剑翘刺杀孙传芳案">
   <div class="podcast-player__title">议正言辞 07｜民国女侠与礼法之争：施剑翘刺杀孙传芳案</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-07.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-07.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-07.m4a">播放音频</a></noscript>
 </div>
 
 <p>在第 2 期节目中，我们讲了唐代的徐元庆复仇案。那个案子在当时引发了一场礼法之争，让整个法律界围绕它争论了几十年。直到最后，这场辩论也没有一个定论式的结果，朝廷选择了一种折中的处理方式，把案件背后的礼法之争悬而未决。</p>
@@ -2949,14 +3077,22 @@
 <li><a href="/post/blog20250611/" target="_blank" rel="noopener noreferrer">议正言辞 02｜徐元庆复仇案：唐代法制与礼法之争</a>
 ：从唐代徐元庆案观察复仇与国家法律的早期争论。</li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 06｜美国出生公民权：完全胜利 or 暂时休战？</title><link>https://masonblog.github.io/post/blog20260703/</link><pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260703/</guid><description>2026 年 6 月 30 日，美国最高法院以 6:3 推翻特朗普第 14160 号行政令，再次确认出生公民权。本期从行政令、临时禁令和集体诉讼讲到终局判决，逐份解读多位大法官的意见，并追问这场胜利究竟有多牢固。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 06｜美国出生公民权：完全胜利 or 暂时休战？">
+]]></content:encoded></item><item><title>议正言辞 06｜美国出生公民权：完全胜利 or 暂时休战？</title><link>https://masonblog.github.io/post/blog20260703/</link><pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260703/</guid><description>2026 年 6 月 30 日，美国最高法院以 6:3 推翻特朗普第 14160 号行政令，再次确认出生公民权。本期从行政令、临时禁令和集体诉讼讲到终局判决，逐份解读多位大法官的意见，并追问这场胜利究竟有多牢固。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 06｜美国出生公民权：完全胜利 or 暂时休战？"
+  data-episode-id="zh-06" data-episode-number="6"
+  data-episode-language="zh" data-episode-title="06 美国出生公民权：完全胜利 or 暂时休战？">
   <div class="podcast-player__title">议正言辞 06｜美国出生公民权：完全胜利 or 暂时休战？</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-06.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-06.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-06.m4a">播放音频</a></noscript>
 </div>
 
 <p>2026 年 6 月 30 日，美国最高法院针对出生公民权问题，发布了<a href="https://www.supremecourt.gov/opinions/25pdf/25-365_4hdj.pdf" target="_blank" rel="noopener noreferrer">最终的实质性判决</a>
@@ -3394,14 +3530,22 @@
 <li><a href="https://coder.com/blog/what-the-claude-code-leak-tells-us-about-supply-chain-security" target="_blank" rel="noopener noreferrer">供应链安全的启示 - Coder Blog</a>
 </li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 05｜高铭暄与中国刑法：四要件与三阶层的论争</title><link>https://masonblog.github.io/post/blog20260310/</link><pubDate>Tue, 10 Mar 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260310/</guid><description>2026 年 2 月 26 日，中国刑法学家高铭暄逝世，享年 98 岁。本期从他参与新中国第一部刑法制定的一生讲起，拆解「四要件」与「三阶层」的长期论争，追问国家刑罚权应如何行使、公民权利如何得到保障。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 05｜高铭暄与中国刑法：四要件与三阶层的论争">
+]]></content:encoded></item><item><title>议正言辞 05｜高铭暄与中国刑法：四要件与三阶层的论争</title><link>https://masonblog.github.io/post/blog20260310/</link><pubDate>Tue, 10 Mar 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260310/</guid><description>2026 年 2 月 26 日，中国刑法学家高铭暄逝世，享年 98 岁。本期从他参与新中国第一部刑法制定的一生讲起，拆解「四要件」与「三阶层」的长期论争，追问国家刑罚权应如何行使、公民权利如何得到保障。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 05｜高铭暄与中国刑法：四要件与三阶层的论争"
+  data-episode-id="zh-05" data-episode-number="5"
+  data-episode-language="zh" data-episode-title="05 高铭暄与中国刑法：四要件与三阶层的论争">
   <div class="podcast-player__title">议正言辞 05｜高铭暄与中国刑法：四要件与三阶层的论争</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-05.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-05.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-05.m4a">播放音频</a></noscript>
 </div>
 
 <p>2026年2月26日，当代著名法学家、中国刑法学&quot;泰斗&quot;<strong>高铭暄</strong>，因病逝世，享年98岁。</p>
@@ -3490,14 +3634,22 @@
 <li><a href="/post/blog20260710/" target="_blank" rel="noopener noreferrer">义正言辞09｜中华法系的终结：清末修律如何重塑中国法治</a>
 ：补充理解中国近现代刑法制度的历史来源。</li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 04｜日本人如何接受战败？与日本政府的32年战斗</title><link>https://masonblog.github.io/post/blog20260226/</link><pubDate>Thu, 26 Feb 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260226/</guid><description>当官方机构试图通过教科书改写战争记忆，个人能做什么？本期讲述日本历史学家家永三郎为反对文部省修改侵略战争、南京大屠杀与 731 部队等历史表述，历时 32 年三次提起诉讼，追问国家审查、学术自由与战争责任之间的边界。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 04｜日本人如何接受战败？与日本政府的32年战斗">
+]]></content:encoded></item><item><title>议正言辞 04｜日本人如何接受战败？与日本政府的32年战斗</title><link>https://masonblog.github.io/post/blog20260226/</link><pubDate>Thu, 26 Feb 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260226/</guid><description>当官方机构试图通过教科书改写战争记忆，个人能做什么？本期讲述日本历史学家家永三郎为反对文部省修改侵略战争、南京大屠杀与 731 部队等历史表述，历时 32 年三次提起诉讼，追问国家审查、学术自由与战争责任之间的边界。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 04｜日本人如何接受战败？与日本政府的32年战斗"
+  data-episode-id="zh-04" data-episode-number="4"
+  data-episode-language="zh" data-episode-title="04 日本人如何接受战败？与日本政府的32年战斗">
   <div class="podcast-player__title">议正言辞 04｜日本人如何接受战败？与日本政府的32年战斗</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-04.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-04.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-04.m4a">播放音频</a></noscript>
 </div>
 
 <h2 id="战败之后的三种记忆">战败之后的三种记忆</h2>
@@ -3771,14 +3923,22 @@
 <li><strong>机器人不回复：</strong> 检查终端里的日志。如果你看到 Gemini API 报错，可能是你的 Key 无效，或者因为请求过多触发了限制（如果用量大，可能需要在 Google Cloud 开启按量付费）。</li>
 </ul>
 <p><strong>享受你的新 AI 伙伴吧！</strong> 与 ChatGPT 不同，它住在你的硬盘里，了解你的上下文，并且会在 <em>它</em> 觉得你需要知道某些事情时，主动联系你。</p>
-]]></content:encoded></item><item><title>议正言辞 03｜特朗普如何挑战宪法：围绕出生公民权的司法博弈</title><link>https://masonblog.github.io/post/blog20250704/</link><pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20250704/</guid><description>围绕美国宪法第十四修正案确立的出生公民权，本期从最高法院在节目发布时作出的程序裁定、黄金德案与历史源流讲起，梳理特朗普政府如何通过行政令和诉讼发起挑战，以及属地主义与属人主义背后的法理之争。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 03｜特朗普如何挑战宪法：围绕出生公民权的司法博弈">
+]]></content:encoded></item><item><title>议正言辞 03｜特朗普如何挑战宪法：围绕出生公民权的司法博弈</title><link>https://masonblog.github.io/post/blog20250704/</link><pubDate>Fri, 04 Jul 2025 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20250704/</guid><description>围绕美国宪法第十四修正案确立的出生公民权，本期从最高法院在节目发布时作出的程序裁定、黄金德案与历史源流讲起，梳理特朗普政府如何通过行政令和诉讼发起挑战，以及属地主义与属人主义背后的法理之争。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 03｜特朗普如何挑战宪法：围绕出生公民权的司法博弈"
+  data-episode-id="zh-03" data-episode-number="3"
+  data-episode-language="zh" data-episode-title="03 特朗普如何挑战宪法：围绕出生公民权的司法博弈">
   <div class="podcast-player__title">议正言辞 03｜特朗普如何挑战宪法：围绕出生公民权的司法博弈</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-03.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-03.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-03.m4a">播放音频</a></noscript>
 </div>
 
 <blockquote>
@@ -3854,14 +4014,22 @@
 <li><a href="/post/blog20260703/" target="_blank" rel="noopener noreferrer">义正言辞06｜美国出生公民权：完全胜利 or 暂时休战？</a>
 ：继续追踪出生公民权争议的终局判决与后续风险。</li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 02｜徐元庆复仇案：唐代法制与礼法之争</title><link>https://masonblog.github.io/post/blog20250611/</link><pubDate>Wed, 11 Jun 2025 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20250611/</guid><description>武则天时期，一桩为父复仇案让儒家孝义与国家律法正面冲突。本期借徐元庆案介绍《唐律》和唐代司法体系，重访陈子昂、柳宗元相隔百年的礼法之辩，并追问国家权力与道德正义如何共存。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 02｜徐元庆复仇案：唐代法制与礼法之争">
+]]></content:encoded></item><item><title>议正言辞 02｜徐元庆复仇案：唐代法制与礼法之争</title><link>https://masonblog.github.io/post/blog20250611/</link><pubDate>Wed, 11 Jun 2025 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20250611/</guid><description>武则天时期，一桩为父复仇案让儒家孝义与国家律法正面冲突。本期借徐元庆案介绍《唐律》和唐代司法体系，重访陈子昂、柳宗元相隔百年的礼法之辩，并追问国家权力与道德正义如何共存。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 02｜徐元庆复仇案：唐代法制与礼法之争"
+  data-episode-id="zh-02" data-episode-number="2"
+  data-episode-language="zh" data-episode-title="02 徐元庆复仇案：唐代法制与礼法之争">
   <div class="podcast-player__title">议正言辞 02｜徐元庆复仇案：唐代法制与礼法之争</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-02.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-02.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-02.m4a">播放音频</a></noscript>
 </div>
 
 <h2 id="徐元庆复仇案">徐元庆复仇案</h2>
@@ -3930,14 +4098,22 @@
 <li><a href="/post/blog20260705/" target="_blank" rel="noopener noreferrer">义正言辞07｜民国女侠与礼法之争：施剑翘刺杀孙传芳案</a>
 ：同样讨论复仇、孝道与现代刑法的冲突。</li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 01｜从秦王扫六合到罗马法复兴：国家建构与法治的碰撞</title><link>https://masonblog.github.io/post/blog20250609/</link><pubDate>Mon, 09 Jun 2025 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20250609/</guid><description>借助弗朗西斯·福山的《政治秩序的起源》，本期从秦始皇统一六国、秦律体系讲到罗马法复兴、博洛尼亚大学与自然法崛起，比较中国早熟的中央集权与欧洲后发的法治和责任政治，追问国家权力、法治与负责制政府如何共同构成现代政治秩序。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 01｜从秦王扫六合到罗马法复兴：国家建构与法治的碰撞">
+]]></content:encoded></item><item><title>议正言辞 01｜从秦王扫六合到罗马法复兴：国家建构与法治的碰撞</title><link>https://masonblog.github.io/post/blog20250609/</link><pubDate>Mon, 09 Jun 2025 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20250609/</guid><description>借助弗朗西斯·福山的《政治秩序的起源》，本期从秦始皇统一六国、秦律体系讲到罗马法复兴、博洛尼亚大学与自然法崛起，比较中国早熟的中央集权与欧洲后发的法治和责任政治，追问国家权力、法治与负责制政府如何共同构成现代政治秩序。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 01｜从秦王扫六合到罗马法复兴：国家建构与法治的碰撞"
+  data-episode-id="zh-01" data-episode-number="1"
+  data-episode-language="zh" data-episode-title="01 从秦王扫六合到罗马法复兴：国家建构与法治的碰撞">
   <div class="podcast-player__title">议正言辞 01｜从秦王扫六合到罗马法复兴：国家建构与法治的碰撞</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-01.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-01.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-01.m4a">播放音频</a></noscript>
 </div>
 
 <h2 id="引子">引子</h2>

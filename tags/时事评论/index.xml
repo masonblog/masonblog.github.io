@@ -1,11 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>时事评论 on Mason 博客</title><link>https://masonblog.github.io/tags/%E6%97%B6%E4%BA%8B%E8%AF%84%E8%AE%BA/</link><description>Recent content in 时事评论 on Mason 博客</description><image><title>Mason 博客</title><url>https://masonblog.github.io/images/mason.png</url><link>https://masonblog.github.io/images/mason.png</link></image><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Thu, 24 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://masonblog.github.io/tags/%E6%97%B6%E4%BA%8B%E8%AF%84%E8%AE%BA/index.xml" rel="self" type="application/rss+xml"/><item><title>议正言辞 20｜美国诉华为案（上）：从孟晚舟事件到 RICO 共谋指控</title><link>https://masonblog.github.io/post/blog20260924/</link><pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260924/</guid><description>2018 年，孟晚舟在温哥华机场被捕；三年后，她签署延期起诉协议回国。虽然针对她个人的起诉被撤销，但针对华为公司的刑事诉讼并未结束。2026 年 9 月，这宗横跨二十余年的案件在纽约东区进入开庭阶段。本期节目从香港星通公司、伊朗业务与 2013 年的银行会面讲起，再回到 T-Mobile 的 Tappy 机器人和 Quintel 天线争议，梳理银行欺诈、商业秘密等线索如何被装进同一宗案件。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 20｜美国诉华为案（上）：从孟晚舟事件到 RICO 共谋指控">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>时事评论 on Mason 博客</title><link>https://masonblog.github.io/tags/%E6%97%B6%E4%BA%8B%E8%AF%84%E8%AE%BA/</link><description>Recent content in 时事评论 on Mason 博客</description><image><title>Mason 博客</title><url>https://masonblog.github.io/images/mason.png</url><link>https://masonblog.github.io/images/mason.png</link></image><generator>Hugo</generator><language>zh-CN</language><lastBuildDate>Thu, 24 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://masonblog.github.io/tags/%E6%97%B6%E4%BA%8B%E8%AF%84%E8%AE%BA/index.xml" rel="self" type="application/rss+xml"/><item><title>议正言辞 20｜美国诉华为案（上）：从孟晚舟事件到 RICO 共谋指控</title><link>https://masonblog.github.io/post/blog20260924/</link><pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260924/</guid><description>2018 年，孟晚舟在温哥华机场被捕；三年后，她签署延期起诉协议回国。虽然针对她个人的起诉被撤销，但针对华为公司的刑事诉讼并未结束。2026 年 9 月，这宗横跨二十余年的案件在纽约东区进入开庭阶段。本期节目从香港星通公司、伊朗业务与 2013 年的银行会面讲起，再回到 T-Mobile 的 Tappy 机器人和 Quintel 天线争议，梳理银行欺诈、商业秘密等线索如何被装进同一宗案件。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 20｜美国诉华为案（上）：从孟晚舟事件到 RICO 共谋指控"
+  data-episode-id="zh-20" data-episode-number="20"
+  data-episode-language="zh" data-episode-title="20 美国诉华为案（上）：从孟晚舟事件到 RICO 共谋指控">
   <div class="podcast-player__title">议正言辞 20｜美国诉华为案（上）：从孟晚舟事件到 RICO 共谋指控</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-20.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-20.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-20.m4a">播放音频</a></noscript>
 </div>
 
 <p>2018 年 12 月 1 日，时任华为公司副董事长兼首席财务官孟晚舟，在加拿大温哥华机场转机，准备前往墨西哥。但她随后被加拿大警方逮捕，原因是受到美国政府的引渡请求。美国政府指控华为公司，利用在香港注册的星通公司，向伊朗转售美国的科技产品，进而违反了美国对伊朗的制裁法案。而孟晚舟作为华为公司的重要高管，就成了美国政府的逮捕目标。</p>
@@ -245,14 +253,22 @@
 <hr>
 <p>本文是《议正言辞》第 14 期节目《<a href="/post/blog20260814/" target="_blank" rel="noopener noreferrer">无业游民也有罪？美国流浪法的宪法时刻</a>
 》的延伸阅读。如果你还没有听过这一期，可以先从正片了解帕帕克里斯托案，以及旧式流浪法如何把警察的主观怀疑变成逮捕与定罪。如果你对本文还有自己的观点，欢迎在评论区聊聊你的看法。</p>
-]]></content:encoded></item><item><title>议正言辞 06｜美国出生公民权：完全胜利 or 暂时休战？</title><link>https://masonblog.github.io/post/blog20260703/</link><pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260703/</guid><description>2026 年 6 月 30 日，美国最高法院以 6:3 推翻特朗普第 14160 号行政令，再次确认出生公民权。本期从行政令、临时禁令和集体诉讼讲到终局判决，逐份解读多位大法官的意见，并追问这场胜利究竟有多牢固。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 06｜美国出生公民权：完全胜利 or 暂时休战？">
+]]></content:encoded></item><item><title>议正言辞 06｜美国出生公民权：完全胜利 or 暂时休战？</title><link>https://masonblog.github.io/post/blog20260703/</link><pubDate>Fri, 03 Jul 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260703/</guid><description>2026 年 6 月 30 日，美国最高法院以 6:3 推翻特朗普第 14160 号行政令，再次确认出生公民权。本期从行政令、临时禁令和集体诉讼讲到终局判决，逐份解读多位大法官的意见，并追问这场胜利究竟有多牢固。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 06｜美国出生公民权：完全胜利 or 暂时休战？"
+  data-episode-id="zh-06" data-episode-number="6"
+  data-episode-language="zh" data-episode-title="06 美国出生公民权：完全胜利 or 暂时休战？">
   <div class="podcast-player__title">议正言辞 06｜美国出生公民权：完全胜利 or 暂时休战？</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-06.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-06.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-06.m4a">播放音频</a></noscript>
 </div>
 
 <p>2026 年 6 月 30 日，美国最高法院针对出生公民权问题，发布了<a href="https://www.supremecourt.gov/opinions/25pdf/25-365_4hdj.pdf" target="_blank" rel="noopener noreferrer">最终的实质性判决</a>
@@ -366,14 +382,22 @@
 <li><a href="/post/blog20250704/" target="_blank" rel="noopener noreferrer">义正言辞03｜特朗普如何挑战宪法：围绕出生公民权的司法博弈</a>
 ：介绍出生公民权争议的背景、黄金德案和程序起点。</li>
 </ul>
-]]></content:encoded></item><item><title>议正言辞 05｜高铭暄与中国刑法：四要件与三阶层的论争</title><link>https://masonblog.github.io/post/blog20260310/</link><pubDate>Tue, 10 Mar 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260310/</guid><description>2026 年 2 月 26 日，中国刑法学家高铭暄逝世，享年 98 岁。本期从他参与新中国第一部刑法制定的一生讲起，拆解「四要件」与「三阶层」的长期论争，追问国家刑罚权应如何行使、公民权利如何得到保障。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 05｜高铭暄与中国刑法：四要件与三阶层的论争">
+]]></content:encoded></item><item><title>议正言辞 05｜高铭暄与中国刑法：四要件与三阶层的论争</title><link>https://masonblog.github.io/post/blog20260310/</link><pubDate>Tue, 10 Mar 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/post/blog20260310/</guid><description>2026 年 2 月 26 日，中国刑法学家高铭暄逝世，享年 98 岁。本期从他参与新中国第一部刑法制定的一生讲起，拆解「四要件」与「三阶层」的长期论争，追问国家刑罚权应如何行使、公民权利如何得到保障。</description><content:encoded><![CDATA[<div class="podcast-player" role="region" aria-label="播客播放器：议正言辞 05｜高铭暄与中国刑法：四要件与三阶层的论争"
+  data-episode-id="zh-05" data-episode-number="5"
+  data-episode-language="zh" data-episode-title="05 高铭暄与中国刑法：四要件与三阶层的论争">
   <div class="podcast-player__title">议正言辞 05｜高铭暄与中国刑法：四要件与三阶层的论争</div>
-  <audio controls preload="metadata">
+  <button class="podcast-player__play" type="button" aria-controls="podcast-audio-0" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+    <span>播放音频</span>
+  </button>
+  <audio id="podcast-audio-0" controls preload="none" hidden>
     <source
-      src="https://api.masonhu.org/reasoned-talk-05.m4a"
+      data-src="https://api.masonhu.org/reasoned-talk-05.m4a"
       type="audio/mp4">
     您的浏览器不支持音频播放。
   </audio>
+  <p class="podcast-player__status" role="status" data-error="暂时无法播放，请重试。" hidden></p>
+  <noscript><a href="https://api.masonhu.org/reasoned-talk-05.m4a">播放音频</a></noscript>
 </div>
 
 <p>2026年2月26日，当代著名法学家、中国刑法学&quot;泰斗&quot;<strong>高铭暄</strong>，因病逝世，享年98岁。</p>
