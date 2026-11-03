@@ -3625,31 +3625,7 @@
 ]]></content:encoded></item><item><title>作品集</title><link>https://masonblog.github.io/portfolio/</link><pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/portfolio/</guid><description>&lt;p&gt;这里整理我自己制作并公开上线的个人作品与工具项目，方便集中访问与后续更新。&lt;/p&gt;
 &lt;h2 id="多-agent-网络小说创作技能集"&gt;多 Agent 网络小说创作技能集&lt;/h2&gt;
 &lt;p&gt;&lt;img loading="lazy" src="https://masonblog.github.io/images/portfolio/Novel-studio-skills.png"&gt;&lt;/p&gt;
-&lt;p&gt;Novel Studio Skills 是一套面向 Claude Code、Codex、Hermes Agent 等 AI Agent 工具的多 Agent 协作网络小说创作技能集。你只需提供一个大致的梗概创意，六个角色 Agent（总编、架构师、设定师、写手、编辑、设计师）便各司其职，完成从立项、世界观、大纲、设定卡、正文到封面插画的全流程批量创作。长篇小说会强制分批实施，由总编分段向你汇报成果并确认，中断后随时可恢复。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/masonblog/Novel-studio-skills" target="_blank" rel="noopener noreferrer"&gt;Github 仓库&lt;/a&gt;
-&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id="多-agent-视频创作技能集"&gt;多 Agent 视频创作技能集&lt;/h2&gt;
-&lt;p&gt;&lt;img loading="lazy" src="https://masonblog.github.io/images/portfolio/Video-studio-skills.png"&gt;&lt;/p&gt;
-&lt;p&gt;Video Studio Skills 是一套面向 Hermes Agent 的一站式视频创作技能集。它让你用 7 个 AI Agent 组成一个视频工作室，从查资料、写脚本、配旁白、做动画、到各个视频平台的标题和简介包装，这一整个流程都能让特性各异的 AI Agent 来合作完成。你只需要提供选题，AI 就能像流水线一样为你批量生产视频。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/masonblog/Video-studio-skills" target="_blank" rel="noopener noreferrer"&gt;Github 仓库&lt;/a&gt;
-&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id="中国离职补偿金计算工具"&gt;中国离职补偿金计算工具&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="SeveranceGO-CN" loading="lazy" src="https://masonblog.github.io/images/portfolio/SeveranceGO-CN.png"&gt;&lt;/p&gt;
-&lt;p&gt;项目帮助你一键估算离职经济补偿金、赔偿金、代通知金，以及未签劳动合同二倍工资等一次性补偿数额，基于《劳动合同法》《劳动合同法实施条例》及劳动争议司法解释的常见规则，根据录入的具体信息进行综合评估。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://severance.masonhu.org/" target="_blank" rel="noopener noreferrer"&gt;开始使用&lt;/a&gt;
-｜&lt;a href="https://masonblog.github.io/SeveranceGO-CN/" target="_blank" rel="noopener noreferrer"&gt;备用地址&lt;/a&gt;
-｜&lt;a href="https://github.com/masonblog/SeveranceGO-CN" target="_blank" rel="noopener noreferrer"&gt;Github 仓库&lt;/a&gt;
-&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id="中国假期查询工具"&gt;中国假期查询工具&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="HolidayGO-CN" loading="lazy" src="https://masonblog.github.io/images/portfolio/HolidayGO-CN.png"&gt;&lt;/p&gt;
-&lt;p&gt;本工具帮助你在几十秒内查清自己所在省份的七类法定假期权益：年休假、婚假、产假、陪产/护理假、育儿假、探亲假、病假。国家层面的统一规定与各省（自治区、直辖市）的特殊规定自动合并展示，让你不用翻遍法规文件，也能快速获得准确、可溯源的假期信息。&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://holiday.masonhu.org/" target="_blank" rel="noopener noreferrer"&gt;开始使用&lt;/a&gt;
-｜&lt;a href="https://masonblog.github.io/HolidayGO-CN" target="_blank" rel="noopener noreferrer"&gt;备用地址&lt;/a&gt;
-｜&lt;a href="https://github.com/masonblog/HolidayGO-CN" target="_blank" rel="noopener noreferrer"&gt;Github 仓库&lt;/a&gt;
-&lt;/p&gt;</description><content:encoded><![CDATA[<p>这里整理我自己制作并公开上线的个人作品与工具项目，方便集中访问与后续更新。</p>
+&lt;p&gt;Novel Studio Skills 是一套面向 Claude Code、Codex、Hermes Agent 等 AI Agent 工具的多 Agent 协作网络小说创作技能集。你只需提供一个大致的梗概创意，六个角色 Agent（总编、架构师、设定师、写手、编辑、设计师）便各司其职，完成从立项、世界观、大纲、设定卡、正文到封面插画的全流程批量创作。长篇小说会强制分批实施，由总编分段向你汇报成果并确认，中断后随时可恢复。&lt;/p&gt;</description><content:encoded><![CDATA[<p>这里整理我自己制作并公开上线的个人作品与工具项目，方便集中访问与后续更新。</p>
 <h2 id="多-agent-网络小说创作技能集">多 Agent 网络小说创作技能集</h2>
 <p><img loading="lazy" src="/images/portfolio/Novel-studio-skills.png"></p>
 <p>Novel Studio Skills 是一套面向 Claude Code、Codex、Hermes Agent 等 AI Agent 工具的多 Agent 协作网络小说创作技能集。你只需提供一个大致的梗概创意，六个角色 Agent（总编、架构师、设定师、写手、编辑、设计师）便各司其职，完成从立项、世界观、大纲、设定卡、正文到封面插画的全流程批量创作。长篇小说会强制分批实施，由总编分段向你汇报成果并确认，中断后随时可恢复。</p>
@@ -5399,26 +5375,7 @@
 ]]></content:encoded></item><item><title>关于</title><link>https://masonblog.github.io/about/</link><pubDate>Sat, 01 May 2021 00:00:00 +0000</pubDate><guid>https://masonblog.github.io/about/</guid><description>&lt;p&gt;这里是 Mason Hu 的个人博客 ，用来记录一些零碎的经历和想法，也存放个人作品集和播客文稿。&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://masonhu.org/" target="_blank" rel="noopener noreferrer"&gt;博客地址&lt;/a&gt;
 ｜&lt;a href="https://masonblog.github.io/" target="_blank" rel="noopener noreferrer"&gt;备用地址&lt;/a&gt;
-&lt;/p&gt;
-&lt;h2 id="关于作者"&gt;关于作者&lt;/h2&gt;
-&lt;p&gt;作者 Mason，华政法学硕士，专职律师，一个为了自己与家庭的未来努力谋生的 90 后，稍微带点理想主义。热爱历史与文学，对 AI 也颇有兴趣。目前在运营不温不火的个人播客 &lt;a href="https://masonblog.github.io/podcast" target="_blank" rel="noopener noreferrer"&gt;《议正言辞》&lt;/a&gt;
-，你可以在&lt;a href="https://www.xiaoyuzhoufm.com/podcast/68453dda5d66f3ec9a7aa1b4" target="_blank" rel="noopener noreferrer"&gt;小宇宙&lt;/a&gt;
-、&lt;a href="https://podcasts.apple.com/cn/podcast/%E8%AE%AE%E6%AD%A3%E8%A8%80%E8%BE%9E/id6787849374" target="_blank" rel="noopener noreferrer"&gt;苹果播客&lt;/a&gt;
-，以及 &lt;a href="https://open.spotify.com/show/033N8EeYaxKaf8Xdd7yHSF" target="_blank" rel="noopener noreferrer"&gt;Spotify&lt;/a&gt;
-等平台收听。&lt;/p&gt;
-&lt;p&gt;联系邮箱：blog@masonhu.org&lt;/p&gt;
-&lt;p&gt;微信公众号：议正言辞。&lt;/p&gt;
-&lt;img src="https://masonblog.github.io/images/wechat_official_account.jpg" width="200" alt="微信公众号"&gt;
-&lt;h2 id="关于本博客"&gt;关于本博客&lt;/h2&gt;
-&lt;p&gt;本博客用于记录一些零碎的经历和想法，以及偶有的牢骚和絮叨。同时，这里还会存放我自己开发的技能和小工具，以及个人播客《议正言辞》的文稿等。它不追求传播学意义上的价值，更像一个长期保存个人经验和思考的树洞。&lt;/p&gt;
-&lt;p&gt;本博客建立于 2020 年新冠疫情期间。凡 2020 年 1 月 1 日前的文章，均为博客创建以前撰写的个人历史文章。 &lt;strong&gt;受限于年龄和视野，该部分文章的可读性不高，且部分态度和观点已不被当前的作者所坚持或接受&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;博客曾以 Bright&amp;rsquo;s Blog 为名在 &lt;a href="https://ibrights.github.io/" target="_blank" rel="noopener noreferrer"&gt;ibrights.github.io&lt;/a&gt;
-更新。2024 年，因为&lt;a href="https://github.com/ibrights" target="_blank" rel="noopener noreferrer"&gt;旧 GitHub 账号&lt;/a&gt;
-无法完成双重认证，我将过往文章迁到这里，也把笔名从 Bright 改为 Mason。后来虽然找回了旧账号，博客仍继续在 &lt;a href="https://masonhu.org/" target="_blank" rel="noopener noreferrer"&gt;masonhu.org&lt;/a&gt;
-更新，旧址则保留为迁移指引。名字和地址换了，写字的人还是我。&lt;/p&gt;
-&lt;h2 id="版权说明"&gt;版权说明&lt;/h2&gt;
-&lt;p&gt;除非文章内另有说明，本博客文字内容均为作者原创，禁止未经许可转载、摘编或用于商业用途。&lt;/p&gt;
-&lt;p&gt;发布于 Github 仓库中的代码遵循其原项目许可证；博客文章、图片和个人内容不因仓库公开而自动授权复用。&lt;/p&gt;</description><content:encoded><![CDATA[<p>这里是 Mason Hu 的个人博客 ，用来记录一些零碎的经历和想法，也存放个人作品集和播客文稿。</p>
+&lt;/p&gt;</description><content:encoded><![CDATA[<p>这里是 Mason Hu 的个人博客 ，用来记录一些零碎的经历和想法，也存放个人作品集和播客文稿。</p>
 <p><a href="https://masonhu.org/" target="_blank" rel="noopener noreferrer">博客地址</a>
 ｜<a href="https://masonblog.github.io/" target="_blank" rel="noopener noreferrer">备用地址</a>
 </p>
